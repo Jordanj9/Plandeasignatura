@@ -130,7 +130,7 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="{{route('admin.academico')}}">
+                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
                         <i class="material-icons">account_balance</i>
                         <p> Académico</p>
                     </a>
