@@ -4,10 +4,10 @@
         <div class="panel-body">
             <div class="col-md-12">
                 <p class="animated fadeInDown">
-                    <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
+                    <strong><a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.usuarios')}}"> Usuarios </a><span
                         class="fa-angle-right fa"></span><a href="{{route('pagina.index')}}"> Grupo de
-                        Usuarios </a><span class="fa-angle-right fa"></span> Crear
+                        Usuarios </a><span class="fa-angle-right fa"></span> </strong>Crear
                 </p>
             </div>
         </div>
