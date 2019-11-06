@@ -411,6 +411,10 @@
 <script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
 <!--  Notifications Plugin    -->
 <script src="{{asset('assets/js/plugins/bootstrap-notify.js')}}"></script>
+<script src="{{ asset('plugins/pnotify/dist/pnotify.js')}}"></script>
+<script src="{{ asset('plugins/pnotify/dist/pnotify.buttons.js')}}"></script>
+<script src="{{ asset('plugins/pnotify/dist/pnotify.nonblock.js')}}"></script>
+
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.0')}}" type="text/javascript"></script>
 <!-- Jquery DataTable Plugin Js -->
@@ -419,6 +423,15 @@
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('assets/demo/demo.js')}}"></script>
 <script>
+    var url = "<?php echo config('app.url'); ?>/";
+    function notify(title, text, type) {
+        new PNotify({
+            title: title,
+            text: text,
+            type: type,
+            styling: 'bootstrap3'
+        });
+    }
     $(document).ready(function () {
         $().ready(function () {
             $sidebar = $('.sidebar');
@@ -593,7 +606,6 @@
 <script src="{{asset('assets/demo/jquery.sharrre.js')}}"></script>
 <script>
     $(document).ready(function () {
-
 
     });
 </script>

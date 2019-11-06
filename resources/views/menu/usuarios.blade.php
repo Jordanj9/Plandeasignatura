@@ -38,10 +38,12 @@
                         <div class="ripple-container"></div>
                     </button>
                     </a>
+                    <a href="{{route('grupousuario.privilegios')}}">
                     <button class="btn btn-outline-success btn-round">
                         <i class="fa fa-cubes"></i> PRIVILÉGIOS A PÁGINAS
                         <div class="ripple-container"></div>
                     </button>
+                    </a>
                     <button class="btn btn-outline-success btn-round">
                         <i class="fa fa-cubes"></i> LISTAR TODOS LOS USUARIOS
                         <div class="ripple-container"></div>
