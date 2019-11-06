@@ -78,7 +78,7 @@ class PaginaController extends Controller
     public function edit($id)
     {
         $pagina = Pagina::find($id);
-        return view('usuarios.paginas..edit')
+        return view('usuarios.paginas.edit')
             ->with('location', 'usuarios')
             ->with('pagina', $pagina);
     }
