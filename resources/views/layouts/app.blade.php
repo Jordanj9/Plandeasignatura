@@ -57,6 +57,8 @@
     <link href="{{asset('assets/css/material-dashboard.min.css?v=2.1.0')}}" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet"/>
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css')}}">
     <!-- JQuery DataTable Css -->
     <link href="{{asset('css/dataTables.bootstrap.css')}}" rel="stylesheet">
     <!-- Google Tag Manager -->
@@ -374,6 +376,9 @@
 <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
 <!--  Plugin for Sweet Alert -->
 <script src="{{asset('assets/js/plugins/sweetalert2.js')}}"></script>
+<!-- Select2 -->
+<script src="{{ asset('select2/dist/js/select2.full.min.js')}}"></script>
+<script src="{{asset('js/chosen/chosen.jquery.js')}}"></script>
 <!-- Forms Validations Plugin -->
 <script src="{{asset('assets/js/plugins/jquery.validate.min.js')}}"></script>
 <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->

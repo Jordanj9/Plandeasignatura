@@ -59,9 +59,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <br/><br/><a href="{{route('modulo.index')}}" class="btn btn-danger waves-effect">Cancelar</a>
-                                    <button class="btn btn-info waves-effect" type="reset">Limpiar Formulario</button>
-                                    <button class="btn btn-success waves-effect" type="submit">Guardar</button>
+                                    <br/><br/><a href="{{route('modulo.index')}}" class="btn btn-danger btn-round">Cancelar</a>
+                                    <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
+                                    <button class="btn btn-success btn-round" type="submit">Guardar</button>
                                 </div>
                             </div>
                         </form>
