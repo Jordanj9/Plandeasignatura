@@ -15,4 +15,14 @@ class MenuController extends Controller
     {
         return view('menu.usuarios')->with('location', 'usuarios');
     }
+
+    /**
+     * Show the view menu academico.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function academico()
+    {
+        return view('menu.academico')->with('location', 'academico');
+    }
 }
