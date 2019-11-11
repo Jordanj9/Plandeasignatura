@@ -2,18 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Scripts -->
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset("assets/img/apple-icon.png")}}">
     <link rel="icon" type="image/png" href="{{asset("assets/img/favicon.png")}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-
-
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
     <!-- Extra details for Live View on GitHub Pages -->
@@ -98,10 +93,12 @@
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo">
-            <a href="{{route('home')}}" class="logo-mini" style="text-align: center; color: black; font-size: 35px; font-family: inherit">
+            <a href="{{route('home')}}" class="logo-mini"
+               style="text-align: center; color: black; font-size: 35px; font-family: inherit">
                 <strong>PS</strong>
             </a>
-            <a href="{{route('home')}}" class="logo-normal" style="text-align: center; color: black; font-size: 35px; font-family: inherit">
+            <a href="{{route('home')}}" class="logo-normal"
+               style="text-align: center; color: black; font-size: 35px; font-family: inherit">
                 <strong>PlanSotf</strong>
             </a>
         </div>
@@ -112,43 +109,101 @@
                 </div>
                 <div class="user-info">
                     <a data-toggle="collapse" href="#collapseExample" class="username">
-                                <span>
-                                    {{Auth::user()->nombres}}</br>{{Auth::user()->apellidos}}
-                                </span>
+                        <span>
+                            {{Auth::user()->nombres}}</br>{{Auth::user()->apellidos}}
+                        </span>
                     </a>
                 </div>
             </div>
             <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('inicio')}}">
-                        <i class="fa fa-home"></i>
-                        <p> Inicio </p>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('admin.usuarios')}}">
-                        <i class="material-icons">supervised_user_circle</i>
-                        <p> Usuario </p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{route('admin.academico')}}">
-                        <i class="material-icons">account_balance</i>
-                        <p> Académico</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
-                        <i class="material-icons">assignment</i>
-                        <p> Planes</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-                        <i class="material-icons">trending_up</i>
-                        <p> Reportes</p>
-                    </a>
-                </li>
+<!--                --><?php
+//                dd(session()->exists('MOD_INICIO'));
+//                ?>
+                @if(session()->exists('MOD_INICIO'))
+                    @if($location=='inicio')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{route('inicio')}}">
+                                <i class="fa fa-home"></i>
+                                <p> Inicio </p>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('inicio')}}">
+                                <i class="fa fa-home"></i>
+                                <p> Inicio </p>
+                            </a>
+                        </li>
+                    @endif
+                @endif
+                @if(session()->exists('MOD_USUARIOS'))
+                    @if($location=='usuarios')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{route('admin.usuarios')}}">
+                                <i class="material-icons">supervised_user_circle</i>
+                                <p> Usuario </p>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.usuarios')}}">
+                                <i class="material-icons">supervised_user_circle</i>
+                                <p> Usuario </p>
+                            </a>
+                        </li>
+                    @endif
+                @endif
+                @if(session()->exists('MOD_ACADEMICO'))
+                    @if($location=='academico')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{route('admin.academico')}}">
+                                <i class="material-icons">account_balance</i>
+                                <p> Académico</p>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.academico')}}">
+                                <i class="material-icons">account_balance</i>
+                                <p> Académico</p>
+                            </a>
+                        </li>
+                    @endif
+                @endif
+                @if(session()->exists('MOD_PLAN'))
+                    @if($location=='plan')
+                        <li class="nav-item active">
+                            <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
+                                <i class="material-icons">assignment</i>
+                                <p> Planes</p>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
+                                <i class="material-icons">assignment</i>
+                                <p> Planes</p>
+                            </a>
+                        </li>
+                    @endif
+                @endif
+                @if(session()->exists('MOD_REPORTE'))
+                    @if($location=='reporte')
+                        <li class="nav-item active">
+                            <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+                                <i class="material-icons">trending_up</i>
+                                <p> Reportes</p>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+                                <i class="material-icons">trending_up</i>
+                                <p> Reportes</p>
+                            </a>
+                        </li>
+                    @endif
+                @endif
                 <li class="nav-item ">
                     <a class="nav-link" data-toggle="collapse" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form2').submit();">
@@ -172,7 +227,8 @@
                             <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
                         </button>
                     </div>
-                    <a class="navbar-brand" href="#pablo">Registro y Control del Plan de Trabajo y Plan de Desarrollo</a>
+                    <a class="navbar-brand" href="#pablo">Registro y Control del Plan de Trabajo y Plan de
+                        Desarrollo</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -199,7 +255,8 @@
                                     document.getElementById('logout-form2').submit();">
                                     <i class="fa fa-sign-out"></i> Salir
                                 </a>
-                                <form id="logout-form2" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form2" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
                                     @csrf
                                 </form>
                             </div>
@@ -424,6 +481,7 @@
 <script src="{{asset('assets/demo/demo.js')}}"></script>
 <script>
     var url = "<?php echo config('app.url'); ?>/";
+
     function notify(title, text, type) {
         new PNotify({
             title: title,
@@ -432,6 +490,7 @@
             styling: 'bootstrap3'
         });
     }
+
     $(document).ready(function () {
         $().ready(function () {
             $sidebar = $('.sidebar');

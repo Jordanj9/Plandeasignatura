@@ -4,7 +4,7 @@
         <div class="panel-body">
             <div class="col-md-12">
                 <p class="animated fadeInDown">
-                    <a href="{{route('inicio')}}">Inicio</a> <span class="fa-angle-right fa"></span> Módulo Usuarios
+                    <a href="{{route('inicio')}}">Inicio</a> <span class="fa-angle-right fa"></span> Módulo Académico
                 </p>
             </div>
         </div>
@@ -26,13 +26,13 @@
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('pagina.index')}}">
+                    <a href="{{route('facultad.index')}}">
                         <button class="btn btn-outline-success btn-round">
                             <i class="fa fa-cubes"></i> FACULTAD
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('grupousuario.index')}}">
+                    <a href="{{route('departamento.index')}}">
                     <button class="btn btn-outline-success btn-round">
                         <i class="fa fa-cubes"></i> DEPARTAMENTOS
                         <div class="ripple-container"></div>

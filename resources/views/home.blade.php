@@ -3,66 +3,74 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <a href="{{route('admin.usuarios')}}">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">supervised_user_circle</i>
+            @if(session()->exists('MOD_USUARIOS'))
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <a href="{{route('admin.usuarios')}}">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-warning card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">supervised_user_circle</i>
+                                </div>
+                                <p class="card-category">Modulo</p>
+                                <h3 class="card-title">Usuario</h3>
                             </div>
-                            <p class="card-category">Modulo</p>
-                            <h3 class="card-title">Usuario</h3>
-                        </div>
-                        <div class="card-footer">
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <a href="{{route('admin.academico')}}">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-rose card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">account_balance</i>
+                            <div class="card-footer">
                             </div>
-                            <p class="card-category">Modulo</p>
-                            <h3 class="card-title">Académico</h3>
                         </div>
-                        <div class="card-footer">
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <a href="{{route('admin.usuarios')}}">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-success card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">assignment</i>
+                    </a>
+                </div>
+            @endif
+            @if(session()->exists('MOD_ACADEMICO'))
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <a href="{{route('admin.academico')}}">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-rose card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">account_balance</i>
+                                </div>
+                                <p class="card-category">Modulo</p>
+                                <h3 class="card-title">Académico</h3>
                             </div>
-                            <p class="card-category">Modulo</p>
-                            <h3 class="card-title">Planes</h3>
-                        </div>
-                        <div class="card-footer">
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <a href="{{route('admin.usuarios')}}">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-info card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">trending_up</i>
+                            <div class="card-footer">
                             </div>
-                            <p class="card-category">Modulo</p>
-                            <h3 class="card-title">Reportes</h3>
                         </div>
-                        <div class="card-footer">
+                    </a>
+                </div>
+            @endif
+            @if(session()->exists('MOD_PLAN'))
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <a href="{{route('admin.usuarios')}}">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-success card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">assignment</i>
+                                </div>
+                                <p class="card-category">Modulo</p>
+                                <h3 class="card-title">Planes</h3>
+                            </div>
+                            <div class="card-footer">
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            @endif
+            @if(session()->exists('MOD_REPORTE'))
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <a href="{{route('admin.usuarios')}}">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-info card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">trending_up</i>
+                                </div>
+                                <p class="card-category">Modulo</p>
+                                <h3 class="card-title">Reportes</h3>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endif
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header card-header-danger card-header-icon">
