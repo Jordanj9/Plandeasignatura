@@ -6,7 +6,8 @@
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.academico')}}"> Académico </a><span
-                        class="fa-angle-right fa"></span><a href="{{route('facultad.index')}}"> Facultad </a><span
+                        class="fa-angle-right fa"></span><a href="{{route('departamento.index')}}">
+                        Departamento </a><span
                         class="fa-angle-right fa"></span> Editar
                 </p>
             </div>
@@ -19,7 +20,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">EDITAR DATOS DE LA FACULTAD : {{$facultad->nombre}}</h4>
+                        <h4 class="card-title">EDITAR DATOS DEL DEPARTAMENTO : {{$depto->nombre}}</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -42,25 +43,57 @@
                         @endcomponent
                     </div>
                     <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('facultad.update',$facultad->id)}}">
+                        <form class="form-horizontal" method="POST"
+                              action="{{route('departamento.update',$depto->id)}}">
                             @csrf
                             <input name="_method" type="hidden" value="PUT"/>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
                                             <div class="form-line">
                                                 <label class="control-label">Nombre</label>
                                                 <input type="text" class="form-control"
-                                                       placeholder="Escriba el nombre de la faultad"
-                                                       name="nombre" required="required" value="{{$facultad->nombre}}"/>
+                                                       placeholder="Escriba el nombre del departamento"
+                                                       name="nombre" required="required" value="{{$depto->nombre}}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="form-line">
+                                                <label class="control-label">Descripción</label>
+                                                <input type="text" class="form-control"
+                                                       placeholder="Descripción del departamento"
+                                                       name="descripcion" value="{{$depto->descripcion}}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="form-line">
+                                                <label class="control-label">Facultad</label>
+                                                <select class="form-control selectpicker"
+                                                        data-style="select-with-transition" style="width: 100%;"
+                                                        required="required" title="--Seleccione una opción--"
+                                                        name="facultad_id">
+                                                    @foreach($facultades as $key=>$value)
+                                                        @if($key==$depto->facultad->id)
+                                                            <option value="{{$key}}" selected="">{{$value}}</option>
+                                                        @else
+                                                            <option value="{{$key}}">{{$value}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <br/><br/><a href="{{route('facultad.index')}}"
+                                <br/><br/><a href="{{route('departamento.index')}}"
                                              class="btn btn-danger btn-round">Cancelar</a>
                                 <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
                                 <button class="btn btn-success btn-round" type="submit">Guardar</button>
