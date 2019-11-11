@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{route('modulo.index')}}">
+                    <a href="{{route('periodo.index')}}">
                         <button class="btn btn-outline-success btn-round">
                             <i class="fa fa-cubes"></i> PERIODOS
                             <div class="ripple-container"></div>
