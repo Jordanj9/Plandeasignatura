@@ -50,7 +50,7 @@
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('grupousuario.privilegios')}}">
+                    <a href="{{route('grupo.index')}}">
                         <button class="btn btn-outline-success btn-round">
                             <i class="fa fa-cubes"></i> GRUPOS
                             <div class="ripple-container"></div>
