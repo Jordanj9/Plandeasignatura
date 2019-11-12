@@ -110,19 +110,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <form class="form-horizontal" method="POST" action="{{route('grupousuario.guardar')}}"
+                            <form method="POST" action="{{route('grupousuario.guardar')}}"
                                   name="form-privilegios" id="form-privilegios">
                                 @csrf
                                 <input type="hidden" name="id" id="id"/>
-                                <div class="form-group">
+                                <div class="form-group bmd-form-group" style="height: 250px">
                                     <div class="form-line">
-                                        <select class="form-control" style="height: 250px" name="privilegios[]"
-                                                id="privilegios" required="" multiple="" size="20"></select>
+                                        <select class="form-control"  name="privilegios[]"
+                                                id="privilegios" required="" style="height: 250px" multiple="" size="20"></select>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group bmd-form-group">
                                     <div class="col-md-12">
-                                        <br/>
                                         <button type="submit" id="btn-enviar" class="btn btn-success btn-block">Guardar
                                             los
                                             Cambios Para el Grupo Seleccionado
