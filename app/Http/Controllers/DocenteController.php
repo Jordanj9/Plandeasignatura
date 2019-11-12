@@ -53,6 +53,7 @@ class DocenteController extends Controller
      */
     public function store(DocenteRequest $request)
     {
+        dd($request);
         $existe = Docente::where('identificacion', $request->identificacion)->first();
         if ($existe != null) {
             flash("El Docente con la identificación <strong>" . $request->identificacion . "</strong> ya existe. Atención!")->warning();
@@ -77,6 +78,8 @@ class DocenteController extends Controller
                 $user->nombres = $docente->primer_nombre . " " . $docente->segundo_nombre;
                 $user->apellidos = $docente->primer_apellido . " " . $docente->segundo_apellido;
                 $user->save();
+                $g = Grupousuario::where('nombre', 'DOCENTE')->first();
+                $user->grupousuarios()->sync($g->id);
                 $aud = new Auditoriaacademico();
                 $aud->usuario = "ID: " . $u->identificacion . ",  USUARIO: " . $u->nombres . " " . $u->apellidos;
                 $aud->operacion = "INSERTAR";
@@ -90,7 +93,7 @@ class DocenteController extends Controller
                 }
                 $aud->detalles = $str;
                 $aud->save();
-                flash("El Docente <strong>" . $docente->primer_nombre . " " . $docente->primer_apellido . "</strong> fue almacenado de forma exitosa! <strong>Nota: Hacer click en el siguiente link para asignarle el rol al docente con el cual ingreasara al sistema. <a href='{{route('usuario.')}}'></a>Inicio/Usuarios/Editar Usuario</strong>")->success();
+                flash("El Docente <strong>" . $docente->primer_nombre . " " . $docente->primer_apellido . "</strong> fue almacenado de forma exitosa!")->success();
                 return redirect()->route('docente.index');
             } else {
                 flash("El Docente <strong>" . $docente->primer_nombre . " " . $docente->primer_apellido . "</strong> no pudo ser almacenado. Error: " . $result)->error();

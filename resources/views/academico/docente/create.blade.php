@@ -216,7 +216,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <br/><br/><a href="{{route('programa.index')}}" class="btn btn-danger btn-round">Cancelar</a>
+                                <br/><br/><a href="{{route('docente.index')}}" class="btn btn-danger btn-round">Cancelar</a>
                                 <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
                                 <button class="btn btn-success btn-round" type="submit">Guardar</button>
                             </div>
