@@ -60,6 +60,7 @@
                                 <tr>
                                     <td>{{$doc->tipo_documento.". ".$doc->identificacion}}</td>
                                     <td>{{$doc->nombre}}</td>
+                                    <td>{{$doc->email}}</td>
                                     <td>{{$doc->departamento->nombre}}</td>
                                     <td>{{$doc->categoria}}</td>
                                     <td>{{$doc->dedicacion}}</td>

@@ -28,7 +28,6 @@ Route::post('usuarios/contrasenia/cambiar/admin/finalizar', 'UsuarioController@c
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('usuarios', 'MenuController@usuarios')->name('admin.usuarios');
     Route::get('academico', 'MenuController@academico')->name('admin.academico');
-    Route::get('pqr', 'PqrController@index')->name('admin.pqr');
     Route::get('reporte', 'MenuController@reporte')->name('admin.reporte');
     Route::post('acceso', 'HomeController@confirmaRol')->name('rol');
     Route::get('inicio', 'HomeController@inicio')->name('inicio');
