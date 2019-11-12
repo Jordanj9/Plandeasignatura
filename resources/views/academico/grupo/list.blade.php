@@ -5,9 +5,8 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.academico')}}"> Módulo Académico </a><span
-                        class="fa-angle-right fa"></span>
-                    Períodos
+                        href="{{route('admin.academico')}}"> Módulo Académico </a><span class="fa-angle-right fa"></span>
+                    Grupo
                 </p>
             </div>
         </div>
@@ -19,7 +18,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">ACADÉMICO - PERÍODOS</h4>
+                        <h4 class="card-title">ACADÉMICO - GRUPO</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -29,8 +28,7 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('periodo.create') }}" class="dropdown-item" href="#">Agregar nuevo
-                                        período</a>
+                                    <a href="{{ route('grupo.create') }}" class="dropdown-item" href="#">Agregar un nuevo Grupo</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -44,50 +42,38 @@
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
-                                <th>PERÍODO</th>
-                                <th>FECHA INICIO</th>
-                                <th>FECHA FIN</th>
-                                <th>PRIMER PARCIAL</th>
-                                <th>SEGUNDO PARCIAL</th>
-                                <th>TERCER PARCIAL</th>
+                                <th>ID</th>
+                                <th>NOMBRE</th>
                                 <th>CREADO</th>
                                 <th>MODIFICADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($periodos as $periodo)
+                            @foreach($grupos as $grupo)
                                 <tr>
-                                    <td>{{$periodo->anio." - ".$periodo->$periodo}}</td>
-                                    <td>{{$periodo->fechainicio}}</td>
-                                    <td>{{$periodo->fechafin}}</td>
-                                    <td>{{"DEL".$periodo->fechainicio1." HASTA ".$periodo->fechafin1}}</td>
-                                    <td>{{"DEL".$periodo->fechainicio2." HASTA ".$periodo->fechafin2}}</td>
-                                    <td>{{"DEL".$periodo->fechainicio3." HASTA ".$periodo->fechafin3}}</td>
-                                    <td>{{$periodo->created_at}}</td>
-                                    <td>{{$periodo->updated_at}}</td>
-                                    <td style="text-align: center;">
-                                        <a href="{{ route('periodo.edit',$periodo->id)}}"
+                                    <td>{{$grupo->id}}</td>
+                                    <td>{{$grupo->nombre}}</td>
+                                    <td>{{$grupo->created_at}}</td>
+                                    <td>{{$grupo->updated_at}}</td>
+                                    <td>
+                                        <a href="{{ route('grupo.edit',$grupo->id)}}"
                                            class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Período"><i class="material-icons">mode_edit</i></a>
-                                        <a href="{{ route('periodo.delete',$periodo->id)}}"
+                                           data-placement="top" title="Editar Grupo"><i class="material-icons">mode_edit</i></a>
+                                        <a href="{{ route('grupo.delete',$grupo->id)}}"
                                            class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Eliminar Período"><i class="material-icons">delete</i></a>
+                                           data-placement="top" title="Eliminar Grupo"><i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>PERÍODO</th>
-                                <th>FECHA INICIO</th>
-                                <th>FECHA FIN</th>
-                                <th>PRIMER PARCIAL</th>
-                                <th>SEGUNDO PARCIAL</th>
-                                <th>TERCER PARCIAL</th>
+                                <th>ID</th>
+                                <th>NOMBRE</th>
                                 <th>CREADO</th>
                                 <th>MODIFICADO</th>
-                                <th class="text-right">ACCIONES</th>
+                                <th>ACCIONES</th>
                             </tr>
                             </tfoot>
                         </table>
@@ -105,11 +91,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Las páginas o ítems de los módulos del sistema son las funcionalidades
-                    más específicas o detalladas de los módulos. Ejemplo de página general: PAG_MODULOS, PAG_PAGINAS,
-                    PAG_USUARIOS, PAG_PRIVILEGIOS, ETC.
-                    <br/><strong>Nota: </strong> No modifique los nombres de las páginas ya creadas ya que puede
-                    ocasionar fallas en el sistema.
+                    <strong>Detalles: </strong>Gestione los Grupos  que existen en la universidad.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
