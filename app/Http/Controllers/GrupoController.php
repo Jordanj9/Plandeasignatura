@@ -123,10 +123,10 @@ class GrupoController extends Controller
             $aud->detalles = $str . " - " . $str2;
             $aud->save();
             flash("El Grupo  <strong>" . $grupo->nombre . "</strong> fue modificado de forma exitosa!")->success();
-            return redirect()->route('facultad.index');
+            return redirect()->route('grupo.index');
         } else {
             flash("El Grupo  <strong>" . $grupo->nombre . "</strong> no pudo ser modificado. Error: " . $result)->error();
-            return redirect()->route('facultad.index');
+            return redirect()->route('grupo.index');
         }
     }
 

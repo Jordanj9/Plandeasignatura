@@ -67,6 +67,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
     //PROGRAMA
     Route::resource('programa', 'ProgramaController');
     Route::get('programa/{id}/delete', 'ProgramaController@destroy')->name('programa.delete');
+    //ASIGNATURA
+    Route::resource('asignatura', 'AsignaturaController');
+    Route::get('asignatura/{id}/delete', 'AsignaturaController@destroy')->name('asignatura.delete');
+    //DOCENTE
+    Route::resource('docente', 'DocenteController');
+    Route::get('docente/{id}/delete', 'DocenteController@destroy')->name('docente.delete');
     //GRUPO
     Route::resource('grupo', 'GrupoController');
     Route::get('grupo/{id}/delete', 'GrupoController@destroy')->name('grupo.delete');

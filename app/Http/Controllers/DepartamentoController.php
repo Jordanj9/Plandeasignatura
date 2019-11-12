@@ -128,10 +128,10 @@ class DepartamentoController extends Controller
             $aud->detalles = $str . " - " . $str2;
             $aud->save();
             flash("El Departamento <strong>" . $depto->nombre . "</strong> fue modificado de forma exitosa!")->success();
-            return redirect()->route('periodo.index');
+            return redirect()->route('departamento.index');
         } else {
             flash("El Departamento <strong>" . $depto->nombre . "</strong> no pudo ser modificado. Error: " . $result)->error();
-            return redirect()->route('periodo.index');
+            return redirect()->route('departamento.index');
         }
     }
 
@@ -143,7 +143,7 @@ class DepartamentoController extends Controller
      */
     public function destroy($id)
     {
-        $depto = Facultad::find($id);
+        $depto = Departamento::find($id);
         if (count($depto->programas) > 0) {
             flash("El departamento <strong>" . $depto->nombre . "</strong> no pudo ser eliminado porque tiene programas asociados.")->warning();
             return redirect()->route('departamento.index');

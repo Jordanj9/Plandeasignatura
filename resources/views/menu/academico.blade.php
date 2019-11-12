@@ -38,13 +38,13 @@
                         <div class="ripple-container"></div>
                     </button>
                     </a>
-                    <a href="{{route('grupousuario.privilegios')}}">
+                    <a href="{{route('programa.index')}}">
                     <button class="btn btn-outline-success btn-round">
                         <i class="fa fa-cubes"></i> PROGRAMAS
                         <div class="ripple-container"></div>
                     </button>
                     </a>
-                    <a href="{{route('grupousuario.privilegios')}}">
+                    <a href="{{route('asignatura.index')}}">
                         <button class="btn btn-outline-success btn-round">
                             <i class="fa fa-cubes"></i> ASIGNATURAS
                             <div class="ripple-container"></div>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{route('grupousuario.privilegios')}}">
+                    <a href="{{route('docente.index')}}">
                         <button class="btn btn-outline-success btn-round">
                             <i class="fa fa-cubes"></i> DOCENTES
                             <div class="ripple-container"></div>

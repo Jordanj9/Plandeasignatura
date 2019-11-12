@@ -28,4 +28,14 @@ class Departamento extends Model
     {
         return $this->belongsTo(Facultad::class);
     }
+
+    public function programas()
+    {
+        return $this->hasMany(Programa::class);
+    }
+
+    public function docentes()
+    {
+        return $this->hasMany(Docente::class);
+    }
 }
