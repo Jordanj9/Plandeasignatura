@@ -109,9 +109,9 @@
                 </div>
                 <div class="user-info">
                     <a data-toggle="collapse" href="#collapseExample" class="username">
-                        <span>
-                            {{Auth::user()->nombres}}</br>{{Auth::user()->apellidos}}
-                        </span>
+                                <span>
+                                    {{Auth::user()->nombres}}</br>{{Auth::user()->apellidos}}
+                                </span>
                     </a>
                 </div>
             </div>
