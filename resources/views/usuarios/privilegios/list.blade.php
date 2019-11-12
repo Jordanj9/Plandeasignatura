@@ -263,8 +263,11 @@
                         $("#paginas").find("option[value='" + item.id + "']").prop("disabled", true);
                     });
                 } else {
-                    notify('Atención', 'El grupo de usuarios seleccionado no tiene privilegios asignados aún.', 'error');
-                    $('#paginas option').each(function () {
+                    $.notify({
+                        icon: "add_alert",
+                        message: '<strong>Atención!</strong><br>El grupo de usuarios seleccionado no tiene privilegios asignados aún'
+                    }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                     $('#paginas option').each(function () {
                         var valor = $(this).attr('value');
                         $("#paginas").find("option[value='" + valor + "']").prop("disabled", false);
                     });

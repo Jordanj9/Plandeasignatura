@@ -6,7 +6,7 @@
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.usuarios')}}"> Módulo Usuarios </a><span class="fa-angle-right fa"></span>
-                    Grupo de Usuarios
+                    Listar Usuarios
                 </p>
             </div>
         </div>
@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title"> USUARIOS - GRUPOS DE USUARIOS O ROLES </h4>
+                        <h4 class="card-title">USUARIOS - LISTADO DE USUARIOS DEL SISTEMA</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -28,9 +28,8 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('grupousuario.create') }}" class="dropdown-item" href="#">Agregar
-                                        nuevo
-                                        Grupo</a>
+                                    <a href="{{ route('usuario.create') }}" class="dropdown-item" href="#">Agregar nuevo
+                                        modulo</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -44,41 +43,50 @@
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>GRUPO</th>
-                                <th>DESCRIPCIÓN</th>
+                                <th>IDENTIFICACIÓN</th>
+                                <th>USUARIO</th>
+                                <th>E-MAIL</th>
+                                <th>ESTADO</th>
+                                <th>ROLES</th>
                                 <th>CREADO</th>
                                 <th>MODIFICADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($grupos as $grupo)
+                            @foreach($usuarios as $usuario)
                                 <tr>
-                                    <td>{{$grupo->id}}</td>
-                                    <td>{{$grupo->nombre}}</td>
-                                    <td>{{$grupo->descripcion}}</td>
-                                    <td>{{$grupo->created_at}}</td>
-                                    <td>{{$grupo->updated_at}}</td>
-                                    <td style="text-align: center;">
-                                        <a href="{{ route('grupousuario.edit',$grupo->id)}}"
-                                           class="btn btn-link btn-info btn-just-icon" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Grupo de Usuario"><i class="material-icons">mode_edit</i></a>
-                                        <a href="{{ route('grupousuario.show',$grupo->id)}}"
-                                           class="btn btn-link btn-success btn-just-icon" data-toggle="tooltip"
-                                           data-placement="top" title="Ver Datos del Grupo de Usuario"><i class="material-icons">remove_red_eye</i></a>
-                                        <a href="{{ route('grupousuario.delete',$grupo->id)}}"
-                                           class="btn btn-link btn-danger btn-just-icon" data-toggle="tooltip"
-                                           data-placement="top" title="Eliminar Grupo de Usuario"><i class="material-icons">delete</i></a>
+                                    <td>{{$usuario->identificacion}}</td>
+                                    <td>{{$usuario->nombres}} {{$usuario->apellidos}}</td>
+                                    <td>{{$usuario->email}}</td>
+                                    <td>@if($usuario->estado=='ACTIVO')<label
+                                            class="label label-success">ACTIVO</label>@else<label
+                                            class="label label-danger">INACTIVO</label>@endif</td>
+                                    <td>
+                                        @foreach($usuario->grupousuarios as $grupo)
+                                            {{$grupo->nombre}} -
+                                        @endforeach
                                     </td>
+                                    <td>{{$usuario->created_at}}</td>
+                                    <td>{{$usuario->updated_at}}</td>
+                                    <td style="text-align: center;">
+                                        <form class="form-horizontal form-label-left" method="POST"
+                                              action="{{route('usuario.operaciones')}}"><input type="hidden" name="id" value="{{$usuario->identificacion}}"/>
+                                            @csrf
+                                            <button class="btn btn-link btn-info btn-just-icon" type="submit"
+                                                    data-toggle="tooltip" data-placement="top" title="Editar Usuario"><i
+                                                    class="material-icons">mode_edit</i></button>
+                                        </form>
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>ID</th>
-                                <th>GRUPO</th>
-                                <th>DESCRIPCIÓN</th>
+                                <th>IDENTIFICACIÓN</th>
+                                <th>USUARIO</th>
+                                <th>E-MAIL</th>
+                                <th>ESTADO</th>
+                                <th>ROLES</th>
                                 <th>CREADO</th>
                                 <th>MODIFICADO</th>
                                 <th class="text-right">ACCIONES</th>
@@ -99,9 +107,10 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Los grupos de usuarios son los roles o agrupaciones de usuarios que
-                    permite asignarle privilegios a todo un conglomerado de usuarios que comparte funciones. Ejemplo de
-                    grupos de usuarios: ADMINISTRADOR, FELIGRES, ESCUELA SABATICA, MAYORDOMIA, MINISTERIO JUVENIL, ETC.
+                    <strong>Detalles: </strong>Los módulos generales del sistema son las aplicaciones generales
+                    representadas en las opciones del menú. Ejemplo de módulo general: MOD_INICIO, MOD_USUARIOS.
+                    <br/><strong>Nota: </strong> No modifique los nombres de los módulos ya creados ya que puede
+                    ocasionar fallas en el sistema.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>

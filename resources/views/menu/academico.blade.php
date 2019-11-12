@@ -16,32 +16,46 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text">
-                        <h4 class="card-title">MENU ACADÉMICO</h4>
+                        <h4 class="card-title">MODULO ACADÉMICO</h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{route('modulo.index')}}">
+                    <a href="{{route('periodo.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> MODULOS DEL SISTEMA
+                            <i class="fa fa-cubes"></i> PERIODOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
+                    <a href="{{route('facultad.index')}}">
+                        <button class="btn btn-outline-success btn-round">
+                            <i class="fa fa-cubes"></i> FACULTAD
+                            <div class="ripple-container"></div>
+                        </button>
+                    </a>
+                    <a href="{{route('departamento.index')}}">
                     <button class="btn btn-outline-success btn-round">
-                        <i class="fa fa-cubes"></i> PÁGINAS DEL SISTEMA
+                        <i class="fa fa-cubes"></i> DEPARTAMENTOS
                         <div class="ripple-container"></div>
                     </button>
+                    </a>
+                    <a href="{{route('grupousuario.privilegios')}}">
                     <button class="btn btn-outline-success btn-round">
-                        <i class="fa fa-cubes"></i> GRUPOS O ROLES DE USUARIOS
+                        <i class="fa fa-cubes"></i> PROGRAMAS
                         <div class="ripple-container"></div>
                     </button>
-                    <button class="btn btn-outline-success btn-round">
-                        <i class="fa fa-cubes"></i> PRIVILÉGIOS A PÁGINAS
-                        <div class="ripple-container"></div>
-                    </button>
-                    <button class="btn btn-outline-success btn-round">
-                        <i class="fa fa-cubes"></i> LISTAR TODOS LOS USUARIOS
-                        <div class="ripple-container"></div>
-                    </button>
+                    </a>
+                    <a href="{{route('grupousuario.privilegios')}}">
+                        <button class="btn btn-outline-success btn-round">
+                            <i class="fa fa-cubes"></i> ASIGNATURAS
+                            <div class="ripple-container"></div>
+                        </button>
+                    </a>
+                    <a href="{{route('grupo.index')}}">
+                        <button class="btn btn-outline-success btn-round">
+                            <i class="fa fa-cubes"></i> GRUPOS
+                            <div class="ripple-container"></div>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -51,28 +65,22 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text">
-                        <h4 class="card-title">MODIFICAIÓN Y ELIMINACIÓN DE USUARIO</h4>
+                        <h4 class="card-title">ESTRUCTURA CURRICULAR</h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form class="form-horizontal form-label-left" method="POST"
-                          action="{{route('usuario.operaciones')}}" name="form-privilegios" id="form-privilegios">
-                        @csrf
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-line">
-                                        <input type="text" id="id" class="form-control"
-                                               placeholder="Escriba la identificación a consultar" name="id"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <button type="submit" class="btn bg-info waves-effect btn-block">CONSULTAR USUARIO
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    <a href="{{route('grupousuario.privilegios')}}">
+                        <button class="btn btn-outline-success btn-round">
+                            <i class="fa fa-cubes"></i> DOCENTES
+                            <div class="ripple-container"></div>
+                        </button>
+                    </a>
+                    <a href="{{route('grupousuario.privilegios')}}">
+                        <button class="btn btn-outline-success btn-round">
+                            <i class="fa fa-cubes"></i>CARGA ACADÉMICA
+                            <div class="ripple-container"></div>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>

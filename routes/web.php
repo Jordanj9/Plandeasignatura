@@ -25,7 +25,7 @@ Route::post('usuarios/contrasenia/cambiar/admin/finalizar', 'UsuarioController@c
 
 //TODOS LOS MENUS
 //GRUPO DE RUTAS PARA LA ADMINISTRACIÓN
-Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('usuarios', 'MenuController@usuarios')->name('admin.usuarios');
     Route::get('academico', 'MenuController@academico')->name('admin.academico');
     Route::get('pqr', 'PqrController@index')->name('admin.pqr');
@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 });
 
 //GRUPO DE RUTAS PARA LA ADMINISTRACIÓN DE USUARIOS
-Route::group(['middleware' => 'auth', 'prefix' => 'usuarios'], function() {
+Route::group(['middleware' => 'auth', 'prefix' => 'usuarios'], function () {
     //MODULOS
     Route::resource('modulo', 'ModuloController');
     //PAGINAS O ITEMS DE LOS MODULOS
@@ -51,4 +51,23 @@ Route::group(['middleware' => 'auth', 'prefix' => 'usuarios'], function() {
     Route::get('usuario/{id}/delete', 'UsuarioController@destroy')->name('usuario.delete');
     Route::post('operaciones', 'UsuarioController@operaciones')->name('usuario.operaciones');
     Route::post('usuario/contrasenia/cambiar/admin/finalizar', 'UsuarioController@cambiarPass')->name('usuario.cambiarPass');
+});
+
+//GRUPO DE RUTAS PARA EL MODULO ACADEMICO
+Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
+    //PERIODO
+    Route::resource('periodo', 'PeriodoController');
+    Route::get('periodo/{id}/delete', 'PeriodoController@destroy')->name('periodo.delete');
+    //FACULTAD
+    Route::resource('facultad', 'FacultadController');
+    Route::get('facultad/{id}/delete', 'FacultadController@destroy')->name('facultad.delete');
+    //DEPARTAMENTO
+    Route::resource('departamento', 'DepartamentoController');
+    Route::get('departamento/{id}/delete', 'DepartamentoController@destroy')->name('departamento.delete');
+    //PROGRAMA
+    Route::resource('programa', 'ProgramaController');
+    Route::get('programa/{id}/delete', 'ProgramaController@destroy')->name('programa.delete');
+    //GRUPO
+    Route::resource('grupo', 'GrupoController');
+    Route::get('grupo/{id}/delete', 'GrupoController@destroy')->name('grupo.delete');
 });
