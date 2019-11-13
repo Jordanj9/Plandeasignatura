@@ -39,7 +39,7 @@
             @endif
             @if(session()->exists('MOD_PLAN'))
                 <div class="col-lg-4 col-md-6 col-sm-6">
-                    <a href="{{route('admin.usuarios')}}">
+                    <a href="{{route('admin.plan')}}">
                         <div class="card card-stats">
                             <div class="card-header card-header-success card-header-icon">
                                 <div class="card-icon">
