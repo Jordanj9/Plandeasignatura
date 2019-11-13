@@ -51,9 +51,8 @@ class DocenteController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DocenteRequest $request)
+    public function store(Request $request)
     {
-        dd($request);
         $existe = Docente::where('identificacion', $request->identificacion)->first();
         if ($existe != null) {
             flash("El Docente con la identificación <strong>" . $request->identificacion . "</strong> ya existe. Atención!")->warning();
@@ -122,6 +121,7 @@ class DocenteController extends Controller
     public function edit($id)
     {
         $docente = Docente::find($id);
+        $docente->nombre = $docente->primer_nombre . " " . $docente->primer_apellido;
         $deptos = Departamento::all()->pluck('nombre', 'id');
         return view('academico.docente.edit')
             ->with('location', 'academico')

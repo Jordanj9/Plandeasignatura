@@ -5,9 +5,9 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.academico')}}"> Módulo Académico </a><span
+                        href="{{route('admin.plan')}}"> Módulo Planes </a><span
                         class="fa-angle-right fa"></span>
-                    Docentes
+                    Plan de Asignatura
                 </p>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">ACADÉMICO - DOCENTES</h4>
+                        <h4 class="card-title">PLANES - PLAN DE ASIGNATURA</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -29,8 +29,8 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('docente.create') }}" class="dropdown-item" href="#">Agregar
-                                        nuevo docente</a>
+                                    <a href="{{ route('plandeasignatura.create') }}" class="dropdown-item" href="#">Agregar
+                                        nueva asignatura</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -44,49 +44,47 @@
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
-                                <th>IDENTIFICACIÓN</th>
-                                <th>NOMBRE</th>
-                                <th>EMAIL</th>
-                                <th>DEPARTAMENTO</th>
-                                <th>CATEGORIA</th>
-                                <th>DEDICACIÓN</th>
-                                <th>VINCULACIÓN</th>
-                                <th>SEDE</th>
+                                <th>CODIGO DE LA ASIGNATURA</th>
+                                <th>ASIGNATURA</th>
+                                <th>PERIODO</th>
+                                <th>PRE-REQUISITOS</th>
+                                <th>CO-REQUISITOS</th>
+                                <th>CREADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($docentes as $doc)
+                            @foreach($planes as $p)
                                 <tr>
-                                    <td>{{$doc->tipo_documento.". ".$doc->identificacion}}</td>
-                                    <td>{{$doc->nombre}}</td>
-                                    <td>{{$doc->email}}</td>
-                                    <td>{{$doc->departamento->nombre}}</td>
-                                    <td>{{$doc->categoria}}</td>
-                                    <td>{{$doc->dedicacion}}</td>
-                                    <td>{{$doc->vinculacion}}</td>
-                                    <td>{{$doc->sede}}</td>
+                                    <td>{{$p->id}}</td>
+                                    <td>{{$p->asignatura->codigo}}</td>
+                                    <td>{{$p->asignatura->nombre}}</td>
+                                    <td>{{$p->periodo->anio."-".$periodo->periodo}}</td>
+                                    <td>{{$p->prerequisitos}}</td>
+                                    <td>{{$p->corequisitos}}</td>
+                                    <td>{{$p->created_at}}</td>
                                     <td>
-                                        <a href="{{ route('docente.edit',$doc->id)}}"
+                                        <a href="{{ route('plan.edit',$p->id)}}"
                                            class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Docente"><i class="material-icons">mode_edit</i></a>
-                                        <a href="{{ route('docente.delete',$doc->id)}}"
+                                           data-placement="top" title="Editar Plan de Asignatura"><i class="material-icons">mode_edit</i></a>
+                                        <a href="{{ route('plan.show',$p->id)}}"
+                                           class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Ver Plan de Asignatura"><i class="material-icons">mode_edit</i></a>
+                                        <a href="{{ route('plan.delete',$p->id)}}"
                                            class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Eliminar Docente"><i class="material-icons">delete</i></a>
+                                           data-placement="top" title="Eliminar Plan Asignatura"><i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>IDENTIFICACIÓN</th>
-                                <th>NOMBRE</th>
-                                <th>EMAIL</th>
-                                <th>DEPARTAMENTO</th>
-                                <th>CATEGORIA</th>
-                                <th>DEDICACIÓN</th>
-                                <th>VINCULACIÓN</th>
-                                <th>SEDE</th>
+                                <th>CODIGO DE LA ASIGNATURA</th>
+                                <th>ASIGNATURA</th>
+                                <th>PERIODO</th>
+                                <th>PRE-REQUISITOS</th>
+                                <th>CO-REQUISITOS</th>
+                                <th>CREADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </tfoot>
@@ -105,7 +103,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione los docentes pertenecientes a los diferentes departamentos.
+                    <strong>Detalles: </strong>Gestione los planes de asignaturas.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
