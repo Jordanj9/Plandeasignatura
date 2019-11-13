@@ -22,19 +22,19 @@
                 <div class="card-body">
                     <a href="{{route('plandeasignatura.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> PLAN DE ASIGNATURA
+                            <i class="material-icons">edit</i> PLAN DE ASIGNATURA
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route('facultad.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> PLAN DE DESARROLO DE ASOGNATURA
+                            <i class="material-icons">crop_rotate</i> PLAN DE DESARROLO DE ASOGNATURA
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route('departamento.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> PLAN DE TRABAJO
+                            <i  class="material-icons">work</i> PLAN DE TRABAJO
                             <div class="ripple-container"></div>
                         </button>
                     </a>
