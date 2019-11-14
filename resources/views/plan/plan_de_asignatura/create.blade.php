@@ -137,7 +137,7 @@
                                             </di>
                                         </div>
                                         <div class="row justify-content-center" >
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-6">
                                                 <div class="input-group form-control-lg">
                                                     <div class="input-group-prepend">
                                                             <span class="input-group-text">
@@ -152,6 +152,29 @@
                                                                     style="width: 100%;" required="required"
                                                                     title="--Seleccione una opción--"
                                                                     name="facultad_id">
+                                                                @foreach($facultades as $key=>$value)
+                                                                    <option value="{{$key}}">{{$value}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="input-group form-control-lg">
+                                                    <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">date_range</i>
+                                                            </span>
+                                                    </div>
+                                                    <div class="form-group bmd-form-group">
+                                                        <div class="form-line">
+                                                            <label class="">Periodos</label>
+                                                            <select class="form-control selectpicker"
+                                                                    data-style="select-with-transition"
+                                                                    style="width: 100%;" required="required"
+                                                                    title="--Seleccione una opción--"
+                                                                    name="periodo_id">
                                                                 @foreach($facultades as $key=>$value)
                                                                     <option value="{{$key}}">{{$value}}</option>
                                                                 @endforeach
