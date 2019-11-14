@@ -60,7 +60,6 @@ class CargaacademicaController extends Controller
      */
     public function store(Request $request)
     {
-
         $carga_academica = new Cargaacademica($request->all());
         $existe = Cargaacademica::where([
             ['docente_id', $request->docente_id],

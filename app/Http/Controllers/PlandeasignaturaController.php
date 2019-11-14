@@ -41,7 +41,7 @@ class PlandeasignaturaController extends Controller
             }else{
                 $carga = Cargaacademica::where([['docente_id',$doc->id],['periodo_id',$per->id]])->get();
                 if ($carga != null && $planes != null){
-                    $pla= collect();
+                    $pla= [];
                     foreach ($carga as $c){
                         foreach ($planes as $p){
                             if($c->asignatura_id == $p->asignatura_id){
