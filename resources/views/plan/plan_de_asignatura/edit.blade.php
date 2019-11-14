@@ -7,7 +7,7 @@
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.academico')}}"> Académico </a><span
                         class="fa-angle-right fa"></span><a href="{{route('plandeasignatura.index')}}"> Planes </a><span
-                        class="fa-angle-right fa"></span> Crear
+                        class="fa-angle-right fa"></span> Editar
                 </p>
             </div>
         </div>
@@ -38,9 +38,11 @@
                 <!--      Wizard container        -->
                 <div class="wizard-container">
                     <div class="card card-wizard" style="opacity: 1;" data-color="green" id="wizardProfile">
-                        <form class="form-horizontal" method="POST" action="{{route('plandeasignatura.store')}}">
-                        @csrf
-                        <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                        <form class="form-horizontal" method="POST"
+                              action="{{route('plandeasignatura.update',$plan->id)}}">
+                            @csrf
+                            <input name="_method" type="hidden" value="PUT"/>
+                            <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                             <div class="card-header text-center">
                                 <h3 class="card-title">
                                     Registro del Plan de Asignatura
@@ -68,124 +70,8 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="about">
-                                        <h5 class="info-text"> Datos del Plan de Asignaturas</h5>
-                                        <div class="row">
-                                            <di class="col-sm-4">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">school</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label class="">Facultad</label>
-                                                            <select class="form-control select2"
-                                                                    onchange="getDepartamentos()"
-                                                                    data-style="select-with-transition"
-                                                                    style="width: 100%;"
-                                                                    required="required"
-                                                                    id="facultad_id">
-                                                                <option value="">--Seleccione una opción--</option>
-                                                                @foreach($facultades as $key=>$value)
-                                                                    <option value="{{$key}}">{{$value}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </di>
-                                            <di class="col-sm-4">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">apartment</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label class="">Departamento</label>
-                                                            <select class="form-control select2"
-                                                                    onchange="getProgramas()"
-                                                                    data-style="select-with-transition"
-                                                                    style="width: 100%;"
-                                                                    required="required"
-                                                                    id="departamento_id">
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </di>
-                                            <di class="col-sm-4">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">style</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label class="">Programa</label>
-                                                            <select class="form-control select2"
-                                                                    onchange="getAsignaturas()"
-                                                                    data-style="select-with-transition"
-                                                                    style="width: 100%;"
-                                                                    required="required"
-                                                                    title="--Seleccione una opción--"
-                                                                    id="programa_id">
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </di>
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            <div class="col-sm-6">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">layers_clear</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label class="">Asignatura</label>
-                                                            <select class="form-control select2"
-                                                                    data-style="select-with-transition"
-                                                                    style="width: 100%;"
-                                                                    required="required"
-                                                                    title="--Seleccione una opción--"
-                                                                    name="asignatura_id" id="asignatura_id">
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">date_range</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label class="">Periodos</label>
-                                                            <select class="form-control select2"
-                                                                    data-style="select-with-transition"
-                                                                    style="width: 100%;" required="required"
-                                                                    title="--Seleccione una opción--"
-                                                                    name="periodo_id">
-                                                                <option value="">--Seleccione una opción--</option>
-                                                                @foreach($periodos as $key=>$value)
-                                                                    <option value="{{$key}}">{{$value}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <h5 class="info-text"> Datos del Plan de
+                                            Asignaturas {{$plan->asignatura->codigo."-".$plan->asignatura->nombre}}</h5>
                                         <br>
                                         <h5 style="margin-left: 60px"><strong>Trabajo semanal del estudiante</strong>
                                         </h5>
@@ -201,7 +87,8 @@
                                                         <div class="form-line">
                                                             <input type="number" class="form-control"
                                                                    placeholder="Docencia Directa" required="required"
-                                                                   name="dodencia_directa" id="dodencia_directa"/>
+                                                                   name="dodencia_directa" id="dodencia_directa"
+                                                                   value="{{$plan->dodencia_directa}}"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -220,7 +107,8 @@
                                                             <input type="number" class="form-control"
                                                                    placeholder="Trabajo Independiente"
                                                                    name="trabajo_independiente" required="required"
-                                                                   id="trabajo_independiente"/>
+                                                                   id="trabajo_independiente"
+                                                                   value="{{$plan->trabajo_independiente}}"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -237,7 +125,8 @@
                                                         <div class="form-line">
                                                             <input type="number" class="form-control"
                                                                    placeholder="Trabajo semestral del estudiante"
-                                                                   name="trabajo_semestral" id="trabajo_semestral"/>
+                                                                   name="trabajo_semestral" id="trabajo_semestral"
+                                                                   value="{{$plan->trabajo_semestral}}"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -255,7 +144,8 @@
                                                         <div class="form-line">
                                                             <input type="text" class="form-control"
                                                                    placeholder="Pre-requisitos" required="required"
-                                                                   name="prerequisitos" id="prerequisitos"/>
+                                                                   name="prerequisitos" id="prerequisitos"
+                                                                   value="{{$plan->prerequisitos}}"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -271,7 +161,8 @@
                                                         <div class="form-line">
                                                             <input type="text" class="form-control"
                                                                    placeholder="Co-requisitos"
-                                                                   name="corequisitos" id="corequisitos" required="required"/>
+                                                                   name="corequisitos" id="corequisitos"
+                                                                   required="required" value="{{$plan->corequisitos}}"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -284,8 +175,11 @@
                                                         <div class="form-line">
                                                             <label for="exampleInput1"
                                                                    class="bmd-label-floating" style="font-size: 20px">Presentación
-                                                                (Requerido)</label><textarea rows="10" class="form-control" name="presentacion"
-                                                                      id="presentacion" required="required"></textarea>
+                                                                (Requerido)</label><textarea rows="10"
+                                                                                             class="form-control"
+                                                                                             name="presentacion"
+                                                                                             id="presentacion"
+                                                                                             required="required">{{$plan->presentacion}}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -309,7 +203,11 @@
                                                                 <div class="timeline-heading">
                                                                     <span class="badge badge-pill badge-rose">Justificación (Requerido)</span>
                                                                 </div>
-                                                                <div class="timeline-body"><textarea rows="15" class="form-control" id="justificacion" name="justificacion" required="required"></textarea>
+                                                                <div class="timeline-body"><textarea rows="15"
+                                                                                                     class="form-control"
+                                                                                                     id="justificacion"
+                                                                                                     name="justificacion"
+                                                                                                     required="required">{{$plan->justificacion}}</textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -322,11 +220,10 @@
                                                                     <span class="badge badge-pill badge-info">Objetivo General (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="10"
-                                                                              class="form-control"
-                                                                              id="objetivogeneral"
-                                                                              name="objetivogeneral"
-                                                                              required="required">
-                                                                    </textarea>
+                                                                                                     class="form-control"
+                                                                                                     id="objetivogeneral"
+                                                                                                     name="objetivogeneral"
+                                                                                                     required="required">{{$plan->objetivogeneral}}</textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -339,11 +236,10 @@
                                                                     <span class="badge badge-pill badge-warning">Objetivos Especificos (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="10"
-                                                                              class="form-control"
-                                                                              id="objetivoespecificos"
-                                                                              name="objetivoespecificos"
-                                                                              required="required">
-                                                                    </textarea>
+                                                                                                     class="form-control"
+                                                                                                     id="objetivoespecificos"
+                                                                                                     name="objetivoespecificos"
+                                                                                                     required="required">{{$plan->objetivoespecificos}}</textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -367,10 +263,10 @@
                                                                     <span class="badge badge-pill badge-warning">Competencias Generales y específicas (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="15"
-                                                                              class="form-control"
-                                                                              id="justificacion"
-                                                                              name="competencias"
-                                                                              required="required"></textarea>
+                                                                                                     class="form-control"
+                                                                                                     id="competencias"
+                                                                                                     name="competencias"
+                                                                                                     required="required">{{$plan->competencias}}</textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -386,7 +282,7 @@
                                                                                                      class="form-control"
                                                                                                      id="metodologias"
                                                                                                      name="metodologias"
-                                                                                                     required="required"></textarea>
+                                                                                                     required="required">{{$plan->metodologias}}</textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -403,7 +299,7 @@
                                                                                                      class="form-control"
                                                                                                      id="estrategias"
                                                                                                      name="estrategias"
-                                                                                                     required="required"></textarea>
+                                                                                                     required="required">{{$plan->estrategias}}</textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -443,8 +339,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue nuevas asignaturas,</strong> gestione las asignaturas pertenecientes a un programa.
-                    departamentos.
+                    <strong>Edite los datos del plan de asignatura,</strong> gestione los planes de asignaturas.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>

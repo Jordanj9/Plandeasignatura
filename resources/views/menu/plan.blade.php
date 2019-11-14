@@ -26,13 +26,13 @@
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('facultad.index')}}">
+                    <a href="#">
                         <button class="btn btn-outline-success btn-round">
                             <i class="material-icons">crop_rotate</i> PLAN DE DESARROLO DE ASOGNATURA
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('departamento.index')}}">
+                    <a href="#">
                         <button class="btn btn-outline-success btn-round">
                             <i  class="material-icons">work</i> PLAN DE TRABAJO
                             <div class="ripple-container"></div>

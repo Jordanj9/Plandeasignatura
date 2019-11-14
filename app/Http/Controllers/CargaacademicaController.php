@@ -60,7 +60,7 @@ class CargaacademicaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+
         $carga_academica = new Cargaacademica($request->all());
         foreach ($carga_academica->attributesToArray() as $key => $value) {
             $carga_academica->$key = strtoupper($value);
@@ -78,10 +78,10 @@ class CargaacademicaController extends Controller
             $aud->detalles = $str;
             $aud->save();
             flash("La Carga Acadmica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> fue almacenada de forma exitosa!")->success();
-            return redirect()->route('facultad.index');
+            return redirect()->route('carga_academica.index');
         } else {
             flash("La Carga Acadmica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> no pudo ser almacenada. Error: " . $result)->error();
-            return redirect()->route('facultad.index');
+            return redirect()->route('carga_academica.index');
         }
     }
 

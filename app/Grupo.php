@@ -24,4 +24,9 @@ class Grupo extends Model
     protected $hidden = [
         //
     ];
+
+    public function cargaacademicas()
+    {
+        return $this->hasMany(Cargaacademica::class);
+    }
 }
