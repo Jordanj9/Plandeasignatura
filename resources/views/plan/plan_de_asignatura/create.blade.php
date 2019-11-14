@@ -286,9 +286,7 @@
                                                             <label for="exampleInput1"
                                                                    class="bmd-label-floating" style="font-size: 20px">Presentación (Requerido)</label>
                                                             <br>
-                                                            <textarea rows="10" class="form-control" name="presentacion"
-                                                                      id="presentacion">
-                                                            </textarea>
+                                                            <textarea rows="10" class="form-control" name="presentacion" id="presentacion"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -313,13 +311,7 @@
                                                                     <span class="badge badge-pill badge-rose">Justificación (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body">
-                                                                                    <textarea rows="15"
-                                                                                              class="form-control"
-                                                                                              id="justificacion"
-                                                                                              name="justificacion"
-                                                                                              placeholder=" Justificación"
-                                                                                              required>
-                                                                                </textarea>
+                                                                    <textarea rows="15"  id="justificacion" name="justificacion" placeholder=" Justificación" required></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -332,12 +324,7 @@
                                                                     <span class="badge badge-pill badge-info">Objetivo General (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body">
-                                                                    <textarea rows="10"
-                                                                              class="form-control"
-                                                                              id="objetivogeneral"
-                                                                              name="objetivogeneral"
-                                                                              required>
-                                                                    </textarea>
+                                                                    <textarea rows="10" class="form-control" id="objetivogeneral"name="objetivogeneral" required></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -350,12 +337,7 @@
                                                                     <span class="badge badge-pill badge-warning">Objetivos Especificos (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body">
-                                                                    <textarea rows="10"
-                                                                              class="form-control"
-                                                                              id="objetivoespecificos"
-                                                                              name="objetivoespecificos"
-                                                                              required>
-                                                                    </textarea>
+                                                                    <textarea rows="10"class="form-control" id="objetivoespecificos" name="objetivoespecificos" required></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -379,13 +361,7 @@
                                                                     <span class="badge badge-pill badge-warning">Competencias Generales y específicas (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body">
-                                                                                    <textarea rows="15"
-                                                                                              class="form-control"
-                                                                                              id="justificacion"
-                                                                                              name="competencias"
-                                                                                              placeholder=" competencias"
-                                                                                              required>
-                                                                                </textarea>
+                                                                                    <textarea rows="15" class="form-control" id="justificacion" name="competencias" placeholder=" competencias" required></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
