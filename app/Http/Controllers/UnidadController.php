@@ -114,7 +114,7 @@ class UnidadController extends Controller
      * @param  \App\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unidad $unidad)
+    public function destroy($id)
     {
         //
     }

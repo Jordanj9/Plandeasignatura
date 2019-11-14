@@ -60,12 +60,16 @@
                                     <td>{{$unidad->nombre}}</td>
                                     <td>{{$unidad->descripcion}}</td>
                                     <td>
+                                        <a data-toggle="modal"
+                                           data-target="#addEjeTematico" onclick="selectUnidad('{{$unidad->id}}')"
+                                           class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Gestionar Contenido"><i class="material-icons">navigate_next</i></a>
                                         <a href="{{ route('unity.edit',$unidad->id)}}"
                                            class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Editar Unidad"><i class="material-icons">mode_edit</i></a>
                                         <a href="{{ route('unity.delete',$unidad->id)}}"
                                            class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Eliminar Asignatura"><i class="material-icons">delete</i></a>
+                                           data-placement="top" title="Eliminar Unidad"><i class="material-icons">delete</i></a>
                                         <a href=""
                                            class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Agregar Eje Tematico"><i class="material-icons">plus</i></a>
@@ -152,6 +156,44 @@
             </div>
         </div>
     </div>
+    <div class="modal fade modal-mini modal-primary" id="addEjeTematico" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                            class="material-icons">clear</i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <form class="form-horizontal" method="POST" action="{{route('ejetematico.store')}}">
+                            @csrf
+                            <input type="hidden" id="unidad_id" name="unidad_id">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="form-line">
+                                                <label class="control-label">Titulo del Eje Tematico</label>
+                                                <input type="text"  class="form-control"
+                                                       placeholder="Descripción del eje tematico"
+                                                       name="nombre" required="required"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="modal-footer justify-content-center">
+                                <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
+                                <button class="btn btn-success btn-round" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('script')
     <script type="text/javascript">
@@ -190,5 +232,9 @@
                 alert('You clicked on Like button');
             });
         });
+
+        function selectUnidad(id) {
+           document.getElementById('unidad_id').value = id;
+        }
     </script>
 @endsection
