@@ -22,37 +22,37 @@
                 <div class="card-body">
                     <a href="{{route('periodo.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> PERIODOS
+                            <i class="material-icons">date_range</i> PERIODOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route('facultad.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> FACULTAD
+                            <i class="material-icons">school</i> FACULTAD
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route('departamento.index')}}">
                     <button class="btn btn-outline-success btn-round">
-                        <i class="fa fa-cubes"></i> DEPARTAMENTOS
+                        <i class="material-icons">apartment</i> DEPARTAMENTOS
                         <div class="ripple-container"></div>
                     </button>
                     </a>
                     <a href="{{route('programa.index')}}">
                     <button class="btn btn-outline-success btn-round">
-                        <i class="fa fa-cubes"></i> PROGRAMAS
+                        <i class="material-icons">style</i> PROGRAMAS
                         <div class="ripple-container"></div>
                     </button>
                     </a>
                     <a href="{{route('asignatura.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> ASIGNATURAS
+                            <i class="material-icons">layers_clear</i> ASIGNATURAS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route('grupo.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> GRUPOS
+                            <i class="material-icons">speaker_group</i> GRUPOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
@@ -65,19 +65,19 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text">
-                        <h4 class="card-title">ESTRUCTURA CURRICULAR</h4>
+                        <h4 class="card-title"> ESTRUCTURA CURRICULAR</h4>
                     </div>
                 </div>
                 <div class="card-body">
                     <a href="{{route('docente.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> DOCENTES
+                            <i class="material-icons">local_library</i> DOCENTES
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route('carga_academica.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i>CARGA ACADÉMICA
+                            <i class="material-icons">create_new_folder</i>  CARGA ACADÉMICA
                             <div class="ripple-container"></div>
                         </button>
                     </a>

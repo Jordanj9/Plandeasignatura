@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Periodo extends Model
+class Auditoriaplan extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,9 +12,7 @@ class Periodo extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'anio', 'periodo', 'fechainicio', 'fechafin', 'fechainicio1',
-        'fechafin1', 'fechainicio2', 'fechafin2', 'fechainicio3',
-        'fechafin3', 'created_at', 'updated_at'
+        'id', 'usuario', 'operacion', 'detalles', 'created_at', 'updated_at'
     ];
 
     /**
@@ -25,9 +23,4 @@ class Periodo extends Model
     protected $hidden = [
         //
     ];
-
-    public function plandeasignaturas()
-    {
-        return $this->hasMany(Plandeasignatura::class);
-    }
 }

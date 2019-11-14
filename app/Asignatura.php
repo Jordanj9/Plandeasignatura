@@ -28,4 +28,9 @@ class Asignatura extends Model
     {
         return $this->belongsTo(Programa::class);
     }
+
+    public function plandeasignaturas()
+    {
+        return $this->hasMany(Plandeasignatura::class);
+    }
 }

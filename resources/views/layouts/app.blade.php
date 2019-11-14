@@ -173,14 +173,14 @@
                 @if(session()->exists('MOD_PLAN'))
                     @if($location=='plan')
                         <li class="nav-item active">
-                            <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
+                            <a class="nav-link" href="{{route('admin.plan')}}">
                                 <i class="material-icons">assignment</i>
                                 <p> Planes</p>
                             </a>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
+                            <a class="nav-link" href="{{route('admin.plan')}}">
                                 <i class="material-icons">assignment</i>
                                 <p> Planes</p>
                             </a>
@@ -476,7 +476,8 @@
 <script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.0')}}" type="text/javascript"></script>
 <!-- Jquery DataTable Plugin Js -->
 <script src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
-
+<!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+<script src="{{asset("assets/js/plugins/jquery.bootstrap-wizard.js")}}"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('assets/demo/demo.js')}}"></script>
 <script>

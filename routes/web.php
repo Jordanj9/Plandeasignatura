@@ -28,6 +28,7 @@ Route::post('usuarios/contrasenia/cambiar/admin/finalizar', 'UsuarioController@c
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('usuarios', 'MenuController@usuarios')->name('admin.usuarios');
     Route::get('academico', 'MenuController@academico')->name('admin.academico');
+    Route::get('plan', 'MenuController@plan')->name('admin.plan');
     Route::get('reporte', 'MenuController@reporte')->name('admin.reporte');
     Route::post('acceso', 'HomeController@confirmaRol')->name('rol');
     Route::get('inicio', 'HomeController@inicio')->name('inicio');
@@ -86,4 +87,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
     //GRUPO
     Route::resource('grupo', 'GrupoController');
     Route::get('grupo/{id}/delete', 'GrupoController@destroy')->name('grupo.delete');
+});
+
+//GRUPO DE RUTAS PARA EL MODULO PLAN
+Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
+    //PLAN DE ASIGNATURA
+    Route::resource('plandeasignatura', 'PlandeasignaturaController');
+    Route::get('plandeasignatura/{id}/delete', 'PlandeasignaturaController@destroy')->name('plandeasignatura.delete');
 });
