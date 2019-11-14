@@ -75,7 +75,7 @@
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('grupousuario.privilegios')}}">
+                    <a href="{{route('carga_academica.index')}}">
                         <button class="btn btn-outline-success btn-round">
                             <i class="fa fa-cubes"></i>CARGA ACADÉMICA
                             <div class="ripple-container"></div>

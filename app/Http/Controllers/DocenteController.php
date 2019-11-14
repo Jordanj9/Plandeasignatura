@@ -45,6 +45,26 @@ class DocenteController extends Controller
             ->with('deptos', $deptos);
     }
 
+    public function buscar($id)
+    {
+        $docente = Docente::where('identificacion', $id)->first();
+
+        if ($docente != null) {
+            return response()->json([
+                'status' => 'ok',
+                'id' => $docente->id,
+                'nombre' => $docente->primer_nombre . ' ' . $docente->primer_apellido,
+                'departamento' => $docente->departamento->nombre,
+            ]);
+        }else{
+            return response()->json([
+                'status' => 'error',
+                'message' => 'EL docente consultado no se encuentra en nuestros registros, por favor verifique la identificación.'
+            ]);
+        }
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *

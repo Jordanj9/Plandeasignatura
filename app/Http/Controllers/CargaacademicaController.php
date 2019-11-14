@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Auditoriaacademico;
 use App\Cargaacademica;
+use App\Facultad;
+use App\Grupo;
+use App\Periodo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CargaacademicaController extends Controller
 {
@@ -14,7 +19,12 @@ class CargaacademicaController extends Controller
      */
     public function index()
     {
-        //
+        $cargaAcademica =  Cargaacademica::all();
+        $facultades =  Facultad::all();
+        return view('academico.carga_academica.list')
+            ->with('location', 'academico')
+            ->with('cargaAcademica', $cargaAcademica)
+            ->with('facultades',$facultades);
     }
 
     /**
@@ -24,7 +34,22 @@ class CargaacademicaController extends Controller
      */
     public function create()
     {
-        //
+        $facultades =  Facultad::all();
+        $periodos =  Periodo::all()->sortByDesc('anio');
+        $grupos = Grupo::all()->pluck('nombre','id');
+        $periodosf = Collect();
+
+        if($periodos->count() > 0){
+            foreach ($periodos as $value) {
+                $periodosf[$value->id] = $value->anio . " - " . $value->periodo;
+            }
+        }
+
+        return view('academico.carga_academica.create')
+            ->with('location', 'academico')
+            ->with('facultades',$facultades)
+            ->with('periodos',$periodosf)
+            ->with('grupos',$grupos);
     }
 
     /**
@@ -35,7 +60,29 @@ class CargaacademicaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        $carga_academica = new Cargaacademica($request->all());
+        foreach ($carga_academica->attributesToArray() as $key => $value) {
+            $carga_academica->$key = strtoupper($value);
+        }
+        $result = $carga_academica->save();
+        if ($result) {
+            $aud = new Auditoriaacademico();
+            $u = Auth::user();
+            $aud->usuario = "ID: " . $u->identificacion . ",  USUARIO: " . $u->nombres . " " . $u->apellidos;
+            $aud->operacion = "INSERTAR";
+            $str = "CREACIÓN DE FACULTAD. DATOS: ";
+            foreach ($carga_academica->attributesToArray() as $key => $value) {
+                $str = $str . ", " . $key . ": " . $value;
+            }
+            $aud->detalles = $str;
+            $aud->save();
+            flash("La Carga Acadmica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> fue almacenada de forma exitosa!")->success();
+            return redirect()->route('facultad.index');
+        } else {
+            flash("La Carga Acadmica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> no pudo ser almacenada. Error: " . $result)->error();
+            return redirect()->route('facultad.index');
+        }
     }
 
     /**
