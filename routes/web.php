@@ -94,7 +94,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     //PLAN DE ASIGNATURA
     Route::resource('plandeasignatura', 'PlandeasignaturaController');
     Route::get('plandeasignatura/{id}/delete', 'PlandeasignaturaController@destroy')->name('plandeasignatura.delete');
-    //UNIDADES DEL PLAN DE ASIGNATURA
-    Route::resource('unidad','UnidadController');
-    Route::get('unidad/inicio/{$id}','UnidadController@inicio')->name('unidad.inicio');
+
+    Route::resource('unity', 'UnidadController');
+    Route::get('unity/inicio/{id}', 'UnidadController@inicio')->name('unity.inicio');
+    Route::get('unity/{id}/delete', 'UnidadController@destroy')->name('unity.delete');
 });

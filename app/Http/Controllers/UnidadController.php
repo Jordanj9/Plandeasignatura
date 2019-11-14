@@ -22,10 +22,10 @@ class UnidadController extends Controller
 
         $plan = Plandeasignatura::find($id);
         $unidades = $plan->unidades;
-
         return view('plan.plan_de_asignatura.unidad')
             ->with('location','plan')
-            ->with('unidades',$unidades);
+            ->with('unidades',$unidades)
+            ->with('plan',$plan->id);
 
     }
 
@@ -47,7 +47,31 @@ class UnidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $str = 'UNIDAD '.$request->unidad;
+
+        $existe = Unidad::where([
+            ['nombre',$str]
+        ])->first();
+
+        if($existe==null){
+            $unidad =  new Unidad();
+            $unidad->nombre =  $str;
+            $unidad->descripcion =  $request->descripcion;
+            $unidad->plandeasignatura_id = $request->plan;
+            $result = $unidad->save();
+            if($result){
+                flash("La  <strong>" .$str." : ".$request->descripcion. "</strong> fue creada de forma exitosa!")->success();
+            }else{
+                flash("La  <strong>" .$str." : ".$request->descripcion. "</strong> no pudo ser creada de forma exitosa!")->error();
+            }
+
+        }else{
+            flash("La  <strong>" .$str." : ".$request->descripcion. "</strong> se encuentra registrada previamente.")->error();
+        }
+
+        return redirect()->route('unity.inicio',$request->plan);
+
     }
 
     /**
