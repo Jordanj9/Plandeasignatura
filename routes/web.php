@@ -61,17 +61,17 @@ Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
     //FACULTAD
     Route::resource('facultad', 'FacultadController');
     Route::get('facultad/{id}/delete', 'FacultadController@destroy')->name('facultad.delete');
-    //Buscar un docente mediante javascripts
+    //Buscar un departamento mediante javascripts
     Route::get('facultad/{id}/get/departamentos','FacultadController@getDepartamentos')->name('facultad.getDepartamentos');
     //DEPARTAMENTO
     Route::resource('departamento', 'DepartamentoController');
     Route::get('departamento/{id}/delete', 'DepartamentoController@destroy')->name('departamento.delete');
-    //Buscar un docente mediante javascripts
+    //Buscar un programa mediante javascripts
     Route::get('departamento/{id}/get/programas','DepartamentoController@getProgramas')->name('departamento.getProgramas');
     //PROGRAMA
     Route::resource('programa', 'ProgramaController');
     Route::get('programa/{id}/delete', 'ProgramaController@destroy')->name('programa.delete');
-    //Buscar un docente mediante javascripts
+    //Buscar un asignatura mediante javascripts
     Route::get('programa/{id}/get/asignaturas','ProgramaController@getAsignaturas')->name('programa.getAsignaturas');
     //ASIGNATURA
     Route::resource('asignatura', 'AsignaturaController');
@@ -83,7 +83,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
     Route::get('docente/{id}/buscar','DocenteController@buscar')->name('docente.buscar');
     //Carga Academica
     Route::resource('carga_academica','CargaacademicaController');
-
+    Route::get('carga_academica/{id}/delete', 'CargaacademicaController@destroy')->name('carga_academica.delete');
     //GRUPO
     Route::resource('grupo', 'GrupoController');
     Route::get('grupo/{id}/delete', 'GrupoController@destroy')->name('grupo.delete');
@@ -94,4 +94,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     //PLAN DE ASIGNATURA
     Route::resource('plandeasignatura', 'PlandeasignaturaController');
     Route::get('plandeasignatura/{id}/delete', 'PlandeasignaturaController@destroy')->name('plandeasignatura.delete');
+
+    Route::resource('unity', 'UnidadController');
+    Route::get('unity/inicio/{id}', 'UnidadController@inicio')->name('unity.inicio');
+    Route::get('unity/{id}/delete', 'UnidadController@destroy')->name('unity.delete');
 });
