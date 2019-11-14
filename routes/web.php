@@ -83,7 +83,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
     Route::get('docente/{id}/buscar','DocenteController@buscar')->name('docente.buscar');
     //Carga Academica
     Route::resource('carga_academica','CargaacademicaController');
-
+    Route::get('carga_academica/{id}/delete', 'CargaacademicaController@destroy')->name('carga_academica.delete');
     //GRUPO
     Route::resource('grupo', 'GrupoController');
     Route::get('grupo/{id}/delete', 'GrupoController@destroy')->name('grupo.delete');

@@ -54,15 +54,17 @@
                             <tbody>
                             @foreach($cargaAcademica as $carga)
                                 <tr>
-                                    <td>{{$carga->docente->departamento->nombre."-".$carga->docente->primer_nombre.' '.$carga->docente->primer_apellido}}</td>
+                                    <td>
+                                        <ul>
+                                            <li>DEPARTAMENTO: {{$carga->docente->departamento->nombre}}</li>
+                                            <li>NOMBRE: {{$carga->docente->primer_nombre." ".$carga->docente->primer_apellido}}</li>
+                                        </ul>
+                                    </td>
                                     <td>{{$carga->asignatura->nombre}}</td>
                                     <td>{{$carga->grupo->nombre}}</td>
                                     <td>{{$carga->periodo->anio.'-'.$carga->periodo->periodo}}</td>
                                     <td>
-                                        <a href="{{ route('docente.edit',$doc->id)}}"
-                                           class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Docente"><i class="material-icons">mode_edit</i></a>
-                                        <a href="{{ route('docente.delete',$doc->id)}}"
+                                        <a href="{{ route('carga_academica.delete',$carga->id)}}"
                                            class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Eliminar Docente"><i class="material-icons">delete</i></a>
                                     </td>
