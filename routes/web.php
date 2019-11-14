@@ -83,6 +83,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
     Route::get('docente/{id}/buscar','DocenteController@buscar')->name('docente.buscar');
     //Carga Academica
     Route::resource('carga_academica','CargaacademicaController');
+    Route::get('carga_academica/{id}/delete', 'CargaacademicaController@destroy')->name('carga_academica.delete');
     //GRUPO
     Route::resource('grupo', 'GrupoController');
     Route::get('grupo/{id}/delete', 'GrupoController@destroy')->name('grupo.delete');
@@ -93,4 +94,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     //PLAN DE ASIGNATURA
     Route::resource('plandeasignatura', 'PlandeasignaturaController');
     Route::get('plandeasignatura/{id}/delete', 'PlandeasignaturaController@destroy')->name('plandeasignatura.delete');
+
+    Route::resource('unity', 'UnidadController');
+    Route::get('unity/inicio/{id}', 'UnidadController@inicio')->name('unity.inicio');
+    Route::get('unity/{id}/delete', 'UnidadController@destroy')->name('unity.delete');
 });

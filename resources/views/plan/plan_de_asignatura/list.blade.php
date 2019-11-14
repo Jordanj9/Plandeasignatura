@@ -63,7 +63,7 @@
                                     <td>{{$p->corequisitos}}</td>
                                     <td>{{$p->created_at}}</td>
                                     <td>
-                                        <a href="{{ route('plandeasignatura.edit',$p->id)}}"
+                                        <a href="{{ route('unity.inicio',$p->id)}}"
                                            class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Gestionar Contenido"><i class="material-icons">navigate_next</i></a>
                                         <a href="{{ route('plandeasignatura.edit',$p->id)}}"
@@ -97,6 +97,23 @@
         </div>
     </div>
     <div class="modal fade modal-mini modal-primary" id="mdModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-small">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                            class="material-icons">clear</i></button>
+                </div>
+                <div class="modal-body">
+                    <strong>Detalles: </strong>Gestione los planes de asignaturas.
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-mini modal-primary" id="addUnidad" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-small">
             <div class="modal-content">

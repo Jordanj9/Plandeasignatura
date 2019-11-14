@@ -48,24 +48,26 @@
                                 <th>ASIGNATURA</th>
                                 <th>GRUPO</th>
                                 <th>PERIODO</th>
-{{--                                <th>ACCIONES</th>--}}
+                                <th>ACCIONES</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($cargaAcademica as $carga)
                                 <tr>
-                                    <td>{{$carga->docente->departamento->nombre."-".$carga->docente->primer_nombre.' '.$carga->docente->primer_apellido}}</td>
+                                    <td>
+                                        <ul>
+                                            <li>DEPARTAMENTO: {{$carga->docente->departamento->nombre}}</li>
+                                            <li>NOMBRE: {{$carga->docente->primer_nombre." ".$carga->docente->primer_apellido}}</li>
+                                        </ul>
+                                    </td>
                                     <td>{{$carga->asignatura->nombre}}</td>
                                     <td>{{$carga->grupo->nombre}}</td>
                                     <td>{{$carga->periodo->anio.'-'.$carga->periodo->periodo}}</td>
-{{--                                    <td>--}}
-{{--                                        <a href="{{ route('docente.edit',$carga->id)}}"--}}
-{{--                                           class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"--}}
-{{--                                           data-placement="top" title="Editar Docente"><i class="material-icons">mode_edit</i></a>--}}
-{{--                                        <a href="{{ route('docente.delete',$carga->id)}}"--}}
-{{--                                           class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"--}}
-{{--                                           data-placement="top" title="Eliminar Docente"><i class="material-icons">delete</i></a>--}}
-{{--                                    </td>--}}
+                                    <td>
+                                        <a href="{{ route('carga_academica.delete',$carga->id)}}"
+                                           class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Eliminar Docente"><i class="material-icons">delete</i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -75,7 +77,7 @@
                                 <th>ASIGNATURA</th>
                                 <th>GRUPO</th>
                                 <th>PERIODO</th>
-{{--                                <th>ACCIONES</th>--}}
+                                <th>ACCIONES</th>
                             </tr>
                             </tfoot>
                         </table>

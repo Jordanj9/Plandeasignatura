@@ -36,4 +36,8 @@ class Plandeasignatura extends Model
     {
         return $this->belongsTo(Asignatura::class);
     }
+
+    public function unidades(){
+        return$this->hasMany(Unidad::class);
+    }
 }
