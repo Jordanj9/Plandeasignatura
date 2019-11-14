@@ -76,11 +76,13 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
                                                             <label class="">Facultad</label>
-                                                            <select class="form-control selectpicker"
+                                                            <select class="form-control select2"
+                                                                    onchange="getDepartamentos()"
                                                                     data-style="select-with-transition"
-                                                                    style="width: 100%;" required="required"
-                                                                    title="--Seleccione una opción--"
-                                                                    name="facultad_id">
+                                                                    style="width: 100%;"
+                                                                    required="required"
+                                                                    id="facultad_id">
+                                                                <option value="">--Seleccione una opción--</option>
                                                                 @foreach($facultades as $key=>$value)
                                                                     <option value="{{$key}}">{{$value}}</option>
                                                                 @endforeach
@@ -99,14 +101,12 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
                                                             <label class="">Departamento</label>
-                                                            <select class="form-control selectpicker"
+                                                            <select class="form-control select2"
+                                                                    onchange="getProgramas()"
                                                                     data-style="select-with-transition"
-                                                                    style="width: 100%;" required="required"
-                                                                    title="--Seleccione una opción--"
-                                                                    name="departamento_id">
-                                                                @foreach($facultades as $key=>$value)
-                                                                    <option value="{{$key}}">{{$value}}</option>
-                                                                @endforeach
+                                                                    style="width: 100%;"
+                                                                    required="required"
+                                                                    id="departamento_id">
                                                             </select>
                                                         </div>
                                                     </div>
@@ -122,21 +122,20 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
                                                             <label class="">Programa</label>
-                                                            <select class="form-control selectpicker"
+                                                            <select class="form-control select2"
+                                                                    onchange="getAsignaturas()"
                                                                     data-style="select-with-transition"
-                                                                    style="width: 100%;" required="required"
+                                                                    style="width: 100%;"
+                                                                    required="required"
                                                                     title="--Seleccione una opción--"
-                                                                    name="programa_id">
-                                                                @foreach($facultades as $key=>$value)
-                                                                    <option value="{{$key}}">{{$value}}</option>
-                                                                @endforeach
+                                                                    id="programa_id">
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </di>
                                         </div>
-                                        <div class="row justify-content-center" >
+                                        <div class="row justify-content-center">
                                             <div class="col-sm-6">
                                                 <div class="input-group form-control-lg">
                                                     <div class="input-group-prepend">
@@ -145,16 +144,14 @@
                                                             </span>
                                                     </div>
                                                     <div class="form-group bmd-form-group">
-                                                            <div class="form-line">
-                                                                <label class="">Asignatura</label>
-                                                            <select class="form-control selectpicker"
+                                                        <div class="form-line">
+                                                            <label class="">Asignatura</label>
+                                                            <select class="form-control select2"
                                                                     data-style="select-with-transition"
-                                                                    style="width: 100%;" required="required"
+                                                                    style="width: 100%;"
+                                                                    required="required"
                                                                     title="--Seleccione una opción--"
-                                                                    name="facultad_id">
-                                                                @foreach($facultades as $key=>$value)
-                                                                    <option value="{{$key}}">{{$value}}</option>
-                                                                @endforeach
+                                                                    name="asignatura_id" id="asignatura_id">
                                                             </select>
                                                         </div>
                                                     </div>
@@ -170,12 +167,13 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
                                                             <label class="">Periodos</label>
-                                                            <select class="form-control selectpicker"
+                                                            <select class="form-control select2"
                                                                     data-style="select-with-transition"
                                                                     style="width: 100%;" required="required"
                                                                     title="--Seleccione una opción--"
                                                                     name="periodo_id">
-                                                                @foreach($facultades as $key=>$value)
+                                                                <option value="">--Seleccione una opción--</option>
+                                                                @foreach($periodos as $key=>$value)
                                                                     <option value="{{$key}}">{{$value}}</option>
                                                                 @endforeach
                                                             </select>
@@ -198,7 +196,7 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
                                                             <input type="number" class="form-control"
-                                                                   placeholder="Docencia Directa"
+                                                                   placeholder="Docencia Directa" required="required"
                                                                    name="dodencia_directa" id="dodencia_directa"/>
                                                         </div>
                                                     </div>
@@ -217,7 +215,7 @@
                                                         <div class="form-line">
                                                             <input type="number" class="form-control"
                                                                    placeholder="Trabajo Independiente"
-                                                                   name="trabajo_independiente"
+                                                                   name="trabajo_independiente" required="required"
                                                                    id="trabajo_independiente"/>
                                                         </div>
                                                     </div>
@@ -252,12 +250,11 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
                                                             <input type="text" class="form-control"
-                                                                   placeholder="Pre-requisitos"
+                                                                   placeholder="Pre-requisitos" required="required"
                                                                    name="prerequisitos" id="prerequisitos"/>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="input-group form-control-lg">
@@ -266,12 +263,11 @@
                                                                 <i class="material-icons">update</i>
                                                             </span>
                                                     </div>
-
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
                                                             <input type="text" class="form-control"
                                                                    placeholder="Co-requisitos"
-                                                                   name="corequisitos" id="corequisitos"/>
+                                                                   name="corequisitos" id="corequisitos" required="required"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -282,13 +278,10 @@
                                                 <div class="input-group form-control-lg">
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
-
                                                             <label for="exampleInput1"
-                                                                   class="bmd-label-floating" style="font-size: 20px">Presentación (Requerido)</label>
-                                                            <br>
-                                                            <textarea rows="10" class="form-control" name="presentacion"
-                                                                      id="presentacion">
-                                                            </textarea>
+                                                                   class="bmd-label-floating" style="font-size: 20px">Presentación
+                                                                (Requerido)</label><textarea rows="10" class="form-control" name="presentacion"
+                                                                      id="presentacion" required="required"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -312,14 +305,7 @@
                                                                 <div class="timeline-heading">
                                                                     <span class="badge badge-pill badge-rose">Justificación (Requerido)</span>
                                                                 </div>
-                                                                <div class="timeline-body">
-                                                                                    <textarea rows="15"
-                                                                                              class="form-control"
-                                                                                              id="justificacion"
-                                                                                              name="justificacion"
-                                                                                              placeholder=" Justificación"
-                                                                                              required>
-                                                                                </textarea>
+                                                                <div class="timeline-body"><textarea rows="15" class="form-control" id="justificacion" name="justificacion" required="required"></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -331,12 +317,11 @@
                                                                 <div class="timeline-heading">
                                                                     <span class="badge badge-pill badge-info">Objetivo General (Requerido)</span>
                                                                 </div>
-                                                                <div class="timeline-body">
-                                                                    <textarea rows="10"
+                                                                <div class="timeline-body"><textarea rows="10"
                                                                               class="form-control"
                                                                               id="objetivogeneral"
                                                                               name="objetivogeneral"
-                                                                              required>
+                                                                              required="required">
                                                                     </textarea>
                                                                 </div>
                                                             </div>
@@ -349,12 +334,11 @@
                                                                 <div class="timeline-heading">
                                                                     <span class="badge badge-pill badge-warning">Objetivos Especificos (Requerido)</span>
                                                                 </div>
-                                                                <div class="timeline-body">
-                                                                    <textarea rows="10"
+                                                                <div class="timeline-body"><textarea rows="10"
                                                                               class="form-control"
                                                                               id="objetivoespecificos"
                                                                               name="objetivoespecificos"
-                                                                              required>
+                                                                              required="required">
                                                                     </textarea>
                                                                 </div>
                                                             </div>
@@ -378,14 +362,12 @@
                                                                 <div class="timeline-heading">
                                                                     <span class="badge badge-pill badge-warning">Competencias Generales y específicas (Requerido)</span>
                                                                 </div>
-                                                                <div class="timeline-body">
-                                                                                    <textarea rows="15"
-                                                                                              class="form-control"
-                                                                                              id="justificacion"
-                                                                                              name="competencias"
-                                                                                              placeholder=" competencias"
-                                                                                              required>
-                                                                                </textarea>
+                                                                <div class="timeline-body"><textarea rows="15"
+                                                                              class="form-control"
+                                                                              id="justificacion"
+                                                                              name="competencias"
+                                                                              required="required">
+                                                                    </textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -397,13 +379,11 @@
                                                                 <div class="timeline-heading">
                                                                     <span class="badge badge-pill badge-info">Metodologías (Requerido)</span>
                                                                 </div>
-                                                                <div class="timeline-body">
-                                                                    <textarea rows="10"
-                                                                              class="form-control"
-                                                                              id="metodologias"
-                                                                              name="metodologias"
-                                                                              required>
-                                                                    </textarea>
+                                                                <div class="timeline-body"><textarea rows="10"
+                                                                                                     class="form-control"
+                                                                                                     id="metodologias"
+                                                                                                     name="metodologias"
+                                                                                                     required="required"></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -416,13 +396,11 @@
                                                                 <div class="timeline-heading">
                                                                     <span class="badge badge-pill badge-rose">Estrategías Metodológicas (Requerido)</span>
                                                                 </div>
-                                                                <div class="timeline-body">
-                                                                    <textarea rows="10"
-                                                                              class="form-control"
-                                                                              id="estrategias"
-                                                                              name="estrategias"
-                                                                              required>
-                                                                    </textarea>
+                                                                <div class="timeline-body"><textarea rows="10"
+                                                                                                     class="form-control"
+                                                                                                     id="estrategias"
+                                                                                                     name="estrategias"
+                                                                                                     required="required"></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -442,7 +420,7 @@
                                     <input type="button" class="btn btn-next btn-fill btn-info btn-wd" name="next"
                                            value="Next">
                                     <input type="button" class="btn btn-finish btn-fill btn-info btn-wd"
-                                           name="finish" value="Finish" style="display: none;">
+                                           name="finish" value="Finish" style="display: none;" id="finish">
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -475,6 +453,8 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function () {
+            $('.select2').select2();
+            $("#finish").attr('type', 'submit');
             md.checkFullPageBackgroundImage();
             // Initialise the wizard
             demo.initMaterialWizard();
@@ -517,5 +497,80 @@
                 alert('You clicked on Like button');
             });
         });
+
+        function getDepartamentos() {
+            var id = $("#facultad_id").val();
+            $.ajax({
+                type: 'GET',
+                url: '{{url('academico/facultad/')}}/' + id + "/get/departamentos",
+                data: {},
+            }).done(function (msg) {
+                $('#departamento_id option').each(function () {
+                    $(this).remove();
+                });
+                if (msg !== "null") {
+                    var m = JSON.parse(msg);
+                    $("#departamento_id").append("<option value=''>" + "--Seleccione una opción--" + "</option>");
+                    $.each(m, function (index, item) {
+                        $("#departamento_id").append("<option value='" + item.id + "'>" + item.value + "</option>");
+                    });
+                } else {
+                    $.notify({
+                        icon: "add_alert",
+                        message: '<strong>Atención!</strong><br>La Facultad seleccionada no posee Departamentos asociados.'
+                    }, {type: 'danger', timer: 3e3, placement: {from: 'top', align: 'right'}});
+                }
+            });
+        }
+
+        function getProgramas() {
+            var id = $("#departamento_id").val();
+            $.ajax({
+                type: 'GET',
+                url: '{{url('academico/departamento/')}}/' + id + "/get/programas",
+                data: {},
+            }).done(function (msg) {
+                $('#programa_id option').each(function () {
+                    $(this).remove();
+                });
+                if (msg !== "null") {
+                    var m = JSON.parse(msg);
+                    $("#programa_id").append("<option value=''>" + "--Seleccione una opción--" + "</option>");
+                    $.each(m, function (index, item) {
+                        $("#programa_id").append("<option value='" + item.id + "'>" + item.value + "</option>");
+                    });
+                } else {
+                    $.notify({
+                        icon: "add_alert",
+                        message: '<strong>Atención!</strong><br>El Departamento seleccionada no posee Departamentos asociados.'
+                    }, {type: 'danger', timer: 3e3, placement: {from: 'top', align: 'right'}});
+                }
+            });
+        }
+
+        function getAsignaturas() {
+            var id = $("#programa_id").val();
+            $.ajax({
+                type: 'GET',
+                url: '{{url('academico/programa/')}}/' + id + "/get/asignaturas",
+                data: {},
+            }).done(function (msg) {
+                $('#asignatura_id option').each(function () {
+                    $(this).remove();
+                });
+                if (msg !== "null") {
+                    var m = JSON.parse(msg);
+                    $("#asignatura_id").append("<option value=''>" + "--Seleccione una opción--" + "</option>");
+                    $.each(m, function (index, item) {
+                        $("#asignatura_id").append("<option value='" + item.id + "'>" + item.value + "</option>");
+                    });
+                } else {
+                    $.notify({
+                        icon: "add_alert",
+                        message: '<strong>Atención!</strong><br>El programa seleccionada no posee asignaturas asociados.'
+                    }, {type: 'danger', timer: 3e3, placement: {from: 'top', align: 'right'}});
+                }
+            });
+        }
     </script>
 @endsection

@@ -61,17 +61,17 @@ Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
     //FACULTAD
     Route::resource('facultad', 'FacultadController');
     Route::get('facultad/{id}/delete', 'FacultadController@destroy')->name('facultad.delete');
-    //Buscar un docente mediante javascripts
+    //Buscar un departamento mediante javascripts
     Route::get('facultad/{id}/get/departamentos','FacultadController@getDepartamentos')->name('facultad.getDepartamentos');
     //DEPARTAMENTO
     Route::resource('departamento', 'DepartamentoController');
     Route::get('departamento/{id}/delete', 'DepartamentoController@destroy')->name('departamento.delete');
-    //Buscar un docente mediante javascripts
+    //Buscar un programa mediante javascripts
     Route::get('departamento/{id}/get/programas','DepartamentoController@getProgramas')->name('departamento.getProgramas');
     //PROGRAMA
     Route::resource('programa', 'ProgramaController');
     Route::get('programa/{id}/delete', 'ProgramaController@destroy')->name('programa.delete');
-    //Buscar un docente mediante javascripts
+    //Buscar un asignatura mediante javascripts
     Route::get('programa/{id}/get/asignaturas','ProgramaController@getAsignaturas')->name('programa.getAsignaturas');
     //ASIGNATURA
     Route::resource('asignatura', 'AsignaturaController');

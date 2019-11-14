@@ -28,25 +28,25 @@
                     </a>
                     <a href="{{route('pagina.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> PÁGINAS DEL SISTEMA
+                            <i class="material-icons">file_copy</i> PÁGINAS DEL SISTEMA
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route('grupousuario.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> GRUPOS O ROLES DE USUARIOS
+                            <i class="material-icons">group</i> GRUPOS O ROLES DE USUARIOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route('grupousuario.privilegios')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> PRIVILÉGIOS A PÁGINAS
+                            <i class="material-icons">assignment_turned_in</i> PRIVILÉGIOS A PÁGINAS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route('usuario.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="fa fa-cubes"></i> LISTAR TODOS LOS USUARIOS
+                            <i class="material-icons">format_list_numbered_rtl</i> LISTAR TODOS LOS USUARIOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
@@ -59,7 +59,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text">
-                        <h4 class="card-title">MODIFICAIÓN Y ELIMINACIÓN DE USUARIO</h4>
+                        <h4 class="card-title">MODIFICACIÓN Y ELIMINACIÓN DE USUARIO</h4>
                     </div>
                 </div>
                 <div class="card-body">
