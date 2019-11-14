@@ -68,6 +68,22 @@ class DepartamentoController extends Controller
         }
     }
 
+    public function getProgramas($id) {
+        $departamento = Departamento::find($id);
+        $programas = $departamento->programas;
+        if (count($programas) > 0) {
+            $pgms = null;
+            foreach ($programas as $value) {
+                $obj["id"] = $value->id;
+                $obj["value"] = $value->nombre;
+                $pgms[] = $obj;
+            }
+            return json_encode($pgms);
+        } else {
+            return "null";
+        }
+
+    }
     /**
      * Display the specified resource.
      *

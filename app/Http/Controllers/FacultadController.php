@@ -34,6 +34,22 @@ class FacultadController extends Controller
             ->with('location', 'academico');
     }
 
+    public function getDepartamentos($id) {
+        $facultad = Facultad::find($id);
+        $deptos = $facultad->departamentos;
+        if (count($deptos) > 0) {
+            $departamentos = null;
+            foreach ($deptos as $value) {
+                $obj["id"] = $value->id;
+                $obj["value"] = $value->nombre;
+                $departamentos[] = $obj;
+            }
+            return json_encode($departamentos);
+        } else {
+            return "null";
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

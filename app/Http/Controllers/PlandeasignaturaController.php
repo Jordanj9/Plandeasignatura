@@ -42,7 +42,8 @@ class PlandeasignaturaController extends Controller
         }
         return view('plan.plan_de_asignatura.create')
             ->with('location', 'plan')
-            ->with('periodos', $periodos);
+            ->with('periodos', $periodos)
+            ->with('facultades',$facultades);
     }
 
     /**

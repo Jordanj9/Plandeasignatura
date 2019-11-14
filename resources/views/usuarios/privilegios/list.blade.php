@@ -72,32 +72,32 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2" style="margin-top: 5%;">
+                        <div class="col-md-2" style="margin-top: 10%;">
                             <div class="col-md-12">
                                 <center>
-                                    <button type="button" class="btn btn-success btn-round" onclick="agregar()">
-                                        Agregar
+                                    <button type="button" class="btn btn-success btn-round btn-fab" onclick="agregar()">
+                                        <i class="fa fa-plus-circle"></i>
                                     </button>
                                 </center>
                             </div>
                             <div class="col-md-12">
                                 <center>
-                                    <button type="button" class="btn btn-danger btn-round" onclick="retirar()">
-                                        Quitar
+                                    <button type="button" class="btn btn-default btn-round btn-fab"  onclick="retirar()">
+                                        <i class="fa fa-minus-circle"></i>
                                     </button>
                                 </center>
                             </div>
                             <div class="col-md-12">
                                 <center>
-                                    <button type="button" class="btn btn-success btn-round" onclick="agregarTodas()">
-                                        Agregar Todo
+                                    <button type="button" class="btn btn-success btn-round btn-fab" onclick="agregarTodas()">
+                                        <i class="fa fa-arrow-circle-right" ></i>
                                     </button>
                                 </center>
                             </div>
                             <div class="col-md-12">
                                 <center>
-                                    <button type="button" class="btn btn-danger btn-round" onclick="retirarTodas()">
-                                        Quitar Todo
+                                    <button type="button" class="btn btn-default btn-round btn-fab"  onclick="retirarTodas()">
+                                        <i class="fa fa-arrow-circle-left" ></i>
                                     </button>
                                 </center>
                             </div>

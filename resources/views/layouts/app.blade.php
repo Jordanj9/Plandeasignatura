@@ -669,7 +669,7 @@
 
     });
 </script>
-
+<script src="{{asset('assets/js/plugins/axios.min.js')}}"></script>
 @yield('script')
 </body>
 

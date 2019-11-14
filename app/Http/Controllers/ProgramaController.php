@@ -68,6 +68,23 @@ class ProgramaController extends Controller
         }
     }
 
+    public function getAsignaturas($id) {
+        $programa = Programa::find($id);
+        $asignaturas = $programa->asignaturas;
+        if (count($asignaturas) > 0) {
+            $pgms = null;
+            foreach ($asignaturas as $value) {
+                $obj["id"] = $value->id;
+                $obj["value"] = $value->nombre;
+                $agts[] = $obj;
+            }
+            return json_encode($agts);
+        } else {
+            return "null";
+        }
+
+    }
+
     /**
      * Display the specified resource.
      *
