@@ -5399,7 +5399,6 @@ a.bg-secondary:focus, a.bg-secondary:hover, button.bg-secondary:focus, button.bg
 .bg-success {
     background-color: #4caf50 !important
 }
-
 a.bg-success:focus, a.bg-success:hover, button.bg-success:focus, button.bg-success:hover {
     background-color: #3d8b40 !important
 }
@@ -13129,8 +13128,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .card .card-header-success .card-icon, .card .card-header-success .card-text, .card .card-header-success:not(.card-header-icon):not(.card-header-text) {
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(76, 175, 80, .4)
-}
+     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(76, 175, 80, .4)
+ }
 
 .card[class*=bg-], .card[class*=bg-] .card-title, .card[class*=bg-] .card-title a, .card[class*=bg-] .icon i, .card [class*=card-header-], .card [class*=card-header-] .card-title, .card [class*=card-header-] .card-title a, .card [class*=card-header-] .icon i {
     color: #fff

@@ -58,7 +58,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <a href="{{route('admin.usuarios')}}">
                         <div class="card card-stats">
-                            <div class="card-header card-header-info card-header-icon">
+                            <div class="card-header card-header-azul card-header-icon">
                                 <div class="card-icon">
                                     <i class="material-icons">trending_up</i>
                                 </div>
