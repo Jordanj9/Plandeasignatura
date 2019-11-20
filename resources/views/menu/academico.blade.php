@@ -100,7 +100,7 @@
                         </a>
                     @endif
                         @if(session()->exists('PAG_ACADEMICO-ESTUDIANTE'))
-                            <a href="#">
+                            <a href="{{route('estudiante.index')}}">
                                 <button class="btn btn-outline-success btn-round">
                                     <i class="material-icons">create_new_folder</i> ESTUDIANTES
                                     <div class="ripple-container"></div>
