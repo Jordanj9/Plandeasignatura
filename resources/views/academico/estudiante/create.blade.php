@@ -157,7 +157,7 @@
                                                 <select class="form-control selectpicker"
                                                         data-style="select-with-transition" style="width: 100%;"
                                                         required="required" title="--Seleccione una opción--"
-                                                        name="departamento_id">
+                                                        name="cargaacademica_id">
                                                     @foreach($cargas as $key=>$value)
                                                         <option value="{{$key}}">{{$value}}</option>
                                                     @endforeach

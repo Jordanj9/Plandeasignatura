@@ -28,4 +28,9 @@ class Cargaacademica extends Model
     {
         return $this->belongsTo(Periodo::class);
     }
+
+    public function estudiantes()
+    {
+        return $this->belongsToMany(Estudiante::class, 'cargaacademica_estudiantes');
+    }
 }

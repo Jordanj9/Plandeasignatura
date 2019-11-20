@@ -102,7 +102,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue nuevos departamentos,</strong> gestione los departamentos de las facultades de la universidad.
+                    <strong>Agregue nuevos planes de asignaturas,</strong> gestione los planes de las asignaturas.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>

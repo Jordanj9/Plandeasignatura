@@ -4,16 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Grupo extends Model
+class Estudiante extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'id', 'nombre', 'created_at', 'updated_at'
+        'id', 'tipo_documento', 'identificacion', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'email', 'telefono', 'created_at', 'updated_at'
     ];
 
     /**
@@ -25,8 +24,7 @@ class Grupo extends Model
         //
     ];
 
-    public function cargaacademicas()
-    {
-        return $this->hasMany(Cargaacademica::class);
+    public function cargaacademicas(){
+        return $this->belongsToMany(Cargaacademica::class,'cargaacademica_estudiantes');
     }
 }

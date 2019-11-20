@@ -62,17 +62,17 @@ Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
     Route::resource('facultad', 'FacultadController');
     Route::get('facultad/{id}/delete', 'FacultadController@destroy')->name('facultad.delete');
     //Buscar un departamento mediante javascripts
-    Route::get('facultad/{id}/get/departamentos','FacultadController@getDepartamentos')->name('facultad.getDepartamentos');
+    Route::get('facultad/{id}/get/departamentos', 'FacultadController@getDepartamentos')->name('facultad.getDepartamentos');
     //DEPARTAMENTO
     Route::resource('departamento', 'DepartamentoController');
     Route::get('departamento/{id}/delete', 'DepartamentoController@destroy')->name('departamento.delete');
     //Buscar un programa mediante javascripts
-    Route::get('departamento/{id}/get/programas','DepartamentoController@getProgramas')->name('departamento.getProgramas');
+    Route::get('departamento/{id}/get/programas', 'DepartamentoController@getProgramas')->name('departamento.getProgramas');
     //PROGRAMA
     Route::resource('programa', 'ProgramaController');
     Route::get('programa/{id}/delete', 'ProgramaController@destroy')->name('programa.delete');
     //Buscar un asignatura mediante javascripts
-    Route::get('programa/{id}/get/asignaturas','ProgramaController@getAsignaturas')->name('programa.getAsignaturas');
+    Route::get('programa/{id}/get/asignaturas', 'ProgramaController@getAsignaturas')->name('programa.getAsignaturas');
     //ASIGNATURA
     Route::resource('asignatura', 'AsignaturaController');
     Route::get('asignatura/{id}/delete', 'AsignaturaController@destroy')->name('asignatura.delete');
@@ -80,13 +80,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
     Route::resource('docente', 'DocenteController');
     Route::get('docente/{id}/delete', 'DocenteController@destroy')->name('docente.delete');
     //Buscar un docente mediante javascripts
-    Route::get('docente/{id}/buscar','DocenteController@buscar')->name('docente.buscar');
+    Route::get('docente/{id}/buscar', 'DocenteController@buscar')->name('docente.buscar');
     //Carga Academica
-    Route::resource('carga_academica','CargaacademicaController');
+    Route::resource('carga_academica', 'CargaacademicaController');
     Route::get('carga_academica/{id}/delete', 'CargaacademicaController@destroy')->name('carga_academica.delete');
     //GRUPO
     Route::resource('grupo', 'GrupoController');
     Route::get('grupo/{id}/delete', 'GrupoController@destroy')->name('grupo.delete');
+    //ESTUDIANTE
+    Route::resource('estudiante', 'EstudianteController');
+    Route::get('estudiante/{id}/delete', 'EstudianteController@destroy')->name('estudiante.delete');
 });
 
 //GRUPO DE RUTAS PARA EL MODULO PLAN

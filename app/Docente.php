@@ -28,4 +28,9 @@ class Docente extends Model
     {
         return $this->belongsTo(Departamento::class);
     }
+
+    public function cargaacademicas()
+    {
+        return $this->hasMany(Cargaacademica::class);
+    }
 }
