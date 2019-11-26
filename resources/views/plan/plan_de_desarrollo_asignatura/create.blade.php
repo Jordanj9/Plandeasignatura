@@ -50,17 +50,17 @@
                                 <ul class="nav nav-pills">
                                     <li class="nav-item">
                                         <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
-                                            Datos del Plan de Asignatura
+                                            Datos del Plan de Desarrollo de Asignatura
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#account" data-toggle="tab" role="tab">
-                                            Datos del Plan de Asignatura
+                                            Datos del Plan de Desarrollo de Asignatura
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#address" data-toggle="tab" role="tab">
-                                            Datos del Plan de Asignatura
+                                            Datos del Plan de Desarrollo de Asignatura
                                         </a>
                                     </li>
                                 </ul>
@@ -68,7 +68,7 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="about">
-                                        <h5 class="info-text"> Datos del Plan de Asignaturas</h5>
+                                        <h5 class="info-text"> Datos del Plan de Desarrollo de Asignatura</h5>
                                         <div class="row">
                                             <table class="table-bordered">
                                                 <tr>
@@ -84,7 +84,8 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Programa: </th>
-                                                    <td><tr>
+                                                    <td>
+                                                <tr>
                                                     <th>Programa: </th>
                                                     <td>Nombre Programa........</td>
                                                 </tr></td>
