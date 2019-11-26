@@ -70,74 +70,27 @@
                                     <div class="tab-pane active" id="about">
                                         <h5 class="info-text"> Datos del Plan de Asignaturas</h5>
                                         <div class="row">
-                                            <di class="col-sm-4">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">school</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label class="">Facultad</label>
-                                                            <select class="form-control select2"
-                                                                    onchange="getDepartamentos()"
-                                                                    data-style="select-with-transition"
-                                                                    style="width: 100%;"
-                                                                    required="required"
-                                                                    id="facultad_id">
-                                                                <option value="">--Seleccione una opción--</option>
-                                                                @foreach($facultades as $key=>$value)
-                                                                    <option value="{{$key}}">{{$value}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </di>
-                                            <di class="col-sm-4">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">apartment</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label class="">Departamento</label>
-                                                            <select class="form-control select2"
-                                                                    onchange="getProgramas()"
-                                                                    data-style="select-with-transition"
-                                                                    style="width: 100%;"
-                                                                    required="required"
-                                                                    id="departamento_id">
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </di>
-                                            <di class="col-sm-4">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">style</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label class="">Programa</label>
-                                                            <select class="form-control select2"
-                                                                    onchange="getAsignaturas()"
-                                                                    data-style="select-with-transition"
-                                                                    style="width: 100%;"
-                                                                    required="required"
-                                                                    title="--Seleccione una opción--"
-                                                                    id="programa_id">
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </di>
+                                            <table class="table-bordered">
+                                                <tr>
+                                                    <th>Docente: </th>
+                                                    <td>Nombre.....</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Correo: </th>
+                                                    <td>Direccion Correo.......</td></tr>
+                                                <tr>
+                                                    <th>Programa: </th>
+                                                    <td>Nombre Programa........</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Programa: </th>
+                                                    <td><tr>
+                                                    <th>Programa: </th>
+                                                    <td>Nombre Programa........</td>
+                                                </tr></td>
+
+                                                </tr>
+                                            </table>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="col-sm-6">
@@ -177,9 +130,7 @@
                                                                     title="--Seleccione una opción--"
                                                                     name="periodo_id">
                                                                 <option value="">--Seleccione una opción--</option>
-                                                                @foreach($periodos as $key=>$value)
-                                                                    <option value="{{$key}}">{{$value}}</option>
-                                                                @endforeach
+
                                                             </select>
                                                         </div>
                                                     </div>
@@ -302,24 +253,24 @@
                                                     <ul class="timeline">
                                                         <li>
                                                             <div class="timeline-badge "
-                                                                 style="background-color: #e91e63">
+                                                                 style="background-color: #848484">
                                                                 <i class="material-icons">gavel</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-rose">Justificación (Requerido)</span>
+                                                                    <span class="badge badge-pill badge-success">Justificación (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="15" class="form-control" id="justificacion" name="justificacion" required="required"></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
                                                         <li class="timeline-inverted">
-                                                            <div class="timeline-badge info">
+                                                            <div class="timeline-badge " style="background-color: #848484">
                                                                 <i class="material-icons">list</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-info">Objetivo General (Requerido)</span>
+                                                                    <span class="badge badge-pill badge-success">Objetivo General (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="10"
                                                                               class="form-control"
@@ -331,12 +282,12 @@
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <div class="timeline-badge warning">
+                                                            <div class="timeline-badge" style="background-color: #848484" >
                                                                 <i class="material-icons">filter_list</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-warning">Objetivos Especificos (Requerido)</span>
+                                                                    <span class="badge badge-pill badge-success">Objetivos Especificos (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="10"
                                                                               class="form-control"
@@ -359,12 +310,12 @@
                                                 <div class="card card-timeline card-plain">
                                                     <ul class="timeline">
                                                         <li>
-                                                            <div class="timeline-badge warning ">
+                                                            <div class="timeline-badge " style="background-color: #848484" >
                                                                 <i class="material-icons">outlined_flag</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-warning">Competencias Generales y específicas (Requerido)</span>
+                                                                    <span class="badge badge-pill badge-success">Competencias Generales y específicas (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="15"
                                                                               class="form-control"
@@ -375,12 +326,12 @@
                                                             </div>
                                                         </li>
                                                         <li class="timeline-inverted">
-                                                            <div class="timeline-badge info">
+                                                            <div class="timeline-badge " style="background-color: #848484" >
                                                                 <i class="material-icons">account_tree</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-info">Metodologías (Requerido)</span>
+                                                                    <span class="badge badge-pill badge-success">Metodologías (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="10"
                                                                                                      class="form-control"
@@ -392,12 +343,12 @@
                                                         </li>
                                                         <li>
                                                             <div class="timeline-badge"
-                                                                 style="background-color: #e91e63">
+                                                                 style="background-color: #848484">
                                                                 <i class="material-icons">menu_book</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-rose">Estrategías Metodológicas (Requerido)</span>
+                                                                    <span class="badge badge-pill badge-success">Estrategías Metodológicas (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="10"
                                                                                                      class="form-control"

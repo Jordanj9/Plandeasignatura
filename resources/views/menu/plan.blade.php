@@ -26,7 +26,7 @@
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="#">
+                    <a href="{{route('plandedesarrolloasignatura.index')}}">
                         <button class="btn btn-outline-success btn-round">
                             <i class="material-icons">crop_rotate</i> PLAN DE DESARROLO DE ASOGNATURA
                             <div class="ripple-container"></div>

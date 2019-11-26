@@ -106,4 +106,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     Route::resource('ejetematico','EjetematicoController');
     Route::get('ejetematico/{id}/delete', 'EjetematicoController@destroy')->name('ejetematico.delete');
 
+    //PLAN DE DESARROLLO_ASIGNATURA
+    Route::resource('plandedesarrolloasignatura', 'PlandedesarrolloasignaturaController');
+    Route::get('plandedesarrolloasignatura/{id}/delete', 'PlandedesarrolloasignaturaController@destroy')->name('plandedesarrolloasignatura.delete');
 });
