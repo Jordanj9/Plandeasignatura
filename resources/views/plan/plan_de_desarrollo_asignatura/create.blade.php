@@ -39,7 +39,7 @@
                 <!--      Wizard container        -->
                 <div class="wizard-container">
                     <div class="card card-wizard" style="opacity: 1;" data-color="green" id="wizardProfile">
-                        <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{route('plandeasignatura.store')}}">
+                        <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{route('plandedesarrolloasignatura.store')}}">
                             @csrf
                             <div class="card-header text-center">
                                 <h3 class="card-title">
@@ -238,13 +238,9 @@
                                                                 <i class="material-icons">layers_clear</i>
                                                             </span>
                                                     </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-lin e">
-                                                            <label for="exampleInput1"
-                                                                   class="bmd-label-floating fileinput-new">Competencias
-                                                                (Requerido) </label>
-                                                            <input type="file" class="form-control" placeholder="Bibliografia" name="descripcion"/>
-
+                                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                                        <div class="form-line">
+                                                            <input type="file" class="form-control" placeholder="Bibliografia" name="bibliografia[]" multiple/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -256,12 +252,23 @@
                                                                 <i class="material-icons">layers_clear</i>
                                                             </span>
                                                     </div>
-                                                    <div class="form-group bmd-form-group">
+                                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                                         <div class="form-line">
-                                                            <label for="exampleInput1"
-                                                                   class="bmd-label-floating">Evaluación Académica
-                                                                (Requerido) </label>
-                                                            <input type="file">
+                                                            <input type="file" class="form-control" placeholder="Bibliografia" name="bibliografia[]" multiple />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="input-group form-control-lg">
+                                                    <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">layers_clear</i>
+                                                            </span>
+                                                    </div>
+                                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                                        <div class="form-lin e">
+                                                            <input type="file" class="form-control" placeholder="Bibliografia" name="bibliografia[]" multiple/>
                                                         </div>
                                                     </div>
                                                 </div>
