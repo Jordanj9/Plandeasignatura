@@ -5,8 +5,8 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.academico')}}"> Académico </a><span
-                        class="fa-angle-right fa"></span><a href="{{route('plandeasignatura.index')}}"> Planes </a><span
+                        href="{{route('admin.plan')}}"> Modulo Plan </a><span
+                        class="fa-angle-right fa"></span><a href="{{route('plandedesarrolloasignatura.index')}}"> Plan de Desarrollo Asignatura  </a><span
                         class="fa-angle-right fa"></span> Crear
                 </p>
             </div>
@@ -40,10 +40,9 @@
                     <div class="card card-wizard" style="opacity: 1;" data-color="green" id="wizardProfile">
                         <form class="form-horizontal" method="POST" action="{{route('plandeasignatura.store')}}">
                         @csrf
-                        <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                             <div class="card-header text-center">
                                 <h3 class="card-title">
-                                    Registro del Plan de Asignatura
+                                    Registro del Plan de Desarrollo de Desarrollo de Asignatura
                                 </h3>
                             </div>
                             <div class="wizard-navigation">
@@ -58,43 +57,54 @@
                                             Datos del Plan de Desarrollo de Asignatura
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#address" data-toggle="tab" role="tab">
-                                            Datos del Plan de Desarrollo de Asignatura
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="about">
-                                        <h5 class="info-text"> Datos del Plan de Desarrollo de Asignatura</h5>
-                                        <div class="row">
-                                            <table class="table-bordered">
+                                        <h5 class="info-text"> Datos del Plan  de Asignatura</h5>
+                                        <!--      Tabla --- Datos del plan de Asignatura       -->
+                                        <div class="col-md-12">
+                                            <table class="table-bordered " style="width: 100%">
                                                 <tr>
-                                                    <th>Docente: </th>
-                                                    <td>Nombre.....</td>
+                                                    <th colspan="1">Docente: </th>
+                                                    <td colspan="9">{{$docentes->primer_nombre." ".$docentes->segundo_nombre." ".$docentes->primer_apellido." ".$docentes->segundo_apellido}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Correo: </th>
-                                                    <td>Direccion Correo.......</td></tr>
-                                                <tr>
-                                                    <th>Programa: </th>
-                                                    <td>Nombre Programa........</td>
+                                                    <td colspan="10">{{$docentes->email}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Programa: </th>
-                                                    <td>
+                                                    <th>Programa:</th>
+                                                    <td colspan="9">{{$planasignatura->asignatura->programa->nombre}}</td>
+                                                </tr>
                                                 <tr>
-                                                    <th>Programa: </th>
-                                                    <td>Nombre Programa........</td>
-                                                </tr></td>
+                                                    <th>Facultad: </th>
+                                                    <td colspan="9">{{$planasignatura->asignatura->programa->departamento->facultad->nombre}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="1">Asignatura: <strong>{{$planasignatura->asignatura->nombre}}</strong></th>
+                                                    <td> <strong>CODIGO: </strong>{{$planasignatura->asignatura->codigo}}</td>
+                                                    <td> <strong>CREDITOS: </strong>{{$planasignatura->asignatura->creditos}}</td>
+                                                    <td> <strong>NATURALEZA: </strong>{{$planasignatura->asignatura->naturaleza}}</td>
+                                                    <td colspan="9"> <strong>HABILITABLE: </strong>{{$planasignatura->asignatura->habilitable}}</td>
+                                                <tr>
+                                                    <th colspan="1">Periodo: <strong> {{$planasignatura->periodo->anio}}</strong> </th>
+                                                    <td> <strong>PERIODO ACADEMICO: </strong> {{$planasignatura->periodo->periodo}}</td>
+                                                    <td> <strong>FECHA INICIAL : </strong>{{$planasignatura->periodo->fechainicio}}</td>
+                                                    <td colspan="2"> <strong>FECHA FINAL   : </strong>{{$planasignatura->periodo->fechafin}}</td>
 
+                                                </tr>
                                                 </tr>
                                             </table>
                                         </div>
+                                        <!--      Tabla --- Datos del plan de Asignatura        -->
+                                        <br>
+                                       <div class="col-sm-12 bg-success"> <h5 class="info-text" style="color: white; padding: 15px"><strong>Datos del Plan de Desarrollo de Asignatura</strong>
+                                        </h5>
+                                       </div>
                                         <div class="row justify-content-center">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 <div class="input-group form-control-lg">
                                                     <div class="input-group-prepend">
                                                             <span class="input-group-text">
@@ -103,19 +113,43 @@
                                                     </div>
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
-                                                            <label class="">Asignatura</label>
+                                                            <label class="">Semanas</label>
                                                             <select class="form-control select2"
                                                                     data-style="select-with-transition"
                                                                     style="width: 100%;"
-                                                                    required="required"
+
                                                                     title="--Seleccione una opción--"
-                                                                    name="asignatura_id" id="asignatura_id">
+                                                                    name="semana" id="semana">
+                                                                <option value="">--Seleccione una opción--</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
+                                                <div class="input-group form-control-lg">
+                                                    <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">layers_clear</i>
+                                                            </span>
+                                                    </div>
+                                                    <div class="form-group bmd-form-group">
+                                                        <div class="form-line">
+                                                            <label class="">Unidad</label>
+                                                            <select class="form-control select2"
+                                                                    data-style="select-with-transition"
+                                                                    style="width: 100%;"
+                                                                    name="unidad_id" id="unidad_id">
+                                                                <option value="">--Seleccione una opción--</option>
+                                                                @foreach($unidades as $key=>$value)
+                                                                    <option value="{{$key}}">{{$value}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
                                                 <div class="input-group form-control-lg">
                                                     <div class="input-group-prepend">
                                                             <span class="input-group-text">
@@ -124,72 +158,15 @@
                                                     </div>
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
-                                                            <label class="">Periodos</label>
+                                                            <label class="">Ejes Tematicos</label>
                                                             <select class="form-control select2"
                                                                     data-style="select-with-transition"
-                                                                    style="width: 100%;" required="required"
+                                                                    style="width: 100%"
                                                                     title="--Seleccione una opción--"
                                                                     name="periodo_id">
                                                                 <option value="">--Seleccione una opción--</option>
 
                                                             </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <h5 style="margin-left: 60px"><strong>Trabajo semanal del estudiante</strong>
-                                        </h5>
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">watch_later</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <input type="number" class="form-control"
-                                                                   placeholder="Docencia Directa" required="required"
-                                                                   name="dodencia_directa" id="dodencia_directa"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">perm_data_setting</i>
-                                                            </span>
-                                                    </div>
-
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <input type="number" class="form-control"
-                                                                   placeholder="Trabajo Independiente"
-                                                                   name="trabajo_independiente" required="required"
-                                                                   id="trabajo_independiente"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">perm_contact_calendar</i>
-                                                            </span>
-                                                    </div>
-
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <input type="number" class="form-control"
-                                                                   placeholder="Trabajo semestral del estudiante"
-                                                                   name="trabajo_semestral" id="trabajo_semestral"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -205,9 +182,10 @@
                                                     </div>
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Pre-requisitos" required="required"
-                                                                   name="prerequisitos" id="prerequisitos"/>
+                                                            <label for="exampleInput1"
+                                                                   class="bmd-label-floating">Temas de Trabajo Independiente
+                                                                (Requerido) </label><textarea rows="7" class="form-control" name=""
+                                                                                             id="" required="required"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -221,149 +199,55 @@
                                                     </div>
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Co-requisitos"
-                                                                   name="corequisitos" id="corequisitos" required="required"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-center" style="margin-left: 100px">
-                                            <div class="col-sm-12">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
                                                             <label for="exampleInput1"
-                                                                   class="bmd-label-floating" style="font-size: 20px">Presentación
-                                                                (Requerido)</label><textarea rows="10" class="form-control" name="presentacion"
-                                                                      id="presentacion" required="required"></textarea>
+                                                                   class="bmd-label-floating" >Estrategias Metodológicas o Acciones Pedagógicas
+                                                                (Requerido) </label><textarea rows="7" class="form-control" name=""
+                                                                                              id="" required="required"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="account">
-                                        <h5 class="info-text"> Datos del Plan de Asignatura </h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card card-timeline card-plain">
-                                                    <ul class="timeline">
-                                                        <li>
-                                                            <div class="timeline-badge "
-                                                                 style="background-color: #848484">
-                                                                <i class="material-icons">gavel</i>
-                                                            </div>
-                                                            <div class="timeline-panel">
-                                                                <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-success">Justificación (Requerido)</span>
-                                                                </div>
-                                                                <div class="timeline-body"><textarea rows="15" class="form-control" id="justificacion" name="justificacion" required="required"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="timeline-inverted">
-                                                            <div class="timeline-badge " style="background-color: #848484">
-                                                                <i class="material-icons">list</i>
-                                                            </div>
-                                                            <div class="timeline-panel">
-                                                                <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-success">Objetivo General (Requerido)</span>
-                                                                </div>
-                                                                <div class="timeline-body"><textarea rows="10"
-                                                                              class="form-control"
-                                                                              id="objetivogeneral"
-                                                                              name="objetivogeneral"
-                                                                              required="required">
-                                                                    </textarea>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="timeline-badge" style="background-color: #848484" >
-                                                                <i class="material-icons">filter_list</i>
-                                                            </div>
-                                                            <div class="timeline-panel">
-                                                                <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-success">Objetivos Especificos (Requerido)</span>
-                                                                </div>
-                                                                <div class="timeline-body"><textarea rows="10"
-                                                                              class="form-control"
-                                                                              id="objetivoespecificos"
-                                                                              name="objetivoespecificos"
-                                                                              required="required">
-                                                                    </textarea>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                        <div class="row justify-content-center">
+                                            <div class="col-sm-6">
+                                                <div class="input-group form-control-lg">
+                                                    <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">layers_clear</i>
+                                                            </span>
+                                                    </div>
+                                                    <div class="form-group bmd-form-group">
+                                                        <div class="form-line">
+                                                            <label for="exampleInput1"
+                                                                   class="bmd-label-floating">Competencias
+                                                                (Requerido) </label> <input type="file">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="input-group form-control-lg">
+                                                    <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">layers_clear</i>
+                                                            </span>
+                                                    </div>
+                                                    <div class="form-group bmd-form-group">
+                                                        <div class="form-line">
+                                                            <label for="exampleInput1"
+                                                                   class="bmd-label-floating">Evaluación Académica
+                                                                (Requerido) </label>
+                                                            <input type="file">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="address">
-                                        <h5 class="info-text"> Datos del Plan de Asignatura </h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card card-timeline card-plain">
-                                                    <ul class="timeline">
-                                                        <li>
-                                                            <div class="timeline-badge " style="background-color: #848484" >
-                                                                <i class="material-icons">outlined_flag</i>
-                                                            </div>
-                                                            <div class="timeline-panel">
-                                                                <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-success">Competencias Generales y específicas (Requerido)</span>
-                                                                </div>
-                                                                <div class="timeline-body"><textarea rows="15"
-                                                                              class="form-control"
-                                                                              id="justificacion"
-                                                                              name="competencias"
-                                                                              required="required"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="timeline-inverted">
-                                                            <div class="timeline-badge " style="background-color: #848484" >
-                                                                <i class="material-icons">account_tree</i>
-                                                            </div>
-                                                            <div class="timeline-panel">
-                                                                <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-success">Metodologías (Requerido)</span>
-                                                                </div>
-                                                                <div class="timeline-body"><textarea rows="10"
-                                                                                                     class="form-control"
-                                                                                                     id="metodologias"
-                                                                                                     name="metodologias"
-                                                                                                     required="required"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="timeline-badge"
-                                                                 style="background-color: #848484">
-                                                                <i class="material-icons">menu_book</i>
-                                                            </div>
-                                                            <div class="timeline-panel">
-                                                                <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-success">Estrategías Metodológicas (Requerido)</span>
-                                                                </div>
-                                                                <div class="timeline-body"><textarea rows="10"
-                                                                                                     class="form-control"
-                                                                                                     id="estrategias"
-                                                                                                     name="estrategias"
-                                                                                                     required="required"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="card-footer">

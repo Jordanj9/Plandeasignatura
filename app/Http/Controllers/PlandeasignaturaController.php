@@ -36,12 +36,12 @@ class PlandeasignaturaController extends Controller
         $planes = Plandeasignatura::all();
         if($doc != null){
             $per = Periodo::where([['fechainicio','<=',$a],['fechafin','>=',$a]])->first();
+            $pla= [];
             if($per == null){
                 $carga = collect();
             }else{
                 $carga = Cargaacademica::where([['docente_id',$doc->id],['periodo_id',$per->id]])->get();
                 if ($carga != null && $planes != null){
-                    $pla= [];
                     foreach ($carga as $c){
                         foreach ($planes as $p){
                             if($c->asignatura_id == $p->asignatura_id){

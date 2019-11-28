@@ -109,4 +109,5 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     //PLAN DE DESARROLLO_ASIGNATURA
     Route::resource('plandedesarrolloasignatura', 'PlandedesarrolloasignaturaController');
     Route::get('plandedesarrolloasignatura/{id}/delete', 'PlandedesarrolloasignaturaController@destroy')->name('plandedesarrolloasignatura.delete');
+    Route::get('plandedesarrolloasignatura/{id}/create2', 'PlandedesarrolloasignaturaController@create')->name('plandedesarrolloasignatura.crear');
 });

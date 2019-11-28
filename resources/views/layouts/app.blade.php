@@ -284,7 +284,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script> <i class="material-icons"></i>
-                    <a href="https://www.creative-tim.com" target="_blank">Desarrollo por: </a> Jordan Cuadro,York Dau & Alberto Rojas
+                    <a href="#" target="_blank">Desarrollo por: </a> Jordan Cuadro,York Dau & Alberto Rojas
                 </div>
             </div>
         </footer>

@@ -98,7 +98,9 @@ class DocenteController extends Controller
                 $user->apellidos = $docente->primer_apellido . " " . $docente->segundo_apellido;
                 $user->save();
                 $g = Grupousuario::where('nombre', 'DOCENTE')->first();
-                $user->grupousuarios()->sync($g->id);
+                if($g != null){
+                    $user->grupousuarios()->sync($g->id);
+                }
                 $aud = new Auditoriaacademico();
                 $aud->usuario = "ID: " . $u->identificacion . ",  USUARIO: " . $u->nombres . " " . $u->apellidos;
                 $aud->operacion = "INSERTAR";

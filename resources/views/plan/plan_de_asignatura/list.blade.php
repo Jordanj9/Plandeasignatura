@@ -7,7 +7,7 @@
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.plan')}}"> Módulo Planes </a><span
                         class="fa-angle-right fa"></span>
-                    Plan de Desarrollo de Asignatura
+                    Plan de Asignatura
                 </p>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">PLANES - PLAN DE DESARROLLO DE ASIGNATURA</h4>
+                        <h4 class="card-title">PLANES - PLAN DE ASIGNATURA</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -29,6 +29,8 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                                    <a href="{{ route('plandeasignatura.create') }}" class="dropdown-item" href="#">Agregar
+                                        nueva asignatura</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -61,12 +63,25 @@
                                     <td>{{$p->corequisitos}}</td>
                                     <td>{{$p->created_at}}</td>
                                     <td>
-                                        @if(session('ROL')=='DOCENTE')
-                                            <a href="{{ route('plandedesarrolloasignatura.crear',$p->id)}}"
-                                               class="btn btn-link btn-success btn-just-icon remove"
+                                        @if(session('ROL') == 'ADMINISTRADOR')
+                                            <a href="{{ route('unity.inicio',$p->id)}}"
+                                               class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
+                                               data-placement="top" title="Gestionar Contenido"><i
+                                                    class="material-icons">navigate_next</i></a>
+                                            <a href="{{ route('plandeasignatura.edit',$p->id)}}"
+                                               class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
+                                               data-placement="top" title="Editar Plan de Asignatura"><i
+                                                    class="material-icons">mode_edit</i></a>
+                                            <a href="{{ route('plandeasignatura.delete',$p->id)}}"
+                                               class="btn btn-link btn-danger btn-just-icon remove"
                                                data-toggle="tooltip"
-                                               data-placement="top" title="Crear Plan de Desarrollo de Asignatura"><i class="material-icons">note_add</i></a>
+                                               data-placement="top" title="Eliminar Plan Asignatura"><i
+                                                    class="material-icons">delete</i></a>
                                         @endif
+                                        <a href="{{ route('plandeasignatura.show',$p->id)}}"
+                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Ver Plan de Asignatura"><i
+                                                class="material-icons">remove_red_eye</i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -97,7 +112,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione los planes de Desarrollo de Asignaturas.
+                    <strong>Detalles: </strong>Gestione los planes de asignaturas.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
@@ -114,7 +129,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione los planes de Desarrollo de Asignaturas.
+                    <strong>Detalles: </strong>Gestione los planes de asignaturas.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
