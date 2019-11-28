@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cargaacademica;
 use App\Docente;
+use App\Facultad;
 use App\Periodo;
 use App\Plandeasignatura;
 use App\Plandedesarrolloasignatura;
@@ -64,41 +65,24 @@ class PlandedesarrolloasignaturaController extends Controller
     {
         $planAsignatura = Plandeasignatura::find($id);
         $undidades = Unidad::where('plandeasignatura_id', $planAsignatura->id)->orderBy('nombre')->get()->pluck('nombre', 'id');
-
-        $hoy = getdate();
-        $date = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
-        $diffweek = abs(strtotime($planAsignatura->periodo->fechainicio) - strtotime($planAsignatura->periodo->fechafin)) / 604800;
         $fechainicio = strtotime($planAsignatura->periodo->fechainicio);
         $fechafin = strtotime($planAsignatura->periodo->fechafin);
-        $semanas=[];
+        $semanas = [];
         $con = 1;
-        for ($i=$fechainicio;$i <= $fechafin;$i+=(86400*7)){
-            $FirstDay = date("Y-m-d",strtotime('sunday last week',$i));
-            $LastDay = date("Y-m-d", strtotime('saturday this week',$i));
-            $semanas[$con]="semana".date("Y-m-d",$i)." DEL ".$FirstDay." AL ".$LastDay;
-            $con ++;
+        for ($i = $fechainicio; $i <= $fechafin; $i += (86400 * 7)) {
+            $FirstDay = date("Y-m-d", strtotime('monday last week', $i));
+            $LastDay = date("Y-m-d", strtotime('saturday last week', $i));
+            $semanas[$con] = "semana " . $con . " DEL " . $FirstDay . " AL " . $LastDay;
+            $con++;
         }
-       dd($semanas);
-
-
-        $fecha = date('Y-m-j');
-        $FirstDay = date("Y-m-d", strtotime('sunday last week'));
-        $LastDay = date("Y-m-d", strtotime('saturday this week'));
-        dd([$FirstDay, $LastDay]);
-
-
-
-
-
-
         $u = Auth::user();
         $docente = Docente::where('identificacion', $u->identificacion)->first();
         return view('plan.plan_de_desarrollo_asignatura.create')
             ->with('location', 'plan')
             ->with('planasignatura', $planAsignatura)
             ->with('unidades', $undidades)
-            ->with('docentes', $docente);
-
+            ->with('docentes', $docente)
+            ->with('semanas', $semanas);
     }
 
     /**
@@ -156,4 +140,21 @@ class PlandedesarrolloasignaturaController extends Controller
     {
         //
     }
+
+    public function getEjetematicos($id) {
+        $unidad = Unidad::find($id);
+        $eje = $unidad->ejetematicos;
+        if (count($eje) > 0) {
+            $ejestematicos = null;
+            foreach ($eje as $value) {
+                $obj["id"] = $value->id;
+                $obj["value"] = $value->nombre;
+                $ejestematicos[] = $obj;
+            }
+            return json_encode($ejestematicos);
+        } else {
+            return "null";
+        }
+    }
+
 }

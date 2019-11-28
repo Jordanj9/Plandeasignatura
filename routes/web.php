@@ -110,4 +110,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     Route::resource('plandedesarrolloasignatura', 'PlandedesarrolloasignaturaController');
     Route::get('plandedesarrolloasignatura/{id}/delete', 'PlandedesarrolloasignaturaController@destroy')->name('plandedesarrolloasignatura.delete');
     Route::get('plandedesarrolloasignatura/{id}/create2', 'PlandedesarrolloasignaturaController@create')->name('plandedesarrolloasignatura.crear');
+    //Buscar un ejeTematico mediante javascripts
+    Route::get('plandedesarrolloasignatura/{id}/get/ejetematicos', 'PlandedesarrolloasignaturaController@getEjetematicos')->name('plandedesarrolloasignatura.getEjetematicos');
+
 });

@@ -11,5 +11,9 @@ class Unidad extends Model
     public function plandeasignatura(){
         return $this->belongsTo(Plandeasignatura::class);
     }
+    public  function ejetematicos(){
+        return $this->hasMany(Ejetematico::class);
+    }
+
 
 }
