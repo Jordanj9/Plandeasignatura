@@ -33,4 +33,9 @@ class Docente extends Model
     {
         return $this->hasMany(Cargaacademica::class);
     }
+
+    public function plandedesarrollos()
+    {
+        return $this->hasMany(Plandedesarrolloasignatura::class);
+    }
 }

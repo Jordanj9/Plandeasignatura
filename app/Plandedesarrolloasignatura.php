@@ -12,7 +12,7 @@ class Plandedesarrolloasignatura extends Model
      * @var array
      */
     protected $fillable = [
-        'id',  'docente_id', 'plandeasignatura_id', 'semana_id', 'created_at', 'updated_at'
+        'id', 'docente_id', 'plandeasignatura_id', 'semana_id', 'created_at', 'updated_at'
     ];
 
     /**
@@ -23,4 +23,19 @@ class Plandedesarrolloasignatura extends Model
     protected $hidden = [
         //
     ];
+
+    public function semana()
+    {
+        return $this->belongsTo(Semana::class);
+    }
+
+    public function plandeasignatura()
+    {
+        return $this->belongsTo(Plandeasignatura::class);
+    }
+
+    public function docente()
+    {
+        return $this->belongsTo(Docente::class);
+    }
 }

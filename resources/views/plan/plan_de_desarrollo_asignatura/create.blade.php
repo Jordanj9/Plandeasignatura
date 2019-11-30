@@ -39,8 +39,11 @@
                 <!--      Wizard container        -->
                 <div class="wizard-container">
                     <div class="card card-wizard" style="opacity: 1;" data-color="green" id="wizardProfile">
-                        <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{route('plandedesarrolloasignatura.store')}}">
+                        <form class="form-horizontal" method="POST" enctype="multipart/form-data"
+                              action="{{route('plandedesarrolloasignatura.store')}}">
                             @csrf
+                            <input type="hidden" name="docente_id" value="{{$docentes->id}}">
+                            <input type="hidden" name="plandeasignatura_id" value="{{$planasignatura->id}}">
                             <div class="card-header text-center">
                                 <h3 class="card-title">
                                     Registro del Plan de Desarrollo de Desarrollo de Asignatura
@@ -114,7 +117,8 @@
                                         </div>
                                         <!--      Tabla --- Datos del plan de Asignatura        -->
                                         <br>
-                                        <div class="col-sm-12 bg-success"><h5 class="info-text" style="color: white; padding: 15px">
+                                        <div class="col-sm-12 bg-success"><h5 class="info-text"
+                                                                              style="color: white; padding: 15px">
                                                 <strong>Datos del Plan de Desarrollo de Asignatura</strong>
                                             </h5>
                                         </div>
@@ -133,7 +137,7 @@
                                                                     data-style="select-with-transition"
                                                                     style="width: 100%;"
                                                                     title="--Seleccione una opción--"
-                                                                    name="semana" id="semana">
+                                                                    name="semana" id="semana" required="required">
                                                                 <option value="">--Seleccione una opción--</option>
                                                                 @foreach($semanas as $key=>$value)
                                                                     <option value="{{$key}}">{{$value}}</option>
@@ -156,7 +160,7 @@
                                                             <select class="form-control select2"
                                                                     data-style="select-with-transition"
                                                                     style="width: 100%;"
-                                                                    name="unidad_id" id="unidad_id"
+                                                                    name="unidad_id" id="unidad_id" required="required"
                                                                     onchange="getEjesTematicos()">
                                                                 <option value="">--Seleccione una opción--</option>
                                                                 @foreach($unidades as $key=>$value)
@@ -184,7 +188,8 @@
                                                                     data-style="select-with-transition"
                                                                     style="width: 100%"
                                                                     title="--Seleccione una opción--"
-                                                                    name="ejetematico_id[]" id="ejetematico_id" multiple="">
+                                                                    name="ejetematico_id[]" id="ejetematico_id" required="required"
+                                                                    multiple="">
                                                                 <option value="">--Seleccione una opción--</option>
                                                             </select>
                                                         </div>
@@ -204,8 +209,9 @@
                                                         <div class="form-line">
                                                             <label for="exampleInput1"
                                                                    class="bmd-label-floating">Temas de Trabajo
-                                                                Independiente
-                                                                (Requerido) </label><textarea rows="7" class="form-control" name="tema_trabajo_id" id="tema_trabajo_id"></textarea>
+                                                                Independiente (Requerido) </label>
+                                                            <textarea rows="7" class="form-control" name="tema_trabajo"
+                                                                      required="required" id="tema_trabajo_id"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -221,8 +227,10 @@
                                                         <div class="form-line">
                                                             <label for="exampleInput1"
                                                                    class="bmd-label-floating">Estrategias Metodológicas
-                                                                o Acciones Pedagógicas
-                                                                (Requerido) </label><textarea rows="7" class="form-control" name="estragetias" id=""></textarea>
+                                                                o Acciones Pedagógicas(Requerido) </label>
+                                                            <textarea rows="7" class="form-control" name="estrategias"
+                                                                      required="required"
+                                                                      id="estrategias_id"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -230,45 +238,70 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="account">
-                                        <div class="row justify-content-center">
-                                            <div class="col-sm-6">
+                                        <div class="row justify-content">
+                                            <div class="col-sm-12">
                                                 <div class="input-group form-control-lg">
                                                     <div class="input-group-prepend">
                                                             <span class="input-group-text">
-                                                                <i class="material-icons">layers_clear</i>
+                                                                <i class="material-icons">restore</i>
                                                             </span>
                                                     </div>
-                                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                                    <div class="form-group bmd-form-group">
                                                         <div class="form-line">
-                                                            <input type="file" class="form-control" placeholder="Bibliografia" name="bibliografia[]" multiple/>
+                                                            <label for="exampleInput1"
+                                                                   class="bmd-label-floating">Temas de Trabajo
+                                                                Independiente
+                                                                (Requerido) </label><textarea rows="7"
+                                                                                              class="form-control"
+                                                                                              name="competencias"
+                                                                                              id="competencias_id"
+                                                                                              required="required"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div>
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">layers_clear</i>
+                                                            </span> <label for="exampleInput1"
+                                                                           class="bmd-label-floating"> Evaluaciones
+                                                                (Requerido)</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="fileinput fileinput-new text-center"
+                                                         data-provides="fileinput">
+                                                        <div class="form-line">
+                                                            <input type="file" class="form-control"
+                                                                   placeholder="Evaluaciones" name="evaluacion[]"
+                                                                   required="required"
+                                                                   multiple/>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
+                                                <div>
                                                 <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">layers_clear</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                                        <div class="form-line">
-                                                            <input type="file" class="form-control" placeholder="Bibliografia" name="bibliografia[]" multiple />
+                                                            </span> <label for="exampleInput1"
+                                                                           class="bmd-label-floating">Bibliografias
+                                                                (Requerido) </label>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">layers_clear</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                                        <div class="form-lin e">
-                                                            <input type="file" class="form-control" placeholder="Bibliografia" name="bibliografia[]" multiple/>
+                                                    <div class="fileinput fileinput-new text-center"
+                                                         data-provides="fileinput">
+                                                        <div class="form-line">
+                                                            <input type="file" class="form-control"
+                                                                   placeholder="Bibliografia" name="bibliografia[]"
+                                                                   required="required"
+                                                                   multiple/>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -8,10 +8,12 @@ use App\Facultad;
 use App\Periodo;
 use App\Plandeasignatura;
 use App\Plandedesarrolloasignatura;
+use App\Semana;
 use App\Unidad;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PlandedesarrolloasignaturaController extends Controller
 {
@@ -72,7 +74,7 @@ class PlandedesarrolloasignaturaController extends Controller
         for ($i = $fechainicio; $i <= $fechafin; $i += (86400 * 7)) {
             $FirstDay = date("Y-m-d", strtotime('monday last week', $i));
             $LastDay = date("Y-m-d", strtotime('saturday last week', $i));
-            $semanas[$con] = "semana " . $con . " DEL " . $FirstDay . " AL " . $LastDay;
+            $semanas["semana " . $con . " DEL " . $FirstDay . " AL " . $LastDay] = "semana " . $con . " DEL " . $FirstDay . " AL " . $LastDay;
             $con++;
         }
         $u = Auth::user();
@@ -93,7 +95,68 @@ class PlandedesarrolloasignaturaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        //dd($request);
+        $existe = Plandedesarrolloasignatura::whereHas('semana', function ($query) use ($request) {
+            $query->where('semana', $request->semana);
+        })->first();
+        if ($existe != null) {
+            flash("La semana seleccionada <strong>" . $request->semana . "</strong> ya esta almacenada. Atencion!")->warning();
+            return redirect()->route('plandedesarrolloasignatura.create2', $request->planasignatura_id);
+        }
+        $semana = new Semana();
+        $semana->semana = $request->semana;
+        $semana->temas_trabajo = $request->temas_trabajo;
+        $semana->estrategias = $request->estrategias;
+        $semana->competencias = $request->competencias;
+        $semana->unidad_id = $request->unidad_id;
+        $evaluaciones = $request->evaluacion;
+        $bibliografias = $request->bibliografia;
+
+        if ($evaluaciones != null) {
+            $string = null;
+            foreach ($evaluaciones as $item) {
+                dd($item);
+                $hoy = getdate();
+                $name = "Evaluación_" . $hoy["year"] . $hoy["mon"] . $hoy["mday"] . $hoy["hours"] . $hoy["minutes"] . $hoy["seconds"] . "_" . $item->GetClientOriginalName();
+                $path = public_path() . "/docs/evaluacion/";
+                $item->move($path, $name);
+                $string = $string . $name . ";";
+            }
+            $semana->evaluacion = $string;
+        }
+        if ($bibliografias != null) {
+            $string = null;
+            foreach ($bibliografias as $item) {
+                $hoy = getdate();
+                $name = "Bibliografia_" . $hoy["year"] . $hoy["mon"] . $hoy["mday"] . $hoy["hours"] . $hoy["minutes"] . $hoy["seconds"] . "_" . $item->GetClientOriginalName();
+                $path = public_path() . "/docs/bibliografia/";
+                $item->move($path, $name);
+                $string = $string . $name . ";";
+            }
+            $semana->bibliografia = $string;
+        }
+        $result = $semana->save();
+        dd($result);
+        $semana->ejetematicos()->sync($request->ejetemetico_id);
+        if ($result) {
+            $plandedesarrollo = new Plandedesarrolloasignatura();
+            $plandedesarrollo->plandeasignatura_id = $request->plandeasignatura_id;
+            $plandedesarrollo->docente_id = $request->docente_id;
+            $plandedesarrollo->semana_id = $semana->id;
+            $result2 = $plandedesarrollo->save();
+            if ($result2) {
+                flash("La Semana <strong>" . $semana->semana . "</strong> fue almacenada de forma exitosa para el plan de desarrollo de asignatura")->success();
+                return redirect()->route('plandedesarrolloasignatura.create2', $plandedesarrollo->plandeasignatura_id);
+            } else {
+                $semana->ejetematicos()->sync();
+                $semana->delete();
+                flash("La Semana <strong>" . $semana->semana . "</strong> no pudo ser almacenada. Error: " . $result2)->error();
+                return redirect()->route('plandedesarrolloasignatura.create2', $request->plandeasignatura_id);
+            }
+        } else {
+            flash("La Semana <strong>" . $semana->semana . "</strong> no pudo ser almacenada. Error: " . $result)->error();
+            return redirect()->route('plandedesarrolloasignatura.create2', $request->plandeasignatura_id);
+        }
     }
 
     /**
@@ -141,7 +204,8 @@ class PlandedesarrolloasignaturaController extends Controller
         //
     }
 
-    public function getEjetematicos($id) {
+    public function getEjetematicos($id)
+    {
         $unidad = Unidad::find($id);
         $eje = $unidad->ejetematicos;
         if (count($eje) > 0) {

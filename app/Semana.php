@@ -24,4 +24,14 @@ class Semana extends Model
     protected $hidden = [
         //
     ];
+
+    public function plandedesarrollos()
+    {
+        return $this->hasMany(Plandedesarrolloasignatura::class);
+    }
+
+    public function ejetematicos()
+    {
+        return $this->belongsToMany(Ejetematico::class, 'ejetematicosemana');
+    }
 }
