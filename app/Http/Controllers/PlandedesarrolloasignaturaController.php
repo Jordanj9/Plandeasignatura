@@ -95,27 +95,24 @@ class PlandedesarrolloasignaturaController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         $existe = Plandedesarrolloasignatura::whereHas('semana', function ($query) use ($request) {
             $query->where('semana', $request->semana);
         })->first();
         if ($existe != null) {
             flash("La semana seleccionada <strong>" . $request->semana . "</strong> ya esta almacenada. Atencion!")->warning();
-            return redirect()->route('plandedesarrolloasignatura.create2', $request->planasignatura_id);
+            return redirect()->route('plandedesarrolloasignatura.crear', $request->plandeasignatura_id);
         }
         $semana = new Semana();
         $semana->semana = $request->semana;
-        $semana->temas_trabajo = $request->temas_trabajo;
+        $semana->tema_trabajo = $request->tema_trabajo;
         $semana->estrategias = $request->estrategias;
         $semana->competencias = $request->competencias;
         $semana->unidad_id = $request->unidad_id;
         $evaluaciones = $request->evaluacion;
         $bibliografias = $request->bibliografia;
-
         if ($evaluaciones != null) {
             $string = null;
             foreach ($evaluaciones as $item) {
-                dd($item);
                 $hoy = getdate();
                 $name = "Evaluación_" . $hoy["year"] . $hoy["mon"] . $hoy["mday"] . $hoy["hours"] . $hoy["minutes"] . $hoy["seconds"] . "_" . $item->GetClientOriginalName();
                 $path = public_path() . "/docs/evaluacion/";
@@ -136,8 +133,7 @@ class PlandedesarrolloasignaturaController extends Controller
             $semana->bibliografia = $string;
         }
         $result = $semana->save();
-        dd($result);
-        $semana->ejetematicos()->sync($request->ejetemetico_id);
+        $semana->ejetematicos()->sync($request->ejetematico_id);
         if ($result) {
             $plandedesarrollo = new Plandedesarrolloasignatura();
             $plandedesarrollo->plandeasignatura_id = $request->plandeasignatura_id;
@@ -146,16 +142,16 @@ class PlandedesarrolloasignaturaController extends Controller
             $result2 = $plandedesarrollo->save();
             if ($result2) {
                 flash("La Semana <strong>" . $semana->semana . "</strong> fue almacenada de forma exitosa para el plan de desarrollo de asignatura")->success();
-                return redirect()->route('plandedesarrolloasignatura.create2', $plandedesarrollo->plandeasignatura_id);
+                return redirect()->route('plandedesarrolloasignatura.crear', $plandedesarrollo->plandeasignatura_id);
             } else {
                 $semana->ejetematicos()->sync();
                 $semana->delete();
                 flash("La Semana <strong>" . $semana->semana . "</strong> no pudo ser almacenada. Error: " . $result2)->error();
-                return redirect()->route('plandedesarrolloasignatura.create2', $request->plandeasignatura_id);
+                return redirect()->route('plandedesarrolloasignatura.crear', $request->plandeasignatura_id);
             }
         } else {
             flash("La Semana <strong>" . $semana->semana . "</strong> no pudo ser almacenada. Error: " . $result)->error();
-            return redirect()->route('plandedesarrolloasignatura.create2', $request->plandeasignatura_id);
+            return redirect()->route('plandedesarrolloasignatura.crear', $request->plandeasignatura_id);
         }
     }
 
