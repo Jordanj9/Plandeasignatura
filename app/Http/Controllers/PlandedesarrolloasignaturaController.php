@@ -115,7 +115,6 @@ class PlandedesarrolloasignaturaController extends Controller
         if ($evaluaciones != null) {
             $string = null;
             foreach ($evaluaciones as $item) {
-                dd($item);
                 $hoy = getdate();
                 $name = "Evaluación_" . $hoy["year"] . $hoy["mon"] . $hoy["mday"] . $hoy["hours"] . $hoy["minutes"] . $hoy["seconds"] . "_" . $item->GetClientOriginalName();
                 $path = public_path() . "/docs/evaluacion/";
@@ -165,9 +164,14 @@ class PlandedesarrolloasignaturaController extends Controller
      * @param \App\Plandedesarrolloasignatura $plandedesarrolloasignatura
      * @return \Illuminate\Http\Response
      */
-    public function show(Plandedesarrolloasignatura $plandedesarrolloasignatura)
+    public function show($id)
     {
-        //
+        $plandeasignatura = Plandeasignatura::find($id);
+        $plandedesarrollos = Plandedesarrolloasignatura::where('plandeasignatura_id', $plandeasignatura->id)->get();
+        return view('plan.plan_de_desarrollo_asignatura.show')
+            ->with('location', 'plan')
+            ->with('plandeasignatura', $plandeasignatura)
+            ->with('plandedesarrollo', $plandedesarrollos);
     }
 
     /**

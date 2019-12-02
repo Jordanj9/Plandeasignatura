@@ -86,7 +86,7 @@
 <!-- End Google Tag Manager (noscript) -->
 <div class="wrapper ">
     <div class="sidebar" data-color="green" data-background-color="white"
-         data-image="{{asset('assets/img/sidebar-1.jpg')}}">
+         data-image="{{asset('assets/img/sidebar-5.jpg')}}">
         <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 

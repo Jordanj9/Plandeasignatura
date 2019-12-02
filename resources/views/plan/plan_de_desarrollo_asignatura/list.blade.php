@@ -65,7 +65,13 @@
                                             <a href="{{ route('plandedesarrolloasignatura.crear',$p->id)}}"
                                                class="btn btn-link btn-success btn-just-icon remove"
                                                data-toggle="tooltip"
-                                               data-placement="top" title="Crear Plan de Desarrollo de Asignatura"><i class="material-icons">note_add</i></a>
+                                               data-placement="top" title="Crear Plan de Desarrollo de Asignatura"><i
+                                                    class="material-icons">note_add</i></a>
+                                            <a href="{{ route('plandedesarrolloasignatura.show',$p->id)}}"
+                                               class="btn btn-link btn-success btn-just-icon remove"
+                                               data-toggle="tooltip"
+                                               data-placement="top" title="Ver Plan de Desarrollo de Asignatura"><i
+                                                    class="material-icons">remove_red_eye</i></a>
                                         @endif
                                     </td>
                                 </tr>
