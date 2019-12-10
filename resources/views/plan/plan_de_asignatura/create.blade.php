@@ -63,6 +63,11 @@
                                             Datos del Plan de Asignatura
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#ultima" data-toggle="tab" role="tab">
+                                            Datos del Plan de Asignatura
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="card-body">
@@ -271,7 +276,8 @@
                                                         <div class="form-line">
                                                             <input type="text" class="form-control"
                                                                    placeholder="Co-requisitos"
-                                                                   name="corequisitos" id="corequisitos" required="required"/>
+                                                                   name="corequisitos" id="corequisitos"
+                                                                   required="required"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -284,14 +290,15 @@
                                                         <div class="form-line">
                                                             <label for="exampleInput1"
                                                                    class="bmd-label-floating" style="font-size: 20px">Presentación
-                                                                (Requerido)</label><textarea rows="10" class="form-control" name="presentacion"
-                                                                      id="presentacion" required="required"></textarea>
+                                                                (Requerido)</label><textarea rows="10"
+                                                                                             class="form-control"
+                                                                                             name="presentacion"
+                                                                                             id="presentacion"
+                                                                                             required="required"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="account">
@@ -301,48 +308,55 @@
                                                 <div class="card card-timeline card-plain">
                                                     <ul class="timeline">
                                                         <li>
-                                                            <div class="timeline-badge "
-                                                                 style="background-color: #e91e63">
+                                                            <div class="timeline-badge badge-secondary"
+                                                            >
                                                                 <i class="material-icons">gavel</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-rose">Justificación (Requerido)</span>
+                                                                    <span class="badge badge-pill"
+                                                                          style="background-color: #38A970">Justificación (Requerido)</span>
                                                                 </div>
-                                                                <div class="timeline-body"><textarea rows="15" class="form-control" id="justificacion" name="justificacion" required="required"></textarea>
+                                                                <div class="timeline-body"><textarea rows="15"
+                                                                                                     class="form-control"
+                                                                                                     id="justificacion"
+                                                                                                     name="justificacion"
+                                                                                                     required="required"></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
                                                         <li class="timeline-inverted">
-                                                            <div class="timeline-badge info">
+                                                            <div class="timeline-badge badge-secondary">
                                                                 <i class="material-icons">list</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-info">Objetivo General (Requerido)</span>
+                                                                    <span class="badge badge-pill"
+                                                                          style="background-color: #38A970">Objetivo General (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="10"
-                                                                              class="form-control"
-                                                                              id="objetivogeneral"
-                                                                              name="objetivogeneral"
-                                                                              required="required">
+                                                                                                     class="form-control"
+                                                                                                     id="objetivogeneral"
+                                                                                                     name="objetivogeneral"
+                                                                                                     required="required">
                                                                     </textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <div class="timeline-badge warning">
+                                                            <div class="timeline-badge badge-secondary">
                                                                 <i class="material-icons">filter_list</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-warning">Objetivos Especificos (Requerido)</span>
+                                                                    <span class="badge badge-pill"
+                                                                          style="background-color: #38A970">Objetivos Especificos (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="10"
-                                                                              class="form-control"
-                                                                              id="objetivoespecificos"
-                                                                              name="objetivoespecificos"
-                                                                              required="required">
+                                                                                                     class="form-control"
+                                                                                                     id="objetivoespecificos"
+                                                                                                     name="objetivoespecificos"
+                                                                                                     required="required">
                                                                     </textarea>
                                                                 </div>
                                                             </div>
@@ -359,28 +373,30 @@
                                                 <div class="card card-timeline card-plain">
                                                     <ul class="timeline">
                                                         <li>
-                                                            <div class="timeline-badge warning ">
+                                                            <div class="timeline-badge badge-secondary">
                                                                 <i class="material-icons">outlined_flag</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-warning">Competencias Generales y específicas (Requerido)</span>
+                                                                    <span class="badge badge-pill"
+                                                                          style="background-color: #38A970">Competencias Generales y específicas (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="15"
-                                                                              class="form-control"
-                                                                              id="justificacion"
-                                                                              name="competencias"
-                                                                              required="required"></textarea>
+                                                                                                     class="form-control"
+                                                                                                     id="justificacion"
+                                                                                                     name="competencias"
+                                                                                                     required="required"></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
                                                         <li class="timeline-inverted">
-                                                            <div class="timeline-badge info">
+                                                            <div class="timeline-badge badge-secondary">
                                                                 <i class="material-icons">account_tree</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-info">Metodologías (Requerido)</span>
+                                                                    <span class="badge badge-pill"
+                                                                          style="background-color: #38A970">Metodologías (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="10"
                                                                                                      class="form-control"
@@ -391,18 +407,63 @@
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <div class="timeline-badge"
-                                                                 style="background-color: #e91e63">
+                                                            <div class="timeline-badge badge-secondary">
                                                                 <i class="material-icons">menu_book</i>
                                                             </div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
-                                                                    <span class="badge badge-pill badge-rose">Estrategías Metodológicas (Requerido)</span>
+                                                                    <span class="badge badge-pill"
+                                                                          style="background-color: #38A970">Estrategías Metodológicas (Requerido)</span>
                                                                 </div>
                                                                 <div class="timeline-body"><textarea rows="10"
                                                                                                      class="form-control"
                                                                                                      id="estrategias"
                                                                                                      name="estrategias"
+                                                                                                     required="required"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="ultima">
+                                        <h5 class="info-text"> Datos del Plan de Asignatura </h5>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card card-timeline card-plain">
+                                                    <ul class="timeline">
+                                                        <li>
+                                                            <div class="timeline-badge badge-secondary">
+                                                                <i class="material-icons">outlined_flag</i>
+                                                            </div>
+                                                            <div class="timeline-panel">
+                                                                <div class="timeline-heading">
+                                                                    <span class="badge badge-pill"
+                                                                          style="background-color: #38A970">Evaluación (Requerido)</span>
+                                                                </div>
+                                                                <div class="timeline-body"><textarea rows="15"
+                                                                                                     class="form-control"
+                                                                                                     id="evaluacion"
+                                                                                                     name="evaluacion"
+                                                                                                     required="required"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="timeline-inverted">
+                                                            <div class="timeline-badge badge-secondary">
+                                                                <i class="material-icons">account_tree</i>
+                                                            </div>
+                                                            <div class="timeline-panel">
+                                                                <div class="timeline-heading">
+                                                                    <span class="badge badge-pill"
+                                                                          style="background-color: #38A970">Referencias Bibliografica (Requerido)</span>
+                                                                </div>
+                                                                <div class="timeline-body"><textarea rows="10"
+                                                                                                     class="form-control"
+                                                                                                     id="referencias"
+                                                                                                     name="referencias"
                                                                                                      required="required"></textarea>
                                                                 </div>
                                                             </div>
@@ -478,23 +539,19 @@
                     searchPlaceholder: "Search records",
                 }
             });
-
             var table = $('#datatable').DataTable();
-
             // Edit record
             table.on('click', '.edit', function () {
                 $tr = $(this).closest('tr');
                 var data = table.row($tr).data();
                 alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
             });
-
             // Delete a record
             table.on('click', '.remove', function (e) {
                 $tr = $(this).closest('tr');
                 table.row($tr).remove().draw();
                 e.preventDefault();
             });
-
             //Like record
             table.on('click', '.like', function () {
                 alert('You clicked on Like button');

@@ -11,6 +11,8 @@ use App\Periodo;
 use App\Asignatura;
 use App\Facultad;
 use App\Auditoriaplan;
+use App\Plandedesarrolloasignatura;
+use App\Unidad;
 use Faker\Provider\lv_LV\Color;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\CollectsResources;
@@ -30,22 +32,22 @@ class PlandeasignaturaController extends Controller
     {
 
         $u = Auth::user();
-        $doc = Docente::where('identificacion',$u->identificacion)->first();
+        $doc = Docente::where('identificacion', $u->identificacion)->first();
         $hoy = getdate();
         $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
         $planes = Plandeasignatura::all();
-        if($doc != null){
-            $per = Periodo::where([['fechainicio','<=',$a],['fechafin','>=',$a]])->first();
-            $pla= [];
-            if($per == null){
+        if ($doc != null) {
+            $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
+            $pla = [];
+            if ($per == null) {
                 $carga = collect();
-            }else{
-                $carga = Cargaacademica::where([['docente_id',$doc->id],['periodo_id',$per->id]])->get();
-                if ($carga != null && $planes != null){
-                    foreach ($carga as $c){
-                        foreach ($planes as $p){
-                            if($c->asignatura_id == $p->asignatura_id){
-                                if(!in_array($p,$pla)){
+            } else {
+                $carga = Cargaacademica::where([['docente_id', $doc->id], ['periodo_id', $per->id]])->get();
+                if ($carga != null && $planes != null) {
+                    foreach ($carga as $c) {
+                        foreach ($planes as $p) {
+                            if ($c->asignatura_id == $p->asignatura_id) {
+                                if (!in_array($p, $pla)) {
                                     $pla[] = $p;
                                 }
                             }
@@ -56,7 +58,7 @@ class PlandeasignaturaController extends Controller
             return view('plan.plan_de_asignatura.list')
                 ->with('location', 'plan')
                 ->with('planes', $pla);
-        }else{
+        } else {
             return view('plan.plan_de_asignatura.list')
                 ->with('location', 'plan')
                 ->with('planes', $planes);
@@ -144,9 +146,15 @@ class PlandeasignaturaController extends Controller
      * @param \App\Plandeasignatura $plandeasignatura
      * @return \Illuminate\Http\Response
      */
-    public function show(Plandeasignatura $plandeasignatura)
+    public function show($id)
     {
-        //
+        $plandeasignatura = Plandeasignatura::find($id);
+        $undidades = Unidad::where('plandeasignatura_id', $plandeasignatura->id)->orderBy('nombre')->get();
+        return view('plan.plan_de_asignatura.show')
+            ->with('location', 'plan')
+            ->with('plandeasignatura', $plandeasignatura)
+            ->with('unidades', $undidades);
+
     }
 
     /**

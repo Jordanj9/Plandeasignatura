@@ -27,6 +27,8 @@ class CreatePlandeasignaturasTable extends Migration
             $table->text('competencias')->nullable();
             $table->text('metodologias')->nullable();
             $table->text('estrategias')->nullable();
+            $table->text('evaluacion')->nullable();
+            $table->text('referencias')->nullable();
             $table->bigInteger('periodo_id')->unsigned();
             $table->foreign('periodo_id')->references('id')->on('periodos')->onDelete('cascade');
             $table->bigInteger('asignatura_id')->unsigned();

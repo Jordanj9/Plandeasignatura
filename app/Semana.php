@@ -34,4 +34,9 @@ class Semana extends Model
     {
         return $this->belongsToMany(Ejetematico::class, 'ejetematicosemana');
     }
+
+    public function unidad()
+    {
+        return $this->belongsTo(Unidad::class);
+    }
 }

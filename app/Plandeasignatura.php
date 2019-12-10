@@ -15,7 +15,7 @@ class Plandeasignatura extends Model
         'id', 'dodencia_directa', 'trabajo_independiente', 'trabajo_semestral',
         'corequisitos', 'prerequisitos', 'presentacion', 'justificacion',
         'objetivogeneral', 'objetivoespecificos', 'competencias', 'metodologias',
-        'estrategias', 'periodo_id', 'asignatura_id', 'created_at', 'updated_at'
+        'estrategias','evaluacion','referencias', 'periodo_id', 'asignatura_id', 'created_at', 'updated_at'
     ];
 
     /**
