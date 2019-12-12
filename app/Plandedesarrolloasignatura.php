@@ -12,7 +12,7 @@ class Plandedesarrolloasignatura extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'docente_id', 'plandeasignatura_id', 'semana_id', 'created_at', 'updated_at'
+        'id', 'estado', 'docente_id', 'plandeasignatura_id', 'created_at', 'updated_at'
     ];
 
     /**
@@ -24,10 +24,16 @@ class Plandedesarrolloasignatura extends Model
         //
     ];
 
-    public function semana()
+    public function semanas()
     {
-        return $this->belongsTo(Semana::class);
+        return $this->hasMany(Semana::class);
     }
+
+
+//    public function semana()
+//    {
+//        return $this->belongsTo(Semana::class);
+//    }
 
     public function plandeasignatura()
     {

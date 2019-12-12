@@ -42,6 +42,11 @@
                         <form class="form-horizontal" method="POST" enctype="multipart/form-data"
                               action="{{route('plandedesarrolloasignatura.store')}}">
                             @csrf
+                            @if($plandesarrollo == null)
+                                <input type="hidden" name="plandesarrollo" value="null">
+                            @else
+                                <input type="hidden" name="plandesarrollo" value="{{$plandesarrollo->id}}">
+                            @endif
                             <input type="hidden" name="docente_id" value="{{$docentes->id}}">
                             <input type="hidden" name="plandeasignatura_id" value="{{$planasignatura->id}}">
                             <div class="card-header text-center">
@@ -188,7 +193,8 @@
                                                                     data-style="select-with-transition"
                                                                     style="width: 100%"
                                                                     title="--Seleccione una opción--"
-                                                                    name="ejetematico_id[]" id="ejetematico_id" required="required"
+                                                                    name="ejetematico_id[]" id="ejetematico_id"
+                                                                    required="required"
                                                                     multiple="">
                                                                 <option value="">--Seleccione una opción--</option>
                                                             </select>
@@ -211,7 +217,8 @@
                                                                    class="bmd-label-floating">Temas de Trabajo
                                                                 Independiente (Requerido) </label>
                                                             <textarea rows="7" class="form-control" name="tema_trabajo"
-                                                                      required="required" id="tema_trabajo_id"></textarea>
+                                                                      required="required"
+                                                                      id="tema_trabajo_id"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -286,7 +293,7 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div>
-                                                <div class="input-group form-control-lg">
+                                                    <div class="input-group form-control-lg">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">layers_clear</i>

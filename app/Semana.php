@@ -13,7 +13,7 @@ class Semana extends Model
      */
     protected $fillable = [
         'id', 'semana', 'temas_trabajo', 'estrategias', 'competencias', 'evaluacion',
-        'bibliografia', 'unidad_id', 'created_at', 'updated_at'
+        'bibliografia', 'unidad_id', 'plandedesarrolloasignatura_id', 'created_at', 'updated_at'
     ];
 
     /**
@@ -25,10 +25,15 @@ class Semana extends Model
         //
     ];
 
-    public function plandedesarrollos()
+    public function plandedesarrolloasignatura()
     {
-        return $this->hasMany(Plandedesarrolloasignatura::class);
+        return $this->belongsTo(Plandedesarrolloasignatura::class);
     }
+
+//    public function plandedesarrollos()
+//    {
+//        return $this->hasMany(Plandedesarrolloasignatura::class);
+//    }
 
     public function ejetematicos()
     {

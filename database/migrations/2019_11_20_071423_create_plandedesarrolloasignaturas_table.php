@@ -15,12 +15,11 @@ class CreatePlandedesarrolloasignaturasTable extends Migration
     {
         Schema::create('plandedesarrolloasignaturas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('estado', 15)->default('EN REVISION');
             $table->bigInteger('docente_id')->unsigned();
             $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');
             $table->bigInteger('plandeasignatura_id')->unsigned();
             $table->foreign('plandeasignatura_id')->references('id')->on('plandeasignaturas')->onDelete('cascade');
-            $table->bigInteger('semana_id')->unsigned();
-            $table->foreign('semana_id')->references('id')->on('semanas')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -52,8 +52,10 @@ class PlandedesarrolloasignaturaController extends Controller
                 ->with('location', 'plan')
                 ->with('planes', $pla);
         } else {
+            $planesdesarrollos = Plandedesarrolloasignatura::all();
             return view('plan.plan_de_desarrollo_asignatura.list')
                 ->with('location', 'plan')
+                ->with('plandesarrollos', $planesdesarrollos)
                 ->with('planes', $planes);
         }
     }
@@ -66,6 +68,9 @@ class PlandedesarrolloasignaturaController extends Controller
     public function create($id)
     {
         $planAsignatura = Plandeasignatura::find($id);
+        $u = Auth::user();
+        $doc = Docente::where('identificacion', $u->identificacion)->first();
+        $plandesarrollo = Plandedesarrolloasignatura::where([['docente_id', $doc->id], ['plandeasignatura_id', $planAsignatura->id]])->first();
         $undidades = Unidad::where('plandeasignatura_id', $planAsignatura->id)->orderBy('nombre')->get()->pluck('nombre', 'id');
         $fechainicio = strtotime($planAsignatura->periodo->fechainicio);
         $fechafin = strtotime($planAsignatura->periodo->fechafin);
@@ -84,6 +89,7 @@ class PlandedesarrolloasignaturaController extends Controller
             ->with('planasignatura', $planAsignatura)
             ->with('unidades', $undidades)
             ->with('docentes', $docente)
+            ->with('plandesarrollo', $plandesarrollo)
             ->with('semanas', $semanas);
     }
 
@@ -95,13 +101,21 @@ class PlandedesarrolloasignaturaController extends Controller
      */
     public function store(Request $request)
     {
-        $existe = Plandedesarrolloasignatura::whereHas('semana', function ($query) use ($request) {
-            $query->where('semana', $request->semana);
-        })->first();
-
+//        $existe = Plandedesarrolloasignatura::whereHas('semana', function ($query) use ($request) {
+//            $query->where('semana', $request->semana);
+//        })->first();
+        $existe = Semana::where([['plandedesarrolloasignatura_id', $request->plandesarrollo], ['semana', $request->semana]])->first();
         if ($existe != null) {
             flash("La semana seleccionada <strong>" . $request->semana . "</strong> ya esta almacenada. Atencion!")->warning();
             return redirect()->route('plandedesarrolloasignatura.crear', $request->plandeasignatura_id);
+        }
+        if ($request->plandesarrollo == 'null') {
+            $plandesarrollo = new Plandedesarrolloasignatura();
+            $plandesarrollo->plandeasignatura_id = $request->plandeasignatura_id;
+            $plandesarrollo->docente_id = $request->docente_id;
+            $result2 = $plandesarrollo->save();
+        } else {
+            $plandesarrollo = Plandedesarrolloasignatura::find($request->plandesarrollo);
         }
         $semana = new Semana();
         $semana->semana = $request->semana;
@@ -109,6 +123,7 @@ class PlandedesarrolloasignaturaController extends Controller
         $semana->estrategias = $request->estrategias;
         $semana->competencias = $request->competencias;
         $semana->unidad_id = $request->unidad_id;
+        $semana->plandedesarrolloasignatura_id = $plandesarrollo->id;
         $evaluaciones = $request->evaluacion;
         $bibliografias = $request->bibliografia;
         if ($evaluaciones != null) {
@@ -136,20 +151,8 @@ class PlandedesarrolloasignaturaController extends Controller
         $result = $semana->save();
         $semana->ejetematicos()->sync($request->ejetematico_id);
         if ($result) {
-            $plandedesarrollo = new Plandedesarrolloasignatura();
-            $plandedesarrollo->plandeasignatura_id = $request->plandeasignatura_id;
-            $plandedesarrollo->docente_id = $request->docente_id;
-            $plandedesarrollo->semana_id = $semana->id;
-            $result2 = $plandedesarrollo->save();
-            if ($result2) {
-                flash("La Semana <strong>" . $semana->semana . "</strong> fue almacenada de forma exitosa para el plan de desarrollo de asignatura")->success();
-                return redirect()->route('plandedesarrolloasignatura.crear', $plandedesarrollo->plandeasignatura_id);
-            } else {
-                $semana->ejetematicos()->sync();
-                $semana->delete();
-                flash("La Semana <strong>" . $semana->semana . "</strong> no pudo ser almacenada. Error: " . $result2)->error();
-                return redirect()->route('plandedesarrolloasignatura.crear', $request->plandeasignatura_id);
-            }
+            flash("La Semana <strong>" . $semana->semana . "</strong> fue almacenada de forma exitosa para el plan de desarrollo de asignatura")->success();
+            return redirect()->route('plandedesarrolloasignatura.crear', $plandesarrollo->plandeasignatura_id);
         } else {
             flash("La Semana <strong>" . $semana->semana . "</strong> no pudo ser almacenada. Error: " . $result)->error();
             return redirect()->route('plandedesarrolloasignatura.crear', $request->plandeasignatura_id);
@@ -164,24 +167,32 @@ class PlandedesarrolloasignaturaController extends Controller
      */
     public function show($id)
     {
-        $plandeasignatura = Plandeasignatura::find($id);
+        $u = Auth::user();
+        $doc = Docente::where('identificacion', $u->identificacion)->first();
+        if ($doc != null) {
+            $docente = $doc;
+            $plandeasignatura = Plandeasignatura::find($id);
+            $plandesarrollo = Plandedesarrolloasignatura::where([['docente_id', $doc->id], ['plandeasignatura_id', $plandeasignatura->id]])->first();
+        } else {
+            $plandesarrollo = Plandedesarrolloasignatura::find($id);
+            $plandeasignatura = $plandesarrollo->plandeasignatura;
+            $docente = $plandesarrollo->docente;
+        }
         $undidades = Unidad::where('plandeasignatura_id', $plandeasignatura->id)->orderBy('nombre')->get()->pluck('nombre', 'id');
-        $plandedesarrollos = Plandedesarrolloasignatura::where('plandeasignatura_id', $plandeasignatura->id)->get();
-        if ($plandedesarrollos != null) {
-            foreach ($plandedesarrollos as $item) {
-                $item->evaluacion=explode(';',$item->semana->evaluacion);
-                $item->bibliografia=explode(';',$item->semana->bibliografia);
+        //$plandedesarrollos = Plandedesarrolloasignatura::where('plandeasignatura_id', $plandeasignatura->id)->get();
+        $semanas = $plandesarrollo->semanas;
+        if ($semanas != null) {
+            foreach ($semanas as $item) {
+                $item->eval = explode(';', $item->evaluacion);
+                $item->bibl = explode(';', $item->bibliografia);
             }
         }
-         //dd($plandedesarrollos);
-        //dd($plandedesarrollos);
-        $u = Auth::user();
-        $docente = Docente::where('identificacion', $u->identificacion)->first();
         return view('plan.plan_de_desarrollo_asignatura.show')
             ->with('location', 'plan')
             ->with('plandeasignatura', $plandeasignatura)
-            ->with('plandedesarrollos', $plandedesarrollos)
+            ->with('plandedesarrollos', $plandesarrollo)
             ->with('unidades', $undidades)
+            ->with('semanas',$semanas)
             ->with('docentes', $docente);
     }
 
