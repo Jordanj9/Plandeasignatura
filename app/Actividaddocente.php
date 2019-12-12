@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Actividaddocente extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Item extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'descripcion', 'created_at', 'updated_at'
+        'id', 'nombre', 'valor', 'tipo', 'descripcion', 'plandetrabajo_id', 'created_at', 'updated_at'
     ];
 
     /**
@@ -24,8 +24,13 @@ class Item extends Model
         //
     ];
 
-    public function trabajos()
+    public function horarios()
     {
-        return $this->belongsTo(Trabajo::class);
+        return $this->hasMany(Horario::class);
+    }
+
+    public function plandetrabajo()
+    {
+        return $this->belongsTo(Plandetrabajo::class);
     }
 }

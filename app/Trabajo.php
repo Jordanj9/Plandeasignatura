@@ -12,7 +12,7 @@ class Trabajo extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'descripcion', 'created_at', 'updated_at'
+        'id', 'titulo', 'acta', 'fecha', 'iniciacion', 'terminacion', 'hora_semana', 'descripcion', 'institucion', 'item_id', 'plandetrabajo_id', 'created_at', 'updated_at'
     ];
 
     /**
@@ -23,4 +23,14 @@ class Trabajo extends Model
     protected $hidden = [
         //
     ];
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+
+    public function plandetrabajo()
+    {
+        return $this->belongsTo(Plandetrabajo::class);
+    }
 }

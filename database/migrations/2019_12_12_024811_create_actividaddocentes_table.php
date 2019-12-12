@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTrabajosTable extends Migration
+class CreateActividaddocentesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,12 @@ class CreateTrabajosTable extends Migration
      */
     public function up()
     {
-        Schema::create('trabajos', function (Blueprint $table) {
+        Schema::create('actividaddocentes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('titulo');
-            $table->string('acta')->nullable();
-            $table->date('fecha')->nullable();
-            $table->date('iniciacion')->nullable();
-            $table->date('terminacion')->nullable();
-            $table->integer('hora_semana')->nullable();
+            $table->string('nombre');
+            $table->integer('valor');
+            $table->string('tipo', 30);
             $table->string('descripcion')->nullable();
-            $table->string('institucion')->nullable();
-            $table->bigInteger('item_id')->unsigned();
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->bigInteger('plandetrabajo_id')->unsigned();
             $table->foreign('plandetrabajo_id')->references('id')->on('plandetrabajos')->onDelete('cascade');
             $table->timestamps();
@@ -38,6 +32,6 @@ class CreateTrabajosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trabajos');
+        Schema::dropIfExists('actividaddocentes');
     }
 }
