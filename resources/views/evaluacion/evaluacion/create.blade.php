@@ -42,7 +42,7 @@
                         @endcomponent
                     </div>
                     <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('asistencia.store')}}">
+                        <form class="form-horizontal" method="POST" action="{{route('evaluacion.store')}}">
                             @csrf
                             <div class="col-md-12">
                                 <div class="row">
@@ -53,9 +53,11 @@
                                                 <select class="form-control selectpicker"
                                                         data-style="select-with-transition" style="width: 100%;"
                                                         required="required" title="--Seleccione una opción--"
-                                                        name="cargaacademica_id" id="cargaacademica_id" onchange="getEstudiantes()">
+                                                        name="semana_id" id="semana_id" onchange="getEstudiantes()">
                                                     <option value="">--Seleccione una opción--</option>
-
+                                                    @foreach($semanas as $key=>$value)
+                                                        <option value="{{$key}}">{{$value}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -69,16 +71,16 @@
                                                 <select class="form-control selectpicker"
                                                         data-style="select-with-transition" style="width: 100%;"
                                                         required="required" title="--Seleccione una opción--"
-                                                        name="cargaacademica_id" id="cargaacademica_id" onchange="getEstudiantes()">
+                                                        name="calificacion" id="calificacion" onchange="getEstudiantes()">
                                                     <option value="">--Seleccione una opción--</option>
-
+                                                    <option value="SATISFACTORIO">SATISFACTORIO</option>
+                                                    <option value="NO SATISFACTORIO">NO SATISFACTORIO</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-
                                     <div class="col-md-12">
                                         <div class="form-group bmd-form-group">
                                             <div class="form-line">

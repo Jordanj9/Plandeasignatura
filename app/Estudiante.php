@@ -32,4 +32,9 @@ class Estudiante extends Model
     {
         return $this->hasMany(Asistencia::class);
     }
+
+    public function evaluacions()
+    {
+        return $this->hasMany(Evaluacion::class);
+    }
 }

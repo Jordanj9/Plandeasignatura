@@ -44,4 +44,9 @@ class Semana extends Model
     {
         return $this->belongsTo(Unidad::class);
     }
+
+    public function evaluacions()
+    {
+        return $this->hasMany(Evaluacion::class);
+    }
 }

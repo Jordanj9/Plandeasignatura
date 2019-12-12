@@ -28,8 +28,7 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('evaluacion.create') }}" class="dropdown-item" href="#">Agregar
-                                        nueva Evaluación</a>
+
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -56,7 +55,7 @@
                                     <td>{{$p->asignatura->nombre}}</td>
                                     <td>{{$p->grupo->nombre}}</td>
                                     <td>
-                                        <a href="{{ route('evaluacion.create',$p->id)}}"
+                                        <a href="{{ route('evaluacion.edit',$p->id)}}"
                                            class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Realizar Evaluación"><i
                                                 class="material-icons">description</i></a>
