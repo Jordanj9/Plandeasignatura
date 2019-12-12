@@ -35,4 +35,9 @@ class Periodo extends Model
     {
         return $this->hasMany(Cargaacademica::class);
     }
+
+    public function plandetrabajos()
+    {
+        return $this->hasMany(Plandetrabajo::class);
+    }
 }

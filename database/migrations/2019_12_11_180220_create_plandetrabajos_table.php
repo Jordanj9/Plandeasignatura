@@ -15,6 +15,10 @@ class CreatePlandetrabajosTable extends Migration
     {
         Schema::create('plandetrabajos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('docente_id')->unsigned();
+            $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');
+            $table->bigInteger('periodo_id')->unsigned();
+            $table->foreign('periodo_id')->references('id')->on('periodos')->onDelete('cascade');
             $table->timestamps();
         });
     }
