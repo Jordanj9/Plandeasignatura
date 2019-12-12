@@ -54,7 +54,7 @@
                     </a>
                 </div>
             @endif
-                @if(session()->exists('MOD_REPORTE'))
+                @if(session()->exists('MOD_EVALUACION'))
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <a href="{{route('admin.evaluacion')}}">
                             <div class="card card-stats">

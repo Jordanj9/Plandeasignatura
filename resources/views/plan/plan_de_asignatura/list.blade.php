@@ -79,11 +79,6 @@
                                                data-toggle="tooltip"
                                                data-placement="top" title="Eliminar Plan Asignatura"><i
                                                     class="material-icons">delete</i></a>
-                                            <a href="{{ route('plandeasignatura.show',$p->id)}}"
-                                               class="btn btn-link btn-success btn-just-icon remove"
-                                               data-toggle="tooltip"
-                                               data-placement="top" title="Ver Plan de Asignatura"><i
-                                                    class="material-icons">remove_red_eye</i></a>
                                         @endif
                                         <a href="{{ route('plandeasignatura.show',$p->id)}}"
                                            class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"

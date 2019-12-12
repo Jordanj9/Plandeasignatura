@@ -52,14 +52,14 @@
                             <tbody>
                             @foreach($cargas as $p)
                                 <tr>
-                                    <td>{{$p->cargaacademica->asignatura->codigo}}</td>
-                                    <td>{{$p->cargaacademica->asignatura->nombre}}</td>
-                                    <td>{{$p->cargaacademica->grupo->grupo}}</td>
+                                    <td>{{$p->asignatura->codigo}}</td>
+                                    <td>{{$p->asignatura->nombre}}</td>
+                                    <td>{{$p->grupo->nombre}}</td>
                                     <td>
                                         <a href="{{ route('evaluacion.create',$p->id)}}"
                                            class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Ver Plan de Asistencia"><i
-                                                class="material-icons">remove_red_eye</i></a>
+                                           data-placement="top" title="Realizar Evaluación"><i
+                                                class="material-icons">description</i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -69,8 +69,6 @@
                                 <th>CODIGO DE LA ASIGNATURA</th>
                                 <th>ASIGNATURA</th>
                                 <th>GRUPO</th>
-                                <th>FECHA</th>
-                                <th>CREADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </tfoot>

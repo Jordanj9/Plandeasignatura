@@ -24,10 +24,14 @@ class EvaluacionController extends Controller
         $hoy = getdate();
         $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
         $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
-        $grupos = Cargaacademica::where([['estudiante_id', $estudiante->id], ['periodo_id', $per->id]])->get();
-        if ($grupos != null) {
-            foreach ($grupos as $c) {
-                $cargas[$c->id] = $c->asignatura->codigo . "-" . $c->asignatura->nombre . " - " . $c->grupo->nombre;
+        $grupos = $estudiante->cargaacademicas;
+        //$grupos = Cargaacademica::where([['estudiante_id', $estudiante->id], ['periodo_id', $per->id]])->get();
+        $cargas = collect();
+        if($grupos != null){
+            foreach ($grupos as $item){
+                if($item->periodo_id == $per->id){
+                    $cargas[]=$item;
+                }
             }
         }
         return view('evaluacion.evaluacion.list')
@@ -42,7 +46,7 @@ class EvaluacionController extends Controller
      */
     public function create()
     {
-
+        return view('evaluacion.evaluacion.create')->with('location','evaluacion');
     }
 
     /**

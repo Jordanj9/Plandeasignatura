@@ -187,7 +187,7 @@
                         </li>
                     @endif
                 @endif
-                @if(session()->exists('MOD_REPORTE'))
+                @if(session()->exists('MOD_EVALUACION'))
                     @if($location=='evaluacion')
                         <li class="nav-item active">
                             <a class="nav-link" href="{{route('admin.evaluacion')}}">

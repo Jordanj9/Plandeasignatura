@@ -46,7 +46,7 @@
                             @csrf
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group bmd-form-group">
                                             <div class="form-line">
                                                 <label class="control-label">SEMANA</label>
@@ -55,20 +55,37 @@
                                                         required="required" title="--Seleccione una opción--"
                                                         name="cargaacademica_id" id="cargaacademica_id" onchange="getEstudiantes()">
                                                     <option value="">--Seleccione una opción--</option>
-                                                    @foreach($cargas as $key=>$value)
-                                                        <option value="{{$key}}">{{$value}}</option>
-                                                    @endforeach
+
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12"  >
                                         <div class="form-group bmd-form-group">
                                             <div class="form-line">
-                                                <label class="control-label">Fecha de Asistencia</label>
-                                                <input type="date" class="form-control"
-                                                       placeholder="Digite la Fecha"
-                                                       name="fechaasistencia" required="required"/>
+                                                <label class="control-label">CALIFICACIÓN</label>
+                                                <select class="form-control selectpicker"
+                                                        data-style="select-with-transition" style="width: 100%;"
+                                                        required="required" title="--Seleccione una opción--"
+                                                        name="cargaacademica_id" id="cargaacademica_id" onchange="getEstudiantes()">
+                                                    <option value="">--Seleccione una opción--</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="form-line">
+                                                <label class="control-label">Descripción</label>
+                                                <input type="text" class="form-control"
+                                                       placeholder="Ingrese su Descripción"
+                                                       name="descripcion" required="required"/>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +94,7 @@
                             <div class="form-group">
                                 <br/><br/><a href="{{route('asistencia.index')}}" class="btn btn-danger btn-round">Cancelar</a>
                                 <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
-                                <button class="btn btn-success btn-round" type="submit">Guardar</button>
+                                <button class="btn btn-success btn-round" type="submit">Evaluar</button>
                             </div>
                         </form>
                     </div>
