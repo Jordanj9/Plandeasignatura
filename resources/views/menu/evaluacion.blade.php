@@ -20,19 +20,22 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{route('asistencia.index')}}">
-                        <button class="btn btn-outline-success btn-round">
-                            <i class="material-icons">spellcheck</i> TOMAR ASISTENCIA
-                            <div class="ripple-container"></div>
-                        </button>
-                    </a>
-                    <a href="{{route('evaluacion.index')}}">
-                        <button class="btn btn-outline-success btn-round">
-                            <i class="material-icons">tab</i> EVALUACIÓN
-                            <div class="ripple-container"></div>
-                        </button>
-                    </a>
-
+                    @if(session()->exists('PAG_EVALUACION-ASISTENCIA'))
+                        <a href="{{route('asistencia.index')}}">
+                            <button class="btn btn-outline-success btn-round">
+                                <i class="material-icons">spellcheck</i> TOMAR ASISTENCIA
+                                <div class="ripple-container"></div>
+                            </button>
+                        </a>
+                    @endif
+                    @if(session()->exists('PAG_EVALUACION-EVALUACION'))
+                        <a href="{{route('evaluacion.index')}}">
+                            <button class="btn btn-outline-success btn-round">
+                                <i class="material-icons">tab</i> EVALUACIÓN
+                                <div class="ripple-container"></div>
+                            </button>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

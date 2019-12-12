@@ -31,7 +31,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                     @if(session('ROL') == 'ADMINISTRADOR')
                                     <a href="{{ route('plandeasignatura.create') }}" class="dropdown-item" href="#">Agregar
-                                        nueva asignatura</a>
+                                        nuevo plan asignatura</a>
                                     @endif
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
