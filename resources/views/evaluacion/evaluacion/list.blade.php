@@ -5,9 +5,8 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.plan')}}"> Módulo Planes </a><span
-                        class="fa-angle-right fa"></span>
-                    Plan de Asignatura
+                        href="{{route('admin.plan')}}"> Módulo Evaluación </a><span
+                        class="fa-angle-right fa"></span> Evaluación
                 </p>
             </div>
         </div>
@@ -19,7 +18,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">PLANES - PLAN DE ASIGNATURA</h4>
+                        <h4 class="card-title">EVALUACIONES - EVALUACION</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -29,10 +28,7 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    @if(session('ROL') == 'ADMINISTRADOR')
-                                    <a href="{{ route('plandeasignatura.create') }}" class="dropdown-item" href="#">Agregar
-                                        nueva asignatura</a>
-                                    @endif
+
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -48,42 +44,21 @@
                             <tr>
                                 <th>CODIGO DE LA ASIGNATURA</th>
                                 <th>ASIGNATURA</th>
-                                <th>PERIODO</th>
-                                <th>PRE-REQUISITOS</th>
-                                <th>CO-REQUISITOS</th>
-                                <th>CREADO</th>
+                                <th>GRUPO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($planes as $p)
+                            @foreach($cargas as $p)
                                 <tr>
                                     <td>{{$p->asignatura->codigo}}</td>
                                     <td>{{$p->asignatura->nombre}}</td>
-                                    <td>{{$p->periodo->anio."-".$p->periodo->periodo}}</td>
-                                    <td>{{$p->prerequisitos}}</td>
-                                    <td>{{$p->corequisitos}}</td>
-                                    <td>{{$p->created_at}}</td>
+                                    <td>{{$p->grupo->nombre}}</td>
                                     <td>
-                                        @if(session('ROL') == 'ADMINISTRADOR')
-                                            <a href="{{ route('unity.inicio',$p->id)}}"
-                                               class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                               data-placement="top" title="Gestionar Contenido"><i
-                                                    class="material-icons">navigate_next</i></a>
-                                            <a href="{{ route('plandeasignatura.edit',$p->id)}}"
-                                               class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                               data-placement="top" title="Editar Plan de Asignatura"><i
-                                                    class="material-icons">mode_edit</i></a>
-                                            <a href="{{ route('plandeasignatura.delete',$p->id)}}"
-                                               class="btn btn-link btn-danger btn-just-icon remove"
-                                               data-toggle="tooltip"
-                                               data-placement="top" title="Eliminar Plan Asignatura"><i
-                                                    class="material-icons">delete</i></a>
-                                        @endif
-                                        <a href="{{ route('plandeasignatura.show',$p->id)}}"
+                                        <a href="{{ route('evaluacion.edit',$p->id)}}"
                                            class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Ver Plan de Asignatura"><i
-                                                class="material-icons">remove_red_eye</i></a>
+                                           data-placement="top" title="Realizar Evaluación"><i
+                                                class="material-icons">description</i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -92,10 +67,7 @@
                             <tr>
                                 <th>CODIGO DE LA ASIGNATURA</th>
                                 <th>ASIGNATURA</th>
-                                <th>PERIODO</th>
-                                <th>PRE-REQUISITOS</th>
-                                <th>CO-REQUISITOS</th>
-                                <th>CREADO</th>
+                                <th>GRUPO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </tfoot>
@@ -131,7 +103,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione los planes de asignaturas.
+                    <strong>Detalles: </strong>Gestione las Evluaciones.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>

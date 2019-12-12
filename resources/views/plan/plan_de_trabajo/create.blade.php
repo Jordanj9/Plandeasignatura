@@ -73,6 +73,16 @@
                                     <div class="tab-pane active" id="about">
                                         <h5 class="info-text"> Datos del Plan De Trabajo</h5>
                                         <div class="col-md-12">
+                                            <table align="right">
+                                                <thead>
+                                                <th>
+                                                    <td>
+                                                    PERIODO LECTIVO: 2019-2
+                                                </td>
+                                                </th>
+                                                </thead>
+                                            </table>
+                                            <br>
                                             <table class="table-bordered " style="width: 100%; color: black">
                                                 <thead style="background-color: #38A970;color: white;">
                                                 <th colspan="9  ">

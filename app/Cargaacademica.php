@@ -33,4 +33,9 @@ class Cargaacademica extends Model
     {
         return $this->belongsToMany(Estudiante::class, 'cargaacademica_estudiantes');
     }
+
+    public function asistencia()
+    {
+        return $this->hasMany(Asistencia::class);
+    }
 }
