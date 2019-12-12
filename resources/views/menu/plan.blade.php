@@ -32,7 +32,7 @@
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="#">
+                    <a href="{{route('plandetrabajo.index')}}">
                         <button class="btn btn-outline-success btn-round">
                             <i  class="material-icons">work</i> PLAN DE TRABAJO
                             <div class="ripple-container"></div>

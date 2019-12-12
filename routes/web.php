@@ -113,4 +113,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     //Buscar un ejeTematico mediante javascripts
     Route::get('plandedesarrolloasignatura/{id}/get/ejetematicos', 'PlandedesarrolloasignaturaController@getEjetematicos')->name('plandedesarrolloasignatura.getEjetematicos');
 
+    //PLAN DE TRABAJO
+    //Route::resource('plandetrabajo', 'PlandetrabajoController');
+    //Route::get('plandetrabajo/{id}/delete', 'PlandetrabajoController@destroy')->name('plandetrabajo.delete');
+    //Route::get('plandetrabajo/{id}/create2', 'PlandetrabajoController@create')->name('plandetrabajo.crear');
+    //PLAN DE TRABAJO
+
+    Route::resource('plandetrabajo', 'PlandetrabajoController');
+    Route::get('plandetrabajo/{id}/delete', 'PlandetrabajoController@destroy')->name('plandetrabajo.delete');
 });
