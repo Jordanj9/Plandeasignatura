@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Auditoriaacademico;
 use App\Cargaacademica;
+use App\Docente;
 use App\Facultad;
 use App\Grupo;
 use App\Periodo;
@@ -19,12 +20,24 @@ class CargaacademicaController extends Controller
      */
     public function index()
     {
-        $cargaAcademica = Cargaacademica::all();
+        $u = Auth::user();
+        $doc = Docente::where('identificacion', $u->identificacion)->first();
+        $hoy = getdate();
+        $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
+        if($doc != null){
+            $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
+            if ($per == null) {
+                $cargaAcademica = collect();
+            }else{
+                $cargaAcademica = Cargaacademica::where([['docente_id', $doc->id], ['periodo_id', $per->id]])->get();
+            }
+        }else{
+            $cargaAcademica = Cargaacademica::all();
+        }
         $facultades = Facultad::all();
         return view('academico.carga_academica.list')
             ->with('location', 'academico')
-            ->with('cargaAcademica', $cargaAcademica)
-            ->with('facultades', $facultades);
+            ->with('cargaAcademica', $cargaAcademica);
     }
 
     /**

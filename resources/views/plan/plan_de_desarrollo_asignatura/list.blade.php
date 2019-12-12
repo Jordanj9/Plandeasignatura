@@ -38,57 +38,111 @@
                 </div>
                 <div class="card-body">
                     <div class="material-datatables">
-                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
-                               width="100%" style="width:100%">
-                            <thead>
-                            <tr>
-                                <th>CODIGO DE LA ASIGNATURA</th>
-                                <th>ASIGNATURA</th>
-                                <th>PERIODO</th>
-                                <th>PRE-REQUISITOS</th>
-                                <th>CO-REQUISITOS</th>
-                                <th>CREADO</th>
-                                <th>ACCIONES</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($planes as $p)
+                        @if(session('ROL') == 'DOCENTE')
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                   cellspacing="0"
+                                   width="100%" style="width:100%">
+                                <thead>
                                 <tr>
-                                    <td>{{$p->asignatura->codigo}}</td>
-                                    <td>{{$p->asignatura->nombre}}</td>
-                                    <td>{{$p->periodo->anio."-".$p->periodo->periodo}}</td>
-                                    <td>{{$p->prerequisitos}}</td>
-                                    <td>{{$p->corequisitos}}</td>
-                                    <td>{{$p->created_at}}</td>
-                                    <td>
-                                        @if(session('ROL')=='DOCENTE')
+                                    <th>CODIGO DE LA ASIGNATURA</th>
+                                    <th>ASIGNATURA</th>
+                                    <th>PERIODO</th>
+                                    <th>PRE-REQUISITOS</th>
+                                    <th>CO-REQUISITOS</th>
+                                    <th>CREADO</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($planes as $p)
+                                    <tr>
+                                        <td>{{$p->asignatura->codigo}}</td>
+                                        <td>{{$p->asignatura->nombre}}</td>
+                                        <td>{{$p->periodo->anio."-".$p->periodo->periodo}}</td>
+                                        <td>{{$p->prerequisitos}}</td>
+                                        <td>{{$p->corequisitos}}</td>
+                                        <td>{{$p->created_at}}</td>
+                                        <td>
                                             <a href="{{ route('plandedesarrolloasignatura.crear',$p->id)}}"
                                                class="btn btn-link btn-success btn-just-icon remove"
                                                data-toggle="tooltip"
-                                               data-placement="top" title="Crear Plan de Desarrollo de Asignatura"><i
+                                               data-placement="top"
+                                               title="Crear Plan de Desarrollo de Asignatura"><i
                                                     class="material-icons">note_add</i></a>
                                             <a href="{{ route('plandedesarrolloasignatura.show',$p->id)}}"
                                                class="btn btn-link btn-success btn-just-icon remove"
                                                data-toggle="tooltip"
                                                data-placement="top" title="Ver Plan de Desarrollo de Asignatura"><i
                                                     class="material-icons">remove_red_eye</i></a>
-                                        @endif
-                                    </td>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>CODIGO DE LA ASIGNATURA</th>
+                                    <th>ASIGNATURA</th>
+                                    <th>PERIODO</th>
+                                    <th>PRE-REQUISITOS</th>
+                                    <th>CO-REQUISITOS</th>
+                                    <th>CREADO</th>
+                                    <th>ACCIONES</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>CODIGO DE LA ASIGNATURA</th>
-                                <th>ASIGNATURA</th>
-                                <th>PERIODO</th>
-                                <th>PRE-REQUISITOS</th>
-                                <th>CO-REQUISITOS</th>
-                                <th>CREADO</th>
-                                <th>ACCIONES</th>
-                            </tr>
-                            </tfoot>
-                        </table>
+                                </tfoot>
+                            </table>
+                        @else
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                   cellspacing="0"
+                                   width="100%" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>CODIGO DE LA ASIGNATURA</th>
+                                    <th>ASIGNATURA</th>
+                                    <th>PERIODO</th>
+                                    <th>PRE-REQUISITOS</th>
+                                    <th>CO-REQUISITOS</th>
+                                    <th>ESTADO</th>
+                                    <th>DOCENTE</th>
+                                    <th>CREADO</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($plandesarrollos as $p)
+                                    <tr>
+                                        <td>{{$p->plandeasignatura->asignatura->codigo}}</td>
+                                        <td>{{$p->plandeasignatura->asignatura->nombre}}</td>
+                                        <td>{{$p->plandeasignatura->periodo->anio."-".$p->plandeasignatura->periodo->periodo}}</td>
+                                        <td>{{$p->plandeasignatura->prerequisitos}}</td>
+                                        <td>{{$p->plandeasignatura->corequisitos}}</td>
+                                        <td>{{$p->estado}}</td>
+                                        <td>{{$p->docente->primer_nombre." ".$p->docente->primer_apellido}}</td>
+                                        <td>{{$p->created_at}}</td>
+                                        <td>
+                                            <a href="{{ route('plandedesarrolloasignatura.show',$p->id)}}"
+                                               class="btn btn-link btn-success btn-just-icon remove"
+                                               data-toggle="tooltip"
+                                               data-placement="top" title="Ver Plan de Desarrollo de Asignatura"><i
+                                                    class="material-icons">remove_red_eye</i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>CODIGO DE LA ASIGNATURA</th>
+                                    <th>ASIGNATURA</th>
+                                    <th>PERIODO</th>
+                                    <th>PRE-REQUISITOS</th>
+                                    <th>CO-REQUISITOS</th>
+                                    <th>ESTADO</th>
+                                    <th>DOCENTE</th>
+                                    <th>CREADO</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        @endif
                     </div>
                 </div>
             </div>

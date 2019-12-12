@@ -116,18 +116,18 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($plandedesarrollos as $p)
+                                                @foreach($plandedesarrollos->semanas as $p)
                                                     <tr>
                                                         <td>
-                                                            <strong>{{$p->semana->semana}}</strong>
+                                                            <strong>{{$p->semana}}</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>{{$p->semana->unidad->nombre}}
-                                                                <br>{{$p->semana->unidad->descripcion}}</strong>
+                                                            <strong>{{$p->unidad->nombre}}
+                                                                <br>{{$p->unidad->descripcion}}</strong>
                                                         </td>
 
                                                         <td>
-                                                            @foreach($p->semana->ejetematicos as $e)
+                                                            @foreach($p->ejetematicos as $e)
                                                                 <strong>
                                                                     <li>{{$e->nombre}}</li>
                                                                     <br></strong>
@@ -136,27 +136,27 @@
                                                         <td>
 
                                                             <strong>
-                                                                {{$p->semana->tema_trabajo}}
+                                                                {{$p->tema_trabajo}}
                                                             </strong>
 
                                                         </td>
                                                         <td>
                                                             <strong>
-                                                                {{$p->semana->estrategias}}
+                                                                {{$p->estrategias}}
                                                             </strong>
                                                         </td>
                                                         <td>
                                                             <strong>
-                                                                {{$p->semana->competencias}}
+                                                                {{$p->competencias}}
                                                             </strong>
                                                         </td>
                                                         <td>
-                                                            @foreach($p->evaluacion as $e)
+                                                            @foreach($p->eval as $e)
                                                                 <a target="_blank" href="{{asset('docs/evaluacion/'.$e)}}">{{$e}}</a>
                                                             @endforeach
                                                         </td>
                                                         <td>
-                                                            @foreach($p->bibliografia as $e)
+                                                            @foreach($p->bibl as $e)
                                                                 <a target="_blank" href="{{asset('docs/bibliografia/'.$e)}}">{{$e}}</a>
                                                             @endforeach
                                                         </td>

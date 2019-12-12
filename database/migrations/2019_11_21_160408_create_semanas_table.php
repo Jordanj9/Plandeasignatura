@@ -23,6 +23,8 @@ class CreateSemanasTable extends Migration
             $table->string('bibliografia');
             $table->bigInteger('unidad_id')->unsigned();
             $table->foreign('unidad_id')->references('id')->on('unidads')->onDelete('cascade');
+            $table->bigInteger('plandedesarrolloasignatura_id')->unsigned();
+            $table->foreign('plandedesarrolloasignatura_id')->references('id')->on('plandedesarrolloasignaturas')->onDelete('cascade');
             $table->timestamps();
         });
     }
