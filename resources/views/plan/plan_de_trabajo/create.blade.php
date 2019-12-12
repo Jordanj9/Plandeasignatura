@@ -69,273 +69,217 @@
                                         <h5 class="info-text"> Datos del Plan de Asignatura</h5>
                                         <div class="col-md-12">
                                             <table class="table-bordered " style="width: 100%; color: black">
-                                                <thead align="center" style="background-color: #38A970;color: white;">
+                                                <thead style="background-color: #38A970;color: white;">
                                                 <th colspan="9  ">
                                                     DOCENTE
                                                 </th>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th colspan="1">DOCENTE:</th>
-                                                        <td colspan="9"><strong>PROFESOR AUXILIAR</strong></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th colspan="1">CATEGORIA
-                                                            <strong></strong></th>
-                                                        <td colspan="9"><strong>PROFESOR AUXILIAR: </strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th colspan="1">VINCULACION:
-                                                            <strong></strong></th>
-                                                        <td colspan="9"><strong>PLANTA: </strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th colspan="1">DEDICACION:
-                                                            <strong></strong></th>
-                                                        <td colspan="9"><strong>TIEMPO COMPLETO: </strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th colspan="1">SEDE:
-                                                            <strong></strong></th>
-                                                        <td colspan="9"><strong>VALLEDUPAR: </strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th colspan="1">FACULTAD:
-                                                            <strong></strong></th>
-                                                        <td colspan="9"><strong>INGENIERIA Y TECNOLOGIA </strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th colspan="1">PROGRAMA:
-                                                            <strong></strong></th>
-                                                        <td colspan="9"><strong>INGENIERIA DE SISTEMAS </strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th colspan="1">DEPARTAMENTO:
-                                                            <strong></strong></th>
-                                                        <td colspan="9"><strong>INGENIERIA E INFORMATICA </strong>
-                                                        </td>
-                                                    </tr>
+                                                <tr>
+                                                    <th colspan="1">1. DOCENTE:</th>
+                                                    <td colspan="9"><strong>PROFESOR AUXILIAR</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="1">2. CATEGORIA
+                                                        <strong></strong></th>
+                                                    <td colspan="9"><strong>PROFESOR AUXILIAR: </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="1">3. VINCULACION:
+                                                        <strong></strong></th>
+                                                    <td colspan="9"><strong>PLANTA: </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="1">4. DEDICACION:
+                                                        <strong></strong></th>
+                                                    <td colspan="9"><strong>TIEMPO COMPLETO: </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="1">5. SEDE:
+                                                        <strong></strong></th>
+                                                    <td colspan="9"><strong>VALLEDUPAR: </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="1">6. FACULTAD:
+                                                        <strong></strong></th>
+                                                    <td colspan="9"><strong>INGENIERIA Y TECNOLOGIA </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="1">7. PROGRAMA:
+                                                        <strong></strong></th>
+                                                    <td colspan="9"><strong>INGENIERIA DE SISTEMAS </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="1">8. DEPARTAMENTO:
+                                                        <strong></strong></th>
+                                                    <td colspan="9"><strong>INGENIERIA E INFORMATICA </strong>
+                                                    </td>
+                                                </tr>
                                                 </tbody>
-                                                <thead align="center" style="background-color: #38A970;color: white;">
+                                                <thead style="background-color: #38A970;color: white;">
                                                 <th colspan="9">
-                                                    ASIGNATURA
+                                                    9. ASIGNATURA
                                                 </th>
                                                 </thead>
                                                 <tr align="center">
-                                                <td rowspan="2"><b>CODIGO</b></td>
+                                                    <td rowspan="2"><b>CODIGO</b></td>
                                                     <td rowspan="2"><b>NOMBRE DE LA ASIGNATURA</b></td>
-                                                <td colspan="2"><b>I.H.S</b></td>
+                                                    <td colspan="2"><b>I.H.S</b></td>
                                                 </tr>
                                                 <tr align="center">
                                                     <td><b>TEORICA</b></td>
                                                     <td><b>PRACTICA</b></td>
                                                 </tr>
                                                 <tr align="center">
-                                                    <td ><b>CODIGO</b></td>
-                                                    <td ><b>NOMBRE DE LA ASIGNATURA</b></td>
+                                                    <td><b>CODIGO</b></td>
+                                                    <td><b>NOMBRE DE LA ASIGNATURA</b></td>
                                                     <td colspan="1"><b>I.H.S</b></td>
                                                     <td colspan="1"><b>I.H.S</b></td>
                                                 </tr>
-
-
                                             </table>
                                         </div>
                                         <br>
-                                        <div class="col-sm-12 bg-success"><h5 class="info-text"
-                                                                              style="color: white; padding: 15px">
-                                                <strong>Datos del Plan de Trabajo</strong>
-                                            </h5>
+                                        <div class="col-md-12">
+                                            <table class="table-bordered " style="width: 100%; color: black">
+                                                <thead style="background-color: #38A970;color: white;">
+                                                <th colspan="9  ">
+                                                    ACTIVIDADES DOCENTE
+                                                </th>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>10. TOTAL DE ASIGNATURAS A CARGO</td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>11. TOTAL DE GRUPOS A CARGO</td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>12. TOTAL DE ESTUDIANTES EN LOS GRUPOS A CARGO</td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>13. TOTAL DE HORAS DE DOCENCIA DIRECTA ( TEÓRICA + PRÁCTICA)
+                                                    </td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>14. HORAS DE ATENCIÓN A ESTUDIANTES (TUTORIAS - ASESORIAS)</td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>15. HORAS DE PREPARACIÓN Y EVALUACIÓN DE LAS ASIGNATURAS</td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>16. TOTAL DE HORAS DEDICADAS A LAS ACTIVIDADES DOCENTES
+                                                        (13+14+15)
+                                                    </td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="20">
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="row justify-content-center">
-                                            <div class="col-sm-6">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">layers_clear</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label class="">Semanas</label>
-                                                            <select class="form-control select2"
-                                                                    data-style="select-with-transition"
-                                                                    style="width: 100%;"
-                                                                    title="--Seleccione una opción--"
-                                                                    name="semana" id="semana" required="required">
-                                                                <option value="">--Seleccione una opción--</option>
-
-                                                                <option value=""></option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">layers_clear</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label class="">Unidad</label>
-                                                            <select class="form-control select2"
-                                                                    data-style="select-with-transition"
-                                                                    style="width: 100%;"
-                                                                    name="unidad_id" id="unidad_id" required="required"
-                                                                    onchange="getEjesTematicos()">
-                                                                <option value="">--Seleccione una opción--</option>
-
-                                                                <option value=""></option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">date_range</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label class="">Ejes Tematicos</label>
-                                                            <select class="form-control select2"
-                                                                    data-style="select-with-transition"
-                                                                    style="width: 100%"
-                                                                    title="--Seleccione una opción--"
-                                                                    name="ejetematico_id[]" id="ejetematico_id"
-                                                                    required="required"
-                                                                    multiple="">
-                                                                <option value="">--Seleccione una opción--</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">restore</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label for="exampleInput1"
-                                                                   class="bmd-label-floating">Temas de Trabajo
-                                                                Independiente (Requerido) </label>
-                                                            <textarea rows="7" class="form-control" name="tema_trabajo"
-                                                                      required="required"
-                                                                      id="tema_trabajo_id"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">update</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label for="exampleInput1"
-                                                                   class="bmd-label-floating">Estrategias Metodológicas
-                                                                o Acciones Pedagógicas(Requerido) </label>
-                                                            <textarea rows="7" class="form-control" name="estrategias"
-                                                                      required="required"
-                                                                      id="estrategias_id"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <table class="table-bordered " style="width: 100%; color: black">
+                                                <thead style="background-color: #38A970;color: white;">
+                                                <th colspan="9  ">
+                                                    ACTIVIDADES DOCENTES COMPLEMENTARIAS
+                                                </th>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>17. HORAS DE ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO (CUADRO 1)</td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>18. HORAS DEDICADAS A LA INVESTIGACIÓN APROBADA (CUADRO 2)</td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>19. HORAS DEDICADAS A LA PROYECCIÓN SOCIAL REGISTRADA (CUADRO 3)</td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>20. HORAS DEDICADAS A LA COOPERACIÓN INTERINSTITUCIONAL (CUADRO 4)
+                                                    </td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21. HORAS DEDICADAS PARA CRECIMIENTO PERSONAL Y PROFESIONAL (CUADRO 5)</td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>22. HORAS DEDICADAS A LAS ACTIVIDADES ADMINISTRATIVAS (CUADRO 6)</td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>23. HORAS PARA OTRAS ACTIVIDADES (CUADRO 7)
+                                                    </td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="20">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>24. TOTAL HORAS DEDICADAS A LAS ACTIVIDADES DOCENTES  COMPLEMENTARIAS<br>(17+18+19+20+21+22+23)
+                                                    </td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="20">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>TOTAL DE HORAS POR SEMANA DEL PLAN DE TRABAJO  (16 + 24)</td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="20">
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="account">
                                         <div class="row justify-content">
-                                            <div class="col-sm-12">
-                                                <div class="input-group form-control-lg">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">restore</i>
-                                                            </span>
-                                                    </div>
-                                                    <div class="form-group bmd-form-group">
-                                                        <div class="form-line">
-                                                            <label for="exampleInput1"
-                                                                   class="bmd-label-floating">Temas de Trabajo
-                                                                Independiente
-                                                                (Requerido) </label><textarea rows="7"
-                                                                                              class="form-control"
-                                                                                              name="competencias"
-                                                                                              id="competencias_id"
-                                                                                              required="required"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;text-align: center">
+                                                    <strong>ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO</strong>
+                                                </h5>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div>
-                                                    <div class="input-group form-control-lg">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">layers_clear</i>
-                                                            </span> <label for="exampleInput1"
-                                                                           class="bmd-label-floating"> Evaluaciones
-                                                                (Requerido)</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="fileinput fileinput-new text-center"
-                                                         data-provides="fileinput">
-                                                        <div class="form-line">
-                                                            <input type="file" class="form-control"
-                                                                   placeholder="Evaluaciones" name="evaluacion[]"
-                                                                   required="required"
-                                                                   multiple/>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="col-md-12" id="rr">
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div>
-                                                    <div class="input-group form-control-lg">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">layers_clear</i>
-                                                            </span> <label for="exampleInput1"
-                                                                           class="bmd-label-floating">Bibliografias
-                                                                (Requerido) </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="fileinput fileinput-new text-center"
-                                                         data-provides="fileinput">
-                                                        <div class="form-line">
-                                                            <input type="file" class="form-control"
-                                                                   placeholder="Bibliografia" name="bibliografia[]"
-                                                                   required="required"
-                                                                   multiple/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a class="btn bg-blue waves-effect" onclick="add()">AGREGAR CAMPO PARA RECURSO</a>
                                         </div>
                                     </div>
 
@@ -429,6 +373,29 @@
             });
         });
 
+        function add() {
+            var html = $("#rr").html();
+            $("#rr").html(html + "<div class='row'><div class='col-md-12'>"
+                + "<div class='form-group'>"
+                + "<div class='form-line'>"
+                + "<label>Titulo</label>"
+                + "<input class='form-control' type='text' name='titulo[]'  multiple>"
+                + "<label>Acta</label>"
+                + "<input class='form-control' type='text' name='acta[]'  multiple>"
+                + "<label>Fecha</label>"
+                + "<input class='form-control' type='date' name='fecha[]'  multiple>"
+                + "<label>Fecha Inicio</label>"
+                + "<input class='form-control' type='date' name='fechainicio[]'  multiple>"
+                + "<label>Fecha De terminación</label>"
+                + "<input class='form-control' type='date' name='fechafin[]'  multiple>"
+                + "<label>Horas/Semanas</label>"
+                + "<input class='form-control' type='number' name='hora[]'  multiple>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "</div>");
+        }
+
         function getEjesTematicos() {
             var id = $("#unidad_id").val();
             $.ajax({
@@ -454,4 +421,5 @@
             });
         }
     </script>
+
 @endsection
