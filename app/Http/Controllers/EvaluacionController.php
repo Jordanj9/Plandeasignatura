@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Cargaacademica;
+use App\Docente;
+use App\Estudiante;
 use App\Evaluacion;
+use App\Periodo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EvaluacionController extends Controller
 {
@@ -14,7 +19,20 @@ class EvaluacionController extends Controller
      */
     public function index()
     {
-        //
+        $u = Auth::user();
+        $estudiante = Estudiante::where('identificacion', $u->identificacion)->first();
+        $hoy = getdate();
+        $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
+        $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
+        $grupos = Cargaacademica::where([['estudiante_id', $estudiante->id], ['periodo_id', $per->id]])->get();
+        if ($grupos != null) {
+            foreach ($grupos as $c) {
+                $cargas[$c->id] = $c->asignatura->codigo . "-" . $c->asignatura->nombre . " - " . $c->grupo->nombre;
+            }
+        }
+        return view('evaluacion.evaluacion.list')
+            ->with('location','evaluacion')
+            ->with('cargas', $cargas);
     }
 
     /**
@@ -24,7 +42,7 @@ class EvaluacionController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
