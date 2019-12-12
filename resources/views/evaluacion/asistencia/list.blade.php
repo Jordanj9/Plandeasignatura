@@ -64,7 +64,7 @@
                                             <a href="{{ route('asistencia.show',$asis[$i]->id)}}"
                                                class="btn btn-link btn-success btn-just-icon remove"
                                                data-toggle="tooltip"
-                                               data-placement="top" title="Ver Plan de Asistencia"><i
+                                               data-placement="top" title="Ver  de Asistencia"><i
                                                     class="material-icons">remove_red_eye</i></a>
                                         </td>
                                     </tr>

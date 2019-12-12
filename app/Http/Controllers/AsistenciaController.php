@@ -107,9 +107,17 @@ class AsistenciaController extends Controller
      * @param \App\Asistencia $asistencia
      * @return \Illuminate\Http\Response
      */
-    public function show(Asistencia $asistencia)
+    public function show($id)
     {
-        //
+        $carga= Cargaacademica::find($id);
+        $asis = Asistencia::find($id);
+        $asistencia = Asistencia::where([['fecha',$asis->fecha],['cargaacademica_id',$asis->cargaacademica_id]])->get();
+        //dd($carga);
+        return view('evaluacion.asistencia.show')
+            ->with('location','evaluacion')
+            ->with('asistencia',$asistencia)
+            ->with('asis',$asis)
+            ->with('carga',$carga);
     }
 
     /**
