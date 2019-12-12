@@ -14,7 +14,9 @@ class PlandetrabajoController extends Controller
      */
     public function index()
     {
-        return view('plan.plan_de_trabajo.create')->with('location', 'plan');
+
+
+        return view('plan.plan_de_trabajo.list')->with('location', 'plan');
 
     }
 
