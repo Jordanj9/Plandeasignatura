@@ -51,7 +51,7 @@
                             <input type="hidden" name="plandeasignatura_id" value="{{$planasignatura->id}}">
                             <div class="card-header text-center">
                                 <h3 class="card-title">
-                                    Registro del Plan de Desarrollo de Desarrollo de Asignatura
+                                    Registro del Plan de Desarrollo de Asignatura
                                 </h3>
                             </div>
                             <div class="wizard-navigation">
@@ -256,8 +256,7 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
                                                             <label for="exampleInput1"
-                                                                   class="bmd-label-floating">Temas de Trabajo
-                                                                Independiente
+                                                                   class="bmd-label-floating">Competencias
                                                                 (Requerido) </label><textarea rows="7"
                                                                                               class="form-control"
                                                                                               name="competencias"
