@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('academico', 'MenuController@academico')->name('admin.academico');
     Route::get('plan', 'MenuController@plan')->name('admin.plan');
     Route::get('reporte', 'MenuController@reporte')->name('admin.reporte');
+    Route::get('evaluacion', 'MenuController@evaluacion')->name('admin.evaluacion');
     Route::post('acceso', 'HomeController@confirmaRol')->name('rol');
     Route::get('inicio', 'HomeController@inicio')->name('inicio');
 });
@@ -121,4 +122,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
 
     Route::resource('plandetrabajo', 'PlandetrabajoController');
     Route::get('plandetrabajo/{id}/delete', 'PlandetrabajoController@destroy')->name('plandetrabajo.delete');
+});
+
+//GRUPO DE RUTAS PARA EL MODULO DE EVALUACION
+Route::group(['middleware' => 'auth', 'prefix' => 'evaluacion'], function () {
+    //ASISTENCIA
+    Route::resource('asistencia', 'AsistenciaController');
+    Route::get('asistencia/get/estudiante/{id}/estudiantes', 'AsistenciaController@getEstudiantes')->name('asistencia.getEstudiante');
+    //EVALUACION
+    Route::resource('evaluacion', 'EvaluacionController');
+
 });

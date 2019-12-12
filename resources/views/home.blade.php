@@ -54,6 +54,23 @@
                     </a>
                 </div>
             @endif
+                @if(session()->exists('MOD_REPORTE'))
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <a href="{{route('admin.evaluacion')}}">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-success card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="material-icons">speaker_notes</i>
+                                    </div>
+                                    <p class="card-category">Modulo</p>
+                                    <h3 class="card-title">Evaluación</h3>
+                                </div>
+                                <div class="card-footer">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endif
             @if(session()->exists('MOD_REPORTE'))
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <a href="{{route('admin.usuarios')}}">

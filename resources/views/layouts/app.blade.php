@@ -188,6 +188,23 @@
                     @endif
                 @endif
                 @if(session()->exists('MOD_REPORTE'))
+                    @if($location=='evaluacion')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{route('admin.evaluacion')}}">
+                                <i class="material-icons">speaker_notes</i>
+                                <p> Evaluación</p>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.evaluacion')}}">
+                                <i class="material-icons">speaker_notes</i>
+                                <p> Evaluación</p>
+                            </a>
+                        </li>
+                    @endif
+                @endif
+                @if(session()->exists('MOD_REPORTE'))
                     @if($location=='reporte')
                         <li class="nav-item active">
                             <a class="nav-link" data-toggle="collapse" href="#formsExamples">
