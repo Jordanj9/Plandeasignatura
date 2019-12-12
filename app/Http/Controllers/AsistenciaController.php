@@ -20,7 +20,13 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        $asistencias = Asistencia::all();
+        $asistencias = Asistencia::all()->groupBy('fecha');
+        //dd($asistencias);
+//        foreach($asistencias as $as){
+//            foreach ($as as $a){
+//                dd($a);
+//            }
+//    }
         return view('evaluacion.asistencia.list')
             ->with('location', 'evaluacion')
             ->with('asistencias', $asistencias);
@@ -57,8 +63,42 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-
+        $existe = Asistencia::where([['fecha',$request->fechaasistencia],['cargaacademica_id',$request->cargaacademica_id]])->first();
+        if ($existe != null){
+            flash("La asistencia para el <strong>" . $request->fechaasistencia . "</strong> ya fue almacenada. Atención!")->warning();
+            return redirect()->route('asistencia.index');
+        }
+        $carga = Cargaacademica::find($request->cargaacademica_id);
+        $estudiantes = $carga->estudiantes;
+        if (isset($request->asistencia)) {
+            foreach ($request->asistencia as $item) {
+                foreach ($estudiantes as $est) {
+                    $asistencia = new Asistencia();
+                    $asistencia->fecha = $request->fechaasistencia;
+                    $asistencia->estudiante_id = $item;
+                    $asistencia->cargaacademica_id = $request->cargaacademica_id;
+                    if ($est->id == $item) {
+                        $asistencia->asistencia = "SI";
+                    } else {
+                        $asistencia->asistencia = "NO";
+                    }
+                    $asistencia->save();
+                }
+            }
+            flash("La asistencia para el <strong>" . $request->fechaasistencia . "</strong> fue almacenada de forma exitosa")->success();
+            return redirect()->route('asistencia.index');
+        } else {
+            foreach ($estudiantes as $est) {
+                $asistencia = new Asistencia();
+                $asistencia->fecha = $request->fechaasistencia;
+                $asistencia->asistencia = "NO";
+                $asistencia->estudiante_id = $est->id;
+                $asistencia->cargaacademica_id = $request->cargaacademica_id;
+                $asistencia->save();
+            }
+        }
+        flash("La asistencia para el <strong>" . $request->fechaasistencia . "</strong> fue almacenada de forma exitosa")->success();
+        return redirect()->route('asistencia.index');
     }
 
     /**

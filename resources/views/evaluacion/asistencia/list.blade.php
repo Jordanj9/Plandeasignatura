@@ -52,20 +52,23 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($asistencias as $p)
-                                <tr>
-                                    <td>{{$p->cargaacademica->asignatura->codigo}}</td>
-                                    <td>{{$p->cargaacademica->asignatura->nombre}}</td>
-                                    <td>{{$p->cargaacademica->grupo->grupo}}</td>
-                                    <td>{{$p->fecha}}</td>
-                                    <td>{{$p->created_at}}</td>
-                                    <td>
-                                        <a href="{{ route('asistencia.show',$p->id)}}"
-                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Ver Plan de Asistencia"><i
-                                                class="material-icons">remove_red_eye</i></a>
-                                    </td>
-                                </tr>
+                            @foreach($asistencias as $asis)
+                                @for($i = 0;$i < 1;$i++)
+                                    <tr>
+                                        <td>{{$asis[$i]->cargaacademica->asignatura->codigo}}</td>
+                                        <td>{{$asis[$i]->cargaacademica->asignatura->nombre}}</td>
+                                        <td>{{$asis[$i]->cargaacademica->grupo->grupo}}</td>
+                                        <td>{{$asis[$i]->fecha}}</td>
+                                        <td>{{$asis[$i]->created_at}}</td>
+                                        <td>
+                                            <a href="{{ route('asistencia.show',$asis[$i]->id)}}"
+                                               class="btn btn-link btn-success btn-just-icon remove"
+                                               data-toggle="tooltip"
+                                               data-placement="top" title="Ver Plan de Asistencia"><i
+                                                    class="material-icons">remove_red_eye</i></a>
+                                        </td>
+                                    </tr>
+                                @endfor
                             @endforeach
                             </tbody>
                             <tfoot>
