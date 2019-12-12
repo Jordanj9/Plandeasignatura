@@ -21,9 +21,9 @@ class AsistenciaController extends Controller
     public function index()
     {
         $asistencias = Asistencia::all();
-        return  view('evaluacion.asistencia.list')
-            ->with('location','evaluacion')
-            ->with('asistencias',$asistencias);
+        return view('evaluacion.asistencia.list')
+            ->with('location', 'evaluacion')
+            ->with('asistencias', $asistencias);
     }
 
     /**
@@ -52,18 +52,19 @@ class AsistenciaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Asistencia  $asistencia
+     * @param \App\Asistencia $asistencia
      * @return \Illuminate\Http\Response
      */
     public function show(Asistencia $asistencia)
@@ -74,7 +75,7 @@ class AsistenciaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Asistencia  $asistencia
+     * @param \App\Asistencia $asistencia
      * @return \Illuminate\Http\Response
      */
     public function edit(Asistencia $asistencia)
@@ -85,8 +86,8 @@ class AsistenciaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Asistencia  $asistencia
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Asistencia $asistencia
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Asistencia $asistencia)
@@ -97,7 +98,7 @@ class AsistenciaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Asistencia  $asistencia
+     * @param \App\Asistencia $asistencia
      * @return \Illuminate\Http\Response
      */
     public function destroy(Asistencia $asistencia)
@@ -105,18 +106,20 @@ class AsistenciaController extends Controller
         //
     }
 
-    public function getEstudiantes($id){
+    public function getEstudiantes($id)
+    {
         $carga = Cargaacademica::find($id);
         $estud = $carga->estudiantes;
-        if($estud != null){
-            $estudiantes=null;
-            foreach ($estud as $item){
-                $obj['identificacion']= $item->identificacion;
-                $obj['nombre']=$item->primer_apellido." ".$item->segundo_apellido." ".$item->primer_nombre." ".$item->segundo_nombre;
-                $estudiantes[]=$obj;
+        if ($estud != null) {
+            $estudiantes = null;
+            foreach ($estud as $item) {
+                $obj['id'] = $item->id;
+                $obj['identificacion'] = $item->identificacion;
+                $obj['nombre'] = $item->primer_apellido . " " . $item->segundo_apellido . " " . $item->primer_nombre . " " . $item->segundo_nombre;
+                $estudiantes[] = $obj;
             }
             return json_encode($estudiantes);
-        }else{
+        } else {
             return "null";
         }
     }
