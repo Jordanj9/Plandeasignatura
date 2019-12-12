@@ -12,7 +12,7 @@ class Horario extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'dia', 'hora', 'actividaddocente_id', 'plandetrabajo_id', 'created_at', 'updated_at'
+        'id', 'dia', 'hora','etiqueta', 'actividaddocente_id', 'plandetrabajo_id', 'created_at', 'updated_at'
     ];
 
     /**

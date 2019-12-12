@@ -39,8 +39,8 @@
                 <!--      Wizard container        -->
                 <div class="wizard-container">
                     <div class="card card-wizard" style="opacity: 1;" data-color="green" id="wizardProfile">
-                        <form class="form-horizontal" method="POST" enctype="multipart/form-data"
-                              action="{{route('plandedesarrolloasignatura.store')}}">
+                        <form id="plan" class="form-horizontal" method="POST" enctype="multipart/form-data"
+                              action="{{route('plandetrabajo.store')}}">
                             @csrf
                             <input type="hidden" name="docente_id" value="">
                             <input type="hidden" name="plandeasignatura_id" value="">
@@ -82,48 +82,45 @@
                                                 <tbody>
                                                 <tr>
                                                     <th colspan="1">1. DOCENTE:</th>
-                                                    <td colspan="9"><strong>PROFESOR AUXILIAR</strong></td>
+                                                    <td colspan="9">
+                                                        <strong>{{$docente->primer_nombre.' '.$docente->primer_apellido}}</strong>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th colspan="1">2. CATEGORIA
                                                         <strong></strong></th>
-                                                    <td colspan="9"><strong>PROFESOR AUXILIAR: </strong>
+                                                    <td colspan="9"><strong>{{$docente->categoria}}</strong>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th colspan="1">3. VINCULACION:
                                                         <strong></strong></th>
-                                                    <td colspan="9"><strong>PLANTA: </strong>
+                                                    <td colspan="9"><strong>{{$docente->vinculacion}}</strong>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th colspan="1">4. DEDICACION:
                                                         <strong></strong></th>
-                                                    <td colspan="9"><strong>TIEMPO COMPLETO: </strong>
+                                                    <td colspan="9"><strong>{{$docente->dedicacion}}</strong>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th colspan="1">5. SEDE:
                                                         <strong></strong></th>
-                                                    <td colspan="9"><strong>VALLEDUPAR: </strong>
+                                                    <td colspan="9"><strong>{{$docente->sede}}</strong>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th colspan="1">6. FACULTAD:
                                                         <strong></strong></th>
-                                                    <td colspan="9"><strong>INGENIERIA Y TECNOLOGIA </strong>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="1">7. PROGRAMA:
-                                                        <strong></strong></th>
-                                                    <td colspan="9"><strong>INGENIERIA DE SISTEMAS </strong>
+                                                    <td colspan="9">
+                                                        <strong>{{$docente->departamento->facultad->nombre}}</strong>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th colspan="1">8. DEPARTAMENTO:
                                                         <strong></strong></th>
-                                                    <td colspan="9"><strong>INGENIERIA E INFORMATICA </strong>
+                                                    <td colspan="9"><strong>{{$docente->departamento->nombre}}</strong>
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -141,12 +138,16 @@
                                                     <td><b>TEORICA</b></td>
                                                     <td><b>PRACTICA</b></td>
                                                 </tr>
-                                                <tr align="center">
-                                                    <td><b>CODIGO</b></td>
-                                                    <td><b>NOMBRE DE LA ASIGNATURA</b></td>
-                                                    <td colspan="1"><b>I.H.S</b></td>
-                                                    <td colspan="1"><b>I.H.S</b></td>
-                                                </tr>
+                                                @foreach($carga as $item)
+                                                    <tr align="center">
+                                                        <td><b>{{$item->asignatura->codigo}}</b></td>
+                                                        <td>
+                                                            <b>{{$item->asignatura->nombre.' ('.$item->grupo->nombre.')'}}</b>
+                                                        </td>
+                                                        <td colspan="1"><b>{{$item->asignatura->hora_teorica}}</b></td>
+                                                        <td colspan="1"><b>{{$item->asignatura->hora_practica}}</b></td>
+                                                    </tr>
+                                                @endforeach
                                             </table>
                                         </div>
                                         <br>
@@ -158,51 +159,17 @@
                                                 </th>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>10. TOTAL DE ASIGNATURAS A CARGO</td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>11. TOTAL DE GRUPOS A CARGO</td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>12. TOTAL DE ESTUDIANTES EN LOS GRUPOS A CARGO</td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>13. TOTAL DE HORAS DE DOCENCIA DIRECTA ( TEÓRICA + PRÁCTICA)
-                                                    </td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>14. HORAS DE ATENCIÓN A ESTUDIANTES (TUTORIAS - ASESORIAS)</td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>15. HORAS DE PREPARACIÓN Y EVALUACIÓN DE LAS ASIGNATURAS</td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>16. TOTAL DE HORAS DEDICADAS A LAS ACTIVIDADES DOCENTES
-                                                        (13+14+15)
-                                                    </td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="20">
-                                                    </td>
-                                                </tr>
+                                                @foreach($actividades as $actividad)
+                                                    @if($actividad->tipo =='DOCENTE')
+                                                        <tr>
+                                                            <td>{{$actividad->id.'. '.$actividad->nombre}}</td>
+                                                            <td align="center">
+                                                                <input name="valor-{{$actividad->id}}"
+                                                                       type="number" min="0" max="50">
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -215,124 +182,79 @@
                                                 </th>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>17. HORAS DE ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO
-                                                        (CUADRO 1)
-                                                    </td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>18. HORAS DEDICADAS A LA INVESTIGACIÓN APROBADA (CUADRO 2)</td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>19. HORAS DEDICADAS A LA PROYECCIÓN SOCIAL REGISTRADA (CUADRO
-                                                        3)
-                                                    </td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>20. HORAS DEDICADAS A LA COOPERACIÓN INTERINSTITUCIONAL (CUADRO
-                                                        4)
-                                                    </td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>21. HORAS DEDICADAS PARA CRECIMIENTO PERSONAL Y PROFESIONAL
-                                                        (CUADRO 5)
-                                                    </td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>22. HORAS DEDICADAS A LAS ACTIVIDADES ADMINISTRATIVAS (CUADRO
-                                                        6)
-                                                    </td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>23. HORAS PARA OTRAS ACTIVIDADES (CUADRO 7)
-                                                    </td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="20">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>24. TOTAL HORAS DEDICADAS A LAS ACTIVIDADES DOCENTES
-                                                        COMPLEMENTARIAS<br>(17+18+19+20+21+22+23)
-                                                    </td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="20">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>TOTAL DE HORAS POR SEMANA DEL PLAN DE TRABAJO (16 + 24)</td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="20">
-                                                    </td>
-                                                </tr>
+                                                @foreach($actividades as $actividad)
+                                                    @if($actividad->tipo =='COMPLEMENTARIAS')
+                                                        <tr>
+                                                            <td>{{$actividad->id.'. '.$actividad->nombre}}</td>
+                                                            <td align="center">
+                                                                <input name="valor-{{$actividad->id}}"
+                                                                       type="number" min="0" max="50">
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="account">
                                         <div class="row justify-content">
-                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
+                                            <div class="col-sm-12 "><h5 class="info-text"
+                                                                        style="background-color: #38A970;color: white; padding: 3px;">
                                                     <strong>ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO</strong>
                                                 </h5>
                                             </div>
                                             <div class="col-md-12" id="rr">
                                             </div>
-                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add()"></a>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab"
+                                               style="color: white; margin-left:90%" data-toggle="modal"
+                                               data-target="#orientacion"></a>
                                         </div>
                                         <div class="row justify-content">
-                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
+                                            <div class="col-sm-12 "><h5 class="info-text"
+                                                                        style="background-color: #38A970;color: white; padding: 3px;">
                                                     <strong>INVESTIGACION APROBADA</strong>
                                                 </h5>
                                             </div>
                                             <div class="col-md-12" id="rr2">
                                             </div>
-                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add2()"></a>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab"
+                                               style="color: white; margin-left:90%" data-toggle="modal" data-target="#investigacion"></a>
                                         </div>
                                         <div class="row justify-content">
-                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
+                                            <div class="col-sm-12 "><h5 class="info-text"
+                                                                        style="background-color: #38A970;color: white; padding: 3px;">
                                                     <strong>EXTENSIÓN Y PROYECCIÓN SOCIAL</strong>
                                                 </h5>
                                             </div>
                                             <div class="col-md-12" id="rr3">
                                             </div>
-                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add3()"></a>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab"
+                                               style="color: white; margin-left:90%" data-toggle="modal" data-target="#proyecionSocial"></a>
                                         </div>
                                         <div class="row justify-content">
-                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
+                                            <div class="col-sm-12 "><h5 class="info-text"
+                                                                        style="background-color: #38A970;color: white; padding: 3px;">
                                                     <strong>COOPERACION INTERINSTITUCIONAL</strong>
                                                 </h5>
                                             </div>
                                             <div class="col-md-12" id="rr4">
                                             </div>
-                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add4()"></a>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab"
+                                               style="color: white; margin-left:90%" data-toggle="modal" data-target="#cooperacion"></a>
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="account2">
                                         <div class="row justify-content">
-                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
+                                            <div class="col-sm-12 "><h5 class="info-text"
+                                                                        style="background-color: #38A970;color: white; padding: 3px;">
                                                     <strong>CRECIMIENTO PERSONAL Y DESARROLLO</strong>
                                                 </h5>
                                             </div>
                                             <div class="col-md-12" id="rr5">
                                             </div>
-                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add5()"></a>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab"
+                                               style="color: white; margin-left:90%" data-toggle="modal" data-target="#crecimiento"></a>
                                         </div>
                                         <div class="row justify-content">
                                             <div class="col-sm-12 "><h5 class="info-text"
@@ -342,16 +264,19 @@
                                             </div>
                                             <div class="col-md-12" id="rr6">
                                             </div>
-                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add6()"></a>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab"
+                                               style="color: white; margin-left:90%" data-toggle="modal" data-target="#activiadad"></a>
                                         </div>
                                         <div class="row justify-content">
-                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
+                                            <div class="col-sm-12 "><h5 class="info-text"
+                                                                        style="background-color: #38A970;color: white; padding: 3px;">
                                                     <strong>OTRAS ACTIVIDADES </strong>
                                                 </h5>
                                             </div>
                                             <div class="col-md-12" id="rr7">
                                             </div>
-                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add7()"></a>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab"
+                                               style="color: white; margin-left:90%" data-toggle="modal" data-target="#otra"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -365,7 +290,7 @@
                                     <input type="button" class="btn btn-next btn-fill btn-info btn-wd" name="next"
                                            value="Next">
                                     <input type="button" class="btn btn-finish btn-fill btn-info btn-wd"
-                                           name="finish" value="Finish" style="display: none;" id="finish">
+                                           name="finish" onclick="guardarTodo(event)" value="Finish" style="display: none;" id="finish">
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -376,6 +301,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade modal-mini modal-primary" id="mdModal" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-small">
@@ -394,9 +320,450 @@
             </div>
         </div>
     </div>
+
+    <!--modales para agregar nuevas actividades-->
+    <div class="modal fade" id="orientacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE
+                        GRADO</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="orientacion">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Titulo"
+                                                name="titulo" required="required" id="tituloOrientacion"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Acta" name="acta" id="actaOrientacion"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha" id="fechaOrientacion"
+                                                name="fecha" required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha Inicio" id="fecha_inicioOrientacion"
+                                                name="fecha_inicio" required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha de Terminación" id="fecha_finOrientacion"
+                                                name="fecha_fin" required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Horas/Semanas" id="horasOrientacion"
+                                                name="fechahora" required="required"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <br/><br/><a href="#" data-dismiss="modal" class="btn btn-danger btn-round">Cancelar</a>
+                        <button class="btn btn-success btn-round" type="submit" onclick="guardarOrientacion(event)">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="investigacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">INVESTIGACION APROBADA</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="orientacion">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Titulo"
+                                                name="titulo" required="required" id="tituloInvestigacion"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Acta" name="acta" id="actaInvestigacion"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha" id="fechaInvestigacion"
+                                                name="fecha" required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha Inicio" id="fecha_inicioInvestigacion"
+                                                name="fecha_inicio" required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha de Terminación" id="fecha_finInvestigacion"
+                                                name="fecha_fin" required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Horas/Semanas" id="horasInvestigacion"
+                                                name="fechahora" required="required"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <br/><br/><a href="#" data-dismiss="modal" class="btn btn-danger btn-round">Cancelar</a>
+                        <button class="btn btn-success btn-round" type="submit" onclick="guardarInvestigacion(event)">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="proyecionSocial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">EXTENSIÓN Y PROYECCIÓN SOCIAL</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="orientacion">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Titulo"
+                                                name="titulo" required="required" id="tituloProyecion"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Acta" name="acta" id="descripcionProyecion"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha" id="institucionProyecion"
+                                                name="fecha" required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="date" class="form-control"
+                                                placeholder="Fecha Inicio" id="fechaProyecion"
+                                                name="fecha_inicio" required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha de Terminación" id="horaProyecion"
+                                                name="fecha_fin" required="required"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <br/><br/><a href="#" data-dismiss="modal" class="btn btn-danger btn-round">Cancelar</a>
+                        <button class="btn btn-success btn-round" type="submit" onclick="guardarProyecion(event)">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="cooperacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">COOPERACION INTERINSTITUCIONAL</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="orientacion">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Titulo"
+                                                name="titulo" required="required" id="tituloCooperacion"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Acta" name="acta" id="descripcionCooperacion"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha" id="institucionCooperacion"
+                                                name="fecha" required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="date" class="form-control"
+                                                placeholder="Fecha Inicio" id="fechaCooperacion"
+                                                name="fecha_inicio" required="required"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha de Terminación" id="horaCooperacion"
+                                                name="fecha_fin" required="required"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <br/><br/><a href="#" data-dismiss="modal" class="btn btn-danger btn-round">Cancelar</a>
+                        <button class="btn btn-success btn-round" type="submit" onclick="guardarCooperacion(event)">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="crecimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">CRECIMIENTO PERSONAL Y DESARROLLO</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="orientacion">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Titulo"
+                                                name="titulo" required="required" id="tituloCrecimiento"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Acta" name="acta" id="actaCrecimiento"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha Inicio" id="institucionCrecimiento"
+                                                name="fecha_inicio" required="required"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="date" class="form-control"
+                                                placeholder="Fecha" id="fechaCrecimeinto"
+                                                name="fecha" required="required"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha de Terminación" id="horaCrecimeinto"
+                                                name="fecha_fin" required="required"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <br/><br/><a href="#" data-dismiss="modal" class="btn btn-danger btn-round">Cancelar</a>
+                        <button class="btn btn-success btn-round" type="submit" onclick="guardarCrecimeiento(event)">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="activiadad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ACTIVIDADES ADMINISTRATIVAS</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="orientacion">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Titulo"
+                                                name="titulo" required="required" id="tituloActividad"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Acta" name="acta" id="actaActividad"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha Inicio" id="institucionActividad"
+                                                name="fecha_inicio" required="required"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="date" class="form-control"
+                                                placeholder="Fecha" id="fechaActividad"
+                                                name="fecha" required="required"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Fecha de Terminación" id="horaActividad"
+                                                name="fecha_fin" required="required"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <br/><br/><a href="#" data-dismiss="modal" class="btn btn-danger btn-round">Cancelar</a>
+                        <button class="btn btn-success btn-round" type="submit" onclick="guardarCrecimeiento(event)">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="otra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ACTIVIDADES ADMINISTRATIVAS</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="orientacion">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Titulo"
+                                                name="titulo" required="required" id="tituloOtra"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <br/><input type="text" class="form-control"
+                                                placeholder="Acta" name="acta" id="horaOtra"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <br/><br/><a href="#" data-dismiss="modal" class="btn btn-danger btn-round">Cancelar</a>
+                        <button class="btn btn-success btn-round" type="submit" onclick="guardarOtras(event)">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @section('script')
     <script type="text/javascript">
+
+        let orientacion = [];
+        let investigacion = [];
+        let proyecionSocial = [];
+        let cooperacion = [];
+        let crecimiento = [];
+        let actividades = [];
+        let otras = [];
 
         $(document).ready(function () {
             $('.select2').select2();
@@ -444,151 +811,6 @@
             });
         });
 
-        function add() {
-            var html = $("#rr").html();
-            $("#rr").html(html + "<div class='row'><div class='col-md-12'>"
-                + "<div class='form-group'>"
-                + "<div class='form-line'>"
-                + "<label>Titulo</label>"
-                + "<input class='form-control' type='text' name='titulo[]'  multiple>"
-                + "<label>Acta</label>"
-                + "<input class='form-control' type='text' name='acta[]'  multiple>"
-                + "<label>Fecha</label>"
-                + "<input class='form-control' type='date' name='fecha[]'  multiple>"
-                + "<label>Fecha Inicio</label>"
-                + "<input class='form-control' type='date' name='fechainicio[]'  multiple>"
-                + "<label>Fecha De terminación</label>"
-                + "<input class='form-control' type='date' name='fechafin[]'  multiple>"
-                + "<label>Horas/Semanas</label>"
-                + "<input class='form-control' type='number' name='hora[]'  multiple>"
-                + "</div>"
-                + "</div>"
-                + "</div>"
-                + "</div>");
-        }
-
-        function add2() {
-            var html = $("#rr2").html();
-            $("#rr2").html(html + "<div class='row'><div class='col-md-12'>"
-                + "<div class='form-group'>"
-                + "<div class='form-line'>"
-                + "<label>Titulo</label>"
-                + "<input class='form-control' type='text' name='titulo1[]'  multiple>"
-                + "<label>Acta</label>"
-                + "<input class='form-control' type='text' name='acta1[]'  multiple>"
-                + "<label>Fecha</label>"
-                + "<input class='form-control' type='date' name='fecha1[]'  multiple>"
-                + "<label>Fecha Inicio</label>"
-                + "<input class='form-control' type='date' name='fechainicio1[]'  multiple>"
-                + "<label>Fecha De terminación</label>"
-                + "<input class='form-control' type='date' name='fechafin1[]'  multiple>"
-                + "<label>Horas/Semanas</label>"
-                + "<input class='form-control' type='number' name='hora1[]'  multiple>"
-                + "</div>"
-                + "</div>"
-                + "</div>"
-                + "</div>");
-        }
-
-        function add3() {
-            var html = $("#rr3").html();
-            $("#rr3").html(html + "<div class='row'><div class='col-md-12'>"
-                + "<div class='form-group'>"
-                + "<div class='form-line'>"
-                + "<label>Titulo</label>"
-                + "<input class='form-control' type='text' name='titulo2[]'  multiple>"
-                + "<label>Acta</label>"
-                + "<input class='form-control' type='text' name='descripcion[]'  multiple>"
-                + "<label>Institución</label>"
-                + "<input class='form-control' type='text' name='institucion[]'  multiple>"
-                + "<label>Fecha</label>"
-                + "<input class='form-control' type='date' name='fecha2[]'  multiple>"
-                + "<label>Horas/Semanas</label>"
-                + "<input class='form-control' type='number' name='hora2[]'  multiple>"
-                + "</div>"
-                + "</div>"
-                + "</div>"
-                + "</div>");
-        }
-
-        function add4() {
-            var html = $("#rr4").html();
-            $("#rr4").html(html + "<div class='row'><div class='col-md-12'>"
-                + "<div class='form-group'>"
-                + "<div class='form-line'>"
-                + "<label>Titulo</label>"
-                + "<input class='form-control' type='text' name='titulo3[]'  multiple>"
-                + "<label>Acta</label>"
-                + "<input class='form-control' type='text' name='descripcion3[]'  multiple>"
-                + "<label>Institución</label>"
-                + "<input class='form-control' type='text' name='institucion3[]'  multiple>"
-                + "<label>Fecha</label>"
-                + "<input class='form-control' type='date' name='fecha3[]'  multiple>"
-                + "<label>Horas/Semanas</label>"
-                + "<input class='form-control' type='number' name='hora3[]'  multiple>"
-                + "</div>"
-                + "</div>"
-                + "</div>"
-                + "</div>");
-        }
-
-        function add5() {
-            var html = $("#rr5").html();
-            $("#rr5").html(html + "<div class='row'><div class='col-md-12'>"
-                + "<div class='form-group'>"
-                + "<div class='form-line'>"
-                + "<label>Titulo</label>"
-                + "<input class='form-control' type='text' name='titulo4[]'  multiple>"
-                + "<label>Acta</label>"
-                + "<input class='form-control' type='text' name='descripcion4[]'  multiple>"
-                + "<label>Institución</label>"
-                + "<input class='form-control' type='text' name='institucion4[]'  multiple>"
-                + "<label>Fecha</label>"
-                + "<input class='form-control' type='date' name='fecha4[]'  multiple>"
-                + "<label>Horas/Semanas</label>"
-                + "<input class='form-control' type='number' name='hora4[]'  multiple>"
-                + "</div>"
-                + "</div>"
-                + "</div>"
-                + "</div>");
-        }
-
-        function add6() {
-            var html = $("#rr6").html();
-            $("#rr6").html(html + "<div class='row'><div class='col-md-12'>"
-                + "<div class='form-group'>"
-                + "<div class='form-line'>"
-                + "<label>Titulo</label>"
-                + "<input class='form-control' type='text' name='titulo5[]'  multiple>"
-                + "<label>Acta</label>"
-                + "<input class='form-control' type='text' name='descripcion5[]'  multiple>"
-                + "<label>Institución</label>"
-                + "<input class='form-control' type='text' name='institucion5[]'  multiple>"
-                + "<label>Fecha</label>"
-                + "<input class='form-control' type='date' name='fecha5[]'  multiple>"
-                + "<label>Horas/Semanas</label>"
-                + "<input class='form-control' type='number' name='hora5[]'  multiple>"
-                + "</div>"
-                + "</div>"
-                + "</div>"
-                + "</div>");
-        }
-
-        function add7() {
-            var html = $("#rr7").html();
-            $("#rr7").html(html + "<div class='row'><div class='col-md-12'>"
-                + "<div class='form-group'>"
-                + "<div class='form-line'>"
-                + "<label>Titulo</label>"
-                + "<input class='form-control' type='text' name='titulo6[]'  multiple>"
-                + "<label>Horas/Semanas</label>"
-                + "<input class='form-control' type='number' name='hora6[]'  multiple>"
-                + "</div>"
-                + "</div>"
-                + "</div>"
-                + "</div>");
-        }
-
         function getEjesTematicos() {
             var id = $("#unidad_id").val();
             $.ajax({
@@ -613,6 +835,202 @@
                 }
             });
         }
+
+        function guardarOrientacion(event) {
+
+            event.preventDefault();
+
+            let newObject = {
+                'titulo': $('#tituloOrientacion').val(),
+                'acta': $('#actaOrientacion').val(),
+                'fecha': $('#fechaOrientacion').val(),
+                'fecha_inicio': $('#fecha_inicioOrientacion').val(),
+                'fecha_fin': $('#fecha_finOrientacion').val(),
+                'fechahora': $('#horasOrientacion').val(),
+            }
+
+            orientacion.push(newObject);
+
+            $('#tituloOrientacion').val("");
+            $('#actaOrientacion').val("");
+            $('#fechaOrientacion').val("");
+            $('#fecha_inicioOrientacion').val("");
+            $('#fecha_finOrientacion').val("");
+            $('#horasOrientacion').val("");
+
+        }
+        function guardarInvestigacion(event) {
+
+            event.preventDefault();
+
+            let newObject = {
+                'titulo': $('#tituloInvestigacion').val(),
+                'acta': $('#actaInvestigacion').val(),
+                'fecha': $('#fechaInvestigacion').val(),
+                'fecha_inicio': $('#fecha_inicioInvestigacion').val(),
+                'fecha_fin': $('#fecha_finInvestigacion').val(),
+                'fechahora': $('#horasInvestigacion').val(),
+            }
+
+            investigacion.push(newObject);
+
+            console.log(investigacion);
+
+            $('#tituloInvestigacion').val("");
+            $('#actaInvestigacion').val("");
+            $('#fechaInvestigacion').val("");
+            $('#fecha_inicioInvestigacion').val("");
+            $('#fecha_finInvestigacion').val("");
+            $('#horasInvestigacion').val("");
+
+            $("#investigacion").modal('hide');
+
+        }
+        function guardarProyecion(event){
+
+            event.preventDefault();
+
+            let newObject = {
+                'titulo': $('#tituloProyecion').val(),
+                'descripcion': $('#descripcionProyecion').val(),
+                'institucion': $('#institucionProyecion').val(),
+                'fecha': $('#fechaProyecion').val(),
+                'hora': $('#horaProyecion').val(),
+            }
+
+            proyecionSocial.push(newObject);
+
+            $('#tituloProyecion').val("");
+            $('#descripcionProyecion').val("");
+            $('#institucionProyecion').val("");
+            $('#fecha_inicioInvestigacion').val("");
+            $('#fechaProyecion').val("");
+            $('#horaProyecion').val("");
+
+            $("#proyecionSocial").modal('hide');
+
+        }
+        function guardarCooperacion(event){
+
+            event.preventDefault();
+
+            let newObject = {
+                'titulo': $('#tituloCooperacion').val(),
+                'descripcion': $('#descripcionCooperacion').val(),
+                'institucion': $('#institucionCooperacion').val(),
+                'fecha': $('#fechaCooperacion').val(),
+                'hora': $('#horaCooperacion').val(),
+            }
+
+            cooperacion.push(newObject);
+
+            $('#tituloCoopereacion').val("");
+            $('#descripcionCoopereacion').val("");
+            $('#institucionCoopereacion').val("");
+            $('#fecha_inicioCoopereacioncion').val("");
+            $('#fechaCooperacion').val("");
+            $('#horaCooperacion').val("");
+
+            $('#cooperacion').modal('hide');
+
+            console.log(cooperacion);
+        }
+        function guardarCrecimeiento(event) {
+
+            event.preventDefault();
+
+            let newObject = {
+                'titulo': $('#tituloCrecimiento').val(),
+                'acta': $('#actaCrecimiento').val(),
+                'institucion': $('#institucionCrecimiento').val(),
+                'fecha': $('#fechaCrecimeinto').val(),
+                'hora': $('#horaCrecimeinto').val(),
+            }
+
+            crecimiento.push(newObject);
+
+            $('#tituloCrecimiento').val("");
+            $('#actaCrecimiento').val("");
+            $('#institucionCrecimiento').val("");
+            $('#fechaCrecimeinto').val("");
+            $('#horaCrecimeinto').val("");
+
+        }
+        function guardarActividades(event) {
+
+            event.preventDefault();
+
+            let newObject = {
+                'titulo': $('#tituloActividad').val(),
+                'acta': $('#actaActividad').val(),
+                'institucion': $('#institucionActividad').val(),
+                'fecha': $('#fechaActividad').val(),
+                'hora': $('#horaActividad').val(),
+            }
+
+            actividades.push(newObject);
+
+            console.log(actividades);
+
+            $('#tituloActividad').val("");
+            $('#actaActividad').val("");
+            $('#institucionActividad').val("");
+            $('#fechaActividad').val("");
+            $('#horaActividad').val("");
+
+        }
+        function guardarOtras(event) {
+
+            event.preventDefault();
+
+            let newObject = {
+                'titulo': $('#tituloOtra').val(),
+                'hora': $('#horaOtra').val(),
+            }
+
+            otras.push(newObject);
+
+            $('#tituloOtra').val("");
+            $('#horaOtra').val("");
+
+            console.log(otras);
+
+            $('#otra').modal('hide');
+
+        }
+
+        function guardarTodo(event){
+
+            event.preventDefault();
+
+            let actividadesDocente = $('#plan').serializeArray();
+
+            let datos = {
+                'actividadesDocente' :  actividadesDocente,
+                'actividades':actividades,
+                'orientacion' : orientacion,
+                'investigacion' : investigacion,
+                'proyecionSocial' : proyecionSocial,
+                'crecimiento':crecimiento,
+                'cooperacion': cooperacion,
+                'otras': otras
+            }
+
+            console.log(datos);
+
+           $.post({
+               url : '{{url('plan/plandetrabajo/guardar/')}}',
+               data : datos,
+               method : 'POST',
+               headers: {
+                   'X-CSRF-Token': '{{csrf_token()}}',
+               }
+           }).done(function (msg) {
+               console.log(msg);
+           });
+        }
+
+
     </script>
 
 @endsection

@@ -12,7 +12,7 @@ class Actividaddocente extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'nombre', 'valor', 'tipo', 'descripcion', 'plandetrabajo_id', 'created_at', 'updated_at'
+        'id', 'nombre', 'tipo', 'created_at', 'updated_at'
     ];
 
     /**
@@ -29,8 +29,9 @@ class Actividaddocente extends Model
         return $this->hasMany(Horario::class);
     }
 
-    public function plandetrabajo()
+    public function planesdetrabajo()
     {
-        return $this->belongsTo(Plandetrabajo::class);
+        return $this->belongsToMany(Plandetrabajo::class,'actividaddocentes_plandetrabajos')
+             ->withPivot('valor');
     }
 }

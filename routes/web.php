@@ -121,4 +121,5 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
 
     Route::resource('plandetrabajo', 'PlandetrabajoController');
     Route::get('plandetrabajo/{id}/delete', 'PlandetrabajoController@destroy')->name('plandetrabajo.delete');
+    Route::post('plandetrabajo/guardar', 'PlandetrabajoController@store')->name('plandetrabajostore');
 });

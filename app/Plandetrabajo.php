@@ -41,7 +41,8 @@ class Plandetrabajo extends Model
 
     public function actividaddocentes()
     {
-        return $this->hasMany(Actividaddocente::class);
+        return $this->belongsToMany(Actividaddocente::class,'actividaddocentes_plandetrabajos')
+            ->withPivot('valor');
     }
 
     public function trabajos()

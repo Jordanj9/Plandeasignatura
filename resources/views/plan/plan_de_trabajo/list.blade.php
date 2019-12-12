@@ -54,42 +54,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($planes as $p)
-                                <tr>
-                                    <td>{{$p->asignatura->codigo}}</td>
-                                    <td>{{$p->asignatura->nombre}}</td>
-                                    <td>{{$p->periodo->anio."-".$p->periodo->periodo}}</td>
-                                    <td>{{$p->prerequisitos}}</td>
-                                    <td>{{$p->corequisitos}}</td>
-                                    <td>{{$p->created_at}}</td>
-                                    <td>
-                                        @if(session('ROL') == 'ADMINISTRADOR')
-                                            <a href="{{ route('unity.inicio',$p->id)}}"
-                                               class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                               data-placement="top" title="Gestionar Contenido"><i
-                                                    class="material-icons">navigate_next</i></a>
-                                            <a href="{{ route('plandeasignatura.edit',$p->id)}}"
-                                               class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                               data-placement="top" title="Editar Plan de Asignatura"><i
-                                                    class="material-icons">mode_edit</i></a>
-                                            <a href="{{ route('plandeasignatura.delete',$p->id)}}"
-                                               class="btn btn-link btn-danger btn-just-icon remove"
-                                               data-toggle="tooltip"
-                                               data-placement="top" title="Eliminar Plan Asignatura"><i
-                                                    class="material-icons">delete</i></a>
-                                            <a href="{{ route('plandeasignatura.show',$p->id)}}"
-                                               class="btn btn-link btn-success btn-just-icon remove"
-                                               data-toggle="tooltip"
-                                               data-placement="top" title="Ver Plan de Asignatura"><i
-                                                    class="material-icons">remove_red_eye</i></a>
-                                        @endif
-                                        <a href="{{ route('plandeasignatura.show',$p->id)}}"
-                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Ver Plan de Asignatura"><i
-                                                class="material-icons">remove_red_eye</i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
+
                             </tbody>
                             <tfoot>
                             <tr>
