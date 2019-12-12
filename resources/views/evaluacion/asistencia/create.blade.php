@@ -190,9 +190,6 @@
                     });
 
                     $("#tb2").html(html);
-                    var table = $('#datatables').DataTable({
-
-                    });
                 } else {
                     $.notify({
                         icon: "add_alert",
