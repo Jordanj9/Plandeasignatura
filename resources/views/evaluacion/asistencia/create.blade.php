@@ -185,7 +185,7 @@
                     $.each(m, function (index, item) {
                         html = html + "<tr><td>" + item.identificacion + "</td>";
                         html = html + "<td>" + item.nombre + "</td>";
-                        html = html + "<td><input type='checkbox' name='asistencia'></td>";
+                        html = html + "<td><input type='checkbox' name='asistencia[]' value='"+item.id+"'></td>";
                         +"</tr>";
                     });
 

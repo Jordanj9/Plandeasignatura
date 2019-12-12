@@ -7,7 +7,9 @@ use App\Docente;
 use App\Estudiante;
 use App\Cargaacademica;
 use App\Auditoriaacademico;
+use App\Grupousuario;
 use App\Periodo;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,8 +70,20 @@ class EstudianteController extends Controller
         }
         $result = $est->save();
         $est->cargaacademicas()->sync($request->cargaacademica_id);
-       // $semana->ejetematicos()->sync($request->ejetematico_id);
+        // $semana->ejetematicos()->sync($request->ejetematico_id);
         if ($result) {
+            $user = new User();
+            $user->identificacion = $est->identificacion;
+            $user->estado = "ACTIVO";
+            $user->email = $est->email;
+            $user->password = bcrypt($est->identificacion);
+            $user->nombres = $est->primer_nombre . " " . $est->segundo_nombre;
+            $user->apellidos = $est->primer_apellido . " " . $est->segundo_apellido;
+            $user->save();
+            $g = Grupousuario::where('nombre', 'ESTUDIANTE')->first();
+            if ($g != null) {
+                $user->grupousuarios()->sync($g->id);
+            }
             $aud = new Auditoriaacademico();
             $u = Auth::user();
             $aud->usuario = "ID: " . $u->identificacion . ",  USUARIO: " . $u->nombres . " " . $u->apellidos;
