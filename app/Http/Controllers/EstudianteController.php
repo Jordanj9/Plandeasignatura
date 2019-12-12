@@ -66,7 +66,6 @@ class EstudianteController extends Controller
         foreach ($est->attributesToArray() as $key => $value) {
             $est->$key = strtoupper($value);
         }
-        dd($request);
         $result = $est->save();
         $est->cargaacademicas()->sync($request->cargaacademica_id);
        // $semana->ejetematicos()->sync($request->ejetematico_id);
