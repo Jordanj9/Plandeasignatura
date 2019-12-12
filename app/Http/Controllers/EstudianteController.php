@@ -68,7 +68,8 @@ class EstudianteController extends Controller
         }
         dd($request);
         $result = $est->save();
-        $est->cargaacademicas()->sync([$est->id,$request->cargaacademica_id]);
+        $est->cargaacademicas()->sync($request->cargaacademica_id);
+       // $semana->ejetematicos()->sync($request->ejetematico_id);
         if ($result) {
             $aud = new Auditoriaacademico();
             $u = Auth::user();
