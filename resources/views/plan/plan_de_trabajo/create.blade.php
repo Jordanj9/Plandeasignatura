@@ -61,12 +61,17 @@
                                             Datos del Plan de Trabajo
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#account2" data-toggle="tab" role="tab">
+                                            Datos del Plan de Trabajo
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="about">
-                                        <h5 class="info-text"> Datos del Plan de Asignatura</h5>
+                                        <h5 class="info-text"> Datos del Plan De Trabajo</h5>
                                         <div class="col-md-12">
                                             <table class="table-bordered " style="width: 100%; color: black">
                                                 <thead style="background-color: #38A970;color: white;">
@@ -211,7 +216,9 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <td>17. HORAS DE ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO (CUADRO 1)</td>
+                                                    <td>17. HORAS DE ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO
+                                                        (CUADRO 1)
+                                                    </td>
                                                     <td align="center">
                                                         <input type="number" min="0" max="50">
                                                     </td>
@@ -223,26 +230,33 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>19. HORAS DEDICADAS A LA PROYECCIÓN SOCIAL REGISTRADA (CUADRO 3)</td>
-                                                    <td align="center">
-                                                        <input type="number" min="0" max="50">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>20. HORAS DEDICADAS A LA COOPERACIÓN INTERINSTITUCIONAL (CUADRO 4)
+                                                    <td>19. HORAS DEDICADAS A LA PROYECCIÓN SOCIAL REGISTRADA (CUADRO
+                                                        3)
                                                     </td>
                                                     <td align="center">
                                                         <input type="number" min="0" max="50">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>21. HORAS DEDICADAS PARA CRECIMIENTO PERSONAL Y PROFESIONAL (CUADRO 5)</td>
+                                                    <td>20. HORAS DEDICADAS A LA COOPERACIÓN INTERINSTITUCIONAL (CUADRO
+                                                        4)
+                                                    </td>
                                                     <td align="center">
                                                         <input type="number" min="0" max="50">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>22. HORAS DEDICADAS A LAS ACTIVIDADES ADMINISTRATIVAS (CUADRO 6)</td>
+                                                    <td>21. HORAS DEDICADAS PARA CRECIMIENTO PERSONAL Y PROFESIONAL
+                                                        (CUADRO 5)
+                                                    </td>
+                                                    <td align="center">
+                                                        <input type="number" min="0" max="50">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>22. HORAS DEDICADAS A LAS ACTIVIDADES ADMINISTRATIVAS (CUADRO
+                                                        6)
+                                                    </td>
                                                     <td align="center">
                                                         <input type="number" min="0" max="50">
                                                     </td>
@@ -255,14 +269,15 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>24. TOTAL HORAS DEDICADAS A LAS ACTIVIDADES DOCENTES  COMPLEMENTARIAS<br>(17+18+19+20+21+22+23)
+                                                    <td>24. TOTAL HORAS DEDICADAS A LAS ACTIVIDADES DOCENTES
+                                                        COMPLEMENTARIAS<br>(17+18+19+20+21+22+23)
                                                     </td>
                                                     <td align="center">
                                                         <input type="number" min="0" max="20">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>TOTAL DE HORAS POR SEMANA DEL PLAN DE TRABAJO  (16 + 24)</td>
+                                                    <td>TOTAL DE HORAS POR SEMANA DEL PLAN DE TRABAJO (16 + 24)</td>
                                                     <td align="center">
                                                         <input type="number" min="0" max="20">
                                                     </td>
@@ -273,16 +288,72 @@
                                     </div>
                                     <div class="tab-pane" id="account">
                                         <div class="row justify-content">
-                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;text-align: center">
+                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
                                                     <strong>ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO</strong>
                                                 </h5>
                                             </div>
                                             <div class="col-md-12" id="rr">
                                             </div>
-                                            <a class="btn bg-blue waves-effect" onclick="add()">AGREGAR CAMPO PARA RECURSO</a>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add()"></a>
+                                        </div>
+                                        <div class="row justify-content">
+                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
+                                                    <strong>INVESTIGACION APROBADA</strong>
+                                                </h5>
+                                            </div>
+                                            <div class="col-md-12" id="rr2">
+                                            </div>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add2()"></a>
+                                        </div>
+                                        <div class="row justify-content">
+                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
+                                                    <strong>EXTENSIÓN Y PROYECCIÓN SOCIAL</strong>
+                                                </h5>
+                                            </div>
+                                            <div class="col-md-12" id="rr3">
+                                            </div>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add3()"></a>
+                                        </div>
+                                        <div class="row justify-content">
+                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
+                                                    <strong>COOPERACION INTERINSTITUCIONAL</strong>
+                                                </h5>
+                                            </div>
+                                            <div class="col-md-12" id="rr4">
+                                            </div>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add4()"></a>
                                         </div>
                                     </div>
-
+                                    <div class="tab-pane" id="account2">
+                                        <div class="row justify-content">
+                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
+                                                    <strong>CRECIMIENTO PERSONAL Y DESARROLLO</strong>
+                                                </h5>
+                                            </div>
+                                            <div class="col-md-12" id="rr5">
+                                            </div>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add5()"></a>
+                                        </div>
+                                        <div class="row justify-content">
+                                            <div class="col-sm-12 "><h5 class="info-text"
+                                                                        style="background-color: #38A970;color: white; padding: 3px;">
+                                                    <strong>ACTIVIDADES ADMINISTRATIVAS</strong>
+                                                </h5>
+                                            </div>
+                                            <div class="col-md-12" id="rr6">
+                                            </div>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add6()"></a>
+                                        </div>
+                                        <div class="row justify-content">
+                                            <div class="col-sm-12 "><h5 class="info-text" style="background-color: #38A970;color: white; padding: 3px;">
+                                                    <strong>OTRAS ACTIVIDADES </strong>
+                                                </h5>
+                                            </div>
+                                            <div class="col-md-12" id="rr7">
+                                            </div>
+                                            <a class="fa fa-plus-circle btn btn-success btn-round btn-fab" style="color: white; margin-left:90%" onclick="add7()"></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -390,6 +461,128 @@
                 + "<input class='form-control' type='date' name='fechafin[]'  multiple>"
                 + "<label>Horas/Semanas</label>"
                 + "<input class='form-control' type='number' name='hora[]'  multiple>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "</div>");
+        }
+
+        function add2() {
+            var html = $("#rr2").html();
+            $("#rr2").html(html + "<div class='row'><div class='col-md-12'>"
+                + "<div class='form-group'>"
+                + "<div class='form-line'>"
+                + "<label>Titulo</label>"
+                + "<input class='form-control' type='text' name='titulo1[]'  multiple>"
+                + "<label>Acta</label>"
+                + "<input class='form-control' type='text' name='acta1[]'  multiple>"
+                + "<label>Fecha</label>"
+                + "<input class='form-control' type='date' name='fecha1[]'  multiple>"
+                + "<label>Fecha Inicio</label>"
+                + "<input class='form-control' type='date' name='fechainicio1[]'  multiple>"
+                + "<label>Fecha De terminación</label>"
+                + "<input class='form-control' type='date' name='fechafin1[]'  multiple>"
+                + "<label>Horas/Semanas</label>"
+                + "<input class='form-control' type='number' name='hora1[]'  multiple>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "</div>");
+        }
+
+        function add3() {
+            var html = $("#rr3").html();
+            $("#rr3").html(html + "<div class='row'><div class='col-md-12'>"
+                + "<div class='form-group'>"
+                + "<div class='form-line'>"
+                + "<label>Titulo</label>"
+                + "<input class='form-control' type='text' name='titulo2[]'  multiple>"
+                + "<label>Acta</label>"
+                + "<input class='form-control' type='text' name='descripcion[]'  multiple>"
+                + "<label>Institución</label>"
+                + "<input class='form-control' type='text' name='institucion[]'  multiple>"
+                + "<label>Fecha</label>"
+                + "<input class='form-control' type='date' name='fecha2[]'  multiple>"
+                + "<label>Horas/Semanas</label>"
+                + "<input class='form-control' type='number' name='hora2[]'  multiple>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "</div>");
+        }
+
+        function add4() {
+            var html = $("#rr4").html();
+            $("#rr4").html(html + "<div class='row'><div class='col-md-12'>"
+                + "<div class='form-group'>"
+                + "<div class='form-line'>"
+                + "<label>Titulo</label>"
+                + "<input class='form-control' type='text' name='titulo3[]'  multiple>"
+                + "<label>Acta</label>"
+                + "<input class='form-control' type='text' name='descripcion3[]'  multiple>"
+                + "<label>Institución</label>"
+                + "<input class='form-control' type='text' name='institucion3[]'  multiple>"
+                + "<label>Fecha</label>"
+                + "<input class='form-control' type='date' name='fecha3[]'  multiple>"
+                + "<label>Horas/Semanas</label>"
+                + "<input class='form-control' type='number' name='hora3[]'  multiple>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "</div>");
+        }
+
+        function add5() {
+            var html = $("#rr5").html();
+            $("#rr5").html(html + "<div class='row'><div class='col-md-12'>"
+                + "<div class='form-group'>"
+                + "<div class='form-line'>"
+                + "<label>Titulo</label>"
+                + "<input class='form-control' type='text' name='titulo4[]'  multiple>"
+                + "<label>Acta</label>"
+                + "<input class='form-control' type='text' name='descripcion4[]'  multiple>"
+                + "<label>Institución</label>"
+                + "<input class='form-control' type='text' name='institucion4[]'  multiple>"
+                + "<label>Fecha</label>"
+                + "<input class='form-control' type='date' name='fecha4[]'  multiple>"
+                + "<label>Horas/Semanas</label>"
+                + "<input class='form-control' type='number' name='hora4[]'  multiple>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "</div>");
+        }
+
+        function add6() {
+            var html = $("#rr6").html();
+            $("#rr6").html(html + "<div class='row'><div class='col-md-12'>"
+                + "<div class='form-group'>"
+                + "<div class='form-line'>"
+                + "<label>Titulo</label>"
+                + "<input class='form-control' type='text' name='titulo5[]'  multiple>"
+                + "<label>Acta</label>"
+                + "<input class='form-control' type='text' name='descripcion5[]'  multiple>"
+                + "<label>Institución</label>"
+                + "<input class='form-control' type='text' name='institucion5[]'  multiple>"
+                + "<label>Fecha</label>"
+                + "<input class='form-control' type='date' name='fecha5[]'  multiple>"
+                + "<label>Horas/Semanas</label>"
+                + "<input class='form-control' type='number' name='hora5[]'  multiple>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "</div>");
+        }
+
+        function add7() {
+            var html = $("#rr7").html();
+            $("#rr7").html(html + "<div class='row'><div class='col-md-12'>"
+                + "<div class='form-group'>"
+                + "<div class='form-line'>"
+                + "<label>Titulo</label>"
+                + "<input class='form-control' type='text' name='titulo6[]'  multiple>"
+                + "<label>Horas/Semanas</label>"
+                + "<input class='form-control' type='number' name='hora6[]'  multiple>"
                 + "</div>"
                 + "</div>"
                 + "</div>"
