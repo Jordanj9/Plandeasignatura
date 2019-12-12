@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Actividaddocente;
+use App\Cargaacademica;
+use App\Docente;
+use App\Item;
+use App\Periodo;
 use App\Plandetrabajo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlandetrabajoController extends Controller
 {
@@ -14,7 +20,9 @@ class PlandetrabajoController extends Controller
      */
     public function index()
     {
-        return view('plan.plan_de_trabajo.create')->with('location', 'plan');
+
+
+        return view('plan.plan_de_trabajo.list')->with('location', 'plan');
 
     }
 
@@ -25,8 +33,42 @@ class PlandetrabajoController extends Controller
      */
     public function create()
     {
+        if(session('ROL')=='DOCENTE'){
 
-        return view('plan.plan_de_trabajo.create')->with('location', 'plan');
+            $u = Auth::user();
+            $doc = Docente::where('identificacion', $u->identificacion)->first();
+            $hoy = getdate();
+            $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
+            $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
+
+            if ($per == null) {
+                flash("no hay período académico")->warning();
+                return redirect()->back();
+            } else {
+                $carga = Cargaacademica::where([['docente_id', $doc->id], ['periodo_id', $per->id]])->get();
+
+                if($carga==null){
+                    flash("no tiene carga académica registrada para el periodo actual")->warning();
+                    return redirect()->back();
+                }
+
+                $actividades = Actividaddocente::all();
+                $items = Item::all();
+
+                return view('plan.plan_de_trabajo.create')
+                    ->with('location', 'plan')
+                    ->with('carga',$carga)
+                    ->with('docente',$doc)
+                    ->with('actividades',$actividades)
+                    ->with('items',$items);
+
+            }
+
+        }else{
+            flash("Acción invalida para el usuario logeado")->warning();
+            return redirect()->back();
+        }
+
 
     }
 
@@ -38,7 +80,7 @@ class PlandetrabajoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

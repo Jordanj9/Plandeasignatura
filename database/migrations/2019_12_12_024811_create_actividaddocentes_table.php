@@ -13,16 +13,24 @@ class CreateActividaddocentesTable extends Migration
      */
     public function up()
     {
+
         Schema::create('actividaddocentes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->integer('valor');
             $table->string('tipo', 30);
-            $table->string('descripcion')->nullable();
-            $table->bigInteger('plandetrabajo_id')->unsigned();
-            $table->foreign('plandetrabajo_id')->references('id')->on('plandetrabajos')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('actividaddocentes_plandetrabajos',function (Blueprint $table){
+            $table->bigIncrements('id');
+            $table->bigInteger('actividaddocente_id')->unsigned();
+            $table->foreign('actividaddocente_id')->references('id')->on('actividaddocentes')->onDelete('cascade');
+            $table->bigInteger('plandetrabajo_id')->unsigned();
+            $table->foreign('plandetrabajo_id')->references('id')->on('plandetrabajos')->onDelete('cascade');
+            $table->integer('valor')->unsigned();
+            $table->timestamps();
+        });
+
     }
 
     /**

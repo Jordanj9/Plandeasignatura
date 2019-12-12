@@ -17,6 +17,7 @@ class CreateHorariosTable extends Migration
             $table->bigIncrements('id');
             $table->string('dia', 10);
             $table->string('hora', 20);
+            $table->string('etiqueta', 60);
             $table->bigInteger('actividaddocente_id')->unsigned();
             $table->foreign('actividaddocente_id')->references('id')->on('actividaddocentes')->onDelete('cascade');
             $table->bigInteger('plandetrabajo_id')->unsigned();
