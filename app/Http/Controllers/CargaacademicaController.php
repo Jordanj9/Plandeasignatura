@@ -24,14 +24,14 @@ class CargaacademicaController extends Controller
         $doc = Docente::where('identificacion', $u->identificacion)->first();
         $hoy = getdate();
         $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
-        if($doc != null){
+        if ($doc != null) {
             $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
             if ($per == null) {
                 $cargaAcademica = collect();
-            }else{
+            } else {
                 $cargaAcademica = Cargaacademica::where([['docente_id', $doc->id], ['periodo_id', $per->id]])->get();
             }
-        }else{
+        } else {
             $cargaAcademica = Cargaacademica::all();
         }
         $facultades = Facultad::all();
@@ -73,40 +73,51 @@ class CargaacademicaController extends Controller
      */
     public function store(Request $request)
     {
-        $carga_academica = new Cargaacademica($request->all());
-        $existe = Cargaacademica::where([
-            ['docente_id', $request->docente_id],
-            ['grupo_id', $request->grupo_id],
-            ['periodo_id', $request->periodo_id],
-            ['asignatura_id', $request->asignatura_id]
-        ])->first();
-        if ($existe == null) {
-            foreach ($carga_academica->attributesToArray() as $key => $value) {
-                $carga_academica->$key = strtoupper($value);
-            }
-            $result = $carga_academica->save();
-            if ($result) {
-                $aud = new Auditoriaacademico();
-                $u = Auth::user();
-                $aud->usuario = "ID: " . $u->identificacion . ",  USUARIO: " . $u->nombres . " " . $u->apellidos;
-                $aud->operacion = "INSERTAR";
-                $str = "CREACIÓN DE FACULTAD. DATOS: ";
+        $response = null;
+        foreach ($request->grupos as $grupo) {
+            $grp = Grupo::find($grupo);
+            $existe = Cargaacademica::where([
+                ['grupo_id', $grupo],
+                ['periodo_id', $request->periodo_id],
+                ['asignatura_id', $request->asignatura_id]
+            ])->first();
+            if ($existe == null) {
+                $carga_academica = new Cargaacademica($request->all());
                 foreach ($carga_academica->attributesToArray() as $key => $value) {
-                    $str = $str . ", " . $key . ": " . $value;
+                    $carga_academica->$key = strtoupper($value);
                 }
-                $aud->detalles = $str;
-                $aud->save();
-                flash("La Carga Académica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> fue almacenada de forma exitosa!")->success();
-                return redirect()->route('carga_academica.index');
+                $carga_academica->grupo_id = $grupo;
+                $result = $carga_academica->save();
+                if ($result) {
+                    $aud = new Auditoriaacademico();
+                    $u = Auth::user();
+                    $aud->usuario = "ID: " . $u->identificacion . ",  USUARIO: " . $u->nombres . " " . $u->apellidos;
+                    $aud->operacion = "INSERTAR";
+                    $str = "CREACIÓN DE FACULTAD. DATOS: ";
+                    foreach ($carga_academica->attributesToArray() as $key => $value) {
+                        $str = $str . ", " . $key . ": " . $value;
+                    }
+                    $aud->detalles = $str;
+                    $aud->save();
+                    $response = $response . "<h4 style='background-color: green'>El " . $grp->nombre . " fue asignado exitosamente.</h4> <br>";
+                    $color = "success";
+//                    flash("La Carga Académica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> fue almacenada de forma exitosa!")->success();
+//                    return redirect()->route('carga_academica.index');
+                } else {
+                    $response = $response . "<h4 style='background-color: red'>El " . $grp->nombre . " no pudo ser asignado. </h4><br>";
+                    $color = "danger";
+//                    flash("La Carga Académica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> no pudo ser almacenada. Error: " . $result)->error();
+//                    return redirect()->route('carga_academica.index');
+                }
             } else {
-                flash("La Carga Académica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> no pudo ser almacenada. Error: " . $result)->error();
-                return redirect()->route('carga_academica.index');
+                $response = $response . "<h4 style='background-color: orangered'>El " . $grp->nombre . " ya fue asignado a la asignatura seleccionada.</h4> <br>";
+                $color = "warning";
+//                flash("La Carga Académica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> ya se encuntra registrada en el periodo actual con este docente, por favor verifique sus datos. ")->warning();
+//                return redirect()->route('carga_academica.index');
             }
-        } else {
-            flash("La Carga Académica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> ya se encuntra registrada en el periodo actual con este docente, por favor verifique sus datos. ")->warning();
-            return redirect()->route('carga_academica.index');
         }
-
+        flash($response)->clear();
+        return redirect()->route('carga_academica.index');
     }
 
     /**

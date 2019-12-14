@@ -140,7 +140,7 @@
                                             <select class="select2"
                                                     data-style="select-with-transition" style="width: 100%;"
                                                     required="required"
-                                                    name="grupo_id">
+                                                    name="grupos[]" multiple="">
                                                 <option value="">--Seleccione una opción--</option>
                                                 @foreach($grupos as $key=>$value)
                                                     <option value="{{$key}}">{{$value}}</option>
@@ -198,8 +198,8 @@
 @endsection
 @section('script')
     <script type="text/javascript">
-        $('.select2').select2();
         $(document).ready(function () {
+            $('.select2').select2();
             $('#datatables').DataTable({
                 "pagingType": "full_numbers",
                 "lengthMenu": [
