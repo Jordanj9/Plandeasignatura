@@ -77,6 +77,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
     //ASIGNATURA
     Route::resource('asignatura', 'AsignaturaController');
     Route::get('asignatura/{id}/delete', 'AsignaturaController@destroy')->name('asignatura.delete');
+    Route::get('asignatura/{id}/get/horasemestral', 'AsignaturaController@getAsignatura')->name('asignatura.getHora');
     //DOCENTE
     Route::resource('docente', 'DocenteController');
     Route::get('docente/{id}/delete', 'DocenteController@destroy')->name('docente.delete');

@@ -98,8 +98,6 @@ class PlandeasignaturaController extends Controller
         $validator = Validator::make($request->all(), [
             'dodencia_directa' => 'required',
             'trabajo_independiente' => 'required',
-            'corequisitos' => 'required',
-            'prerequisitos' => 'required',
             'presentacion' => 'required',
             'justificacion' => 'required',
             'objetivogeneral' => 'required',
