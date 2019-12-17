@@ -8,6 +8,7 @@ use App\Docente;
 use App\Item;
 use App\Periodo;
 use App\Plandetrabajo;
+use App\Trabajo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -60,7 +61,8 @@ class PlandetrabajoController extends Controller
                     ->with('carga',$carga)
                     ->with('docente',$doc)
                     ->with('actividades',$actividades)
-                    ->with('items',$items);
+                    ->with('items',$items)
+                    ->with('periodo',$per);
 
             }
 
@@ -80,7 +82,41 @@ class PlandetrabajoController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+
+        $plan = new Plandetrabajo();
+        $plan->docente_id = $request->actividadesDocente[1]['docente_id'];
+        $plan->periodo_id = $request->actividadesDocente[2]['periodo_id'];
+        $plan->save();
+
+        foreach ($request->actividadesDocente as $actividad){
+            if($actividad['name'] != 'docente_id' && $actividad['name'] != 'periodo_id'){
+                $plan->actividaddocentes()->attach($actividad['name'],['valor',$actividad['value']]);
+            }
+        }
+
+        if(isset($request->orientacion)){
+            foreach ($request->orientacion as $item){
+                $ori = new Trabajo($item);
+                $ori->item_id = 1;
+                $ori->plandetrabajo_id = $plan->id;
+                $ori->save();
+            }
+        }
+
+        if(isset($request->orientacion)){
+            foreach ($request->investigacion as $item){
+                $ori = new Trabajo($item);
+                $ori->item_id = 1;
+                $ori->plandetrabajo_id = $plan->id;
+                $ori->save();
+            }
+        }
+
+
+
+
+
+
     }
 
     /**

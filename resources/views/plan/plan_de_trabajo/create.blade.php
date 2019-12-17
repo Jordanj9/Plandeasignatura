@@ -42,8 +42,8 @@
                         <form id="plan" class="form-horizontal" method="POST" enctype="multipart/form-data"
                               action="{{route('plandetrabajo.store')}}">
                             @csrf
-                            <input type="hidden" name="docente_id" value="">
-                            <input type="hidden" name="plandeasignatura_id" value="">
+                            <input type="hidden" name="docente_id" value="{{$docente->id}}">
+                            <input type="hidden" name="periodo_id" value="{{$periodo->id}}">
                             <div class="card-header text-center">
                                 <h3 class="card-title">
                                     Registro del Plan de Trabajo
@@ -174,7 +174,7 @@
                                                         <tr>
                                                             <td>{{$actividad->id.'. '.$actividad->nombre}}</td>
                                                             <td align="center">
-                                                                <input name="valor-{{$actividad->id}}"
+                                                                <input name="{{$actividad->id}}"
                                                                        type="number" min="0" max="50">
                                                             </td>
                                                         </tr>
@@ -197,7 +197,7 @@
                                                         <tr>
                                                             <td>{{$actividad->id.'. '.$actividad->nombre}}</td>
                                                             <td align="center">
-                                                                <input name="valor-{{$actividad->id}}"
+                                                                <input name="{{$actividad->id}}"
                                                                        type="number" min="0" max="50">
                                                             </td>
                                                         </tr>
