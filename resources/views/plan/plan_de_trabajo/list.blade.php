@@ -59,12 +59,22 @@
                                     <td>{{$plan->periodo->anio.'-'.$plan->periodo->periodo}}</td>
                                     <td>{{$plan->created_at}}</td>
                                     <td>
+
                                         <a href="{{route('menuActividades',$plan->id)}}"
                                            class="btn btn-link btn-success btn-just-icon remove"
                                            data-toggle="tooltip"
                                            data-placement="top"
                                            title="Gestionar Actividades Docentes"><i
                                                 class="material-icons">note_add</i></a>
+
+                                        <a href="{{route('horario',$plan->id)}}"
+                                           class="btn btn-link btn-warning btn-just-icon remove"
+                                           data-toggle="tooltip"
+                                           data-placement="top"
+                                           title="Gestionar Horario del Plan"><i class="material-icons">
+                                                calendar_today
+                                            </i></a>
+
                                     </td>
                                 </tr>
                             @endforeach
