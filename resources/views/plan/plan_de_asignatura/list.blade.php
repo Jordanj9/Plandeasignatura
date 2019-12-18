@@ -30,8 +30,8 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                     @if(session('ROL') == 'ADMINISTRADOR')
-                                    <a href="{{ route('plandeasignatura.create') }}" class="dropdown-item" href="#">Agregar
-                                        nuevo plan asignatura</a>
+                                        <a href="{{ route('plandeasignatura.create') }}" class="dropdown-item" href="#">Agregar
+                                            nuevo plan asignatura</a>
                                     @endif
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
@@ -69,7 +69,7 @@
                                             <a href="{{ route('unity.inicio',$p->id)}}"
                                                class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
                                                data-placement="top" title="Gestionar Contenido"><i
-                                                    class="material-icons">navigate_next</i></a>
+                                                    class="material-icons">format_indent_increase</i></a>
                                             <a href="{{ route('plandeasignatura.edit',$p->id)}}"
                                                class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
                                                data-placement="top" title="Editar Plan de Asignatura"><i
@@ -81,9 +81,13 @@
                                                     class="material-icons">delete</i></a>
                                         @endif
                                         <a href="{{ route('plandeasignatura.show',$p->id)}}"
-                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Ver Plan de Asignatura"><i
-                                                class="material-icons">remove_red_eye</i></a>
+                                           class="btn btn-link  btn-just-icon remove" data-toggle="tooltip"
+                                           style="color: #38A970" data-placement="top" title="Ver Plan de Asignatura">
+                                            <i class="material-icons">remove_red_eye</i></a>
+                                        <a target="_blank" href="{{ route('plandeasignatura.imprimir',$p->id)}}"
+                                           class="btn btn-link btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" style="color: #38A970" title="Imprimir"><i
+                                                class="material-icons">print</i></a>
                                     </td>
                                 </tr>
                             @endforeach

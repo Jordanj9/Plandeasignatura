@@ -74,6 +74,10 @@
                                                data-toggle="tooltip"
                                                data-placement="top" title="Ver Plan de Desarrollo de Asignatura"><i
                                                     class="material-icons">remove_red_eye</i></a>
+                                            <a target="_blank" href="{{ route('plandedesarrolloasignatura.imprimir',$p->id)}}"
+                                               class="btn btn-link btn-just-icon remove" data-toggle="tooltip"
+                                               data-placement="top" style="color: #38A970" title="Imprimir"><i
+                                                    class="material-icons">print</i></a>
                                         </td>
                                     </tr>
                                 @endforeach
