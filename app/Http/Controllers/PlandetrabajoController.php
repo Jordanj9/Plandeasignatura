@@ -157,5 +157,8 @@ class PlandetrabajoController extends Controller
                ->with('location','plan');
 
     }
+    public  function  orientacion($request){
+        return view('plan.plan_de_trabajo.actividades.orientacion')->with('location','plan');
+    }
 
 }
