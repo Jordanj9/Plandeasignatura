@@ -4,7 +4,12 @@
         <div class="panel-body">
             <div class="col-md-12">
                 <p class="animated fadeInDown">
-                    <a href="{{route('inicio')}}">Inicio</a> <span class="fa-angle-right fa"></span> Módulo Planes
+                    <a href="{{route('inicio')}}">Inicio</a> <span class="fa-angle-right fa"></span>
+                    <a href="{{route('admin.plan')}}">Módulo Planes</a>
+                    <span class="fa-angle-right fa"></span>
+                    <a href="{{route('plandetrabajo.index')}}">Actividades del Docente</a>
+                    <span class="fa-angle-right fa"></span>
+                    Gestión Cuadros Explicativos
                 </p>
             </div>
         </div>
@@ -16,7 +21,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text">
-                        <h4 class="card-title">GESTIÓN DE ACTIVIDADES</h4>
+                        <h4 class="card-title">GESTIÓN DE CUADROS EXPLICATIVOS</h4>
                     </div>
                 </div>
                 <div class="card-body">

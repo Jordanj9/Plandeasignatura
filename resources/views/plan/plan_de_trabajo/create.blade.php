@@ -228,9 +228,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue nuevas asignaturas,</strong> gestione las asignaturas pertenecientes a un programa.
-                    departamentos.
-                </div>
+                    <strong>Agregue nuevas Tareas al Plan de Trabajo,</strong> gestione cada una de las actividades docentes pertenecientes al plan de trabajo.             </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
                 </div>
