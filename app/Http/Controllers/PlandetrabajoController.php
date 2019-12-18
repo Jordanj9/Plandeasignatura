@@ -165,9 +165,17 @@ class PlandetrabajoController extends Controller
 
     public function investigacion($plan){
 
+      $trabajos = Trabajo::where(['plandetrabajo_id'=>$plan])->get();
+      $total = 0;
+      foreach ($trabajos as $trabajo){
+          $total += $trabajo->hora_semana;
+      }
+
       return view('plan.plan_de_trabajo.actividades.investigacion')
             ->with('location','plan')
-            ->with('plan',$plan);
+            ->with('plan',$plan)
+            ->with('trabajos',$trabajos)
+            ->with('total',$total);
 
     }
 
@@ -178,8 +186,18 @@ class PlandetrabajoController extends Controller
     }
 
     public function investigacion_store(Request $request){
-      dd($request);
+        $trabajo = new Trabajo($request->all());
+        $trabajo->item_id = 2;
+        $result = $trabajo->save();
+        if($result){
+            flash("La Actividad  de Investigación Aprobada" . "fue almacenada de forma exitosa")->success();
+            return redirect()->route('investigacion',$request->plandetrabajo_id);
+        }else{
+            flash("La Actividad  de Investigación Aprobada" . "no pudo ser almacenada de forma exitosa")->error();
+            return redirect()->route('investigacion',$request->plandetrabajo_id);
+        }
     }
+
     public function otras($request){
 
         return view('plan.plan_de_trabajo.actividades.otras')
