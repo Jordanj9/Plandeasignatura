@@ -7,8 +7,12 @@ use App\Cargaacademica;
 use App\Docente;
 use App\Item;
 use App\Periodo;
+use App\Plandeasignatura;
+use App\Plandedesarrolloasignatura;
 use App\Plandetrabajo;
 use App\Trabajo;
+use App\Unidad;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -306,6 +310,23 @@ class PlandetrabajoController extends Controller
     public function crecimiento_store(Request $request)
     {
 
+    }
+
+    public function imprimir($id)
+    {
+        $plantrabajo = Plandetrabajo::find($id);
+        $docente = Docente::find($plantrabajo->docente_id);
+        $hoy = getdate();
+        $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
+        $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
+        $carga = Cargaacademica::where([['periodo_id',$per->id],['docente_id',$docente->id]])->get();
+
+
+        $pdf = PDF::loadView('plan.plan_de_trabajo.print', compact('plantrabajo', 'docente', 'per', 'carga'));
+        //$paper_size = array(0,0,1400,1000);
+        //$pdf->setPaper($paper_size);
+        //$pdf->setPaper("A4","landscape");
+        return $pdf->stream('Plan_de_Trabajo.pdf');
     }
 
 }

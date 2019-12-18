@@ -65,6 +65,10 @@
                                            data-placement="top"
                                            title="Gestionar Actividades Docentes"><i
                                                 class="material-icons">note_add</i></a>
+                                        <a target="_blank" href="{{ route('plandetrabajo.imprimir',$plan->id)}}"
+                                           class="btn btn-link btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" style="color: #38A970" title="Imprimir"><i
+                                                class="material-icons">print</i></a>
                                     </td>
                                 </tr>
                             @endforeach

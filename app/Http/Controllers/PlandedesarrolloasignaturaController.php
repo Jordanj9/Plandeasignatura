@@ -266,7 +266,7 @@ class PlandedesarrolloasignaturaController extends Controller
             $plandeasignatura = $plandesarrollo->plandeasignatura;
             $docente = $plandesarrollo->docente;
         }
-        $unidades = Unidad::where('plandeasignatura_id', $plandeasignatura->id)->orderBy('nombre')->get();
+        $unidades = Unidad::where('plandeasignatura_id', $plandeasignatura->id)->orderBy('nombre')->get()->pluck('nombre', 'id');
         if ($plandesarrollo != null) {
             $semanas = $plandesarrollo->semanas;
             if ($semanas != null) {
@@ -275,9 +275,11 @@ class PlandedesarrolloasignaturaController extends Controller
                     $item->bibl = explode(';', $item->bibliografia);
                 }
             }
-
+            //dd($plandesarrollo->semanas);
             $pdf = PDF::loadView('plan.plan_de_desarrollo_asignatura.print', compact('plandesarrollo', 'unidades', 'semanas', 'docente', 'plandeasignatura'));
-            $pdf->setPaper("A4","landscape");
+            $paper_size = array(0,0,1400,1000);
+            $pdf->setPaper($paper_size);
+            //$pdf->setPaper("A4","landscape");
             return $pdf->stream('Plan_de_Asignatura.pdf');
         } else {
             flash("El plan de asignatura seleccionado no tiene plan de desarrollo creado. Atención!: ")->warning();
