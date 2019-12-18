@@ -202,6 +202,17 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="row-justify" style="margin-top: 20px;">
+            <div class="col-md-12">
+                <a href="" style="margin-right: 10px;" id="" onclick="guardar(event)">
+                    <button class="btn btn-outline-success btn-round button" >
+                        Guardar Plan de Trabajo
+                        <div class="ripple-container"></div>
+                    </button>
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade modal-mini modal-primary" id="addHorario" tabindex="-1" role="dialog"
@@ -231,8 +242,17 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group bmd-form-group">
-                                            <div class="form-line" id="select">
-
+                                            <div class="form-line" id="select" style="display: none">
+                                                <label class="control-label">Asignatura</label>
+                                                <select class="select2"
+                                                        data-style="select-with-transition" style="width: 100%;"
+                                                        required="required"
+                                                        id="asignatura">
+                                                    <option value="">--Seleccione una opción--</option>
+                                                    @foreach($asignaturas as $key => $value)
+                                                        <option value="{{$key}}">{{$value}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -259,12 +279,17 @@
         function selectItem(event,id){
            event.preventDefault();
             item_selected =  id;
+            if(item_selected != 13){
+                let select =  document.getElementById('select');
+                select.style.display = 'none';
+            }
            let buttons = document.querySelectorAll('.button');
            buttons.forEach(function(item){
                item.removeAttribute('disabled')
            });
            event.target.setAttribute('disabled',true);
         }
+
         function addHorario(event){
 
             $('#td').val(event.target.getAttribute('id'));
@@ -284,7 +309,9 @@
                 return;
 
             }else{
+
                 if(item_selected == null){
+
                     $.notify({
                         icon: "add_alert",
                         message: 'Por favor selecione una activiadad para poder seguir con el registro.'
@@ -293,7 +320,10 @@
                     return;
                 }
 
-
+                if(item_selected == 13){
+                   let select =  document.getElementById('select');
+                   select.style.display = 'block';
+                }
 
                 $('#addHorario').modal('show');
             }
@@ -316,6 +346,7 @@
                     'dia' : data.getAttribute('data-dia'),
                     'hora': data.getAttribute('data-hora'),
                     'etiqueta' : data.getAttribute('data-hora'),
+                    'asignatura': $('#asignatura').val(),
                     'actividaddocente_id' : item_selected,
                     'plandetrabajo_id' : '{{$plan->id}}'
                 });
@@ -326,7 +357,15 @@
                     message: 'no hay horas disponible para esta actividad.'
                 }, {type: 'warning', timer: 3e3, placement: {from: 'top', align: 'right'}});
             }
+        }
 
+        function guardar(event){
+            event.preventDefault();
+            axios.post('{{url('plan/plandetrabajo/actividades/horario/guardar')}}',{
+                data: horarios
+            }).then(response => {
+                console.log(response);
+            });
         }
 
     </script>

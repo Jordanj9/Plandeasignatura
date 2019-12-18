@@ -12,7 +12,7 @@ class Horario extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'dia', 'hora','etiqueta', 'actividaddocente_id', 'plandetrabajo_id', 'created_at', 'updated_at'
+        'id', 'dia', 'hora','etiqueta','horario_id', 'actividaddocente_id', 'plandetrabajo_id', 'created_at', 'updated_at'
     ];
 
     /**
@@ -32,5 +32,9 @@ class Horario extends Model
     public function plandetrabajo()
     {
         return $this->belongsTo(Plandetrabajo::class);
+    }
+
+    public function asignatura(){
+        return $this->belongsTo(Asignatura::class);
     }
 }

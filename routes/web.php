@@ -133,6 +133,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     Route::post('plandetrabajo/actividades/store', 'PlandetrabajoController@guardar_trabajo')->name('guardar_trabajo');
     Route::get('plandetrabajo/actividades/delete/{item}', 'PlandetrabajoController@eliminar_trabajo')->name('eliminar_trabajo');
     Route::get('plandetrabajo/actividades/horario/{plan}', 'PlandetrabajoController@horario')->name('horario');
+    Route::post('plandetrabajo/actividades/horario/guardar', 'PlandetrabajoController@horario_guardar')->name('horario_guardar');
 
     Route::get('plandetrabajo/actividades/orientacion/{plan}', 'PlandetrabajoController@orientacion')->name('orientacion');
     Route::get('plandetrabajo/actividades/orientacion/create/{plan}', 'PlandetrabajoController@orientacion_create')->name('orientacion_create');

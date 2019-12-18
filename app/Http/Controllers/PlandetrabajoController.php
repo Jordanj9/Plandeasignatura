@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actividaddocente;
 use App\Cargaacademica;
 use App\Docente;
+use App\Horario;
 use App\Item;
 use App\Periodo;
 use App\Plandeasignatura;
@@ -45,8 +46,8 @@ class PlandetrabajoController extends Controller
             $u = Auth::user();
             $doc = Docente::where('identificacion', $u->identificacion)->first();
 
-            $plan = Plandetrabajo::where('docente_id',$doc->id)->first();
-            if($plan != null){
+            $plan = Plandetrabajo::where('docente_id', $doc->id)->first();
+            if ($plan != null) {
                 flash("ya se encuentra registrado su plan de trabajo")->warning();
                 return redirect()->back();
             }
@@ -178,7 +179,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',1]
+            ['item_id', 1]
         ])->get();
 
         $total = 0;
@@ -202,13 +203,12 @@ class PlandetrabajoController extends Controller
     }
 
 
-
 //ACTIVIDAD INVESTIGACION
     public function investigacion($plan)
     {
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',2]
+            ['item_id', 2]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -249,7 +249,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',7]
+            ['item_id', 7]
         ])->get();
 
         $total = 0;
@@ -278,7 +278,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',4]
+            ['item_id', 4]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -307,7 +307,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',6]
+            ['item_id', 6]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -336,7 +336,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',3]
+            ['item_id', 3]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -365,7 +365,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',5]
+            ['item_id', 5]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -388,36 +388,52 @@ class PlandetrabajoController extends Controller
     }
 
 
-    public function eliminar_trabajo($id){
+    public function eliminar_trabajo($id)
+    {
 
         $trabajo = Trabajo::find($id);
 
-        if($trabajo){
-             $result = $trabajo->delete();
+        if ($trabajo) {
+            $result = $trabajo->delete();
 
-             if($result){
-                 flash("La Actividad fue eliminada correctamente")->success();
-                 return redirect()->back();
-             }else{
-                 flash("La Actividad no pude ser eliminada correctamente, por favor intentarlo más tarde")->warning();
-                 return redirect()->back();
-             }
+            if ($result) {
+                flash("La Actividad fue eliminada correctamente")->success();
+                return redirect()->back();
+            } else {
+                flash("La Actividad no pude ser eliminada correctamente, por favor intentarlo más tarde")->warning();
+                return redirect()->back();
+            }
         }
 
     }
 
 
-    public function horario($plan){
+    public function horario($plan)
+    {
 
-       $validas = [13,14,15,17,18,19,20,21,22,23];
-       $items = [];
-       $plan = Plandetrabajo::find($plan);
+        $validas = [13, 14, 15, 17, 18, 19, 20, 21, 22, 23];
+        $items = [];
+        $plan = Plandetrabajo::find($plan);
+        $docente = Docente::find($plan->docente_id);
+        $hoy = getdate();
+        $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
+        $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
+        $carga = Cargaacademica::where([['periodo_id', $per->id], ['docente_id', $docente->id]])->get();
+        $asignaturas = [];
 
-        foreach ($plan->actividaddocentes as $actividad){
+        if ($carga) {
+            foreach ($carga as $item) {
+                if(!in_array($item->asignatura->id,$asignaturas)){
+                    $asignaturas[$item->asignatura->id] = $item->asignatura->id.'-'.$item->asignatura->nombre.'-'.$item->grupo->nombre;
+                }
+            }
+        }
 
-            if(in_array($actividad->id,$validas)){
+        foreach ($plan->actividaddocentes as $actividad) {
 
-                if($actividad->pivot->valor != 0){
+            if (in_array($actividad->id, $validas)) {
+
+                if ($actividad->pivot->valor != 0) {
                     $items[] = [
                         'id' => $actividad->id,
                         'descripcion' => $actividad->nombre,
@@ -429,12 +445,12 @@ class PlandetrabajoController extends Controller
         }
 
         return view('plan.plan_de_trabajo.horario')
-              ->with('location','plan')
-              ->with('items',$items)
-              ->with('plan',$plan);
+            ->with('location', 'plan')
+            ->with('items', $items)
+            ->with('plan', $plan)
+            ->with('asignaturas', $asignaturas);
 
     }
-
 
 
     public function imprimir($id)
@@ -444,15 +460,45 @@ class PlandetrabajoController extends Controller
         $hoy = getdate();
         $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
         $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
-        $carga = Cargaacademica::where([['periodo_id',$per->id],['docente_id',$docente->id]])->get();
+        $carga = Cargaacademica::where([['periodo_id', $per->id], ['docente_id', $docente->id]])->get();
         $actividades = Actividaddocente::all();
         $items = Item::all();
 
         $pdf = PDF::loadView('plan.plan_de_trabajo.print', compact('plantrabajo', 'docente', 'per', 'carga'));
-        $paper_size = array(0,0,1000,1000);
+        $paper_size = array(0, 0, 1000, 1000);
         //$pdf->setPaper($paper_size);
         //$pdf->setPaper("A4","landscape");
         return $pdf->stream('Plan_de_Trabajo.pdf');
+    }
+
+
+    public function horario_guardar(Request $request){
+
+        $horarios = $request->data;
+
+        foreach ($horarios as $item){
+            $horario = new Horario();
+            $horario->dia =  $item['dia'];
+            $horario->hora =  $item['hora'];
+            $horario->etiqueta =  $item['etiqueta'];
+            $horario->actividaddocente_id =  $item['actividaddocente_id'];
+            $horario->plandetrabajo_id =  $item['plandetrabajo_id'];
+
+            if( $horario->actividaddocente_id  == 13){
+                $horario->asignatura_id = $item['asignatura'];
+            }
+
+           $result =  $horario->save();
+
+        }
+
+        if($result){
+            return response()->json([
+                'status' => 'ok'
+            ]);
+        }
+
+
     }
 
 }
