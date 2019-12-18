@@ -69,6 +69,11 @@
                                            class="btn btn-link btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" style="color: #38A970" title="Imprimir"><i
                                                 class="material-icons">print</i></a>
+                                        <a href="{{ route('plandetrabajo.delete',$plan->id)}}"
+                                           class="btn btn-link btn-danger btn-just-icon remove"
+                                           data-toggle="tooltip"
+                                           data-placement="top" title="Eliminar plan de trabajo"><i
+                                                class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             @endforeach

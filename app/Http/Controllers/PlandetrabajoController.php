@@ -15,6 +15,7 @@ use App\Unidad;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PHPUnit\Framework\Constraint\Count;
 
 class PlandetrabajoController extends Controller
 {
@@ -56,16 +57,28 @@ class PlandetrabajoController extends Controller
                     flash("no tiene carga académica registrada para el periodo actual")->warning();
                     return redirect()->back();
                 }
-
                 $actividades = Actividaddocente::all();
                 $items = Item::all();
-
+                $asignaturas = [];
+                $asig = 0;
+                $est = 0;
+                foreach ($carga as $item) {
+                    $est = $est + count($item->estudiantes);
+                    if (!in_array($item->asignatura->id, $asignaturas)) {
+                        $asignaturas[$item->asignatura->id] = $item->asignatura_id;
+                        $asig = $asig + 1;
+                    }
+                }
+                $grup = count($carga);
                 return view('plan.plan_de_trabajo.create')
                     ->with('location', 'plan')
                     ->with('carga', $carga)
                     ->with('docente', $doc)
                     ->with('actividades', $actividades)
                     ->with('items', $items)
+                    ->with('asig', $asig)
+                    ->with('grup', $grup)
+                    ->with('est', $est)
                     ->with('periodo', $per);
 
             }
@@ -86,24 +99,24 @@ class PlandetrabajoController extends Controller
      */
     public function store(Request $request)
     {
+        $existe = Plandetrabajo::where([['docente_id', $request->docente_id], ['periodo_id', $request->periodo_id]])->first();
+        if ($existe != null) {
+            flash("El docente ya tiene un plan de trabajo creado para el periodo académico actual")->error();
+            return redirect()->route('plandetrabajo.index');
+        }
         $plan = new Plandetrabajo();
         $plan->docente_id = $request->docente_id;
         $plan->periodo_id = $request->periodo_id;
         $result = $plan->save();
-
         if ($result) {
-
             foreach ($request->actividades as $key => $value) {
                 $plan->actividaddocentes()->attach($key, ['valor' => $value]);
             }
             flash("El Plan de Trabajo para el docente <strong>" . $plan->docente->primer_nombre . ' ' . $plan->docente->primer_apellido . "</strong>con los datos básicos fue almacenado de forma exitosa, clikea el boton seguir para continuar con el proceso")->success();
             return redirect()->route('plandetrabajo.index');
-
         } else {
-
             flash("El Plan de Trabajo para el docente <strong>" . $plan->docente->primer_nombre . ' ' . $plan->docente->primer_apellido . "</strong>no pudo ser almacenado de forma exitosa")->error();
             return redirect()->route('plandetrabajo.index');
-
         }
 
     }
@@ -148,9 +161,17 @@ class PlandetrabajoController extends Controller
      * @param \App\Plandetrabajo $plandetrabajo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Plandetrabajo $plandetrabajo)
+    public function destroy($id)
     {
-        //
+        $plan = Plandetrabajo::find($id);
+        $result = $plan->delete();
+        if ($result) {
+            flash("El Plan de Trabajo para el docente fue eliminado de forma correcta")->success();
+            return redirect()->route('plandetrabajo.index');
+        } else {
+            flash("El Plan de Trabajo para el docente no pudo ser elimindao. Error:" . $result)->error();
+            return redirect()->route('plandetrabajo.index');
+        }
     }
 
     public function menuActividades($plan)
@@ -169,7 +190,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',1]
+            ['item_id', 1]
         ])->get();
 
         $total = 0;
@@ -193,13 +214,12 @@ class PlandetrabajoController extends Controller
     }
 
 
-
 //ACTIVIDAD INVESTIGACION
     public function investigacion($plan)
     {
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',2]
+            ['item_id', 2]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -240,7 +260,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',7]
+            ['item_id', 7]
         ])->get();
 
         $total = 0;
@@ -269,7 +289,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',4]
+            ['item_id', 4]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -303,7 +323,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',6]
+            ['item_id', 6]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -336,7 +356,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',3]
+            ['item_id', 3]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -369,7 +389,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id',5]
+            ['item_id', 5]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -403,12 +423,11 @@ class PlandetrabajoController extends Controller
         $hoy = getdate();
         $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
         $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
-        $carga = Cargaacademica::where([['periodo_id',$per->id],['docente_id',$docente->id]])->get();
-        $actividades = Actividaddocente::all();
-        $items = Item::all();
+        $carga = Cargaacademica::where([['periodo_id', $per->id], ['docente_id', $docente->id]])->get();
+        //dd($plantrabajo->actividaddocentes);
 
         $pdf = PDF::loadView('plan.plan_de_trabajo.print', compact('plantrabajo', 'docente', 'per', 'carga'));
-        $paper_size = array(0,0,1000,1000);
+        $paper_size = array(0, 0, 1000, 1000);
         //$pdf->setPaper($paper_size);
         //$pdf->setPaper("A4","landscape");
         return $pdf->stream('Plan_de_Trabajo.pdf');
