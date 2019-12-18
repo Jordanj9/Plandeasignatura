@@ -364,7 +364,12 @@
             axios.post('{{url('plan/plandetrabajo/actividades/horario/guardar')}}',{
                 data: horarios
             }).then(response => {
-                console.log(response);
+                if(response.status == 'ok'){
+                    $.notify({
+                        icon: "add_alert",
+                        message: 'El Horario del plan de trabajo se guardo correctamente.'
+                    }, {type: 'success', timer: 3e3, placement: {from: 'top', align: 'right'}});
+                }
             });
         }
 
