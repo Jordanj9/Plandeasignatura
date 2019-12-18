@@ -4,10 +4,8 @@
         <div class="panel-body">
             <div class="col-md-12">
                 <p class="animated fadeInDown">
-                    <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.academico')}}"> Módulo Académico </a><span
-                        class="fa-angle-right fa"></span>
-                    Carga Academica
+                    <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><span
+                        class="fa-angle-right fa"></span> Cambiar Contaseña
                 </p>
             </div>
         </div>
@@ -19,7 +17,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">ACADÉMICO - CARGA ACADÉMICA</h4>
+                        <h4 class="card-title">CAMBIAR CONTRASEÑA</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -29,8 +27,6 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('carga_academica.create') }}" class="dropdown-item" href="#">Agregar
-                                        nueva carga academica</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -39,51 +35,46 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="material-datatables">
-                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
-                               width="100%" style="width:100%">
-                            <thead>
-                            <tr>
-                                <th>DOCENTE</th>
-                                <th>ASIGNATURA</th>
-                                <th>GRUPO</th>
-                                <th>PERIODO</th>
-                                <th>ACCIONES</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($cargaAcademica as $carga)
-                                <tr>
-                                    <td>
-                                        <ul>
-                                            <li>DEPARTAMENTO: {{$carga->docente->departamento->nombre}}</li>
-                                            <li>NOMBRE: {{$carga->docente->primer_nombre." ".$carga->docente->primer_apellido}}</li>
-                                        </ul>
-                                    </td>
-                                    <td>{{$carga->asignatura->nombre}}</td>
-                                    <td>{{$carga->grupo->nombre}}</td>
-                                    <td>{{$carga->periodo->anio.'-'.$carga->periodo->periodo}}</td>
-                                    <td>
-                                        <a href="{{ route('carga_academica.edit',$carga->id)}}"
-                                           class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Carga"><i class="material-icons">mode_edit</i></a>
-                                        <a href="{{ route('carga_academica.delete',$carga->id)}}"
-                                           class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Eliminar Carga"><i class="material-icons">delete</i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>DOCENTE</th>
-                                <th>ASIGNATURA</th>
-                                <th>GRUPO</th>
-                                <th>PERIODO</th>
-                                <th>ACCIONES</th>
-                            </tr>
-                            </tfoot>
-                        </table>
+                    <div class="col-md-12">
+                        @component('layouts.errors')
+                        @endcomponent
+                    </div>
+                    <div class="col-md-12">
+                        <form class="form-horizontal" role="form" method="POST"
+                              action="{{route('usuario.cambiarcontrasenia')}}">
+                            @csrf
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Escriba Su Contraseña Actual</label>
+                                        <br/><input type="password" class="form-control"
+                                                    name="pass0" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Escriba la Nueva Contraseña</label>
+                                        <br/><input type="password" name="pass1" placeholder="Mínimo 6 caracteres"
+                                                    class="form-control" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Vuelva a Escribir La Nueva Contraseña</label>
+                                        <br/><input type="password" name="pass2" placeholder="Mínimo 6 caracteres"
+                                                    class="form-control" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-info btn-round" type="reset">Limpiar</button>
+                                <button class="btn btn-success btn-round" type="submit">Guardar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -98,7 +89,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione los docentes pertenecientes a los diferentes departamentos.
+                    Cambie la contraseña.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>

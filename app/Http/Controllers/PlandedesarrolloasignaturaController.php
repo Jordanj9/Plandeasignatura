@@ -277,6 +277,7 @@ class PlandedesarrolloasignaturaController extends Controller
             }
 
             $pdf = PDF::loadView('plan.plan_de_desarrollo_asignatura.print', compact('plandesarrollo', 'unidades', 'semanas', 'docente', 'plandeasignatura'));
+            $pdf->setPaper("A4","landscape");
             return $pdf->stream('Plan_de_Asignatura.pdf');
         } else {
             flash("El plan de asignatura seleccionado no tiene plan de desarrollo creado. Atención!: ")->warning();

@@ -101,21 +101,12 @@ class CargaacademicaController extends Controller
                     }
                     $aud->detalles = $str;
                     $aud->save();
-                    $response = $response . "<h4 style='color: white'>El " . $grp->nombre . " fue asignado exitosamente.</h4>";
-                    $color = "success";
-//                    flash("La Carga Académica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> fue almacenada de forma exitosa!")->success();
-//                    return redirect()->route('carga_academica.index');
+                    $response = $response . "<h4 style='background-color: green'>El " . $grp->nombre . " fue asignado exitosamente.</h4> <br>";
                 } else {
                     $response = $response . "<h4 style='color:white'>El " . $grp->nombre . " no pudo ser asignado a la asignatura." .$asignatura->nomobre." </h4>";
-                    $color = "danger";
-//                    flash("La Carga Académica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> no pudo ser almacenada. Error: " . $result)->error();
-//                    return redirect()->route('carga_academica.index');
                 }
             } else {
                 $response = $response . "<h4 style='color: white'>El " . $grp->nombre . " ya fue asignado a la asignatura ".$asignatura->nombre."</h4>";
-                $color = "warning";
-//                flash("La Carga Académica para la asignatura <strong>" . $carga_academica->asignatura->nombre . "</strong> ya se encuntra registrada en el periodo actual con este docente, por favor verifique sus datos. ")->warning();
-//                return redirect()->route('carga_academica.index');
             }
         }
         flash($response)->success();
@@ -139,9 +130,24 @@ class CargaacademicaController extends Controller
      * @param \App\Cargaacademica $cargaacademica
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cargaacademica $cargaacademica)
+    public function edit($id)
     {
-        //
+        $carga = Cargaacademica::find($id);
+        $facultades = Facultad::all();
+        $periodos = Periodo::all()->sortByDesc('anio');
+        $grupos = Grupo::all()->pluck('nombre', 'id');
+        $periodosf = Collect();
+        if ($periodos->count() > 0) {
+            foreach ($periodos as $value) {
+                $periodosf[$value->id] = $value->anio . " - " . $value->periodo;
+            }
+        }
+        return view('academico.carga_academica.edit')
+            ->with('location', 'academico')
+            ->with('facultades', $facultades)
+            ->with('periodos', $periodosf)
+            ->with('grupos', $grupos)
+            ->with('carga', $carga);
     }
 
     /**
@@ -151,9 +157,32 @@ class CargaacademicaController extends Controller
      * @param \App\Cargaacademica $cargaacademica
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cargaacademica $cargaacademica)
+    public function update(Request $request, $id)
     {
-        //
+        $existe = Cargaacademica::where([
+            ['grupo_id', $request->grupo_id],
+            ['periodo_id', $request->periodo_id],
+            ['asignatura_id', $request->asignatura]
+        ])->first();
+        if($existe != null){
+            flash("La Carga académica con los parametros seleccionado ya existe.")->warning();
+            return redirect()->route('carga_academica.index');
+        }
+        $carga = Cargaacademica::find($id);
+        $m = new Cargaacademica($carga->attributesToArray());
+        foreach ($carga->attributesToArray() as $key => $value) {
+            if (isset($request->$key)) {
+                $carga->$key = $request->$key;
+            }
+        }
+        $result = $carga->save();
+        if($result){
+            flash("La Carga académica fue modificada de forma exitosa!")->success();
+            return redirect()->route('carga_academica.index');
+        }else{
+            flash("La Carga académica no fue modificada. Error:".$result)->error();
+            return redirect()->route('carga_academica.index');
+        }
     }
 
     /**
