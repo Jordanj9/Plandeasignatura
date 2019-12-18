@@ -58,6 +58,8 @@
     <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css')}}">
     <!-- JQuery DataTable Css -->
     <link href="{{asset('css/dataTables.bootstrap.css')}}" rel="stylesheet">
+
+    @yield('style')
     <!-- Google Tag Manager -->
     <script>
         (function (w, d, s, l, i) {
