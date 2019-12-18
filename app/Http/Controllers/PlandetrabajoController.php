@@ -404,10 +404,11 @@ class PlandetrabajoController extends Controller
         $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
         $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
         $carga = Cargaacademica::where([['periodo_id',$per->id],['docente_id',$docente->id]])->get();
-
+        $actividades = Actividaddocente::all();
+        $items = Item::all();
 
         $pdf = PDF::loadView('plan.plan_de_trabajo.print', compact('plantrabajo', 'docente', 'per', 'carga'));
-        //$paper_size = array(0,0,1400,1000);
+        $paper_size = array(0,0,1000,1000);
         //$pdf->setPaper($paper_size);
         //$pdf->setPaper("A4","landscape");
         return $pdf->stream('Plan_de_Trabajo.pdf');

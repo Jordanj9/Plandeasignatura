@@ -134,11 +134,8 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue nuevas páginas,</strong> el nombre de la página no debe llevar acentos, eñes (ñ) ni
-                    caracteres especiales, el nombre de la página debe iniciar con "PAG_" seguido del nombre que usted
-                    desee. Las paginas o ítems de los módulos del sistema son las funcionalidades más específicas o
-                    detalladas de los módulos. Ejemplo de página general: PAG_MODULOS, PAG_PAGINAS, PAG_USUARIOS,
-                    PAG_PRIVILEGIOS, ETC.
+                    <strong>Agregue nuevos datos de orientación y evaluación de los trabajos de grado,</strong> Ingrese cada uno de las despcripciones que conforman
+                    el cuadro explicativo de orientación y evaluación de los trabajos de grado refrente al plan de trabajo que esta realizando.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
