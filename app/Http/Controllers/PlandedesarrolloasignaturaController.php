@@ -277,6 +277,7 @@ class PlandedesarrolloasignaturaController extends Controller
             }
 
             $pdf = PDF::loadView('plan.plan_de_desarrollo_asignatura.print', compact('plandesarrollo', 'unidades', 'semanas', 'docente', 'plandeasignatura'));
+            //$paper_size = array(0,0,360,360);
             $pdf->setPaper("A4","landscape");
             return $pdf->stream('Plan_de_Asignatura.pdf');
         } else {
