@@ -21,10 +21,10 @@ class PlandetrabajoController extends Controller
      */
     public function index()
     {
-
-
-        return view('plan.plan_de_trabajo.list')->with('location', 'plan');
-
+        $planes = Plandetrabajo::all();
+        return view('plan.plan_de_trabajo.list')
+               ->with('location', 'plan')
+               ->with('planes',$planes);
     }
 
     /**
@@ -82,40 +82,25 @@ class PlandetrabajoController extends Controller
      */
     public function store(Request $request)
     {
-
         $plan = new Plandetrabajo();
-        $plan->docente_id = $request->actividadesDocente[1]['docente_id'];
-        $plan->periodo_id = $request->actividadesDocente[2]['periodo_id'];
-        $plan->save();
+        $plan->docente_id = $request->docente_id;
+        $plan->periodo_id = $request->periodo_id;
+        $result = $plan->save();
 
-        foreach ($request->actividadesDocente as $actividad){
-            if($actividad['name'] != 'docente_id' && $actividad['name'] != 'periodo_id'){
-                $plan->actividaddocentes()->attach($actividad['name'],['valor',$actividad['value']]);
+        if($result){
+
+            foreach ($request->actividades as $key => $value){
+                $plan->actividaddocentes()->attach($key,['valor'=>$value]);
             }
+            flash("El Plan de Trabajo para el docente <strong>" .$plan->docente->primer_nombre.' '.$plan->docente->primer_apellido . "</strong>con los datos básicos fue almacenado de forma exitosa, clikea el boton seguir para continuar con el proceso")->success();
+            return redirect()->route('plandetrabajo.index');
+
+        }else{
+
+            flash("El Plan de Trabajo para el docente <strong>" .$plan->docente->primer_nombre.' '.$plan->docente->primer_apellido . "</strong>no pudo ser almacenado de forma exitosa")->error();
+            return redirect()->route('plandetrabajo.index');
+
         }
-
-        if(isset($request->orientacion)){
-            foreach ($request->orientacion as $item){
-                $ori = new Trabajo($item);
-                $ori->item_id = 1;
-                $ori->plandetrabajo_id = $plan->id;
-                $ori->save();
-            }
-        }
-
-        if(isset($request->orientacion)){
-            foreach ($request->investigacion as $item){
-                $ori = new Trabajo($item);
-                $ori->item_id = 1;
-                $ori->plandetrabajo_id = $plan->id;
-                $ori->save();
-            }
-        }
-
-
-
-
-
 
     }
 
@@ -163,4 +148,14 @@ class PlandetrabajoController extends Controller
     {
         //
     }
+
+    public function menuActividades($plan){
+
+        $plan = Plandetrabajo::find($plan);
+        return view('plan.plan_de_trabajo.menu_actividades')
+               ->with('plan',$plan)
+               ->with('location','plan');
+
+    }
+
 }
