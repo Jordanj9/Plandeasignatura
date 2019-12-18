@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DE LA PÁGINA</h4>
+                        <h4 class="card-title">DATOS DE INVESTIGACION APROBADA</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">

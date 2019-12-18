@@ -21,7 +21,7 @@
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.plan')}}"> Módulo Planes </a><span
                         class="fa-angle-right fa"></span>
-                    Plan de Trabajo
+                    Crecimiento Personal y Desarrollo
                 </p>
             </div>
         </div>
@@ -43,7 +43,7 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('crecimiento',$plan) }}" class="dropdown-item" href="#">Agregar
+                                    <a href="{{ route('crecimiento_create',$plan) }}" class="dropdown-item" href="#">Agregar
                                         Actividad de crecimiento personal y desarrollo</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>

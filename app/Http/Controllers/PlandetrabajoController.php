@@ -203,11 +203,11 @@ class PlandetrabajoController extends Controller
     }
 
     //ACTIVIDAD OTRAS
-    public function otras($request)
+    public function otras($plan)
     {
 
         return view('plan.plan_de_trabajo.actividades.otras')
-            ->with('location', 'plan');
+            ->with('location', 'plan')->with('plan', $plan);
 
     }
 
@@ -224,11 +224,11 @@ class PlandetrabajoController extends Controller
     }
 
     //ACTIVIDAD COOPERACION
-    public function cooperacion($request)
+    public function cooperacion($plan)
     {
 
         return view('plan.plan_de_trabajo.actividades.cooperacion')
-            ->with('location', 'plan');
+            ->with('location', 'plan')->with('plan', $plan);
 
     }
 
@@ -245,11 +245,12 @@ class PlandetrabajoController extends Controller
     }
 
 //ACTIVIDAD ACTIVIDADES
-    public function actividades($request)
+    public function actividades($plan)
     {
 
         return view('plan.plan_de_trabajo.actividades.actividades')
-            ->with('location', 'plan');
+            ->with('location', 'plan')
+            ->with('plan', $plan);
 
     }
 
@@ -266,11 +267,11 @@ class PlandetrabajoController extends Controller
     }
 
     //ACTIVIDAD EXTENSION
-    public function extension($request)
+    public function extension($plan)
     {
 
         return view('plan.plan_de_trabajo.actividades.extension')
-            ->with('location', 'plan');
+            ->with('location', 'plan')->with('plan', $plan);
 
     }
 
@@ -287,11 +288,11 @@ class PlandetrabajoController extends Controller
     }
 
     //ACTIVIDAD CRECIMIENTO
-    public function crecimiento($request)
+    public function crecimiento($plan)
     {
 
         return view('plan.plan_de_trabajo.actividades.crecimiento')
-            ->with('location', 'plan');
+            ->with('location', 'plan')->with('plan', $plan);
 
     }
 
