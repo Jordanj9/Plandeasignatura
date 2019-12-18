@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('style')
@@ -11,7 +12,7 @@
             border-collapse: collapse;
         }
     </style>
- @endsection
+@endsection
 @section('breadcrumb')
     <div class="panel box-shadow-none content-header">
         <div class="panel-body">
@@ -43,7 +44,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                     <a href="{{ route('plandetrabajo.create') }}" class="dropdown-item" href="#">Agregar
-                                        Actividad de Orientación y evaluacion de los trabajos de grado</a>
+                                        Actividad de crecimiento personal y desarrollo</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -56,32 +57,27 @@
                         <table>
                             <tbody>
                             <tr style="background-color: #38A970; color: white">
-                                <td>1. ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO</td>
-                                <td colspan="2">APROBADO POR </td>
-                                <td colspan="2">FECHA DE </td>
+                                <td colspan="6">5. CRECIMIENTO PERSONAL Y DESARROLLO</td>
+                                <td colspan="4">AUTORIZADA POR: </td>
                                 <td>HORAS/SEMANAS</td>
                                 <td>ACCIONES</td>
                             </tr>
                             <tr>
-                                <td>TITULO DE CADA TRABJO DE GRADO</td>
-                                <td>Acta</td>
-                                <td>Fecha</td>
-                                <td>Iniciación</td>
-                                <td>Terminación</td>
+                                <td colspan="6">DESCRIPCIÓN</td>
+                                <td colspan="2">INSTITUCIÓN</td>
+                                <td colspan="2">FECHA</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>TITULO DE CADA TRABJO DE GRADO</td>
-                                <td>Acta</td>
-                                <td>Fecha</td>
-                                <td>Iniciación</td>
-                                <td>Terminación</td>
+                                <td colspan="6">DESCRIPCIÓN</td>
+                                <td colspan="2">INSTITUCIÓN</td>
+                                <td colspan="2">FECHA</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td colspan="5" style="text-align: center">TOTAL HORAS</td>
+                                <td colspan="10" style="text-align: center">TOTAL HORAS</td>
                                 <td></td>
                                 <td></td>
 
@@ -103,7 +99,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione cada una de las actividades de orientación y evaluación de los trabajos de grado que desee agregar al plan de trabajo.
+                    <strong>Detalles: </strong>Gestione cada una de las actividades de cooperación interinstitucional que desee agregar al plan de trabajo.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
@@ -168,4 +164,5 @@
         });
     </script>
 @endsection
+
 
