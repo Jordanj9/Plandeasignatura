@@ -69,18 +69,28 @@
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr>
-                                <td colspan="6">DESCRIPCIÓN</td>
-                                <td colspan="2">INSTITUCIÓN</td>
-                                <td colspan="2">FECHA</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+
+                            @foreach($trabajos as $trabajo)
+                                <tr>
+                                    <td colspan="6">{{$trabajo->descripcion}}</td>
+                                    <td colspan="2">{{$trabajo->institucion}}</td>
+                                    <td colspan="2">{{$trabajo->fecha}}</td>
+                                    <td><center>{{$trabajo->hora_semana}}</center></td>
+                                    <td>
+                                        <a href=""
+                                           class="btn btn-link btn-danger btn-just-icon remove"
+                                           data-toggle="tooltip"
+                                           data-placement="top"
+                                           title="Gestionar Actividades Docentes"><i
+                                                class="material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                             <tr>
                                 <td colspan="10" style="text-align: center">TOTAL HORAS</td>
+                                <td><center>{{$total}}</center></td>
                                 <td></td>
-                                <td></td>
-
                             </tr>
 
                             </tbody>

@@ -42,16 +42,17 @@
                         @endcomponent
                     </div>
                     <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('extension_store')}}">
+                        <form class="form-horizontal" method="POST" action="{{route('guardar_trabajo')}}">
                             @csrf
                             <input type="hidden" value="{{$plan}}" name="plandetrabajo_id">
+                            <input type="hidden" value="3" name="item_id">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-line">
                                             <label for="">Actividades</label>
                                             <br/><input type="text" class="form-control"
-                                                        placeholder="" name="actividades"
+                                                        placeholder="" name="titulo"
                                                         required="required"/>
                                         </div>
                                     </div>

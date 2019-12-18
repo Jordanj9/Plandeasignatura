@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('style')
@@ -44,7 +43,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                     <a href="{{ route('actividades_create',$plan) }}" class="dropdown-item" href="#">Agregar
-                                        Actividad de actividades administrativas</a>
+                                        Actividades administrativas</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -57,8 +56,8 @@
                         <table>
                             <tbody>
                             <tr style="background-color: #38A970; color: white">
-                                <td colspan="6">6.  ACTIVIDADES ADMINISTRATIVAS</td>
-                                <td colspan="4">AUTORIZADA POR: </td>
+                                <td colspan="6">6. ACTIVIDADES ADMINISTRATIVAS</td>
+                                <td colspan="4">AUTORIZADA POR:</td>
                                 <td>HORAS/SEMANAS</td>
                                 <td>ACCIONES</td>
                             </tr>
@@ -70,17 +69,29 @@
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr>
-                                <td colspan="3">ACTIVIDADES</td>
-                                <td colspan="3">DESCRIPCIÓN</td>
-                                <td colspan="2">INSTITUCIÓN</td>
-                                <td colspan="2">FECHA</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @foreach($trabajos as $trabajo)
+                                <tr>
+                                    <td colspan="3">{{$trabajo->titulo}}</td>
+                                    <td colspan="3">{{$trabajo->descripcion}}</td>
+                                    <td colspan="2">{{$trabajo->institucion}}</td>
+                                    <td colspan="2">{{$trabajo->fecha}}</td>
+                                    <td>
+                                        <center>{{$trabajo->hora_semana}}</center>
+                                    </td>
+                                    <td><a href=""
+                                           class="btn btn-link btn-danger btn-just-icon remove"
+                                           data-toggle="tooltip"
+                                           data-placement="top"
+                                           title="Gestionar Actividades Docentes"><i
+                                                class="material-icons">delete</i></a></td>
+                                </tr>
+                            @endforeach
+
                             <tr>
                                 <td colspan="10" style="text-align: center">TOTAL HORAS</td>
-                                <td></td>
+                                <td>
+                                    <center>{{$total}}</center>
+                                </td>
                                 <td></td>
 
                             </tr>
@@ -101,7 +112,8 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione cada una de las actividades de cooperación interinstitucional que desee agregar al plan de trabajo.
+                    <strong>Detalles: </strong>Gestione cada una de las actividades de cooperación interinstitucional
+                    que desee agregar al plan de trabajo.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
