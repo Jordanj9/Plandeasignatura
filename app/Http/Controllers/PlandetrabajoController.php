@@ -163,11 +163,22 @@ class PlandetrabajoController extends Controller
     }
 
 
-    public function investigacion($request){
+    public function investigacion($plan){
 
       return view('plan.plan_de_trabajo.actividades.investigacion')
-            ->with('location','plan');
+            ->with('location','plan')
+            ->with('plan',$plan);
 
+    }
+
+    public function investigacion_create($plan){
+        return view('plan.plan_de_trabajo.actividades.investigacion_create')
+            ->with('location','plan')
+            ->with('plan',$plan);
+    }
+
+    public function investigacion_store(Request $request){
+      dd($request);
     }
 
 }

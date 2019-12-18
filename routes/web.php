@@ -129,12 +129,17 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
 
     //actividades
     Route::get('plandetrabajo/actividades/orientacion/{plan}', 'PlandetrabajoController@orientacion')->name('orientacion');
+    Route::get('plandetrabajo/actividades/orientacion/create/{plan}', 'PlandetrabajoController@orientacion_create')->name('orientacion_create');
+    Route::post('plandetrabajo/actividades/orientacion/store', 'PlandetrabajoController@orientacion_store')->name('orientacion_store');
     Route::get('plandetrabajo/actividades/investigacion/{plan}', 'PlandetrabajoController@investigacion')->name('investigacion');
+    Route::get('plandetrabajo/actividades/investigacion/create/{plan}', 'PlandetrabajoController@investigacion_create')->name('investigacion_create');
+    Route::post('plandetrabajo/actividades/investigacion/store', 'PlandetrabajoController@investigacion_store')->name('investigacion_store');
     Route::get('plandetrabajo/actividades/extension/{plan}', 'PlandetrabajoController@extension')->name('extension');
     Route::get('plandetrabajo/actividades/cooperacion/{plan}', 'PlandetrabajoController@cooperacion')->name('cooperacion');
     Route::get('plandetrabajo/actividades/crecimiento/{plan}', 'PlandetrabajoController@crecimiento')->name('crecimiento');
     Route::get('plandetrabajo/actividades/actividades/{plan}', 'PlandetrabajoController@actividades')->name('actividades');
     Route::get('plandetrabajo/actividades/otras/{plan}', 'PlandetrabajoController@otras')->name('otras');
+
 
 });
 
