@@ -22,19 +22,31 @@
                 <div class="card-body">
                     <a href="{{route('plandeasignatura.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="material-icons">edit</i> PLAN DE ASIGNATURA
+                            <i class="material-icons">edit</i> ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route('plandedesarrolloasignatura.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i class="material-icons">crop_rotate</i> PLAN DE DESARROLLO DE ASIGNATURA
+                            <i class="material-icons">crop_rotate</i> INVESTIGACIÓN APROBADA
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route('plandetrabajo.index')}}">
                         <button class="btn btn-outline-success btn-round">
-                            <i  class="material-icons">work</i> PLAN DE TRABAJO
+                            <i  class="material-icons">work</i> EXTENSIÓN Y PROYECCIÓN SOCIAL
+                            <div class="ripple-container"></div>
+                        </button>
+                    </a>
+                    <a href="{{route('plandetrabajo.index')}}">
+                        <button class="btn btn-outline-success btn-round">
+                            <i  class="material-icons">work</i> COOPERACION INTERINSTITUCIONAL
+                            <div class="ripple-container"></div>
+                        </button>
+                    </a>
+                    <a href="{{route('plandetrabajo.index')}}">
+                        <button class="btn btn-outline-success btn-round">
+                            <i  class="material-icons">work</i> OTRAS ACTIVIDADES
                             <div class="ripple-container"></div>
                         </button>
                     </a>
