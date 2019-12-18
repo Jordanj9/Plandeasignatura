@@ -403,8 +403,8 @@
                                                                     <span class="badge badge-pill"
                                                                           style="background-color: #38A970">Metodologías (Requerido)</span>
                                                                 </div>
-                                                                <div class="timeline-body"><textarea rows="10"
-                                                                                                     class="form-control"
+                                                                <div class="timeline-body" ><textarea rows="10"
+                                                                                                     class="form-control "
                                                                                                      id="metodologias"
                                                                                                      name="metodologias"
                                                                                                      required="required"></textarea>
@@ -523,6 +523,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.select2').select2();
+            $("#txtEditor").Editor();
             $("#finish").attr('type', 'submit');
             md.checkFullPageBackgroundImage();
             // Initialise the wizard

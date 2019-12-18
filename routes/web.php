@@ -99,6 +99,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     //PLAN DE ASIGNATURA
     Route::resource('plandeasignatura', 'PlandeasignaturaController');
     Route::get('plandeasignatura/{id}/delete', 'PlandeasignaturaController@destroy')->name('plandeasignatura.delete');
+    Route::get('plandeasignatura/{id}/plan/imprimir', 'PlandeasignaturaController@imprimir')->name('plandeasignatura.imprimir');
 
     //UNIDAD DEL PLAN DE ASIGNATURA
     Route::resource('unity', 'UnidadController');
@@ -114,7 +115,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     Route::get('plandedesarrolloasignatura/{id}/create2', 'PlandedesarrolloasignaturaController@create')->name('plandedesarrolloasignatura.crear');
     //Buscar un ejeTematico mediante javascripts
     Route::get('plandedesarrolloasignatura/{id}/get/ejetematicos', 'PlandedesarrolloasignaturaController@getEjetematicos')->name('plandedesarrolloasignatura.getEjetematicos');
-
+    Route::get('plandedesarrolloasignatura/{id}/plan/imprimir', 'PlandedesarrolloasignaturaController@imprimir')->name('plandedesarrolloasignatura.imprimir');
     //PLAN DE TRABAJO
     //Route::resource('plandetrabajo', 'PlandetrabajoController');
     //Route::get('plandetrabajo/{id}/delete', 'PlandetrabajoController@destroy')->name('plandetrabajo.delete');
