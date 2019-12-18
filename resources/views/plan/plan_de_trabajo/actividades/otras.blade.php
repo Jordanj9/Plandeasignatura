@@ -42,8 +42,8 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('otras_create',$plan) }}" class="dropdown-item" href="#">Agregar
-                                        Actividad de Orientación</a>
+                                    <a href="{{ route('otras_create',$plan) }}" class="dropdown-item" >Agregar
+                                        Otras Actividades</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -60,13 +60,24 @@
                                 <td>HORAS/SEMANAS</td>
                                 <td>ACCIONES</td>
                             </tr>
+                            @foreach($trabajos as $trabajo)
+                                <tr>
+                                    <td>{{$trabajo->titulo}}</td>
+                                    <td><center>{{$trabajo->hora_semana}}</center></td>
+                                    <td>
+                                        <a href=""
+                                           class="btn btn-link btn-danger btn-just-icon remove"
+                                           data-toggle="tooltip"
+                                           data-placement="top"
+                                           title="Gestionar Actividades Docentes"><i
+                                                class="material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                             <tr>
-                                <td>OTRAS ACTIVIDADES</td>
-                                <td>HORAS/SEMANAS</td>
-                                <td>ACCIONES</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" style="text-align: center">TOTAL HORAS</td>
+                                <td style="text-align: center">TOTAL HORAS</td>
+                                <td><center>{{$total}}</center></td>
                                 <td></td>
                             </tr>
 
