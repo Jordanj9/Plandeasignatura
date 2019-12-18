@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.academico')}}"> Módulo Plan </a><span
+                        href="{{route('admin.plan')}}"> Módulo Plan </a><span
                         class="fa-angle-right fa"></span>
                     Plan de Desarrollo de Asignatura
                 </p>
@@ -122,45 +122,61 @@
                                                             <strong>{{$p->semana}}</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>{{$p->unidad->nombre}}
-                                                                <br>{{$p->unidad->descripcion}}</strong>
+                                                            @if($p->unidad_id !== null)
+                                                                <strong>{{$p->unidad->nombre}}
+                                                                    <br>{{$p->unidad->descripcion}}</strong>
+                                                            @else
+                                                                <strong>SEMANA DE PARCIAL</strong>
+                                                            @endif
                                                         </td>
-
                                                         <td>
-                                                            @foreach($p->ejetematicos as $e)
+                                                            @if($p->unidad_id != null)
+                                                                @foreach($p->ejetematicos as $e)
+                                                                    <strong>
+                                                                        <li>{{$e->nombre}}</li>
+                                                                        <br></strong>
+                                                                @endforeach
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if($p->tema_trabajo != null)
                                                                 <strong>
-                                                                    <li>{{$e->nombre}}</li>
-                                                                    <br></strong>
-                                                            @endforeach
+                                                                    {{$p->tema_trabajo}}
+                                                                </strong>
+                                                            @endif
                                                         </td>
                                                         <td>
-
-                                                            <strong>
-                                                                {{$p->tema_trabajo}}
-                                                            </strong>
-
+                                                            @if($p->estrategias != null)
+                                                                <strong>
+                                                                    {{$p->estrategias}}
+                                                                </strong>
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                            <strong>
-                                                                {{$p->estrategias}}
-                                                            </strong>
+                                                            @if($p->competencias != null)
+                                                                <strong>
+                                                                    {{$p->competencias}}
+                                                                </strong>
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                            <strong>
-                                                                {{$p->competencias}}
-                                                            </strong>
+                                                            @if($p->competencias != null)
+                                                                @foreach($p->eval as $e)
+                                                                    <a target="_blank"
+                                                                       href="{{asset('docs/evaluacion/'.$e)}}">{{$e}}</a>
+                                                                @endforeach
+                                                            @else
+                                                                {{$p->evaluacion}}
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                            @foreach($p->eval as $e)
-                                                                <a target="_blank" href="{{asset('docs/evaluacion/'.$e)}}">{{$e}}</a>
-                                                            @endforeach
+                                                            @if($p->competencias != null)
+                                                                @foreach($p->bibl as $e)
+                                                                    <a target="_blank"
+                                                                       href="{{asset('docs/bibliografia/'.$e)}}">{{$e}}</a>
+                                                                @endforeach
+                                                            @endif
                                                         </td>
-                                                        <td>
-                                                            @foreach($p->bibl as $e)
-                                                                <a target="_blank" href="{{asset('docs/bibliografia/'.$e)}}">{{$e}}</a>
-                                                            @endforeach
-                                                        </td>
-
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

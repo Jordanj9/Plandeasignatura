@@ -66,11 +66,11 @@
                 <td colspan="2">CÓDIGO: {{$plandeasignatura->asignatura->codigo}}</td>
                 <td colspan="2">CRÉDITOS: {{$plandeasignatura->asignatura->creditos}}</td>
                 @if($plandeasignatura->asignatura->naturaleza == "TEORICO")
-                    <td colspan="2">TEÓRICO:   <strong>X</strong></td>
+                    <td colspan="2">TEÓRICO: <strong>X</strong></td>
                     <td colspan="2">TEÓRICO – PRÁCTICO:</td>
                 @elseif($plandeasignatura->asignatura->naturaleza == "TEORICO-PRACTICO")
                     <td colspan="2">TEÓRICO:</td>
-                    <td colspan="2">TEÓRICO – PRÁCTICO:    <strong>X</strong></td>
+                    <td colspan="2">TEÓRICO – PRÁCTICO: <strong>X</strong></td>
                 @endif
                 @if($plandeasignatura->asignatura->habilitable == "SI")
                     <td colspan="2">HABILITABLE:<strong>X</strong></td>
@@ -100,26 +100,40 @@
             @foreach($plandesarrollo->semanas as $p)
                 <tr>
                     <td colspan="2">{{$p->semana}}</td>
-                    <td colspan="2">{{$p->unidad->nombre}}<br><br>
-                        {{$p->unidad->descripcion}}</td>
                     <td colspan="2">
-                        @foreach($p->ejetematicos as $e)
+                        @if($p->unidad_id !== null)
+                            {{$p->unidad->nombre}}<br><br>
+                            {{$p->unidad->descripcion}}
+                        @else
+                            SEMANA DE PARCIAL
+                        @endif
+                    </td>
+                    <td colspan="2">
+                        @if($p->unidad_id !== null)
+                            @foreach($p->ejetematicos as $e)
                                 <li style="margin-left: 80px">{{$e->nombre}}</li>
                                 <br>
-                        @endforeach
+                            @endforeach
+                        @endif
                     </td>
-                    <td colspan="2">{{$p->tema_trabajo}}</td>
-                    <td colspan="2">{{$p->estrategias}}</td>
-                    <td colspan="2">{{$p->competencias}}</td>
+                    <td colspan="2">@if($p->tema_trabajo != null){{$p->tema_trabajo}}@endif</td>
+                    <td colspan="2">@if($p->estrategias != null){{$p->estrategias}}@endif</td>
+                    <td colspan="2"> @if($p->competencias != null){{$p->competencias}}@endif</td>
                     <td colspan="2">
-                        @foreach($p->eval as $e)
-                            <a target="_blank" href="{{asset('docs/evaluacion/'.$e)}}">{{$e}}</a>
-                        @endforeach
+                        @if($p->competencias != null)
+                            @foreach($p->eval as $e)
+                                <a target="_blank" href="{{asset('docs/evaluacion/'.$e)}}">{{$e}}</a>
+                            @endforeach
+                        @else
+                            {{$p->evaluacion}}
+                        @endif
                     </td>
                     <td colspan="2">
-                        @foreach($p->bibl as $e)
-                            <a target="_blank" href="{{asset('docs/bibliografia/'.$e)}}">{{$e}}</a>
-                        @endforeach
+                        @if($p->competencias != null)
+                            @foreach($p->bibl as $e)
+                                <a target="_blank" href="{{asset('docs/bibliografia/'.$e)}}">{{$e}}</a>
+                            @endforeach
+                        @endif
                     </td>
                 </tr>
             @endforeach

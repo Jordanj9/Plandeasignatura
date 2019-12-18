@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.plan')}}"> Módulo Evaluación </a><span
+                        href="{{route('admin.evaluacion')}}"> Módulo Evaluación </a><span
                         class="fa-angle-right fa"></span> Asistencia
                 </p>
             </div>
@@ -53,22 +53,36 @@
                             </thead>
                             <tbody>
                             @foreach($asistencias as $asis)
-                                @for($i = 0;$i < 1;$i++)
+{{--                                @for($i = 0;$i < 1;$i++)--}}
+{{--<tr>--}}
+{{--    <td>{{$asis[$i]->cargaacademica->asignatura->codigo}}</td>--}}
+{{--    <td>{{$asis[$i]->cargaacademica->asignatura->nombre}}</td>--}}
+{{--    <td>{{$asis[$i]->cargaacademica->grupo->nombre}}</td>--}}
+{{--    <td>{{$asis[$i]->fecha}}</td>--}}
+{{--    <td>{{$asis[$i]->created_at}}</td>--}}
+{{--    <td>--}}
+{{--        <a href="{{ route('asistencia.show',$asis[$i]->id)}}"--}}
+{{--           class="btn btn-link btn-success btn-just-icon remove"--}}
+{{--           data-toggle="tooltip"--}}
+{{--           data-placement="top" title="Ver  de Asistencia"><i--}}
+{{--                class="material-icons">remove_red_eye</i></a>--}}
+{{--    </td>--}}
+{{--</tr>--}}
                                     <tr>
-                                        <td>{{$asis[$i]->cargaacademica->asignatura->codigo}}</td>
-                                        <td>{{$asis[$i]->cargaacademica->asignatura->nombre}}</td>
-                                        <td>{{$asis[$i]->cargaacademica->grupo->grupo}}</td>
-                                        <td>{{$asis[$i]->fecha}}</td>
-                                        <td>{{$asis[$i]->created_at}}</td>
+                                        <td>{{$asis->cargaacademica->asignatura->codigo}}</td>
+                                        <td>{{$asis->cargaacademica->asignatura->nombre}}</td>
+                                        <td>{{$asis->cargaacademica->grupo->nombre}}</td>
+                                        <td>{{$asis->fecha}}</td>
+                                        <td>{{$asis->created_at}}</td>
                                         <td>
-                                            <a href="{{ route('asistencia.show',$asis[$i]->id)}}"
+                                            <a href="{{ route('asistencia.show',$asis->id)}}"
                                                class="btn btn-link btn-success btn-just-icon remove"
                                                data-toggle="tooltip"
                                                data-placement="top" title="Ver  de Asistencia"><i
                                                     class="material-icons">remove_red_eye</i></a>
                                         </td>
                                     </tr>
-                                @endfor
+{{--                                @endfor--}}
                             @endforeach
                             </tbody>
                             <tfoot>

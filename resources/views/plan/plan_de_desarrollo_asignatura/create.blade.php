@@ -408,7 +408,8 @@
         function verificar() {
             var sem = $("#semana").val();
             var aux = sem.split(' ');
-            if(aux[1] == 6 || aux == 11 || aux == 16){
+            if(aux[1] == 6 || aux[1] == 11 || aux[1] == 16){
+                $("#unidad_id").removeAttr('onchange','getEjesTematicos()');
                 $("#unidad_id").val("").trigger('change');
                 $("#ejetematico_id").val("").trigger('change')
                 $("#unidad_id").removeAttr('required');
@@ -423,11 +424,27 @@
                 $("#competencias").removeAttr('required');
                 $("#evaluacion").removeAttr('required');
                 $("#bibliografia").removeAttr('required');
+                $("#unidad_id").attr('onchange','getEjesTematicos()');
+                $("#unidad_id").attr('disabled','true');
+                $("#ejetematico_id").attr('disabled','true');
+                $("#tema_trabajo_id").attr('disabled','true');
+                $("#estrategias_id").attr('disabled','true');
+                $("#competencias_id").attr('disabled','true');
+                $("#evaluacion").attr('disabled','true');
+                $("#bibliografia").attr('disabled','true');
             }else{
+                $("#unidad_id").removeAttr('disabled');
+                $("#ejetematico_id").removeAttr('disabled');
+                $("#tema_trabajo_id").removeAttr('disabled');
+                $("#estrategias_id").removeAttr('disabled');
+                $("#competencias").removeAttr('disabled');
+                $("#evaluacion").removeAttr('disabled');
+                $("#bibliografia").removeAttr('disabled');
+                $("#unidad_id").attr('onchange','getEjesTematicos()');
                 $("#ejetematico_id").attr('required');
                 $("#tema_trabajo_id").attr('required');
                 $("#estrategias_id").attr('required');
-                $("#competencias").attr('required');
+                $("#competencias_id").attr('required');
                 $("#evaluacion").attr('required');
                 $("#bibliografia").attr('required');
             }

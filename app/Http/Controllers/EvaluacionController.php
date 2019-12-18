@@ -104,6 +104,10 @@ class EvaluacionController extends Controller
     {
         $carga = Cargaacademica::find($id);
         $planasignatura = Plandeasignatura::where([['asignatura_id', $carga->id], ['periodo_id', $carga->periodo_id]])->first();
+        if($planasignatura == null){
+            flash("La asignatura del grupo seleccionado no tine plan de asignatura registrado.")->warning();
+            return redirect()->route('evaluacion.index');
+        }
         $plandesarrollo = Plandedesarrolloasignatura::where([['docente_id', $carga->docente_id], ['plandeasignatura_id', $planasignatura->id]])->first();
         $sema = $plandesarrollo->semanas;
         if ($sema != null) {

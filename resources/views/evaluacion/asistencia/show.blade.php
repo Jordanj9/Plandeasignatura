@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.plan')}}"> Módulo Evaluaciones </a><span
+                        href="{{route('admin.evaluacion')}}"> Módulo Evaluaciones </a><span
                         class="fa-angle-right fa"></span>
                     Ver Asistencia
                 </p>
