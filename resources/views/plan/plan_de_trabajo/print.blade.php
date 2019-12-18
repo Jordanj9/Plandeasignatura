@@ -43,55 +43,56 @@
             <tbody>
             <tr style="background-color: #4DC172; color: black">
                 <td>1. DOCENTE</td>
-                <td colspan="9">YORK DAU</td>
+                <td colspan="9">{{$docente->primer_nombre." ".$docente->segundo_nombre." ".$docente->primer_apellido." ".$docente->segundo_apellido}}</td>
             </tr>
             <tr>
+
                 <td>2. CATEGORIA</td>
                 <td></td>
-                <td></td>
+                <td>@if($docente->categoria =="AUXILIAR")<strong>X</strong>@endif</td>
                 <td>PROF. AUXILIAR</td>
-                <td></td>
+                <td>@if($docente->categoria =="ASISTENTE")<strong>X</strong>@endif</td>
                 <td>PROF. ASISTENTE</td>
-                <td></td>
+                <td>@if($docente->categoria =="ASOCIADO")<strong>X</strong>@endif</td>
                 <td>PROF. ASOCIADO</td>
-                <td></td>
+                <td>@if($docente->categoria =="TITULAR")<strong>X</strong>@endif</td>
                 <td>PROF. TITULAR</td>
             </tr>
             <tr>
                 <td>3. VINCULACIÓN</td>
                 <td></td>
-                <td></td>
+                <td>@if($docente->vinculacion =="PLANTA")<strong>X</strong>@endif</td>
                 <td>PLANTA</td>
-                <td></td>
+                <td>@if($docente->vinculacion =="OCASIONAL")<strong>X</strong>@endif</td>
                 <td colspan="5">OCASIONAL</td>
             </tr>
             <tr>
                 <td>4. DEDICACIÓN</td>
                 <td></td>
-                <td></td>
+                <td>@if($docente->dedicacion =="EXCLUSIVA")<strong>X</strong>@endif</td>
                 <td>EXCLUSIVA</td>
-                <td></td>
+                <td>@if($docente->dedicacion =="TIEMPO COMPLETO")<strong>X</strong>@endif</td>
                 <td>TIEMPO COMPLETO</td>
-                <td></td>
+                <td>@if($docente->dedicacion =="MEDIO TIEMPO")<strong>X</strong>@endif</td>
                 <td>MEDIO TIEMPO</td>
-                <td></td>
+                <td>@if($docente->dedicacion =="CÁTEDRA")<strong>X</strong>@endif</td>
                 <td>CÁTEDRA</td>
             </tr>
             <tr>
                 <td>5. SEDE</td>
-                <td colspan="9">cac</td>
+                <td colspan="9">{{$docente->sede}}</td>
             </tr>
             <tr>
                 <td>6. FACULTAD</td>
-                <td colspan="9">cac</td>
+                <td colspan="9">{{$docente->departamento->facultad->nombre}}</td>
             </tr>
             <tr>
                 <td>7. PROGRAMA</td>
-                <td colspan="9">cac</td>
+                <td colspan="9">{{$carga[1]->asignatura->programa->nombre}}</td>
             </tr>
             <tr>
                 <td>8. DEPARTAMENTO</td>
-                <td colspan="9">cac</td>
+                <td colspan="9">{{$docente->departamento->nombre}}</td>
             </tr>
 
             <tr>
@@ -133,10 +134,17 @@
             <h4>ACTIVIDADES DOCENTES</h4>
         </div>
         <table style="margin-top: -20px">
-            <tr>
-                <td colspan="8">dvgs</td>
-                <td></td>
-            </tr>
+            @foreach($plantrabajo->actividaddocentes as $item)
+                @if($item->tipo == 'DOCENTE')
+                    <tr>
+                        <td colspan="8">
+                            {{$item->id.". ".$item->nombre}}</td>
+                        <td>{{$item->pivot->valor}}</td>
+                        @else
+                        </td>
+                    </tr>
+                @endif
+            @endforeach
         </table>
     </div>
     <div>
@@ -144,10 +152,17 @@
             <h4>ACTIVIDADES DOCENTES COMPLEMENTARIAS</h4>
         </div>
         <table style="margin-top: -20px">
-            <tr>
-                <td colspan="8">dvgs</td>
-                <td></td>
-            </tr>
+            @foreach($plantrabajo->actividaddocentes as $item)
+                @if($item->tipo != 'DOCENTE')
+                    <tr>
+                        <td colspan="8">
+                            {{$item->id.". ".$item->nombre}}</td>
+                        <td>{{$item->pivot->valor}}</td>
+                        @else
+                        </td>
+                    </tr>
+                @endif
+            @endforeach
         </table>
     </div>
     <div>

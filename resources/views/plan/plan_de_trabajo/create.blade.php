@@ -65,7 +65,7 @@
                                             <table align="right">
                                                 <thead>
                                                 <th>
-                                                    <td>
+                                                <td>
                                                     PERIODO LECTIVO: 2019-2
                                                 </td>
                                                 </th>
@@ -163,8 +163,26 @@
                                                         <tr>
                                                             <td>{{$actividad->id.'. '.$actividad->nombre}}</td>
                                                             <td align="center">
-                                                                <input name="actividades[{{$actividad->id}}]" required
-                                                                       type="number" min="0" max="50">
+                                                                @if($actividad->id == 10)
+                                                                    <input name="actividades[{{$actividad->id}}]"
+                                                                           required
+                                                                           type="number" min="0" max="50"
+                                                                           value="{{$asig}}">
+                                                                @elseif($actividad->id == 11)
+                                                                    <input name="actividades[{{$actividad->id}}]"
+                                                                           required
+                                                                           type="number" min="0" max="50"
+                                                                           value="{{$grup}}">
+                                                                @elseif($actividad->id == 12)
+                                                                    <input name="actividades[{{$actividad->id}}]"
+                                                                           required
+                                                                           type="number" min="0" max="50"
+                                                                           value="{{$est}}">
+                                                                @else
+                                                                    <input name="actividades[{{$actividad->id}}]"
+                                                                           required
+                                                                           type="number" min="0" max="50">
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @endif
@@ -228,7 +246,9 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue nuevas Tareas al Plan de Trabajo,</strong> gestione cada una de las actividades docentes pertenecientes al plan de trabajo.             </div>
+                    <strong>Agregue nuevas Tareas al Plan de Trabajo,</strong> gestione cada una de las actividades
+                    docentes pertenecientes al plan de trabajo.
+                </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
                 </div>

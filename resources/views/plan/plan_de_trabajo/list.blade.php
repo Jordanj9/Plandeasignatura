@@ -59,7 +59,6 @@
                                     <td>{{$plan->periodo->anio.'-'.$plan->periodo->periodo}}</td>
                                     <td>{{$plan->created_at}}</td>
                                     <td>
-
                                         <a href="{{route('menuActividades',$plan->id)}}"
                                            class="btn btn-link btn-success btn-just-icon remove"
                                            data-toggle="tooltip"
@@ -79,6 +78,11 @@
                                                 calendar_today
                                             </i></a>
 
+                                        <a href="{{ route('plandetrabajo.delete',$plan->id)}}"
+                                           class="btn btn-link btn-danger btn-just-icon remove"
+                                           data-toggle="tooltip"
+                                           data-placement="top" title="Eliminar plan de trabajo"><i
+                                                class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             @endforeach
