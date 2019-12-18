@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">ACADÉMICO - Carga Academica</h4>
+                        <h4 class="card-title">ACADÉMICO - CARGA ACADÉMICA</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -64,9 +64,12 @@
                                     <td>{{$carga->grupo->nombre}}</td>
                                     <td>{{$carga->periodo->anio.'-'.$carga->periodo->periodo}}</td>
                                     <td>
+                                        <a href="{{ route('carga_academica.edit',$carga->id)}}"
+                                           class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Editar Carga"><i class="material-icons">mode_edit</i></a>
                                         <a href="{{ route('carga_academica.delete',$carga->id)}}"
                                            class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Eliminar Docente"><i class="material-icons">delete</i></a>
+                                           data-placement="top" title="Eliminar Carga"><i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             @endforeach

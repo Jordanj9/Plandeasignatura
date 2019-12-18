@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DE LA PÁGINA</h4>
+                        <h4 class="card-title">DATOS DE EXTENSIÓN Y PROYECCIÓN SOCIAL</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -42,7 +42,7 @@
                         @endcomponent
                     </div>
                     <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('investigacion_store')}}">
+                        <form class="form-horizontal" method="POST" action="{{route('extension_store')}}">
                             @csrf
                             <input type="hidden" value="{{$plan}}" name="plandetrabajo_id">
                             <div class="row">

@@ -1,27 +1,11 @@
-
 @extends('layouts.app')
-
-@section('style')
-    <style>
-        table {
-            width: 100%;
-        }
-
-        table, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
-@endsection
 @section('breadcrumb')
     <div class="panel box-shadow-none content-header">
         <div class="panel-body">
             <div class="col-md-12">
                 <p class="animated fadeInDown">
-                    <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.plan')}}"> Módulo Planes </a><span
-                        class="fa-angle-right fa"></span>
-                    Crecimiento Personal y Desarrollo
+                    <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><span
+                        class="fa-angle-right fa"></span> Cambiar Contaseña
                 </p>
             </div>
         </div>
@@ -33,7 +17,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">PLANES - GESTION DE ACTIVIDADES</h4>
+                        <h4 class="card-title">CAMBIAR CONTRASEÑA</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -43,8 +27,6 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('crecimiento_create',$plan) }}" class="dropdown-item" href="#">Agregar
-                                        Actividad de crecimiento personal y desarrollo</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -53,38 +35,46 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="material-datatables">
-                        <table>
-                            <tbody>
-                            <tr style="background-color: #38A970; color: white">
-                                <td colspan="6">5. CRECIMIENTO PERSONAL Y DESARROLLO</td>
-                                <td colspan="4">AUTORIZADA POR: </td>
-                                <td>HORAS/SEMANAS</td>
-                                <td>ACCIONES</td>
-                            </tr>
-                            <tr>
-                                <td colspan="6">DESCRIPCIÓN</td>
-                                <td colspan="2">INSTITUCIÓN</td>
-                                <td colspan="2">FECHA</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="6">DESCRIPCIÓN</td>
-                                <td colspan="2">INSTITUCIÓN</td>
-                                <td colspan="2">FECHA</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="10" style="text-align: center">TOTAL HORAS</td>
-                                <td></td>
-                                <td></td>
-
-                            </tr>
-
-                            </tbody>
-                        </table>
+                    <div class="col-md-12">
+                        @component('layouts.errors')
+                        @endcomponent
+                    </div>
+                    <div class="col-md-12">
+                        <form class="form-horizontal" role="form" method="POST"
+                              action="{{route('usuario.cambiarcontrasenia')}}">
+                            @csrf
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Escriba Su Contraseña Actual</label>
+                                        <br/><input type="password" class="form-control"
+                                                    name="pass0" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Escriba la Nueva Contraseña</label>
+                                        <br/><input type="password" name="pass1" placeholder="Mínimo 6 caracteres"
+                                                    class="form-control" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Vuelva a Escribir La Nueva Contraseña</label>
+                                        <br/><input type="password" name="pass2" placeholder="Mínimo 6 caracteres"
+                                                    class="form-control" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-info btn-round" type="reset">Limpiar</button>
+                                <button class="btn btn-success btn-round" type="submit">Guardar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -99,24 +89,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione cada una de las actividades de cooperación interinstitucional que desee agregar al plan de trabajo.
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade modal-mini modal-primary" id="addUnidad" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-small">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
-                            class="material-icons">clear</i></button>
-                </div>
-                <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione los planes de asignaturas.
+                    Cambie la contraseña.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
@@ -164,5 +137,3 @@
         });
     </script>
 @endsection
-
-

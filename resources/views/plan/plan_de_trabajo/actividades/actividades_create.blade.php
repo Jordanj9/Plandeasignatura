@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DE COOPERACION INTERINSTITUCIONAL</h4>
+                        <h4 class="card-title">DATOS DE ACTIVIDADES ADMINISTRATIVAS</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -175,4 +175,5 @@
         });
     </script>
 @endsection
+
 
