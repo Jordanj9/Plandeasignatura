@@ -159,7 +159,7 @@
             <tr style="background-color: #4DC172; color: black">
                 <td>1. ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO</td>
                 <td colspan="2">APROBADO POR</td>
-                <td colspan="2">FECHA DE: </td>
+                <td colspan="2">FECHA DE:</td>
                 <td>HORAS/SEMANAS</td>
             </tr>
             <tr>
@@ -194,7 +194,7 @@
             <tr style="background-color: #4DC172; color: black">
                 <td>1. ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO</td>
                 <td colspan="2">APROBADO POR</td>
-                <td colspan="2">FECHA DE: </td>
+                <td colspan="2">FECHA DE:</td>
                 <td>HORAS/SEMANAS</td>
             </tr>
             <tr>
@@ -326,7 +326,7 @@
         <table style="margin-top: 15px">
             <tbody>
             <tr style="background-color: #4DC172; color: black">
-                <td colspan="6">6.  ACTIVIDADES ADMINISTRATIVAS</td>
+                <td colspan="6">6. ACTIVIDADES ADMINISTRATIVAS</td>
                 <td colspan="4">AUTORIZADA POR:</td>
                 <td>HORAS/SEMANAS</td>
             </tr>
@@ -360,16 +360,21 @@
         <table style="margin-top: 15px">
             <tbody>
             <tr style="background-color: #4DC172; color: black">
-                <td >OTRAS ACTIVIDADES</td>
+                <td>OTRAS ACTIVIDADES</td>
                 <td>HORAS/SEMANAS</td>
-            </tr>)
-                <tr>
-                    <td></td>
-                    <td><center></center></td>
-                </tr>
+            </tr>
+            )
+            <tr>
+                <td></td>
+                <td>
+                    <center></center>
+                </td>
+            </tr>
             <tr>
                 <td style="text-align: center">TOTAL HORAS</td>
-                <td><center></center></td>
+                <td>
+                    <center></center>
+                </td>
             </tr>
 
             </tbody>
@@ -529,12 +534,29 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>ss
+                <td></td>
+                ss
             </tr>
-
-
             </tbody>
         </table>
+    </div>
+    <div style="border: solid 1px;padding: 40px; margin-top: 10px">
+        <h4 style="text-align: left; margin-top: -25px;margin-left: -35px">OBSERVACIONES:</h4>
+    </div>
+    <div style="border: solid 1px;padding: 40px; margin-top: 10px">
+        <h5>
+            FIRMA DE PROFESOR: ___________________________________
+        </h5>
+        <h5 style="margin-top: -38px; margin-left: 400px">
+            FECHA:__________________
+        </h5>
+        <hr style="margin-top: -10px;border: solid 1px">
+        <p style="margin-left: 20px">________<span style="margin-left: 10px"> </span> _______________________________
+            <span style="margin-left: 10px"> </span>_______________________</p>
+        <p style="margin-left: 30px;margin-top: -18px;font-size: 14px"><strong>Vo.Bo</strong></p>
+        <p style="margin-left: 125px;margin-top: -30px;font-size: 12px"><strong>DIRECTOR DE DEPARTAMENTO </strong></p>
+        <p style="margin-left: 380px;margin-top: -30px;font-size: 12px"><strong>APROBADO POR <span
+                    style="margin-left: 10px"></span>ACTA Nº</strong></p>
     </div>
 </div>
 </body>
