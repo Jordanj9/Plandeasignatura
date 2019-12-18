@@ -82,7 +82,6 @@ class ProgramaController extends Controller
         } else {
             return "null";
         }
-
     }
 
     /**

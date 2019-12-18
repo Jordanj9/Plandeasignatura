@@ -1,4 +1,16 @@
 @extends('layouts.app')
+@section('style')
+    <style>
+        table {
+            width: 100%;
+        }
+
+        table, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+@endsection
 @section('breadcrumb')
     <div class="panel box-shadow-none content-header">
         <div class="panel-body">
@@ -7,7 +19,7 @@
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.plan')}}"> Módulo Planes </a><span
                         class="fa-angle-right fa"></span>
-                    Plan de Asignatura
+                    Plan de Trabajo
                 </p>
             </div>
         </div>
@@ -19,7 +31,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">PLANES - PLAN DE ASIGNATURA</h4>
+                        <h4 class="card-title">PLANES - GESTIÓN DE ACTIVIDADES</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -29,10 +41,8 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    @if(session('ROL') == 'ADMINISTRADOR')
-                                        <a href="{{ route('plandeasignatura.create') }}" class="dropdown-item" href="#">Agregar
-                                            nuevo plan asignatura</a>
-                                    @endif
+                                    <a href="{{ route('investigacion_create',$plan) }}" class="dropdown-item" href="#">Agregar
+                                        nueva actividad de investigación</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -42,67 +52,25 @@
                 </div>
                 <div class="card-body">
                     <div class="material-datatables">
-                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
-                               width="100%" style="width:100%">
-                            <thead>
-                            <tr>
-                                <th>CODIGO DE LA ASIGNATURA</th>
-                                <th>ASIGNATURA</th>
-                                <th>PERIODO</th>
-                                <th>PRE-REQUISITOS</th>
-                                <th>CO-REQUISITOS</th>
-                                <th>CREADO</th>
-                                <th>ACCIONES</th>
-                            </tr>
-                            </thead>
+                        <table>
                             <tbody>
-                            @foreach($planes as $p)
-                                <tr>
-                                    <td>{{$p->asignatura->codigo}}</td>
-                                    <td>{{$p->asignatura->nombre}}</td>
-                                    <td>{{$p->periodo->anio."-".$p->periodo->periodo}}</td>
-                                    <td>{{$p->prerequisitos}}</td>
-                                    <td>{{$p->corequisitos}}</td>
-                                    <td>{{$p->created_at}}</td>
-                                    <td>
-                                        @if(session('ROL') == 'ADMINISTRADOR')
-                                            <a href="{{ route('unity.inicio',$p->id)}}"
-                                               class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                               data-placement="top" title="Gestionar Contenido"><i
-                                                    class="material-icons">format_indent_increase</i></a>
-                                            <a href="{{ route('plandeasignatura.edit',$p->id)}}"
-                                               class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                               data-placement="top" title="Editar Plan de Asignatura"><i
-                                                    class="material-icons">mode_edit</i></a>
-                                            <a href="{{ route('plandeasignatura.delete',$p->id)}}"
-                                               class="btn btn-link btn-danger btn-just-icon remove"
-                                               data-toggle="tooltip"
-                                               data-placement="top" title="Eliminar Plan Asignatura"><i
-                                                    class="material-icons">delete</i></a>
-                                        @endif
-                                        <a href="{{ route('plandeasignatura.show',$p->id)}}"
-                                           class="btn btn-link  btn-just-icon remove" data-toggle="tooltip"
-                                           style="color: #38A970" data-placement="top" title="Ver Plan de Asignatura">
-                                            <i class="material-icons">remove_red_eye</i></a>
-                                        <a target="_blank" href="{{ route('plandeasignatura.imprimir',$p->id)}}"
-                                           class="btn btn-link btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" style="color: #38A970" title="Imprimir"><i
-                                                class="material-icons">print</i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>CODIGO DE LA ASIGNATURA</th>
-                                <th>ASIGNATURA</th>
-                                <th>PERIODO</th>
-                                <th>PRE-REQUISITOS</th>
-                                <th>CO-REQUISITOS</th>
-                                <th>CREADO</th>
-                                <th>ACCIONES</th>
+                            <tr style="background-color: #38A970; color: white;">
+                                <td>2. INVESTIGACIÓN APROBADA</td>
+                                <td colspan="2">APROBADO POR: </td>
+                                <td colspan="2">FECHA DE:</td>
+                                <td>Horas/semana</td>
+                                <td>Acciones</td>
                             </tr>
-                            </tfoot>
+                            <tr>
+                                <td>TITULO DE CADA TRABAJO DE INVESTIGACIÓN</td>
+                                <td>Acta</td>
+                                <td>Fecha</td>
+                                <td>Iniciación</td>
+                                <td>Terminación</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -183,3 +151,4 @@
         });
     </script>
 @endsection
+

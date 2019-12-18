@@ -168,4 +168,14 @@ class AsignaturaController extends Controller
             }
         //}
     }
+
+    public function getAsignatura($id) {
+        $asignatura = Asignatura::find($id);
+        if ($asignatura != null) {
+            $obj["value"] = $asignatura->total_hora;
+            return json_encode($obj);
+        } else {
+            return "null";
+        }
+    }
 }

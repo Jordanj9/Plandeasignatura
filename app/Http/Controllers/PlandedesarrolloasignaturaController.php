@@ -10,6 +10,7 @@ use App\Plandeasignatura;
 use App\Plandedesarrolloasignatura;
 use App\Semana;
 use App\Unidad;
+use Barryvdh\DomPDF\Facade as PDF;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -179,21 +180,25 @@ class PlandedesarrolloasignaturaController extends Controller
             $docente = $plandesarrollo->docente;
         }
         $undidades = Unidad::where('plandeasignatura_id', $plandeasignatura->id)->orderBy('nombre')->get()->pluck('nombre', 'id');
-        //$plandedesarrollos = Plandedesarrolloasignatura::where('plandeasignatura_id', $plandeasignatura->id)->get();
-        $semanas = $plandesarrollo->semanas;
-        if ($semanas != null) {
-            foreach ($semanas as $item) {
-                $item->eval = explode(';', $item->evaluacion);
-                $item->bibl = explode(';', $item->bibliografia);
+        if ($plandesarrollo != null) {
+            $semanas = $plandesarrollo->semanas;
+            if ($semanas != null) {
+                foreach ($semanas as $item) {
+                    $item->eval = explode(';', $item->evaluacion);
+                    $item->bibl = explode(';', $item->bibliografia);
+                }
             }
+            return view('plan.plan_de_desarrollo_asignatura.show')
+                ->with('location', 'plan')
+                ->with('plandeasignatura', $plandeasignatura)
+                ->with('plandedesarrollos', $plandesarrollo)
+                ->with('unidades', $undidades)
+                ->with('semanas', $semanas)
+                ->with('docentes', $docente);
+        } else {
+            flash("El plan de asignatura seleccionado no tiene plan de desarrollo creado. Atención!: ")->warning();
+            return redirect()->route('plandedesarrolloasignatura.index');
         }
-        return view('plan.plan_de_desarrollo_asignatura.show')
-            ->with('location', 'plan')
-            ->with('plandeasignatura', $plandeasignatura)
-            ->with('plandedesarrollos', $plandesarrollo)
-            ->with('unidades', $undidades)
-            ->with('semanas',$semanas)
-            ->with('docentes', $docente);
     }
 
     /**
@@ -245,6 +250,40 @@ class PlandedesarrolloasignaturaController extends Controller
         } else {
             return "null";
         }
+    }
+
+    public function imprimir($id)
+    {
+        $u = Auth::user();
+        $doc = Docente::where('identificacion', $u->identificacion)->first();
+        if ($doc != null) {
+            $docente = $doc;
+            $plandeasignatura = Plandeasignatura::find($id);
+            $plandesarrollo = Plandedesarrolloasignatura::where([['docente_id', $doc->id], ['plandeasignatura_id', $plandeasignatura->id]])->first();
+
+        } else {
+            $plandesarrollo = Plandedesarrolloasignatura::find($id);
+            $plandeasignatura = $plandesarrollo->plandeasignatura;
+            $docente = $plandesarrollo->docente;
+        }
+        $unidades = Unidad::where('plandeasignatura_id', $plandeasignatura->id)->orderBy('nombre')->get();
+        if ($plandesarrollo != null) {
+            $semanas = $plandesarrollo->semanas;
+            if ($semanas != null) {
+                foreach ($semanas as $item) {
+                    $item->eval = explode(';', $item->evaluacion);
+                    $item->bibl = explode(';', $item->bibliografia);
+                }
+            }
+
+            $pdf = PDF::loadView('plan.plan_de_desarrollo_asignatura.print', compact('plandesarrollo', 'unidades', 'semanas', 'docente', 'plandeasignatura'));
+            return $pdf->stream('Plan_de_Asignatura.pdf');
+        } else {
+            flash("El plan de asignatura seleccionado no tiene plan de desarrollo creado. Atención!: ")->warning();
+            return redirect()->route('plandedesarrolloasignatura.index');
+        }
+
+
     }
 
 }

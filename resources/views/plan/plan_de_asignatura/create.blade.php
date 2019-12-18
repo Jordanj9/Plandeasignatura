@@ -157,7 +157,7 @@
                                                             <label class="">Asignatura</label>
                                                             <select class="form-control select2"
                                                                     data-style="select-with-transition"
-                                                                    style="width: 100%;"
+                                                                    style="width: 100%;" onchange="cargar()"
                                                                     required="required"
                                                                     title="--Seleccione una opción--"
                                                                     name="asignatura_id" id="asignatura_id">
@@ -258,9 +258,12 @@
                                                     </div>
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Pre-requisitos" required="required"
-                                                                   name="prerequisitos" id="prerequisitos"/>
+                                                            <label class="control-label">Pre-Requisitos</label>
+                                                            <select class="select2"
+                                                                    data-style="select-with-transition" style="width: 100%;"
+                                                                    title="--Seleccione una opción--"
+                                                                    name="prerequisito" id="prerequisito">
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -274,10 +277,12 @@
                                                     </div>
                                                     <div class="form-group bmd-form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Co-requisitos"
-                                                                   name="corequisitos" id="corequisitos"
-                                                                   required="required"/>
+                                                            <label class="control-label">Co-Requisitos</label>
+                                                            <select class="select2"
+                                                                    data-style="select-with-transition" style="width: 100%;"
+                                                                    title="--Seleccione una opción--"
+                                                                    name="corequisito" id="corequisito">
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -398,8 +403,8 @@
                                                                     <span class="badge badge-pill"
                                                                           style="background-color: #38A970">Metodologías (Requerido)</span>
                                                                 </div>
-                                                                <div class="timeline-body"><textarea rows="10"
-                                                                                                     class="form-control"
+                                                                <div class="timeline-body" ><textarea rows="10"
+                                                                                                     class="form-control "
                                                                                                      id="metodologias"
                                                                                                      name="metodologias"
                                                                                                      required="required"></textarea>
@@ -518,6 +523,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.select2').select2();
+            $("#txtEditor").Editor();
             $("#finish").attr('type', 'submit');
             md.checkFullPageBackgroundImage();
             // Initialise the wizard
@@ -618,12 +624,47 @@
                 $('#asignatura_id option').each(function () {
                     $(this).remove();
                 });
+                $('#corequisito option').each(function () {
+                    $(this).remove();
+                });
+                $('#prerequisito option').each(function () {
+                    $(this).remove();
+                });
                 if (msg !== "null") {
                     var m = JSON.parse(msg);
                     $("#asignatura_id").append("<option value=''>" + "--Seleccione una opción--" + "</option>");
                     $.each(m, function (index, item) {
                         $("#asignatura_id").append("<option value='" + item.id + "'>" + item.value + "</option>");
                     });
+                    $("#corequisito").append("<option value=''>" + "--Seleccione una opción--" + "</option>");
+                    $.each(m, function (index, item) {
+                        $("#corequisito").append("<option value='" + item.value + "'>" + item.value + "</option>");
+                    });
+                    $("#prerequisito").append("<option value=''>" + "--Seleccione una opción--" + "</option>");
+                    $.each(m, function (index, item) {
+                        $("#prerequisito").append("<option value='" + item.value + "'>" + item.value + "</option>");
+                    });
+                } else {
+                    $.notify({
+                        icon: "add_alert",
+                        message: '<strong>Atención!</strong><br>El programa seleccionada no posee asignaturas asociados.'
+                    }, {type: 'danger', timer: 3e3, placement: {from: 'top', align: 'right'}});
+                }
+            });
+        }
+
+        function cargar() {
+            var id = $("#asignatura_id").val();
+            $.ajax({
+                type: 'GET',
+                url: '{{url('academico/asignatura/')}}/' + id + "/get/horasemestral",
+                data: {},
+            }).done(function (msg) {
+                $("#trabajo_semestral").val("");
+                if (msg !== "null") {
+                    var m = JSON.parse(msg);
+                    $("#trabajo_semestral").val(m.value);
+                    $("#trabajo_semestral").attr('disabled',true);
                 } else {
                     $.notify({
                         icon: "add_alert",

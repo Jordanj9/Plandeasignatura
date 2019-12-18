@@ -77,6 +77,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'academico'], function () {
     //ASIGNATURA
     Route::resource('asignatura', 'AsignaturaController');
     Route::get('asignatura/{id}/delete', 'AsignaturaController@destroy')->name('asignatura.delete');
+    Route::get('asignatura/{id}/get/horasemestral', 'AsignaturaController@getAsignatura')->name('asignatura.getHora');
     //DOCENTE
     Route::resource('docente', 'DocenteController');
     Route::get('docente/{id}/delete', 'DocenteController@destroy')->name('docente.delete');
@@ -98,6 +99,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     //PLAN DE ASIGNATURA
     Route::resource('plandeasignatura', 'PlandeasignaturaController');
     Route::get('plandeasignatura/{id}/delete', 'PlandeasignaturaController@destroy')->name('plandeasignatura.delete');
+    Route::get('plandeasignatura/{id}/plan/imprimir', 'PlandeasignaturaController@imprimir')->name('plandeasignatura.imprimir');
 
     //UNIDAD DEL PLAN DE ASIGNATURA
     Route::resource('unity', 'UnidadController');
@@ -113,7 +115,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     Route::get('plandedesarrolloasignatura/{id}/create2', 'PlandedesarrolloasignaturaController@create')->name('plandedesarrolloasignatura.crear');
     //Buscar un ejeTematico mediante javascripts
     Route::get('plandedesarrolloasignatura/{id}/get/ejetematicos', 'PlandedesarrolloasignaturaController@getEjetematicos')->name('plandedesarrolloasignatura.getEjetematicos');
-
+    Route::get('plandedesarrolloasignatura/{id}/plan/imprimir', 'PlandedesarrolloasignaturaController@imprimir')->name('plandedesarrolloasignatura.imprimir');
     //PLAN DE TRABAJO
     //Route::resource('plandetrabajo', 'PlandetrabajoController');
     //Route::get('plandetrabajo/{id}/delete', 'PlandetrabajoController@destroy')->name('plandetrabajo.delete');
@@ -123,6 +125,42 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     Route::resource('plandetrabajo', 'PlandetrabajoController');
     Route::get('plandetrabajo/{id}/delete', 'PlandetrabajoController@destroy')->name('plandetrabajo.delete');
     Route::post('plandetrabajo/guardar', 'PlandetrabajoController@store')->name('plandetrabajostore');
+    Route::get('plandetrabajo/menu/actividades/{plan}', 'PlandetrabajoController@menuActividades')->name('menuActividades');
+
+    //actividades
+
+    Route::get('plandetrabajo/actividades/orientacion/{plan}', 'PlandetrabajoController@orientacion')->name('orientacion');
+    Route::get('plandetrabajo/actividades/orientacion/create/{plan}', 'PlandetrabajoController@orientacion_create')->name('orientacion_create');
+    Route::post('plandetrabajo/actividades/orientacion/store', 'PlandetrabajoController@orientacion_store')->name('orientacion_store');
+
+
+    Route::get('plandetrabajo/actividades/investigacion/{plan}', 'PlandetrabajoController@investigacion')->name('investigacion');
+    Route::get('plandetrabajo/actividades/investigacion/create/{plan}', 'PlandetrabajoController@investigacion_create')->name('investigacion_create');
+    Route::post('plandetrabajo/actividades/investigacion/store', 'PlandetrabajoController@investigacion_store')->name('investigacion_store');
+
+
+    Route::get('plandetrabajo/actividades/extension/{plan}', 'PlandetrabajoController@extension')->name('extension');
+    Route::get('plandetrabajo/actividades/extension/create/{plan}', 'PlandetrabajoController@extension_create')->name('extension_create');
+    Route::post('plandetrabajo/actividades/extension/store', 'PlandetrabajoController@extension_store')->name('extension_store');
+
+
+    Route::get('plandetrabajo/actividades/cooperacion/{plan}', 'PlandetrabajoController@cooperacion')->name('cooperacion');
+    Route::get('plandetrabajo/actividades/cooperacion/create/{plan}', 'PlandetrabajoController@cooperacion_create')->name('cooperacion_create');
+    Route::post('plandetrabajo/actividades/cooperacion/store', 'PlandetrabajoController@cooperacion_store')->name('cooperacion_store');
+
+    Route::get('plandetrabajo/actividades/crecimiento/{plan}', 'PlandetrabajoController@crecimiento')->name('crecimiento');
+    Route::get('plandetrabajo/actividades/crecimiento/create/{plan}', 'PlandetrabajoController@crecimiento_create')->name('crecimiento_create');
+    Route::post('plandetrabajo/actividades/crecimiento/store', 'PlandetrabajoController@crecimiento_store')->name('crecimiento_store');
+
+    Route::get('plandetrabajo/actividades/actividades/{plan}', 'PlandetrabajoController@actividades')->name('actividades');
+    Route::get('plandetrabajo/actividades/actividades/create/{plan}', 'PlandetrabajoController@actividades_create')->name('actividades_create');
+    Route::post('plandetrabajo/actividades/actividades/store', 'PlandetrabajoController@actividades_store')->name('actividades_store');
+
+    Route::get('plandetrabajo/actividades/otras/{plan}', 'PlandetrabajoController@otras')->name('otras');
+    Route::get('plandetrabajo/actividades/otras/create/{plan}', 'PlandetrabajoController@otras_create')->name('otras_create');
+    Route::post('plandetrabajo/actividades/otras/store', 'PlandetrabajoController@otras_store')->name('otras_store');
+
+
 });
 
 //GRUPO DE RUTAS PARA EL MODULO DE EVALUACION

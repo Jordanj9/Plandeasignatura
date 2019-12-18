@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Asignatura;
 use App\Auditoriaacademico;
 use App\Cargaacademica;
 use App\Docente;
@@ -73,6 +74,7 @@ class CargaacademicaController extends Controller
      */
     public function store(Request $request)
     {
+        $asignatura= Asignatura::find($request->asignatura_id);
         $response = null;
         foreach ($request->grupos as $grupo) {
             $grp = Grupo::find($grupo);
@@ -101,13 +103,13 @@ class CargaacademicaController extends Controller
                     $aud->save();
                     $response = $response . "<h4 style='background-color: green'>El " . $grp->nombre . " fue asignado exitosamente.</h4> <br>";
                 } else {
-                    $response = $response . "<h4 style='background-color: red'>El " . $grp->nombre . " no pudo ser asignado. </h4><br>";
+                    $response = $response . "<h4 style='color:white'>El " . $grp->nombre . " no pudo ser asignado a la asignatura." .$asignatura->nomobre." </h4>";
                 }
             } else {
-                $response = $response . "<h4 style='background-color: orangered'>El " . $grp->nombre . " ya fue asignado a la asignatura seleccionada.</h4> <br>";
+                $response = $response . "<h4 style='color: white'>El " . $grp->nombre . " ya fue asignado a la asignatura ".$asignatura->nombre."</h4>";
             }
         }
-        flash($response)->clear();
+        flash($response)->success();
         return redirect()->route('carga_academica.index');
     }
 

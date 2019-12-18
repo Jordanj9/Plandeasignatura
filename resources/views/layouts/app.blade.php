@@ -49,6 +49,8 @@
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
+
+    <link href="{{asset('css/editor.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/material-dashboard.min.css?v=2.1.0')}}" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet"/>
@@ -56,6 +58,8 @@
     <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css')}}">
     <!-- JQuery DataTable Css -->
     <link href="{{asset('css/dataTables.bootstrap.css')}}" rel="stylesheet">
+
+    @yield('style')
     <!-- Google Tag Manager -->
     <script>
         (function (w, d, s, l, i) {
@@ -472,6 +476,7 @@
 <script src="{{asset("assets/js/plugins/jquery.bootstrap-wizard.js")}}"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('assets/demo/demo.js')}}"></script>
+<script src="{{asset('js/editor.js')}}"></script>
 <script>
     var url = "<?php echo config('app.url'); ?>/";
 

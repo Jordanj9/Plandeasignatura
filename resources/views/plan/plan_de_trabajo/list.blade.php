@@ -44,25 +44,36 @@
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
-                                <th>CODIGO DE LA ASIGNATURA</th>
-                                <th>ASIGNATURA</th>
+                                <th>CODIGO</th>
+                                <th>DOCENTE</th>
                                 <th>PERIODO</th>
-                                <th>PRE-REQUISITOS</th>
-                                <th>CO-REQUISITOS</th>
                                 <th>CREADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
                             <tbody>
-
+                            @foreach($planes as $plan)
+                                <tr>
+                                    <td>{{$plan->id}}</td>
+                                    <td>{{$plan->docente->primer_nombre.' '.$plan->docente->primer_apellido}}</td>
+                                    <td>{{$plan->periodo->anio.'-'.$plan->periodo->periodo}}</td>
+                                    <td>{{$plan->created_at}}</td>
+                                    <td>
+                                        <a href="{{route('menuActividades',$plan->id)}}"
+                                           class="btn btn-link btn-success btn-just-icon remove"
+                                           data-toggle="tooltip"
+                                           data-placement="top"
+                                           title="Gestionar Actividades Docentes"><i
+                                                class="material-icons">note_add</i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>CODIGO DE LA ASIGNATURA</th>
-                                <th>ASIGNATURA</th>
+                                <th>CODIGO</th>
+                                <th>DOCENTE</th>
                                 <th>PERIODO</th>
-                                <th>PRE-REQUISITOS</th>
-                                <th>CO-REQUISITOS</th>
                                 <th>CREADO</th>
                                 <th>ACCIONES</th>
                             </tr>

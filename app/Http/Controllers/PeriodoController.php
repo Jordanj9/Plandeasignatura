@@ -43,6 +43,35 @@ class PeriodoController extends Controller
         foreach ($periodo->attributesToArray() as $key => $value) {
             $periodo->$key = strtoupper($value);
         }
+        $fechainicio= strtotime($periodo->fechainicio);
+        $fechafinal=strtotime($periodo->fechafin);
+        $fechainicio1=strtotime($periodo->fechainicio1);
+        $fechafin1=strtotime($periodo->fechafin1);
+        $fechainicio2=strtotime($periodo->fechainicio2);
+        $fechafin2=strtotime($periodo->fechafin2);
+        $fechainicio3=strtotime($periodo->fechainicio3);
+        $fechafin3=strtotime($periodo->fechafin3);
+
+        if ($fechafinal <=$fechainicio){
+            flash("La fecha  final  <strong>" . $periodo->fechafinal."-".$periodo->periodo. "</strong> debe ser mayor  a  la fecha  inicial ".$periodo->fechainicial )->error();
+            return redirect()->route('periodo.index');
+        }
+        if ($fechafin1 <=$fechainicio1){
+            flash("La fecha final del primer parcial  <strong>" . $periodo->fechafin1."-".$periodo->periodo. "</strong> debe ser mayor  a la fecha  inicial de clases  ".$periodo->fechainicio1 )->error();
+            return redirect()->route('periodo.index');
+        }
+        if ($fechafin2 <=$fechainicio2){
+            flash("La fecha final del segundo parcial <strong>" . $periodo->fechafin2."-".$periodo->periodo. "</strong> debe ser mayor  a la fecha  inicial del segundo parcial".$periodo->fechainicio2 )->error();
+            return redirect()->route('periodo.index');
+        }
+        if ($fechafin3 <=$fechainicio3){
+            flash("La fecha final del tercer parcial <strong>" . $periodo->fechafin3."-".$periodo->periodo. "</strong> debe ser mayor a la fecha inicial del tercer parcial ".$periodo->fechainicio3 )->error();
+            return redirect()->route('periodo.index');
+        }
+        if($fechainicio2<=$fechafin1 || $fechainicio3<=$fechafin2){
+            flash("La fechas  de los parciales deben ser cohorentes.")->warning();
+            return redirect()->route('periodo.index');
+        }
         $result = $periodo->save();
         if ($result) {
             $aud = new Auditoriaacademico();

@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\CollectsResources;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade as PDF;
 use PhpParser\Comment\Doc;
 use Symfony\Component\Console\Input\Input;
 
@@ -98,8 +99,6 @@ class PlandeasignaturaController extends Controller
         $validator = Validator::make($request->all(), [
             'dodencia_directa' => 'required',
             'trabajo_independiente' => 'required',
-            'corequisitos' => 'required',
-            'prerequisitos' => 'required',
             'presentacion' => 'required',
             'justificacion' => 'required',
             'objetivogeneral' => 'required',
@@ -254,5 +253,23 @@ class PlandeasignaturaController extends Controller
             return redirect()->route('plandeasignatura.index');
         }
         //}
+    }
+
+    /**
+     * imprime  the specified resource from storage.
+     *
+     * @param \App\Plandeasignatura $plandeasignatura
+     * @return \Illuminate\Http\Response
+     */
+    public function imprimir($id)
+    {
+        $plandeasignatura = Plandeasignatura::find($id);
+        $unidades = Unidad::where('plandeasignatura_id', $plandeasignatura->id)->orderBy('nombre')->get();
+        //dd($plandeasignatura);
+        //$presentacion =
+        $pdf = PDF::loadView('plan.plan_de_asignatura.print',compact('plandeasignatura','unidades'));
+        return $pdf->stream('Plan_de_Asignatura.pdf');
+
+
     }
 }
