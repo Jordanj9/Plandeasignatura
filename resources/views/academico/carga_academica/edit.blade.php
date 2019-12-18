@@ -6,8 +6,9 @@
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.academico')}}"> Académico </a><span
-                        class="fa-angle-right fa"></span><a href="{{route('asignatura.index')}}"> Carga Academica </a><span
-                        class="fa-angle-right fa"></span> Crear
+                        class="fa-angle-right fa"></span><a href="{{route('carga_academica.index')}}">
+                        Carga Académica </a><span
+                        class="fa-angle-right fa"></span> Editar
                 </p>
             </div>
         </div>
@@ -19,7 +20,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DE LA CARGA ACADEMICA</h4>
+                        <h4 class="card-title">EDITAR DATOS DE LA CARGA ACADÉMICA : {{$carga->docente->primer_nombre." ".$carga->docente->primer_apellido}}</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -42,132 +43,110 @@
                         @endcomponent
                     </div>
                     <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('carga_academica.store')}}">
+                        <form class="form-horizontal" method="POST"
+                              action="{{route('carga_academica.update',$carga->id)}}">
                             @csrf
-                            <br class="col-md-12">
-                            <h4>Datos de la Asignatura</h4>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <div class="form-line">
-                                            <label class="control-label">Facultad</label>
-                                            <select class="select2" onchange="getDepartamentos()"
-                                                    data-style="select-with-transition" style="width: 100%;"
-                                                    required="required"
-                                                    id="facultad_id">
-                                                <option value="">--Seleccione una opción--</option>
-                                                @foreach($facultades as $facultad)
-                                                    <option value="{{$facultad->id}}">{{$facultad->nombre}}</option>
-                                                @endforeach
-                                            </select>
+                            <input name="_method" type="hidden" value="PUT"/>
+                            <input name="asignatura" type="hidden" value="{{$carga->asignatura_id}}" id="asignatura"/>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="form-line">
+                                                <label class="control-label">Facultad: <i style="color: red">{{$carga->asignatura->programa->departamento->facultad->nombre}}</i></label>
+                                                <select class="select2" onchange="getDepartamentos()"
+                                                        data-style="select-with-transition" style="width: 100%;"
+                                                        id="facultad_id">
+                                                    <option value="">--Seleccione una opción--</option>
+                                                    @foreach($facultades as $facultad)
+                                                        <option value="{{$facultad->id}}">{{$facultad->nombre}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="form-line">
+                                                <label class="control-label">Departamento: <i style="color: red">{{$carga->asignatura->programa->departamento->nombre}}</i></label>
+                                                <select class="select2" onchange="getProgramas()"
+                                                        data-style="select-with-transition" style="width: 100%;"
+                                                        id="departamento_id">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="form-line">
+                                                <label class="control-label">Programa: <i style="color: red">{{$carga->asignatura->programa->nombre}}</i></label>
+                                                <select class="select2" onchange="getAsignaturas()"
+                                                        data-style="select-with-transition" style="width: 100%;"
+                                                        title="--Seleccione una opción--"
+                                                        id="programa_id">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="form-line">
+                                                <label class="control-label">Asignaturas: <i style="color: red">{{$carga->asignatura->codigo." ".$carga->asignatura->nombre}}</i></label>
+                                                <select class="select2" onchange="cambiar()"
+                                                        data-style="select-with-transition" style="width: 100%;"
+                                                        title="--Seleccione una opción--"
+                                                        name="asignatura_id" id="asignatura_id">
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <div class="form-line">
-                                            <label class="control-label">Departamento</label>
-                                            <select class="select2" onchange="getProgramas()"
-                                                    data-style="select-with-transition" style="width: 100%;"
-                                                    required="required"
-                                                    id="departamento_id">
-                                            </select>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="form-line">
+                                                <label class="control-label">Grupo</label>
+                                                <select class="form-control selectpicker"
+                                                        data-style="select-with-transition" style="width: 100%;"
+                                                        required="required"
+                                                        name="grupo_id">
+                                                    @foreach($grupos as $key=>$value)
+                                                        @if($key==$carga->grupo_id)
+                                                            <option value="{{$key}}" selected="">{{$value}}</option>
+                                                        @else
+                                                            <option value="{{$key}}">{{$value}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <div class="form-line">
-                                            <label class="control-label">Programa</label>
-                                            <select class="select2" onchange="getAsignaturas()"
-                                                    data-style="select-with-transition" style="width: 100%;"
-                                                    required="required" title="--Seleccione una opción--"
-                                                    id="programa_id">
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <div class="form-line">
-                                            <label class="control-label">Asignaturas</label>
-                                            <select class="select2"
-                                                    data-style="select-with-transition" style="width: 100%;"
-                                                    required="required" title="--Seleccione una opción--"
-                                                    name="asignatura_id" id="asignatura_id">
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <h4>Datos del Docente</h4>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group bmd-form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control"
-                                                   required="required" placeholder="Identificación del docente"
-                                                   id="docente"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <button onclick="getPersona(event)" class="btn bg-info waves-effect btn-block">CONSULTAR DOCENTE
-                                    </button>
-                                    <input type="hidden" id="docente_id" name="docente_id">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row" id="datos_docente" style="display: none;">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control"
-                                           required="required" id="nombre_docente" placeholder="Nombre del docente"
-                                    />
-                                </div>
-                                <div class="col-md-6" >
-                                    <input type="text" class="form-control"
-                                           required="required" id="departamento_docente" placeholder="Departamento de Matematicas"
-                                           />
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group bmd-form-group">
-                                        <div class="form-line">
-                                            <label class="control-label">Grupo</label>
-                                            <select class="select2"
-                                                    data-style="select-with-transition" style="width: 100%;"
-                                                    required="required"
-                                                    name="grupos[]" multiple="">
-                                                <option value="">--Seleccione una opción--</option>
-                                                @foreach($grupos as $key=>$value)
-                                                    <option value="{{$key}}">{{$value}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group bmd-form-group">
-                                        <div class="form-line">
-                                            <label class="control-label">Periodo</label>
-                                            <select class="select2"
-                                                    data-style="select-with-transition" style="width: 100%;"
-                                                    required="required" title="--Seleccione una opción--"
-                                                    name="periodo_id">
-                                                <option value="">--Seleccione una opción--</option>
-                                                @foreach($periodos as $key=>$value)
-                                                    <option value="{{$key}}">{{$value}}</option>
-                                                @endforeach
-                                            </select>
+                                    <div class="col-md-6">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="form-line">
+                                                <label class="control-label">Periodo</label>
+                                                <select class="form-control selectpicker"
+                                                        data-style="select-with-transition" style="width: 100%;"
+                                                        required="required" title="--Seleccione una opción--"
+                                                        name="periodo_id">
+                                                    <option value="">--Seleccione una opción--</option>
+                                                    @foreach($periodos as $key=>$value)
+                                                        @if($key==$carga->periodo_id)
+                                                            <option value="{{$key}}" selected="">{{$value}}</option>
+                                                        @else
+                                                            <option value="{{$key}}">{{$value}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <br/><br/><a href="{{route('asignatura.index')}}" class="btn btn-danger btn-round">Cancelar</a>
+                                <br/><br/><a href="{{route('carga_academica.index')}}"
+                                             class="btn btn-danger btn-round">Cancelar</a>
                                 <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
                                 <button class="btn btn-success btn-round" type="submit">Guardar</button>
                             </div>
@@ -186,8 +165,8 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue nuevas asignaturas,</strong> gestione las asignaturas pertenecientes a un programa.
-                    departamentos.
+                    <strong>Detalles: </strong> Edite la carga académica seleccionada. <br>
+                    <strong>Nota: </strong>Si no desea cambiar la asignatura no seleccione ninguna.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
@@ -247,21 +226,21 @@
                 const url ='{{url('academico/docente')}}/' + id + "/buscar";
                 axios.get(url)
                     .then(function (response) {
-                    const data = response.data;
-                    if (data.status == "ok") {
-                       document.getElementById('datos_docente').style.display = 'flex';
-                       document.getElementById('docente_id').value = data.id;
-                       const nombres =  document.getElementById('nombre_docente');
-                       nombres.value = data.nombre;
-                       const departamento =  document.getElementById('departamento_docente');
-                       departamento.value = data.departamento;
-                    } else {
-                        $.notify({
-                            icon: "add_alert",
-                            message: '<strong>Atención!</strong><br>'+data.message,
-                        }, {type: 'danger', timer: 3e3, placement: {from: 'top', align: 'right'}});
-                    }
-                });
+                        const data = response.data;
+                        if (data.status == "ok") {
+                            document.getElementById('datos_docente').style.display = 'flex';
+                            document.getElementById('docente_id').value = data.id;
+                            const nombres =  document.getElementById('nombre_docente');
+                            nombres.value = data.nombre;
+                            const departamento =  document.getElementById('departamento_docente');
+                            departamento.value = data.departamento;
+                        } else {
+                            $.notify({
+                                icon: "add_alert",
+                                message: '<strong>Atención!</strong><br>'+data.message,
+                            }, {type: 'danger', timer: 3e3, placement: {from: 'top', align: 'right'}});
+                        }
+                    });
             }
         }
         function getDepartamentos() {
@@ -335,6 +314,10 @@
                     }, {type: 'danger', timer: 3e3, placement: {from: 'top', align: 'right'}});
                 }
             });
+        }
+        function cambiar() {
+            var id = $("#asignatura_id").val();
+            $("#asignatura").val(id);
         }
     </script>
 @endsection

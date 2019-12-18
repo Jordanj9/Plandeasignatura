@@ -1,8 +1,22 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="container">
         <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <a href="{{route('usuario.vistacontrasenia')}}">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-primary card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">vpn_key</i>
+                                </div>
+                                <p class="card-category">Cambiar</p>
+                                <h3 class="card-title">Contraseña</h3>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </a>
+                </div>
             @if(session()->exists('MOD_USUARIOS'))
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <a href="{{route('admin.usuarios')}}">
