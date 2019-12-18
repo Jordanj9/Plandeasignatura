@@ -162,10 +162,22 @@ class PlandetrabajoController extends Controller
     //ACTIVIDAD ORIENTACION
     public function orientacion($plan)
     {
+
+        $trabajos = Trabajo::where([
+            ['plandetrabajo_id', $plan],
+            ['item_id',1]
+        ])->get();
+
+        $total = 0;
+        foreach ($trabajos as $trabajo) {
+            $total += $trabajo->hora_semana;
+        }
+
         return view('plan.plan_de_trabajo.actividades.orientacion')
             ->with('location', 'plan')
-            ->with('plan', $plan);
-        ;
+            ->with('plan', $plan)
+            ->with('trabajos', $trabajos)
+            ->with('total', $total);
     }
 
     public function orientacion_create($plan)
@@ -173,28 +185,27 @@ class PlandetrabajoController extends Controller
         return view('plan.plan_de_trabajo.actividades.orientacion_create')
             ->with('location', 'plan')
             ->with('plan', $plan);
-    }
-
-    public function orientacion_store(Request $request)
-    {
 
     }
+
 
 //ACTIVIDAD INVESTIGACION
     public function investigacion($plan)
     {
+        $trabajos = Trabajo::where([
+            ['plandetrabajo_id', $plan],
+            ['item_id',2]
+        ])->get();
+        $total = 0;
+        foreach ($trabajos as $trabajo) {
+            $total += $trabajo->hora_semana;
+        }
 
-      $trabajos = Trabajo::where(['plandetrabajo_id'=>$plan])->get();
-      $total = 0;
-      foreach ($trabajos as $trabajo){
-          $total += $trabajo->hora_semana;
-      }
-
-      return view('plan.plan_de_trabajo.actividades.investigacion')
-            ->with('location','plan')
-            ->with('plan',$plan)
-            ->with('trabajos',$trabajos)
-            ->with('total',$total);
+        return view('plan.plan_de_trabajo.actividades.investigacion')
+            ->with('location', 'plan')
+            ->with('plan', $plan)
+            ->with('trabajos', $trabajos)
+            ->with('total', $total);
 
     }
 
@@ -205,20 +216,21 @@ class PlandetrabajoController extends Controller
             ->with('plan', $plan);
     }
 
-    public function investigacion_store(Request $request){
+    public function guardar_trabajo(Request $request)
+    {
         $trabajo = new Trabajo($request->all());
-        $trabajo->item_id = 2;
         $result = $trabajo->save();
-        if($result){
-            flash("La Actividad  de Investigación Aprobada" . "fue almacenada de forma exitosa")->success();
-            return redirect()->route('investigacion',$request->plandetrabajo_id);
-        }else{
-            flash("La Actividad  de Investigación Aprobada" . "no pudo ser almacenada de forma exitosa")->error();
-            return redirect()->route('investigacion',$request->plandetrabajo_id);
+        if ($result) {
+            flash("La Actividad fue almacenada de forma exitosa")->success();
+            return redirect()->back();
+        } else {
+            flash("La Actividad  no pudo ser almacenada de forma exitosa")->error();
+            return redirect()->back();
         }
     }
 
-    public function otras($request){
+    public function otras($request)
+    {
 
         return view('plan.plan_de_trabajo.actividades.otras')
             ->with('location', 'plan');
