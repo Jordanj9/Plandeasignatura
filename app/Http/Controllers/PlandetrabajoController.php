@@ -23,8 +23,8 @@ class PlandetrabajoController extends Controller
     {
         $planes = Plandetrabajo::all();
         return view('plan.plan_de_trabajo.list')
-               ->with('location', 'plan')
-               ->with('planes',$planes);
+            ->with('location', 'plan')
+            ->with('planes', $planes);
     }
 
     /**
@@ -34,7 +34,7 @@ class PlandetrabajoController extends Controller
      */
     public function create()
     {
-        if(session('ROL')=='DOCENTE'){
+        if (session('ROL') == 'DOCENTE') {
 
             $u = Auth::user();
             $doc = Docente::where('identificacion', $u->identificacion)->first();
@@ -48,7 +48,7 @@ class PlandetrabajoController extends Controller
             } else {
                 $carga = Cargaacademica::where([['docente_id', $doc->id], ['periodo_id', $per->id]])->get();
 
-                if($carga==null){
+                if ($carga == null) {
                     flash("no tiene carga académica registrada para el periodo actual")->warning();
                     return redirect()->back();
                 }
@@ -58,15 +58,15 @@ class PlandetrabajoController extends Controller
 
                 return view('plan.plan_de_trabajo.create')
                     ->with('location', 'plan')
-                    ->with('carga',$carga)
-                    ->with('docente',$doc)
-                    ->with('actividades',$actividades)
-                    ->with('items',$items)
-                    ->with('periodo',$per);
+                    ->with('carga', $carga)
+                    ->with('docente', $doc)
+                    ->with('actividades', $actividades)
+                    ->with('items', $items)
+                    ->with('periodo', $per);
 
             }
 
-        }else{
+        } else {
             flash("Acción invalida para el usuario logeado")->warning();
             return redirect()->back();
         }
@@ -77,7 +77,7 @@ class PlandetrabajoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -87,17 +87,17 @@ class PlandetrabajoController extends Controller
         $plan->periodo_id = $request->periodo_id;
         $result = $plan->save();
 
-        if($result){
+        if ($result) {
 
-            foreach ($request->actividades as $key => $value){
-                $plan->actividaddocentes()->attach($key,['valor'=>$value]);
+            foreach ($request->actividades as $key => $value) {
+                $plan->actividaddocentes()->attach($key, ['valor' => $value]);
             }
-            flash("El Plan de Trabajo para el docente <strong>" .$plan->docente->primer_nombre.' '.$plan->docente->primer_apellido . "</strong>con los datos básicos fue almacenado de forma exitosa, clikea el boton seguir para continuar con el proceso")->success();
+            flash("El Plan de Trabajo para el docente <strong>" . $plan->docente->primer_nombre . ' ' . $plan->docente->primer_apellido . "</strong>con los datos básicos fue almacenado de forma exitosa, clikea el boton seguir para continuar con el proceso")->success();
             return redirect()->route('plandetrabajo.index');
 
-        }else{
+        } else {
 
-            flash("El Plan de Trabajo para el docente <strong>" .$plan->docente->primer_nombre.' '.$plan->docente->primer_apellido . "</strong>no pudo ser almacenado de forma exitosa")->error();
+            flash("El Plan de Trabajo para el docente <strong>" . $plan->docente->primer_nombre . ' ' . $plan->docente->primer_apellido . "</strong>no pudo ser almacenado de forma exitosa")->error();
             return redirect()->route('plandetrabajo.index');
 
         }
@@ -107,7 +107,7 @@ class PlandetrabajoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Plandetrabajo  $plandetrabajo
+     * @param \App\Plandetrabajo $plandetrabajo
      * @return \Illuminate\Http\Response
      */
     public function show(Plandetrabajo $plandetrabajo)
@@ -118,7 +118,7 @@ class PlandetrabajoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Plandetrabajo  $plandetrabajo
+     * @param \App\Plandetrabajo $plandetrabajo
      * @return \Illuminate\Http\Response
      */
     public function edit(Plandetrabajo $plandetrabajo)
@@ -129,8 +129,8 @@ class PlandetrabajoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Plandetrabajo  $plandetrabajo
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Plandetrabajo $plandetrabajo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Plandetrabajo $plandetrabajo)
@@ -141,7 +141,7 @@ class PlandetrabajoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Plandetrabajo  $plandetrabajo
+     * @param \App\Plandetrabajo $plandetrabajo
      * @return \Illuminate\Http\Response
      */
     public function destroy(Plandetrabajo $plandetrabajo)
@@ -149,21 +149,40 @@ class PlandetrabajoController extends Controller
         //
     }
 
-    public function menuActividades($plan){
+    public function menuActividades($plan)
+    {
 
         $plan = Plandetrabajo::find($plan);
         return view('plan.plan_de_trabajo.menu_actividades')
-               ->with('plan',$plan)
-               ->with('location','plan');
+            ->with('plan', $plan)
+            ->with('location', 'plan');
 
     }
-    public  function  orientacion($request){
+
+    //ACTIVIDAD ORIENTACION
+    public function orientacion($plan)
+    {
         return view('plan.plan_de_trabajo.actividades.orientacion')
-            ->with('location','plan');
+            ->with('location', 'plan')
+            ->with('plan', $plan);
+        ;
     }
 
+    public function orientacion_create($plan)
+    {
+        return view('plan.plan_de_trabajo.actividades.orientacion_create')
+            ->with('location', 'plan')
+            ->with('plan', $plan);
+    }
 
-    public function investigacion($plan){
+    public function orientacion_store(Request $request)
+    {
+
+    }
+
+//ACTIVIDAD INVESTIGACION
+    public function investigacion($plan)
+    {
 
       $trabajos = Trabajo::where(['plandetrabajo_id'=>$plan])->get();
       $total = 0;
@@ -179,10 +198,11 @@ class PlandetrabajoController extends Controller
 
     }
 
-    public function investigacion_create($plan){
+    public function investigacion_create($plan)
+    {
         return view('plan.plan_de_trabajo.actividades.investigacion_create')
-            ->with('location','plan')
-            ->with('plan',$plan);
+            ->with('location', 'plan')
+            ->with('plan', $plan);
     }
 
     public function investigacion_store(Request $request){
@@ -201,31 +221,103 @@ class PlandetrabajoController extends Controller
     public function otras($request){
 
         return view('plan.plan_de_trabajo.actividades.otras')
-            ->with('location','plan');
+            ->with('location', 'plan');
 
     }
-    public function cooperacion($request){
 
-    return view('plan.plan_de_trabajo.actividades.cooperacion')
-        ->with('location','plan');
+    public function otras_create($plan)
+    {
+        return view('plan.plan_de_trabajo.actividades.otras_create')
+            ->with('location', 'plan')
+            ->with('plan', $plan);
+    }
 
-}
-    public function actividades($request){
+    public function otras_store(Request $request)
+    {
+
+    }
+
+    //ACTIVIDAD COOPERACION
+    public function cooperacion($request)
+    {
+
+        return view('plan.plan_de_trabajo.actividades.cooperacion')
+            ->with('location', 'plan');
+
+    }
+
+    public function cooperacion_create($plan)
+    {
+        return view('plan.plan_de_trabajo.actividades.cooperacion_create')
+            ->with('location', 'plan')
+            ->with('plan', $plan);
+    }
+
+    public function cooperacion_store(Request $request)
+    {
+
+    }
+
+//ACTIVIDAD ACTIVIDADES
+    public function actividades($request)
+    {
 
         return view('plan.plan_de_trabajo.actividades.actividades')
-            ->with('location','plan');
+            ->with('location', 'plan');
 
     }
-    public function extension($request){
+
+    public function actividades_create($plan)
+    {
+        return view('plan.plan_de_trabajo.actividades.actividades_create')
+            ->with('location', 'plan')
+            ->with('plan', $plan);
+    }
+
+    public function actividades_store(Request $request)
+    {
+
+    }
+
+    //ACTIVIDAD EXTENSION
+    public function extension($request)
+    {
 
         return view('plan.plan_de_trabajo.actividades.extension')
-            ->with('location','plan');
+            ->with('location', 'plan');
 
     }
-    public function crecimiento($request){
+
+    public function extension_create($plan)
+    {
+        return view('plan.plan_de_trabajo.actividades.extension_create')
+            ->with('location', 'plan')
+            ->with('plan', $plan);
+    }
+
+    public function xtension_store(Request $request)
+    {
+
+    }
+
+    //ACTIVIDAD CRECIMIENTO
+    public function crecimiento($request)
+    {
 
         return view('plan.plan_de_trabajo.actividades.crecimiento')
-            ->with('location','plan');
+            ->with('location', 'plan');
+
+    }
+
+    public function crecimiento_create($plan)
+    {
+        return view('plan.plan_de_trabajo.actividades.crecimiento_create')
+            ->with('location', 'plan')
+            ->with('plan', $plan);
+    }
+
+    public function crecimiento_store(Request $request)
+    {
 
     }
 
