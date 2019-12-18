@@ -185,21 +185,28 @@
                 <td>Terminación</td>
                 <td></td>
             </tr>
-            <tr>
-                <td>TITULO DE CADA TRABJO DE GRADO</td>
-                <td>Acta</td>
-                <td>Fecha</td>
-                <td>Iniciación</td>
-                <td>Terminación</td>
-                <td></td>
-            </tr>
+            <?php
+            $total = 0;
+            ?>
+            @foreach($plantrabajo->trabajos as $item)
+                <tr>
+                    @if($item->item_id == 1)
+                        $total =$total+$item->hora_semana;
+                        <td>{{$item->titulo}}</td>
+                        <td>{{$item->acta}}</td>
+                        <td>{{$item->fecha}}</td>
+                        <td>{{$item->iniciacion}}</td>
+                        <td>{{$item->terminacion}}</td>
+                        <td></td>
+                    @endif
+                </tr>
+            @endforeach
             <tr>
                 <td colspan="5" style="text-align: center">TOTAL HORAS</td>
                 <td>
-                    <center></center>
+                    <center>{{$total}}</center>
                 </td>
             </tr>
-
             </tbody>
         </table>
     </div>
@@ -207,7 +214,7 @@
         <table style="margin-top: 15px">
             <tbody>
             <tr style="background-color: #4DC172; color: black">
-                <td>1. ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO</td>
+                <td>2. INVESTIGACION APROBADA</td>
                 <td colspan="2">APROBADO POR</td>
                 <td colspan="2">FECHA DE:</td>
                 <td>HORAS/SEMANAS</td>
@@ -220,18 +227,26 @@
                 <td>Terminación</td>
                 <td></td>
             </tr>
-            <tr>
-                <td>TITULO DE CADA TRABJO DE GRADO</td>
-                <td>Acta</td>
-                <td>Fecha</td>
-                <td>Iniciación</td>
-                <td>Terminación</td>
-                <td></td>
-            </tr>
+            <?php
+            $total = 0;
+            ?>
+            @foreach($plantrabajo->trabajos as $item)
+                <tr>
+                    @if($item->item_id == 2)
+                        $total =$total+$item->hora_semana;
+                        <td>{{$item->titulo}}</td>
+                        <td>{{$item->acta}}</td>
+                        <td>{{$item->fecha}}</td>
+                        <td>{{$item->iniciacion}}</td>
+                        <td>{{$item->terminacion}}</td>
+                        <td></td>
+                    @endif
+                </tr>
+            @endforeach
             <tr>
                 <td colspan="5" style="text-align: center">TOTAL HORAS</td>
                 <td>
-                    <center></center>
+                    <center>{{$total}}</center>
                 </td>
             </tr>
 
@@ -253,20 +268,27 @@
                 <td colspan="2">FECHA</td>
                 <td></td>
             </tr>
-
-            <tr>
-                <td colspan="3"></td>
-                <td colspan="3"></td>
-                <td colspan="2"></td>
-                <td colspan="2"></td>
-                <td>
-                    <center></center>
-                </td>
-            </tr>
+            <?php
+            $total = 0;
+            ?>
+            @foreach($plantrabajo->trabajos as $item)
+                <tr>
+                    @if($item->item_id == 3)
+                        $total =$total+$item->hora_semana;
+                        <td colspan="3">{{$item->titulo}}</td>
+                        <td colspan="3">{{$item->descripcion}}</td>
+                        <td colspan="2">{{$item->institucion}}</td>
+                        <td colspan="2">{{$item->fecha}}</td>
+                        <td>
+                            <center>{{$item->hora_semana}}</center>
+                        </td>
+                    @endif
+                </tr>
+            @endforeach
             <tr>
                 <td colspan="10" style="text-align: center">TOTAL HORAS</td>
                 <td>
-                    <center></center>
+                    <center>{{$total}}</center>
                 </td>
             </tr>
             </tbody>
@@ -287,20 +309,27 @@
                 <td colspan="2">FECHA</td>
                 <td></td>
             </tr>
-
-            <tr>
-                <td colspan="3"></td>
-                <td colspan="3"></td>
-                <td colspan="2"></td>
-                <td colspan="2"></td>
-                <td>
-                    <center></center>
-                </td>
-            </tr>
+            <?php
+            $total = 0;
+            ?>
+            @foreach($plantrabajo->trabajos as $item)
+                <tr>
+                    @if($item->item_id == 4)
+                        $total =$total+$item->hora_semana;
+                        <td colspan="3">{{$item->titulo}}</td>
+                        <td colspan="3">{{$item->descripcion}}</td>
+                        <td colspan="2">{{$item->institucion}}</td>
+                        <td colspan="2">{{$item->fecha}}</td>
+                        <td>
+                            <center>{{$item->hora_semana}}</center>
+                        </td>
+                    @endif
+                </tr>
+            @endforeach
             <tr>
                 <td colspan="10" style="text-align: center">TOTAL HORAS</td>
                 <td>
-                    <center></center>
+                    <center>{{$total}}</center>
                 </td>
             </tr>
             </tbody>
@@ -320,18 +349,26 @@
                 <td colspan="2">FECHA</td>
                 <td></td>
             </tr>
-            <tr>
-                <td colspan="6"></td>
-                <td colspan="2"></td>
-                <td colspan="2"></td>
-                <td>
-                    <center></center>
-                </td>
-            </tr>
+            <?php
+            $total = 0;
+            ?>
+            @foreach($plantrabajo->trabajos as $item)
+                <tr>
+                    @if($item->item_id == 5)
+                        $total =$total+$item->hora_semana;
+                        <td colspan="3">{{$item->descripcion}}</td>
+                        <td colspan="2">{{$item->institucion}}</td>
+                        <td colspan="2">{{$item->fecha}}</td>
+                        <td>
+                            <center>{{$item->hora_semana}}</center>
+                        </td>
+                    @endif
+                </tr>
+            @endforeach
             <tr>
                 <td colspan="10" style="text-align: center">TOTAL HORAS</td>
                 <td>
-                    <center></center>
+                    <center>{{$total}}</center>
                 </td>
             </tr>
             </tbody>
@@ -353,19 +390,27 @@
                 <td></td>
             </tr>
 
-            <tr>
-                <td colspan="3"></td>
-                <td colspan="3"></td>
-                <td colspan="2"></td>
-                <td colspan="2"></td>
-                <td>
-                    <center></center>
-                </td>
-            </tr>
+            <?php
+            $total = 0;
+            ?>
+            @foreach($plantrabajo->trabajos as $item)
+                <tr>
+                    @if($item->item_id == 6)
+                        $total =$total+$item->hora_semana;
+                        <td colspan="3">{{$item->titulo}}</td>
+                        <td colspan="3">{{$item->descripcion}}</td>
+                        <td colspan="2">{{$item->institucion}}</td>
+                        <td colspan="2">{{$item->fecha}}</td>
+                        <td>
+                            <center>{{$item->hora_semana}}</center>
+                        </td>
+                    @endif
+                </tr>
+            @endforeach
             <tr>
                 <td colspan="10" style="text-align: center">TOTAL HORAS</td>
                 <td>
-                    <center></center>
+                    <center>{{$total}}</center>
                 </td>
             </tr>
             </tbody>
@@ -378,17 +423,24 @@
                 <td>OTRAS ACTIVIDADES</td>
                 <td>HORAS/SEMANAS</td>
             </tr>
-            )
-            <tr>
-                <td></td>
+            <?php
+            $total = 0;
+            ?>
+            @foreach($plantrabajo->trabajos as $item)
+                <tr>
+                    @if($item->item_id == 7)
+                        $total =$total+$item->hora_semana;
+                <td>{{$item->titulo}}</td>
                 <td>
-                    <center></center>
+                    <center>{{$item->hora_semana}}</center>
                 </td>
-            </tr>
+                    @endif
+                </tr>
+            @endforeach
             <tr>
                 <td style="text-align: center">TOTAL HORAS</td>
                 <td>
-                    <center></center>
+                    <center>{{$total}}</center>
                 </td>
             </tr>
 
