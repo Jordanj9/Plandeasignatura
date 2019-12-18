@@ -20,43 +20,43 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{route('orientacion')}}">
+                    <a href="{{route('orientacion',$plan->id)}}">
                         <button class="btn btn-outline-success btn-round">
                              ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('investigacion')}}">
+                    <a href="{{route('investigacion',$plan->id)}}">
                         <button class="btn btn-outline-success btn-round">
                              INVESTIGACIÓN APROBADA
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('extension')}}">
+                    <a href="{{route('extension',$plan->id)}}">
                         <button class="btn btn-outline-success btn-round">
                              EXTENSIÓN Y PROYECCIÓN SOCIAL
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('cooperacion')}}">
+                    <a href="{{route('cooperacion',$plan->id)}}">
                         <button class="btn btn-outline-success btn-round">
                              COOPERACION INTERINSTITUCIONAL
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('crecimiento')}}">
+                    <a href="{{route('crecimiento',$plan->id)}}">
                         <button class="btn btn-outline-success btn-round">
                             CRECIMIENTO PERSONAL Y DESARROLLO
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('actividades')}}">
+                    <a href="{{route('actividades',$plan->id)}}">
                         <button class="btn btn-outline-success btn-round">
                              ACTIVIDADES ADMINISTRATIVAS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route('otras')}}">
+                    <a href="{{route('otras',$plan->id)}}">
                         <button class="btn btn-outline-success btn-round">
                             OTRAS ACTIVIDADES
                             <div class="ripple-container"></div>
