@@ -42,7 +42,7 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('plandetrabajo.create') }}" class="dropdown-item" href="#">Agregar
+                                    <a href="{{ route('otras_create',$plan) }}" class="dropdown-item" href="#">Agregar
                                         Actividad de Orientación</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
