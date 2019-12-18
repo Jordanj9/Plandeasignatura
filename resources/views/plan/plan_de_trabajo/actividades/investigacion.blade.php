@@ -16,10 +16,14 @@
         <div class="panel-body">
             <div class="col-md-12">
                 <p class="animated fadeInDown">
-                    <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.plan')}}"> Módulo Planes </a><span
-                        class="fa-angle-right fa"></span>
-                    Plan de Trabajo
+                    <a href="{{route('inicio')}}">Inicio</a> <span class="fa-angle-right fa"></span>
+                    <a href="{{route('admin.plan')}}">Módulo Planes</a>
+                    <span class="fa-angle-right fa"></span>
+                    <a href="{{route('plandetrabajo.index')}}">Actividades del Docente</a>
+                    <span class="fa-angle-right fa"></span>
+                    <a href="{{route('menuActividades',$plan)}}">Gestión Cuadros Explicativos</a>
+                    <span class="fa-angle-right fa"></span>
+                    Investigación
                 </p>
             </div>
         </div>

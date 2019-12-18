@@ -126,6 +126,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'plan'], function () {
     Route::get('plandetrabajo/{id}/delete', 'PlandetrabajoController@destroy')->name('plandetrabajo.delete');
     Route::post('plandetrabajo/guardar', 'PlandetrabajoController@store')->name('plandetrabajostore');
     Route::get('plandetrabajo/menu/actividades/{plan}', 'PlandetrabajoController@menuActividades')->name('menuActividades');
+    Route::get('plandetrabajo/{id}/plan/imprimir', 'PlandetrabajoController@imprimir')->name('plandetrabajo.imprimir');
+
 
     //actividades
     Route::post('plandetrabajo/actividades/store', 'PlandetrabajoController@guardar_trabajo')->name('guardar_trabajo');

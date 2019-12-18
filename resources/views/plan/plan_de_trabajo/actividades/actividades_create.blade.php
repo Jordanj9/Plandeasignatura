@@ -6,7 +6,7 @@
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.usuarios')}}"> Usuarios </a><span
-                        class="fa-angle-right fa"></span><a href="{{route('pagina.index')}}"> Página
+                        class="fa-angle-right fa"></span><a href="{{route('plandetrabajo.index')}}"> Página
                         del Sistema </a><span class="fa-angle-right fa"></span> Crear
                 </p>
             </div>

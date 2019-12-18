@@ -20,13 +20,47 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        $asistencias = Asistencia::all()->groupBy('fecha');
-        //dd($asistencias);
+//        $asistencias = Asistencia::all()->groupBy('fecha');
+//       // dd($asistencias);
+//        //dd($asistencias);
 //        foreach($asistencias as $as){
 //            foreach ($as as $a){
 //                dd($a);
 //            }
 //    }
+        $u = Auth::user();
+        $doc = Docente::where('identificacion', $u->identificacion)->first();
+        $hoy = getdate();
+        $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
+        if ($doc != null) {
+            $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
+            if ($per == null) {
+                $cargaAcademica = collect();
+            } else {
+                $cargaAcademica = Cargaacademica::where([['docente_id', $doc->id], ['periodo_id', $per->id]])->get();
+            }
+        } else {
+            $cargaAcademica = Cargaacademica::all();
+        }
+        $asis = null;
+        if($cargaAcademica != null){
+            foreach ($cargaAcademica as $item){
+               $obj = Asistencia::where('cargaacademica_id',$item->id)->get()->groupBy('fecha');
+              if(count($obj)>0){
+                  $asis[]=$obj;
+              }
+            }
+        }
+        $asistencias = collect();
+        if($asis != null){
+            foreach ($asis as $i){
+                foreach ($i as $item) {
+                    foreach ($item as $e){
+                        $asistencias[]=$e;
+                    }
+                }
+            }
+        }
         return view('evaluacion.asistencia.list')
             ->with('location', 'evaluacion')
             ->with('asistencias', $asistencias);

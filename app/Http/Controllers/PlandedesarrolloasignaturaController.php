@@ -118,6 +118,49 @@ class PlandedesarrolloasignaturaController extends Controller
         } else {
             $plandesarrollo = Plandedesarrolloasignatura::find($request->plandesarrollo);
         }
+        $sem = explode(' ', $request->semana);
+        if ($sem[1] == 6) {
+            $semana = new Semana();
+            $semana->semana = $request->semana;
+            $semana->evaluacion = "PRIMER PARCIAL";
+            $semana->plandedesarrolloasignatura_id = $plandesarrollo->id;
+            $result = $semana->save();
+            if ($result) {
+                flash("La Semana <strong>" . $semana->semana . "</strong> fue almacenada de forma exitosa para el plan de desarrollo de asignatura")->success();
+                return redirect()->route('plandedesarrolloasignatura.crear', $plandesarrollo->plandeasignatura_id);
+            } else {
+                flash("La Semana <strong>" . $semana->semana . "</strong> no pudo ser almacenada. Error: " . $result)->error();
+                return redirect()->route('plandedesarrolloasignatura.crear', $request->plandeasignatura_id);
+            }
+        }
+        if ($sem[1] == 11) {
+            $semana = new Semana();
+            $semana->semana = $request->semana;
+            $semana->evaluacion = "SEGUNDO PARCIAL";
+            $semana->plandedesarrolloasignatura_id = $plandesarrollo->id;
+            $result = $semana->save();
+            if ($result) {
+                flash("La Semana <strong>" . $semana->semana . "</strong> fue almacenada de forma exitosa para el plan de desarrollo de asignatura")->success();
+                return redirect()->route('plandedesarrolloasignatura.crear', $plandesarrollo->plandeasignatura_id);
+            } else {
+                flash("La Semana <strong>" . $semana->semana . "</strong> no pudo ser almacenada. Error: " . $result)->error();
+                return redirect()->route('plandedesarrolloasignatura.crear', $request->plandeasignatura_id);
+            }
+        }
+        if ($sem[1] == 16) {
+            $semana = new Semana();
+            $semana->semana = $request->semana;
+            $semana->evaluacion = "TERCER PARCIAL";
+            $semana->plandedesarrolloasignatura_id = $plandesarrollo->id;
+            $result = $semana->save();
+            if ($result) {
+                flash("La Semana <strong>" . $semana->semana . "</strong> fue almacenada de forma exitosa para el plan de desarrollo de asignatura")->success();
+                return redirect()->route('plandedesarrolloasignatura.crear', $plandesarrollo->plandeasignatura_id);
+            } else {
+                flash("La Semana <strong>" . $semana->semana . "</strong> no pudo ser almacenada. Error: " . $result)->error();
+                return redirect()->route('plandedesarrolloasignatura.crear', $request->plandeasignatura_id);
+            }
+        }
         $semana = new Semana();
         $semana->semana = $request->semana;
         $semana->tema_trabajo = $request->tema_trabajo;
@@ -184,8 +227,10 @@ class PlandedesarrolloasignaturaController extends Controller
             $semanas = $plandesarrollo->semanas;
             if ($semanas != null) {
                 foreach ($semanas as $item) {
-                    $item->eval = explode(';', $item->evaluacion);
-                    $item->bibl = explode(';', $item->bibliografia);
+                    if($item->tema_trabajo != null){
+                        $item->eval = explode(';', $item->evaluacion);
+                        $item->bibl = explode(';', $item->bibliografia);
+                    }
                 }
             }
             return view('plan.plan_de_desarrollo_asignatura.show')
@@ -266,18 +311,22 @@ class PlandedesarrolloasignaturaController extends Controller
             $plandeasignatura = $plandesarrollo->plandeasignatura;
             $docente = $plandesarrollo->docente;
         }
-        $unidades = Unidad::where('plandeasignatura_id', $plandeasignatura->id)->orderBy('nombre')->get();
+        $unidades = Unidad::where('plandeasignatura_id', $plandeasignatura->id)->orderBy('nombre')->get()->pluck('nombre', 'id');
         if ($plandesarrollo != null) {
             $semanas = $plandesarrollo->semanas;
             if ($semanas != null) {
                 foreach ($semanas as $item) {
-                    $item->eval = explode(';', $item->evaluacion);
-                    $item->bibl = explode(';', $item->bibliografia);
+                    if($item->tema_trabajo != null){
+                        $item->eval = explode(';', $item->evaluacion);
+                        $item->bibl = explode(';', $item->bibliografia);
+                    }
                 }
             }
 
             $pdf = PDF::loadView('plan.plan_de_desarrollo_asignatura.print', compact('plandesarrollo', 'unidades', 'semanas', 'docente', 'plandeasignatura'));
-            $pdf->setPaper("A4","landscape");
+            $paper_size = array(0, 0, 1400, 1000);
+            $pdf->setPaper($paper_size);
+            //$pdf->setPaper("A4","landscape");
             return $pdf->stream('Plan_de_Asignatura.pdf');
         } else {
             flash("El plan de asignatura seleccionado no tiene plan de desarrollo creado. Atención!: ")->warning();

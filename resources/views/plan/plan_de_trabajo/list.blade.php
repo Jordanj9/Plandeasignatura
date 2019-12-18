@@ -4,10 +4,10 @@
         <div class="panel-body">
             <div class="col-md-12">
                 <p class="animated fadeInDown">
-                    <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.plan')}}"> Módulo Planes </a><span
-                        class="fa-angle-right fa"></span>
-                    Plan de Trabajo
+                    <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span>
+                    <a href="{{route('admin.plan')}}"> Módulo Planes </a>
+                    <span class="fa-angle-right fa"></span>
+                    Actividades del Docente
                 </p>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">PLANES - PLAN DE TRABAJO</h4>
+                        <h4 class="card-title">PLANES - PLAN DE TRABAJO- ACTIVIDADES DEL DOCENTE</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -30,7 +30,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                     <a href="{{ route('plandetrabajo.create') }}" class="dropdown-item" href="#">Agregar
-                                        nueva asignatura</a>
+                                        nueva Actividad Docente </a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -64,8 +64,12 @@
                                            class="btn btn-link btn-success btn-just-icon remove"
                                            data-toggle="tooltip"
                                            data-placement="top"
-                                           title="Gestionar Actividades Docentes"><i
+                                           title="Gestionar cuadros Explicativos-Actividades Docentes"><i
                                                 class="material-icons">note_add</i></a>
+                                        <a target="_blank" href="{{ route('plandetrabajo.imprimir',$plan->id)}}"
+                                           class="btn btn-link btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" style="color: #38A970" title="Imprimir"><i
+                                                class="material-icons">print</i></a>
 
                                         <a href="{{route('horario',$plan->id)}}"
                                            class="btn btn-link btn-warning btn-just-icon remove"
@@ -103,7 +107,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione los planes de asignaturas.
+                    <strong>Detalles: </strong>Gestione cada una de las actividades del docente y las complementarias
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
@@ -120,7 +124,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione los planes de asignaturas.
+                    <strong>Detalles: </strong>Gestione cada una de las actividades del docente y las complementarias.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>

@@ -140,7 +140,7 @@
                                                             <label class="">Semanas</label>
                                                             <select class="form-control select2"
                                                                     data-style="select-with-transition"
-                                                                    style="width: 100%;"
+                                                                    style="width: 100%;" onchange="verificar()"
                                                                     title="--Seleccione una opción--"
                                                                     name="semana" id="semana" required="required">
                                                                 <option value="">--Seleccione una opción--</option>
@@ -284,7 +284,7 @@
                                                         <div class="form-line">
                                                             <input type="file" class="form-control"
                                                                    placeholder="Evaluaciones" name="evaluacion[]"
-                                                                   required="required"
+                                                                   required="required" id="evaluacion"
                                                                    multiple/>
                                                         </div>
                                                     </div>
@@ -306,7 +306,7 @@
                                                         <div class="form-line">
                                                             <input type="file" class="form-control"
                                                                    placeholder="Bibliografia" name="bibliografia[]"
-                                                                   required="required"
+                                                                   required="required" id="bibliografia"
                                                                    multiple/>
                                                         </div>
                                                     </div>
@@ -405,6 +405,50 @@
             });
         });
 
+        function verificar() {
+            var sem = $("#semana").val();
+            var aux = sem.split(' ');
+            if(aux[1] == 6 || aux[1] == 11 || aux[1] == 16){
+                $("#unidad_id").removeAttr('onchange','getEjesTematicos()');
+                $("#unidad_id").val("").trigger('change');
+                $("#ejetematico_id").val("").trigger('change')
+                $("#unidad_id").removeAttr('required');
+                $("#tema_trabajo_id").val("").trigger('change');
+                $("#estrategias_id").val("").trigger('change');
+                $("#competencias").val("").trigger('change');
+                $("#evaluacion").val("").trigger('change');
+                $("#bibliografia").val("").trigger('change');
+                $("#ejetematico_id").removeAttr('required');
+                $("#tema_trabajo_id").removeAttr('required');
+                $("#estrategias_id").removeAttr('required');
+                $("#competencias").removeAttr('required');
+                $("#evaluacion").removeAttr('required');
+                $("#bibliografia").removeAttr('required');
+                $("#unidad_id").attr('onchange','getEjesTematicos()');
+                $("#unidad_id").attr('disabled','true');
+                $("#ejetematico_id").attr('disabled','true');
+                $("#tema_trabajo_id").attr('disabled','true');
+                $("#estrategias_id").attr('disabled','true');
+                $("#competencias_id").attr('disabled','true');
+                $("#evaluacion").attr('disabled','true');
+                $("#bibliografia").attr('disabled','true');
+            }else{
+                $("#unidad_id").removeAttr('disabled');
+                $("#ejetematico_id").removeAttr('disabled');
+                $("#tema_trabajo_id").removeAttr('disabled');
+                $("#estrategias_id").removeAttr('disabled');
+                $("#competencias").removeAttr('disabled');
+                $("#evaluacion").removeAttr('disabled');
+                $("#bibliografia").removeAttr('disabled');
+                $("#unidad_id").attr('onchange','getEjesTematicos()');
+                $("#ejetematico_id").attr('required');
+                $("#tema_trabajo_id").attr('required');
+                $("#estrategias_id").attr('required');
+                $("#competencias_id").attr('required');
+                $("#evaluacion").attr('required');
+                $("#bibliografia").attr('required');
+            }
+        }
         function getEjesTematicos() {
             var id = $("#unidad_id").val();
             $.ajax({
