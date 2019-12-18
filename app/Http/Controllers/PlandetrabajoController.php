@@ -158,4 +158,12 @@ class PlandetrabajoController extends Controller
 
     }
 
+
+    public function investigacion($request){
+
+      return view('plan.plan_de_trabajo.actividades.investigacion')
+            ->with('location','plan');
+
+    }
+
 }
