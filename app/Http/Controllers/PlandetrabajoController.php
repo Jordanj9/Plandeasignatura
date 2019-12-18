@@ -169,5 +169,35 @@ class PlandetrabajoController extends Controller
             ->with('location','plan');
 
     }
+    public function otras($request){
+
+        return view('plan.plan_de_trabajo.actividades.otras')
+            ->with('location','plan');
+
+    }
+    public function cooperacion($request){
+
+    return view('plan.plan_de_trabajo.actividades.cooperacion')
+        ->with('location','plan');
+
+}
+    public function actividades($request){
+
+        return view('plan.plan_de_trabajo.actividades.actividades')
+            ->with('location','plan');
+
+    }
+    public function extension($request){
+
+        return view('plan.plan_de_trabajo.actividades.extension')
+            ->with('location','plan');
+
+    }
+    public function crecimiento($request){
+
+        return view('plan.plan_de_trabajo.actividades.crecimiento')
+            ->with('location','plan');
+
+    }
 
 }

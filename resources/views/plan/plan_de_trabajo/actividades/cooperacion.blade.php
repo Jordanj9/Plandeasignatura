@@ -1,4 +1,17 @@
 @extends('layouts.app')
+
+@section('style')
+    <style>
+        table {
+            width: 100%;
+        }
+
+        table, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+@endsection
 @section('breadcrumb')
     <div class="panel box-shadow-none content-header">
         <div class="panel-body">
@@ -19,7 +32,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">PLANES - PLAN DE TRABAJO</h4>
+                        <h4 class="card-title">PLANES - GESTION DE ACTIVIDADES</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -30,7 +43,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                     <a href="{{ route('plandetrabajo.create') }}" class="dropdown-item" href="#">Agregar
-                                        nueva asignatura</a>
+                                        Actividad de cooperación interinstitucional</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -40,7 +53,39 @@
                 </div>
                 <div class="card-body">
                     <div class="material-datatables">
+                        <table>
+                            <tbody>
+                            <tr style="background-color: #38A970; color: white">
+                                <td colspan="6">4. COOPERACIÓN INTERINSTITUCIONAL</td>
+                                <td colspan="4">AUTORIZADA POR: </td>
+                                <td>HORAS/SEMANAS</td>
+                                <td>ACCIONES</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">ACTIVIDADES</td>
+                                <td colspan="3">DESCRIPCIÓN</td>
+                                <td colspan="2">INSTITUCIÓN</td>
+                                <td colspan="2">FECHA</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">ACTIVIDADES</td>
+                                <td colspan="3">DESCRIPCIÓN</td>
+                                <td colspan="2">INSTITUCIÓN</td>
+                                <td colspan="2">FECHA</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10" style="text-align: center">TOTAL HORAS</td>
+                                <td></td>
+                                <td></td>
 
+                            </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -55,7 +100,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Gestione los planes de asignaturas.
+                    <strong>Detalles: </strong>Gestione cada una de las actividades de cooperación interinstitucional que desee agregar al plan de trabajo.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
@@ -120,4 +165,5 @@
         });
     </script>
 @endsection
+
 
