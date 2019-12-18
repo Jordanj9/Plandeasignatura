@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DE COOPERACION INTERINSTITUCIONAL</h4>
+                        <h4 class="card-title">DATOS DE ACTIVIDADES ADMINISTRATIVAS</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -45,7 +45,7 @@
                         <form class="form-horizontal" method="POST" action="{{route('guardar_trabajo')}}">
                             @csrf
                             <input type="hidden" value="{{$plan}}" name="plandetrabajo_id">
-                            <input type="hidden" value="4" name="item_id">
+                            <input type="hidden" value="6" name="item_id">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -176,4 +176,5 @@
         });
     </script>
 @endsection
+
 

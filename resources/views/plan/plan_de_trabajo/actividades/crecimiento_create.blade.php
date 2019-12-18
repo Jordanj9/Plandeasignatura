@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DE COOPERACION INTERINSTITUCIONAL</h4>
+                        <h4 class="card-title">DATOS DE CRECIMIENTO PERSONAL Y DESARROLLO</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -45,30 +45,18 @@
                         <form class="form-horizontal" method="POST" action="{{route('guardar_trabajo')}}">
                             @csrf
                             <input type="hidden" value="{{$plan}}" name="plandetrabajo_id">
-                            <input type="hidden" value="4" name="item_id">
+                            <input type="hidden" value="5" name="item_id">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <label for="">Actividades</label>
+                                            <label for="">Descripción de la actividad</label>
                                             <br/><input type="text" class="form-control"
-                                                        placeholder="" name="titulo"
+                                                        placeholder="" name="descripcion"
                                                         required="required"/>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <label for="">Descripción</label>
-                                            <br/><input type="text" class="form-control"
-                                                        placeholder="" required
-                                                        name="descripcion"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-line">
@@ -79,6 +67,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-line">
@@ -89,9 +79,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-line">
                                             <label for="Terminación">Horas / Semana</label>
@@ -176,4 +164,5 @@
         });
     </script>
 @endsection
+
 

@@ -71,20 +71,37 @@
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr>
-                                <td>TITULO DE CADA TRABJO DE GRADO</td>
-                                <td>Acta</td>
-                                <td>Fecha</td>
-                                <td>Iniciación</td>
-                                <td>Terminación</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @foreach($trabajos as $trabajo)
+                                <tr>
+                                    <td>{{$trabajo->titulo}}</td>
+                                    <td>
+                                        <center>{{$trabajo->acta}}</center>
+                                    </td>
+                                    <td>
+                                        <center>{{$trabajo->fecha}}</center>
+                                    </td>
+                                    <td>
+                                        <center>{{$trabajo->iniciacion}}</center>
+                                    </td>
+                                    <td>
+                                        <center>{{$trabajo->terminacion}}</center>
+                                    </td>
+                                    <td>
+                                        <center>{{$trabajo->hora_semana}}</center>
+                                    </td>
+                                    <td><a href=""
+                                           class="btn btn-link btn-danger btn-just-icon remove"
+                                           data-toggle="tooltip"
+                                           data-placement="top"
+                                           title="Gestionar Actividades Docentes"><i
+                                                class="material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             <tr>
                                 <td colspan="5" style="text-align: center">TOTAL HORAS</td>
+                                <td><center>{{$total}}</center></td>
                                 <td></td>
-                                <td></td>
-
                             </tr>
 
                             </tbody>

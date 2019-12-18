@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('breadcrumb')
     <div class="panel box-shadow-none content-header">
@@ -19,7 +20,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DE COOPERACION INTERINSTITUCIONAL</h4>
+                        <h4 class="card-title">DATOS DE ACTIVIDADES ADMINISTRATIVAS</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -45,12 +46,12 @@
                         <form class="form-horizontal" method="POST" action="{{route('guardar_trabajo')}}">
                             @csrf
                             <input type="hidden" value="{{$plan}}" name="plandetrabajo_id">
-                            <input type="hidden" value="4" name="item_id">
+                            <input type="hidden" value="7" name="item_id">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <label for="">Actividades</label>
+                                            <label for="">Titulo</label>
                                             <br/><input type="text" class="form-control"
                                                         placeholder="" name="titulo"
                                                         required="required"/>
@@ -58,40 +59,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <label for="">Descripción</label>
-                                            <br/><input type="text" class="form-control"
-                                                        placeholder="" required
-                                                        name="descripcion"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <label for="">Institución</label>
-                                            <br/><input type="text" class="form-control"
-                                                        placeholder=""
-                                                        name="institucion" required/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <label for="">Fecha</label>
-                                            <br/><input type="date" class="form-control"
-                                                        placeholder=""
-                                                        name="fecha" required/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-line">
                                             <label for="Terminación">Horas / Semana</label>
@@ -104,7 +71,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <br/><br/><a href="{{route('pagina.index')}}" class="btn btn-danger btn-round">Cancelar</a>
+                                    <br/><br/><a href="{{route('otras',$plan)}}" class="btn btn-danger btn-round">Cancelar</a>
                                     <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
                                     <button class="btn btn-success btn-round" type="submit">Guardar</button>
                                 </div>
@@ -176,4 +143,5 @@
         });
     </script>
 @endsection
+
 

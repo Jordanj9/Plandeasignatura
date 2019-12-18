@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DE LA PÁGINA</h4>
+                        <h4 class="card-title">DATOS DE ORIENTACIÓN Y EVALUACIÓN DE LOS TRABAJOS DE GRADO</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -42,9 +42,10 @@
                         @endcomponent
                     </div>
                     <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('orientacion_store')}}">
+                        <form class="form-horizontal" method="POST" action="{{route('guardar_trabajo')}}">
                             @csrf
                             <input type="hidden" value="{{$plan}}" name="plandetrabajo_id">
+                            <input type="hidden" value="1" name="item_id">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">

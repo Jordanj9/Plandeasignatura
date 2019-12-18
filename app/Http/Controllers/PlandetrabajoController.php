@@ -7,8 +7,12 @@ use App\Cargaacademica;
 use App\Docente;
 use App\Item;
 use App\Periodo;
+use App\Plandeasignatura;
+use App\Plandedesarrolloasignatura;
 use App\Plandetrabajo;
 use App\Trabajo;
+use App\Unidad;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -162,10 +166,22 @@ class PlandetrabajoController extends Controller
     //ACTIVIDAD ORIENTACION
     public function orientacion($plan)
     {
+
+        $trabajos = Trabajo::where([
+            ['plandetrabajo_id', $plan],
+            ['item_id',1]
+        ])->get();
+
+        $total = 0;
+        foreach ($trabajos as $trabajo) {
+            $total += $trabajo->hora_semana;
+        }
+
         return view('plan.plan_de_trabajo.actividades.orientacion')
             ->with('location', 'plan')
-            ->with('plan', $plan);
-        ;
+            ->with('plan', $plan)
+            ->with('trabajos', $trabajos)
+            ->with('total', $total);
     }
 
     public function orientacion_create($plan)
@@ -173,20 +189,28 @@ class PlandetrabajoController extends Controller
         return view('plan.plan_de_trabajo.actividades.orientacion_create')
             ->with('location', 'plan')
             ->with('plan', $plan);
-    }
-
-    public function orientacion_store(Request $request)
-    {
 
     }
+
+
 
 //ACTIVIDAD INVESTIGACION
     public function investigacion($plan)
     {
+        $trabajos = Trabajo::where([
+            ['plandetrabajo_id', $plan],
+            ['item_id',2]
+        ])->get();
+        $total = 0;
+        foreach ($trabajos as $trabajo) {
+            $total += $trabajo->hora_semana;
+        }
 
         return view('plan.plan_de_trabajo.actividades.investigacion')
             ->with('location', 'plan')
-            ->with('plan', $plan);
+            ->with('plan', $plan)
+            ->with('trabajos', $trabajos)
+            ->with('total', $total);
 
     }
 
@@ -197,17 +221,37 @@ class PlandetrabajoController extends Controller
             ->with('plan', $plan);
     }
 
-    public function investigacion_store(Request $request)
+    public function guardar_trabajo(Request $request)
     {
-
+        $trabajo = new Trabajo($request->all());
+        $result = $trabajo->save();
+        if ($result) {
+            flash("La Actividad fue almacenada de forma exitosa")->success();
+            return redirect()->back();
+        } else {
+            flash("La Actividad  no pudo ser almacenada de forma exitosa")->error();
+            return redirect()->back();
+        }
     }
 
     //ACTIVIDAD OTRAS
-    public function otras($request)
+    public function otras($plan)
     {
 
+        $trabajos = Trabajo::where([
+            ['plandetrabajo_id', $plan],
+            ['item_id',7]
+        ])->get();
+
+        $total = 0;
+        foreach ($trabajos as $trabajo) {
+            $total += $trabajo->hora_semana;
+        }
         return view('plan.plan_de_trabajo.actividades.otras')
-            ->with('location', 'plan');
+            ->with('location', 'plan')
+            ->with('plan', $plan)
+            ->with('trabajos', $trabajos)
+            ->with('total', $total);
 
     }
 
@@ -218,17 +262,25 @@ class PlandetrabajoController extends Controller
             ->with('plan', $plan);
     }
 
-    public function otras_store(Request $request)
-    {
-
-    }
 
     //ACTIVIDAD COOPERACION
-    public function cooperacion($request)
+    public function cooperacion($plan)
     {
 
+        $trabajos = Trabajo::where([
+            ['plandetrabajo_id', $plan],
+            ['item_id',4]
+        ])->get();
+        $total = 0;
+        foreach ($trabajos as $trabajo) {
+            $total += $trabajo->hora_semana;
+        }
+
         return view('plan.plan_de_trabajo.actividades.cooperacion')
-            ->with('location', 'plan');
+            ->with('location', 'plan')
+            ->with('plan', $plan)
+            ->with('trabajos', $trabajos)
+            ->with('total', $total);
 
     }
 
@@ -237,6 +289,7 @@ class PlandetrabajoController extends Controller
         return view('plan.plan_de_trabajo.actividades.cooperacion_create')
             ->with('location', 'plan')
             ->with('plan', $plan);
+
     }
 
     public function cooperacion_store(Request $request)
@@ -245,11 +298,23 @@ class PlandetrabajoController extends Controller
     }
 
 //ACTIVIDAD ACTIVIDADES
-    public function actividades($request)
+    public function actividades($plan)
     {
 
+        $trabajos = Trabajo::where([
+            ['plandetrabajo_id', $plan],
+            ['item_id',6]
+        ])->get();
+        $total = 0;
+        foreach ($trabajos as $trabajo) {
+            $total += $trabajo->hora_semana;
+        }
+
         return view('plan.plan_de_trabajo.actividades.actividades')
-            ->with('location', 'plan');
+            ->with('location', 'plan')
+            ->with('plan', $plan)
+            ->with('trabajos', $trabajos)
+            ->with('total', $total);
 
     }
 
@@ -266,11 +331,23 @@ class PlandetrabajoController extends Controller
     }
 
     //ACTIVIDAD EXTENSION
-    public function extension($request)
+    public function extension($plan)
     {
 
+        $trabajos = Trabajo::where([
+            ['plandetrabajo_id', $plan],
+            ['item_id',3]
+        ])->get();
+        $total = 0;
+        foreach ($trabajos as $trabajo) {
+            $total += $trabajo->hora_semana;
+        }
+
         return view('plan.plan_de_trabajo.actividades.extension')
-            ->with('location', 'plan');
+            ->with('location', 'plan')
+            ->with('plan', $plan)
+            ->with('trabajos', $trabajos)
+            ->with('total', $total);
 
     }
 
@@ -287,11 +364,23 @@ class PlandetrabajoController extends Controller
     }
 
     //ACTIVIDAD CRECIMIENTO
-    public function crecimiento($request)
+    public function crecimiento($plan)
     {
 
+        $trabajos = Trabajo::where([
+            ['plandetrabajo_id', $plan],
+            ['item_id',5]
+        ])->get();
+        $total = 0;
+        foreach ($trabajos as $trabajo) {
+            $total += $trabajo->hora_semana;
+        }
+
         return view('plan.plan_de_trabajo.actividades.crecimiento')
-            ->with('location', 'plan');
+            ->with('location', 'plan')
+            ->with('plan', $plan)
+            ->with('trabajos', $trabajos)
+            ->with('total', $total);
 
     }
 
@@ -305,6 +394,23 @@ class PlandetrabajoController extends Controller
     public function crecimiento_store(Request $request)
     {
 
+    }
+
+    public function imprimir($id)
+    {
+        $plantrabajo = Plandetrabajo::find($id);
+        $docente = Docente::find($plantrabajo->docente_id);
+        $hoy = getdate();
+        $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
+        $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
+        $carga = Cargaacademica::where([['periodo_id',$per->id],['docente_id',$docente->id]])->get();
+
+
+        $pdf = PDF::loadView('plan.plan_de_trabajo.print', compact('plantrabajo', 'docente', 'per', 'carga'));
+        //$paper_size = array(0,0,1400,1000);
+        //$pdf->setPaper($paper_size);
+        //$pdf->setPaper("A4","landscape");
+        return $pdf->stream('Plan_de_Trabajo.pdf');
     }
 
 }

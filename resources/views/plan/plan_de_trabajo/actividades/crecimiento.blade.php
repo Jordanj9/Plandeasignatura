@@ -21,7 +21,7 @@
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.plan')}}"> Módulo Planes </a><span
                         class="fa-angle-right fa"></span>
-                    Plan de Trabajo
+                    Crecimiento Personal y Desarrollo
                 </p>
             </div>
         </div>
@@ -43,7 +43,7 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('crecimiento',$plan) }}" class="dropdown-item" href="#">Agregar
+                                    <a href="{{ route('crecimiento_create',$plan) }}" class="dropdown-item" href="#">Agregar
                                         Actividad de crecimiento personal y desarrollo</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
@@ -69,18 +69,28 @@
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr>
-                                <td colspan="6">DESCRIPCIÓN</td>
-                                <td colspan="2">INSTITUCIÓN</td>
-                                <td colspan="2">FECHA</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+
+                            @foreach($trabajos as $trabajo)
+                                <tr>
+                                    <td colspan="6">{{$trabajo->descripcion}}</td>
+                                    <td colspan="2">{{$trabajo->institucion}}</td>
+                                    <td colspan="2">{{$trabajo->fecha}}</td>
+                                    <td><center>{{$trabajo->hora_semana}}</center></td>
+                                    <td>
+                                        <a href=""
+                                           class="btn btn-link btn-danger btn-just-icon remove"
+                                           data-toggle="tooltip"
+                                           data-placement="top"
+                                           title="Gestionar Actividades Docentes"><i
+                                                class="material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                             <tr>
                                 <td colspan="10" style="text-align: center">TOTAL HORAS</td>
+                                <td><center>{{$total}}</center></td>
                                 <td></td>
-                                <td></td>
-
                             </tr>
 
                             </tbody>

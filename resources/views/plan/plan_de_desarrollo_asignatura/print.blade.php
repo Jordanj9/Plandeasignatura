@@ -15,6 +15,10 @@
             border: 1px solid black;
             border-collapse: collapse;
         }
+
+        td {
+            padding: 8px;
+        }
     </style>
 </head>
 <body>
@@ -27,11 +31,11 @@
                 <td rowspan="2"><b>UNIVERSIDAD POPULAR DEL CESAR</b></td>
                 <td>CODIGO: 201-300-PRO05-FOR02</td>
             </tr>
-            <tr align="center">
+            <tr>
                 <td>VERSIÓN: 1</td>
             </tr>
-            <tr align="center">
-                <td>PLAN DESARROLLO DE ASIGNATURA</td>
+            <tr>
+                <td align="center">PLAN DESARROLLO DE ASIGNATURA</td>
                 <td>PAG:</td>
             </tr>
             </tbody>
@@ -42,64 +46,87 @@
         <table style="font-size: 14px; font-family: Arial !important;">
             <tbody>
             <tr>
-                <td colspan="1">APELLIDOS Y NOMBRES DEL DOCENTE</td>
-                <td colspan="6">{{$docente->primer_nombre." ".$docente->segundo_nombre." ".$docente->primer_apellido." ".$docente->segundo_apellido}}</td>
+                <td colspan="4" style="background-color: #D6E3BC">APELLIDOS Y NOMBRES DEL DOCENTE</td>
+                <td colspan="12">{{$docente->primer_nombre." ".$docente->segundo_nombre." ".$docente->primer_apellido." ".$docente->segundo_apellido}}</td>
             </tr>
             <tr>
-                <td colspan="1">CORREO ELECTRÓNICO</td>
-                <td colspan="6">{{$docente->email}}</td>
+                <td colspan="4">CORREO ELECTRÓNICO</td>
+                <td colspan="12">{{$docente->email}}</td>
             </tr>
             <tr>
-                <td colspan="1">PROGRAMAS USUARIOS:</td>
-                <td colspan="6">{{$plandeasignatura->asignatura->programa->nombre}}</td>
+                <td colspan="4">PROGRAMAS USUARIOS:</td>
+                <td colspan="12">{{$plandeasignatura->asignatura->programa->nombre}}</td>
             </tr>
             <tr>
-                <td colspan="1">FACULTAD USUARIA:</td>
-                <td colspan="6">{{$plandeasignatura->asignatura->programa->departamento->facultad->nombre}}</td>
+                <td colspan="4">FACULTAD USUARIA:</td>
+                <td colspan="12">{{$plandeasignatura->asignatura->programa->departamento->facultad->nombre}}</td>
             </tr>
             <tr>
-                <td colspan="1">ASIGNATURA:<strong>{{$plandeasignatura->asignatura->nombre}}</strong></td>
-                <td colspan="1">CÓDIGO: {{$plandeasignatura->asignatura->codigo}}</td>
-                <td colspan="1">CRÉDITOS: {{$plandeasignatura->asignatura->creditos}}</td>
-                @if($plandeasignatura->asignatura->naturaleza != "PRACTICO")
-                    <td colspan="1">TEÓRICO: <strong>X</strong></td>
-                    <td colspan="1">TEÓRICO – PRÁCTICO:</td>
-                @else
-                    <td colspan="1">TEÓRICO:</td>
-                    <td colspan="1">TEÓRICO – PRÁCTICO:<strong>X</strong></td>
+                <td colspan="4">ASIGNATURA:<strong>{{$plandeasignatura->asignatura->nombre}}</strong></td>
+                <td colspan="2">CÓDIGO: {{$plandeasignatura->asignatura->codigo}}</td>
+                <td colspan="2">CRÉDITOS: {{$plandeasignatura->asignatura->creditos}}</td>
+                @if($plandeasignatura->asignatura->naturaleza == "TEORICO")
+                    <td colspan="2">TEÓRICO:   <strong>X</strong></td>
+                    <td colspan="2">TEÓRICO – PRÁCTICO:</td>
+                @elseif($plandeasignatura->asignatura->naturaleza == "TEORICO-PRACTICO")
+                    <td colspan="2">TEÓRICO:</td>
+                    <td colspan="2">TEÓRICO – PRÁCTICO:    <strong>X</strong></td>
                 @endif
                 @if($plandeasignatura->asignatura->habilitable == "SI")
-                    <td colspan="1">HABILITABLE:<strong>X</strong></td>
-                    <td colspan="1">NO HABILITABLE:</td>
+                    <td colspan="2">HABILITABLE:<strong>X</strong></td>
+                    <td colspan="2">NO HABILITABLE:</td>
                 @else
-                    <td colspan="1">HABILITABLE:</td>
-                    <td colspan="1">NO HABILITABLE:<strong>X</strong></td>
+                    <td colspan="2">HABILITABLE:</td>
+                    <td colspan="2">NO HABILITABLE:<strong>X</strong></td>
                 @endif
             </tr>
             <tr>
-                <td colspan="1">AÑO LECTIVO: {{$plandeasignatura->periodo->anio}}</td>
-                <td colspan="1">PERÍODO ACADÉMICO: {{$plandeasignatura->periodo->periodo}}</td>
-                <td colspan="2">FECHA DE INICIO: {{$plandeasignatura->periodo->fechainicio}} </td>
-                <td colspan="1">TOTAL:</td>
+                <td colspan="4">AÑO LECTIVO: {{$plandeasignatura->periodo->anio}}</td>
+                <td colspan="2">PERÍODO ACADÉMICO: {{$plandeasignatura->periodo->periodo}}</td>
+                <td colspan="4">FECHA DE INICIO: {{$plandeasignatura->periodo->fechainicio}} </td>
+                <td colspan="4">TOTAL: {{$plandeasignatura->asignatura->total_hora}} </td>
                 <td colspan="2">FECHA TERMINACIÓN: {{$plandeasignatura->periodo->fechafin}} </td>
             </tr>
+            <tr style="background-color: #D6E3BC;text-align: center">
+                <td colspan="2">SEMANA</td>
+                <td colspan="2">EJES TEMÁTICOS</td>
+                <td colspan="2">TEMAS DOCENCIA DIRECTA</td>
+                <td colspan="2">TEMAS TRABAJO INDEPENDIENTE</td>
+                <td colspan="2">ESTRATEGIAS METODOLÓGICAS O ACCIONES PEDAGÓGICAS</td>
+                <td colspan="2">COMPETENCIAS</td>
+                <td colspan="2">EVALUACIÓN ACADÉMICA</td>
+                <td colspan="2">BIBLIOGRAFÍA (capítulos, páginas)</td>
+            </tr>
+            @foreach($plandesarrollo->semanas as $p)
+                <tr>
+                    <td colspan="2">{{$p->semana}}</td>
+                    <td colspan="2">{{$p->unidad->nombre}}<br><br>
+                        {{$p->unidad->descripcion}}</td>
+                    <td colspan="2">
+                        @foreach($p->ejetematicos as $e)
+                                <li style="margin-left: 80px">{{$e->nombre}}</li>
+                                <br>
+                        @endforeach
+                    </td>
+                    <td colspan="2">{{$p->tema_trabajo}}</td>
+                    <td colspan="2">{{$p->estrategias}}</td>
+                    <td colspan="2">{{$p->competencias}}</td>
+                    <td colspan="2">
+                        @foreach($p->eval as $e)
+                            <a target="_blank" href="{{asset('docs/evaluacion/'.$e)}}">{{$e}}</a>
+                        @endforeach
+                    </td>
+                    <td colspan="2">
+                        @foreach($p->bibl as $e)
+                            <a target="_blank" href="{{asset('docs/bibliografia/'.$e)}}">{{$e}}</a>
+                        @endforeach
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
-    <div>
-        <table>
-            <tr>
-                <td>SEMANA</td>
-                <td>EJES TEMÁTICOS</td>
-                <td>TEMAS DOCENCIA DIRECTA</td>
-                <td>TEMAS TRABAJO INDEPENDIENTE</td>
-                <td>ESTRATEGIAS METODOLÓGICAS O ACCIONES PEDAGÓGICAS</td>
-                <td>COMPETENCIAS</td>
-                <td>EVALUACIÓN ACADÉMICA</td>
-                <td>BIBLIOGRAFÍA (capítulos, páginas)</td>
-            </tr>
-        </table>
-    </div>
+
 </div>
 </body>
 </html>
