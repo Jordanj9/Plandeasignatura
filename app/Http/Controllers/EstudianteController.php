@@ -12,6 +12,7 @@ use App\Periodo;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EstudianteController extends Controller
 {
@@ -22,7 +23,38 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        $estudiantes = Estudiante::all();
+        $u = Auth::user();
+        $doc = Docente::where('identificacion', $u->identificacion)->first();
+        $hoy = getdate();
+        $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
+        if ($doc != null) {
+            $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
+            if ($per == null) {
+                flash("No hay periodo académico activo.")->error();
+                return redirect()->route('admin.academico');
+            } else {
+                $cargaAcademica = Cargaacademica::where([['docente_id', $doc->id], ['periodo_id', $per->id]])->get();
+                $aux = collect();
+                $estudiantes = collect();
+                if ($cargaAcademica != null) {
+                    foreach ($cargaAcademica as $carga) {
+                        $carest = $carga->estudiantes;
+                        if (count($carest) > 0) {
+                            $aux[] = $carest;
+                        }
+                    }
+                }
+                if (count($aux) > 0) {
+                    foreach ($aux as $a) {
+                        foreach ($a as $e) {
+                            $estudiantes[] = $e;
+                        }
+                    }
+                }
+            }
+        } else {
+            $estudiantes = Estudiante::all();
+        }
         if (count($estudiantes) > 0) {
             foreach ($estudiantes as $d) {
                 $d->nombre = $d->primer_nombre . " " . $d->segundo_nombre . " " . $d->primer_apellido . " " . $d->segundo_apellido;
@@ -70,7 +102,6 @@ class EstudianteController extends Controller
         }
         $result = $est->save();
         $est->cargaacademicas()->sync($request->cargaacademica_id);
-        // $semana->ejetematicos()->sync($request->ejetematico_id);
         if ($result) {
             $user = new User();
             $user->identificacion = $est->identificacion;

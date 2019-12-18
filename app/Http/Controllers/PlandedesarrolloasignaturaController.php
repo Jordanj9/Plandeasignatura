@@ -275,7 +275,7 @@ class PlandedesarrolloasignaturaController extends Controller
                     $item->bibl = explode(';', $item->bibliografia);
                 }
             }
-            //dd($plandesarrollo->semanas);
+
             $pdf = PDF::loadView('plan.plan_de_desarrollo_asignatura.print', compact('plandesarrollo', 'unidades', 'semanas', 'docente', 'plandeasignatura'));
             $paper_size = array(0,0,1400,1000);
             $pdf->setPaper($paper_size);

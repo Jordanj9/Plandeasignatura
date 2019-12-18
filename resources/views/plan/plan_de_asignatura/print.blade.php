@@ -84,22 +84,22 @@
             </tr>
             <tr>
                 <td colspan=1>Tipo de Asignatura</td>
-                <td>Teórico:</td>
-                <td>Teórico-Práctico:</td>
-                <td>Práctico:</td>
+                <td>Teórico:@if($plandeasignatura->asignatura->naturaleza == 'TEORICO') X @endif</td>
+                <td>Teórico-Práctico:@if($plandeasignatura->asignatura->naturaleza == 'TEORICO-PRACTICO') X @endif</td>
+                <td>Práctico:@if($plandeasignatura->asignatura->naturaleza == 'PRACTICO') X @endif</td>
             </tr>
             <tr>
                 <td colspan="1" rowspan="3">Naturaleza de la Asignatura</td>
-                <td colspan="1">Habilitable:</td>
-                <td colspan="2">No Habilitable:</td>
+                <td colspan="1">Habilitable:@if($plandeasignatura->asignatura->habilitable == 'SI') X @endif</td>
+                <td colspan="2">No Habilitable:@if($plandeasignatura->asignatura->habilitable == 'NO') X @endif</td>
             </tr>
             <tr>
                 <td colspan="1">Validable:</td>
-                <td colspan="2">No Validable::</td>
+                <td colspan="2">No Validable:</td>
             </tr>
             <tr>
-                <td colspan="1">Homologable:</td>
-                <td colspan="2">No Homologable::</td>
+                <td colspan="1">Homologable:@if($plandeasignatura->asignatura->homologable == 'SI') X @endif</td>
+                <td colspan="2">No Homologable:@if($plandeasignatura->asignatura->homologable == 'NO') X @endif</td>
             </tr>
             </tbody>
 
