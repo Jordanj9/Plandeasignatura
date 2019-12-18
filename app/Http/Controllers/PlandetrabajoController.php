@@ -15,6 +15,7 @@ use App\Unidad;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Constraint\Count;
 
 class PlandetrabajoController extends Controller
@@ -43,6 +44,13 @@ class PlandetrabajoController extends Controller
 
             $u = Auth::user();
             $doc = Docente::where('identificacion', $u->identificacion)->first();
+
+            $plan = Plandetrabajo::where('docente_id',$doc->id)->first();
+            if($plan != null){
+                flash("ya se encuentra registrado su plan de trabajo")->warning();
+                return redirect()->back();
+            }
+
             $hoy = getdate();
             $a = $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"];
             $per = Periodo::where([['fechainicio', '<=', $a], ['fechafin', '>=', $a]])->first();
@@ -108,7 +116,9 @@ class PlandetrabajoController extends Controller
         $plan->docente_id = $request->docente_id;
         $plan->periodo_id = $request->periodo_id;
         $result = $plan->save();
+
         if ($result) {
+
             foreach ($request->actividades as $key => $value) {
                 $plan->actividaddocentes()->attach($key, ['valor' => $value]);
             }
@@ -190,7 +200,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id', 1]
+            ['item_id',1]
         ])->get();
 
         $total = 0;
@@ -214,12 +224,13 @@ class PlandetrabajoController extends Controller
     }
 
 
+
 //ACTIVIDAD INVESTIGACION
     public function investigacion($plan)
     {
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id', 2]
+            ['item_id',2]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -260,7 +271,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id', 7]
+            ['item_id',7]
         ])->get();
 
         $total = 0;
@@ -289,7 +300,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id', 4]
+            ['item_id',4]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -323,7 +334,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id', 6]
+            ['item_id',6]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -345,10 +356,6 @@ class PlandetrabajoController extends Controller
             ->with('plan', $plan);
     }
 
-    public function actividades_store(Request $request)
-    {
-
-    }
 
     //ACTIVIDAD EXTENSION
     public function extension($plan)
@@ -356,7 +363,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id', 3]
+            ['item_id',3]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -378,10 +385,6 @@ class PlandetrabajoController extends Controller
             ->with('plan', $plan);
     }
 
-    public function xtension_store(Request $request)
-    {
-
-    }
 
     //ACTIVIDAD CRECIMIENTO
     public function crecimiento($plan)
@@ -389,7 +392,7 @@ class PlandetrabajoController extends Controller
 
         $trabajos = Trabajo::where([
             ['plandetrabajo_id', $plan],
-            ['item_id', 5]
+            ['item_id',5]
         ])->get();
         $total = 0;
         foreach ($trabajos as $trabajo) {
@@ -411,10 +414,55 @@ class PlandetrabajoController extends Controller
             ->with('plan', $plan);
     }
 
-    public function crecimiento_store(Request $request)
-    {
+
+    public function eliminar_trabajo($id){
+
+        $trabajo = Trabajo::find($id);
+
+        if($trabajo){
+             $result = $trabajo->delete();
+
+             if($result){
+                 flash("La Actividad fue eliminada correctamente")->success();
+                 return redirect()->back();
+             }else{
+                 flash("La Actividad no pude ser eliminada correctamente, por favor intentarlo más tarde")->warning();
+                 return redirect()->back();
+             }
+        }
 
     }
+
+
+    public function horario($plan){
+
+       $validas = [13,14,15,17,18,19,20,21,22,23];
+       $items = [];
+       $plan = Plandetrabajo::find($plan);
+
+        foreach ($plan->actividaddocentes as $actividad){
+
+            if(in_array($actividad->id,$validas)){
+
+                if($actividad->pivot->valor != 0){
+                    $items[] = [
+                        'id' => $actividad->id,
+                        'descripcion' => $actividad->nombre,
+                        'horas' => $actividad->pivot->valor
+                    ];
+                }
+
+            }
+        }
+
+        return view('plan.plan_de_trabajo.horario')
+              ->with('location','plan')
+              ->with('items',$items)
+              ->with('plan',$plan);
+
+    }
+
+
 
     public function imprimir($id)
     {

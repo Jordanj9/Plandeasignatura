@@ -69,7 +69,7 @@
                                     <td>{{$trabajo->titulo}}</td>
                                     <td><center>{{$trabajo->hora_semana}}</center></td>
                                     <td>
-                                        <a href=""
+                                        <a href="{{route('eliminar_trabajo',$trabajo->id)}}"
                                            class="btn btn-link btn-danger btn-just-icon remove"
                                            data-toggle="tooltip"
                                            data-placement="top"
